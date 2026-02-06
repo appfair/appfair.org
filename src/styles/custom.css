@@ -110,4 +110,21 @@ div.localization-screenshot-container img {
 	margin: 0 auto;
 }
 
+/* Targets the entire footnote section at the bottom */
+.footnotes {
+  font-size: 0.85rem; /* Adjust as needed (standard is 1rem) */
+  color: var(--sl-color-gray-3); /* Optional: slight dimming for visual hierarchy */
+}
+
+/* Optional: Targets the 'Footnotes' heading specifically */
+.footnotes #footnote-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Adjusts spacing between individual footnotes */
+.footnotes li {
+  margin-bottom: 0.5rem;
+}
+
 

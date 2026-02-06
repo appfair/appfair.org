@@ -1,7 +1,7 @@
 ---
 title:  "FOSDEM 2025 Talk: Free App Stores and the Digital Markets Act"
 date:   2025-02-13
-tags: [news, blog, update, talks]
+tags: [news, blog, update, talks, fosdem]
 layout: post
 author: "Marc Prud'hommeaux"
 ---
