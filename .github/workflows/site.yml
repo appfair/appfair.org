@@ -1,4 +1,4 @@
-name: Build and Deploy site
+name: Build and Deploy to appfair.org
 
 on:
   push:
