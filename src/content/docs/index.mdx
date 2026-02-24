@@ -8,6 +8,10 @@ sideBar: false
 head:
   - tag: title
     content: 'The App Fair Project: The free and open-source app store for the iPhone and Android'
+  - tag: link
+    attrs:
+      rel: stylesheet
+      href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0'
 hero:
   tagline: The free and open-source app store for the iPhone and Android
   #image:
@@ -27,40 +31,42 @@ hero:
       variant: secondary
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import FeatureCard from '../../components/FeatureCard.astro';
 
 The App Fair Project is a non-profit charitable organization dedicated to the creation of mobile software applications for the public good. The project was founded in 2022 as a worldwide nexus for free apps to be built, distributed, and maintained.
 
 App Fair apps cost nothing and contain no built-in ad-tech or non-consensual tracking technologies. They do not attempt to monetize the attention of the user in any way. They are created from free and open-source software and are funded solely by donations and grants.
 
-<CardGrid>
+<div class="feature-card-grid">
 
-  <Card title="Free & Open Source" icon="sourcehut">
+  <FeatureCard title="Free & Open Source" icon="code" color="#3b82f6">
     Every App Fair app is fully free and open source. Anyone can inspect the code,
     contribute improvements, or reuse it for the benefit of the wider community.
-  </Card>
+  </FeatureCard>
 
-  <Card title="No Advertisements or Ad-Tech" icon="close">
+  <FeatureCard title="No Advertisements or Ad-Tech" icon="block" color="#ef4444">
     App Fair apps never show ads. There is no attention harvesting, no engagement
     manipulation, and no incentive to optimize for clicks instead of users.
-  </Card>
+  </FeatureCard>
 
-  <Card title="Available Everywhere" icon="seti:hex">
+  <FeatureCard title="Available Everywhere" icon="public" color="#10b981">
     App Fair apps are distributed both through the commercial app stores — the Apple App Store
     and Google Play Store — as well as alternative marketplaces like AltStore and F-Droid.
-  </Card>
-  <Card title="No In-App Purchases" icon="star">
+  </FeatureCard>
+
+  <FeatureCard title="No In-App Purchases" icon="money_off" color="#f59e0b">
     App Fair apps do not monetize end users in any way. No subscriptions, no in-app
     purchases, and no paywalls — the full experience is available to everyone.
-  </Card>
+  </FeatureCard>
 
-  <Card title="Digital Public Goods" icon="heart">
+  <FeatureCard title="Digital Public Goods" icon="volunteer_activism" color="#ec4899">
     App Fair projects are digital public goods, built by the community and funded by
     donations and grants to serve society.
-  </Card>
+  </FeatureCard>
 
-  <Card title="Privacy-Respecting by Design" icon="approve-check-circle">
+  <FeatureCard title="Privacy-Respecting by Design" icon="shield" color="#8b5cf6">
     App Fair apps contain no trackers, no spyware, and request no unnecessary permissions.
     Your data stays on your device unless sharing is essential and explicit.
-  </Card>  
-</CardGrid>
+  </FeatureCard>
+
+</div>
