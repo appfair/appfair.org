@@ -131,79 +131,141 @@ Apps should work in a variety of network conditions: fast wi-fi as well as slow 
 
 #### Be fast to launch and efficient with memory and battery {#guideline-fast}
 
-_writing in progress…_
+App Fair apps should launch quickly and be mindful of the device's resources. Avoid unnecessary background processing, large memory allocations, and operations that drain the battery. Users on older devices and slower connections should still have a good experience.
 
 #### Provide in-app guidance {#guideline-guidance}
 
-_writing in progress…_
+Apps should be intuitive to use without requiring external documentation. Include onboarding screens or contextual hints where appropriate, so that users of all experience levels can understand the app's functionality without searching for help.
 
 #### Facilitate easy translation {#guideline-translations}
 
-_writing in progress…_
+All user-facing strings should be externalized using the platform's standard localization mechanisms. In SwiftUI, this means using `LocalizedStringKey` and `.strings`/`.xcstrings` files. Skip automatically bridges these to Android's string resource system. Avoid hardcoded strings in your views so that community translators can contribute localizations without modifying code.
 
 ### The app development cycle {#appdev}
 
-_writing in progress…_
+The day-to-day development workflow for an App Fair app follows standard Xcode practices:
+
+1. **Open your project in Xcode** and develop using Swift and SwiftUI as you normally would. Skip's Xcode plugin automatically generates the corresponding Android project in the background.
+2. **Test on iOS** using the iOS Simulator directly from Xcode.
+3. **Test on Android** by running the Android target from Xcode, which launches the Android emulator via Gradle. You can also open the generated Android project in Android Studio for platform-specific debugging.
+4. **Commit and push** your changes to your repository. Each push triggers the CI workflow, which builds both the iOS and Android targets to verify that your app compiles correctly on both platforms.
+5. **Iterate** on your app by repeating the above steps. Use Pull Requests for larger changes to take advantage of CI build verification before merging.
+
+For more details on Skip's development workflow, see the [Skip documentation](https://skip.tools/docs/).
 
 ## Releasing {#releasing}
 
-_writing in progress…_
+The App Fair release process is designed so that you, the creator, maintain full ownership of your source code in your own GitHub organization, while the App Fair handles the building, signing, and distribution of your app to the Apple App Store and Google Play Store.
+
+The process works through a fork-based model:
+
+1. You develop and tag releases in your own repository (e.g., `github.com/Tune-Out/Tune-Out`).
+2. The App Fair maintains a fork of your repository (e.g., `github.com/appfair/Tune-Out`).
+3. When release tags are synchronized to the App Fair fork, GitHub Actions workflows automatically build, sign, and deploy your app to the distribution channels.
+
+This separation ensures that you always retain control of your source code while the App Fair manages the signing credentials and store submission process.
 
 ### About the App Fair release process {#app-fair-releases}
 
-_writing in progress…_
+The release pipeline is powered by GitHub Actions and the [skiptools/actions](https://github.com/skiptools/actions) reusable workflows. Every App Fair app repository includes a CI workflow file (e.g., `.github/workflows/app-name.yml`) that was created during `skip init --appfair`. This workflow is configured to:
 
-<!-- When it is time to release your app and submit it to the various distribution channels,  -->
+- **Build on every push to `main`** — ensures the app compiles on both platforms after every commit.
+- **Build on Pull Requests** — validates changes before they are merged.
+- **Build and release on version tags** — when a tag matching the pattern `X.Y.Z` (e.g., `1.1.6`) is pushed, the workflow builds release binaries for both iOS and Android.
+- **Run daily scheduled builds** — catches issues caused by upstream dependency changes.
+
+The workflow calls the shared `skiptools/actions` build pipeline, which handles compiling the Swift/SwiftUI code for iOS and transpiling it to Kotlin/Jetpack Compose for Android via Skip. When the appropriate signing credentials are configured (in the App Fair fork), the workflow also handles code signing and submission to the Apple App Store and Google Play Store.
+
+**Example:** The [Tune-Out](https://github.com/Tune-Out/Tune-Out) app uses this exact process. Its CI workflow triggers on every push and on version tags. The App Fair fork at [appfair/Tune-Out](https://github.com/appfair/Tune-Out) has the signing secrets configured, so when a release tag is synchronized to the fork, the app is automatically built, signed, and submitted to both stores.
 
 ### Managing metadata {#metadata}
 
-_writing in progress…_
+App store metadata — including your app's description, keywords, screenshots, and promotional text — is managed through [Fastlane](https://fastlane.tools/) metadata files that live in your repository. This keeps all of your app's metadata version-controlled alongside the code, and allows the automated release pipeline to submit metadata updates to the stores.
 
 #### About Fastlane {#metadata-fastlane}
 
-_writing in progress…_
+Fastlane is an open-source tool for automating mobile app deployment. The App Fair uses Fastlane's metadata directory structure to organize app store listings for both iOS and Android. When you initialize your app with `skip init --appfair`, a Fastlane metadata directory structure is created in your repository.
 
 #### Android metadata {#metadata-fastlane-android}
 
-_writing in progress…_
+Android metadata is stored under `fastlane/metadata/android/` in your repository. This includes directories for each locale (e.g., `en-US/`, `fr-FR/`) containing files such as:
+
+- `title.txt` — The app's display name on the Play Store.
+- `short_description.txt` — A brief summary (up to 80 characters).
+- `full_description.txt` — The full Play Store description (up to 4000 characters).
 
 ##### Android screenshots {#metadata-fastlane-android-screenshots}
 
-_writing in progress…_
+Android screenshots are placed in the locale directories under `images/` subdirectories (e.g., `phoneScreenshots/`, `tabletScreenshots/`). Include screenshots that showcase your app's key features. Google Play requires at least two screenshots per device type.
 
 #### iOS metadata {#metadata-fastlane-ios}
 
-_writing in progress…_
+iOS metadata is stored under `fastlane/metadata/` and follows a similar per-locale directory structure. Key files include:
+
+- `name.txt` — The app's display name on the App Store.
+- `subtitle.txt` — A brief subtitle (up to 30 characters).
+- `description.txt` — The full App Store description.
+- `keywords.txt` — Comma-separated keywords for App Store search.
+- `promotional_text.txt` — Text that can be updated without a new app version.
 
 ##### iOS screenshots {#metadata-fastlane-ios-screenshots}
 
-_writing in progress…_
+iOS screenshots are placed under `screenshots/` in locale subdirectories. Apple requires screenshots for various device sizes (e.g., iPhone 6.7", iPhone 6.5", iPad 12.9"). Screenshots should highlight your app's primary functionality and be provided for each supported device class.
 
 ### Creating a tag {#release-tag}
 
-_writing in progress…_
+When your app is ready for release, you create a release by tagging your repository with a [semantic version](https://semver.org/) number. The tag must match the pattern `X.Y.Z` (e.g., `1.0.0`, `1.1.6`):
+
+```
+git tag 1.0.0
+git push origin 1.0.0
+```
+
+This tag push triggers the CI workflow in your repository, which will build unsigned binaries for both iOS and Android and attach them to a GitHub Release. These unsigned builds serve as verification that your app compiles correctly.
+
+The version number in the tag must also match the version configured in your Xcode project. Follow semantic versioning conventions: increment the major version for breaking changes, the minor version for new features, and the patch version for bug fixes.
 
 ### Fork requests {#fork-request}
 
-_writing in progress…_
+Once your app is ready for distribution through the App Fair, you need to request that the App Fair create a fork of your repository. This is done by submitting a fork request on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions).
 
-<!-- A.F.F.R. -->
+The App Fair team will review your app to ensure it meets the project's guidelines (open source, no tracking/advertising, generally useful), and if approved, will create a fork under the `appfair` GitHub organization (e.g., `github.com/appfair/App-Name`).
+
+The App Fair fork is where the signing and deployment magic happens. The fork contains the same CI workflow as your source repository, but with additional secrets configured:
+
+- **Android signing:** `KEYSTORE_JKS`, `KEYSTORE_PROPERTIES`, and `GOOGLE_PLAY_APIKEY` for signing and publishing to the Google Play Store.
+- **iOS signing:** `APPLE_CERTIFICATES_P12`, `APPLE_CERTIFICATES_P12_PASSWORD`, and `APPLE_APPSTORE_APIKEY` for signing and publishing to the Apple App Store.
+
+These secrets are managed by the App Fair and are never exposed to the app creator. This means the App Fair handles the entire signing and submission process on your behalf.
+
+**Example:** The [Tune-Out](https://github.com/Tune-Out/Tune-Out) app is maintained by its creators in the `Tune-Out` organization. The App Fair fork at [appfair/Tune-Out](https://github.com/appfair/Tune-Out) is where release tags trigger the signed builds that are submitted to the Apple App Store and Google Play Store.
 
 ### Handling feedback {#handling-feedback}
 
-_writing in progress…_
+After your app is published, users may report issues or request features. GitHub Issues on your source repository is the primary channel for this feedback. You should monitor your repository's issues and respond to user reports in a timely manner.
+
+For issues reported through the app stores (App Store reviews, Play Store reviews), you can respond through the respective store's developer console. However, encouraging users to file GitHub Issues for bug reports ensures that feedback is tracked alongside your development workflow.
 
 ## Maintenance {#app-maintenance}
 
-_writing in progress…_
+Maintaining an App Fair app is an ongoing commitment. Your app should continue to function correctly as operating systems are updated and user expectations evolve. The daily scheduled CI builds help catch issues caused by upstream changes in dependencies or platform SDKs.
 
 ### Releasing updates {#app-updates}
 
-_writing in progress…_
+The update process follows the same workflow as the initial release:
+
+1. **Develop and test** your changes in your source repository, pushing commits to `main`.
+2. **Update the version number** in your Xcode project (incrementing the patch, minor, or major version as appropriate).
+3. **Create and push a new tag** (e.g., `git tag 1.1.7 && git push origin 1.1.7`).
+4. **Synchronize the tag** to the App Fair fork. The App Fair will sync the new tag from your source repository to the fork, which triggers the automated build and submission pipeline.
+
+The new version will be built, signed, and submitted to the Apple App Store and Google Play Store through the App Fair fork's CI workflow. App store review times vary, but updates typically appear within a few days.
 
 ### Managing localization and translations {#app-localization}
 
-_writing in progress…_
+App Fair apps should strive to be accessible to users worldwide. If you used `LocalizedStringKey` and standard localization files as recommended, community members can contribute translations by submitting Pull Requests to your repository with new or updated `.strings`/`.xcstrings` files.
+
+You can also update the Fastlane metadata files for each locale to ensure that your app's store listing is translated alongside the app itself.
 
 
 ## FAQ
@@ -258,7 +320,7 @@ You can post a Call for Maintenance (CFM) on the App Fair discussion forums, and
 
 ### I am not a developer, but I would like to translate an app into another language. How can I help? {#faq-translators}
 
-_writing in progress…_
+You can contribute translations by submitting a Pull Request to an app's GitHub repository with new or updated localization files. Most App Fair apps use standard `.strings` or `.xcstrings` files for user-facing text. Browse the [App Fair repositories](https://github.com/orgs/appfair/repositories) to find an app you'd like to help translate, and check its existing localization files to see which languages are already supported.
 
 ### I am not a developer. How else can I help the App Fair Project? {#faq-other-contributions}
 The App Fair Project is run solely on donations from users like you. Please consider making a contribution to the ongoing development and hosting fees by going to [appfair.org/donate/](https://appfair.org/donate/).
