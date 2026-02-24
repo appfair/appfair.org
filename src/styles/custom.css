@@ -200,3 +200,40 @@ div.localization-screenshot-container img {
   line-height: 1.5;
   color: var(--sl-color-gray-2);
 }
+
+/* Site-wide footer */
+.site-footer {
+  border-top: 1px solid var(--sl-color-gray-5);
+  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.site-footer-contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-size: var(--sl-text-sm);
+}
+
+.site-footer-contact a {
+  color: var(--sl-color-gray-3);
+  text-decoration: none;
+}
+
+.site-footer-contact a:hover {
+  color: var(--sl-color-white);
+}
+
+.site-footer-separator {
+  color: var(--sl-color-gray-4);
+}
+
+.site-footer-nonprofit {
+  margin: 0;
+  font-size: var(--sl-text-xs);
+  color: var(--sl-color-gray-3);
+  line-height: 1.5;
+}

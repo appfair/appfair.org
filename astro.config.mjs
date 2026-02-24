@@ -69,6 +69,7 @@ export default defineConfig({
       components: {
         // Override the default Header component
         Header: './src/components/CustomHeader.astro',
+        Footer: './src/components/CustomFooter.astro',
       },
       plugins: [
         starlightLinksValidator({
