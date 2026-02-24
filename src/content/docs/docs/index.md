@@ -14,8 +14,9 @@ title: Creator Guide
 
 Welcome, Developer! This guide will provide an overview of the App Fair development, release, and maintenance process. If you are already a mobile app developer, some of these sections will be review – but we encourage to read thoroughly regardless. The App Fair is a unique method of app development, and even if you have already shipped apps for the iPhone or Android (or both), many of the concepts presented here will be novel.
 
+:::note[Work in Progress]
 The document is currently a **draft** of the creator guide. Many sections are still works in progress. Please post questions and feedback on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions).
-{: class="callout error"}
+:::
 
 ### About the App Fair Project {#about-app-fair}
 
@@ -73,15 +74,17 @@ In order to develop an app for the App Fair, you need to have a macOS developmen
 
 Your app needs to have a distinctive and unique name that is not the name of any other app in the App Fair, Apple App Store, or Google Play Store.
 
+:::caution[Naming]
 It can be difficult to conclusively verify ahead of time that a name is available because there are many "name-squatters" on the commercial app stores. Don't get too attached to your original idea, unless you are somehow quite certain that it is totally unique. It is easy to change the name of an app before publication, so our advice is to not spend too much time picking a name up front, since you might need to change it later anyway.
-{: class="callout error"}
+:::
 
 ### Make a proposal {#proposal}
 
 When you have an idea for an app, you may want to propose it on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). This will give the community the opportunity to provide feedback on the idea, as well as make an assessment about whether the app will be suitable for distribution through the Ap Fair.
 
+:::note[Proposals]
 Creating a proposal is optional, but it is a good way to get community feedback on your idea before you invest effort in building something that might not fit well with the App Fair's mission or needs.
-{: class="callout warning"}
+:::
 
 ### Creating an organization and repository {#new-org-repo}
 
@@ -113,9 +116,9 @@ git push -u origin main
 
 Your repository is now created and initialized with a new, valid (albeit vanilla and uninteresting) App Fair app.
 
+:::caution[GitHub CI Required]
 In addition to creating the repository, the app is also set up with a GitHub continuous integration workflow that will build your app every time you push a commit or create a Pull Request. This action is a critical part of the App Fair process, and should not be disabled.
-{: class="callout warning"}
-
+:::
 
 ## Developing {#developing}
 
