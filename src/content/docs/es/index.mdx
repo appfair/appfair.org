@@ -21,51 +21,53 @@ hero:
       link: /docs/
       icon: right-arrow
       variant: primary
-    - text: Empezar
-      link: /docs/
+    - text: Explorar Apps
+      link: https://appfair.net
       icon: right-arrow
       variant: secondary
 ---
 
-import { Card, CardGrid } from "@astrojs/starlight/components";
+import FeatureCard from '../../../components/FeatureCard.astro';
 
 El Proyecto App Fair es una organización benéfica sin fines de lucro dedicada a la creación de aplicaciones de software móvil para el bien público. El proyecto fue fundado en 2022 como un nexo mundial para que se construyan, distribuyan y mantengan aplicaciones gratuitas.
 
 Las aplicaciones de App Fair no cuestan nada y no contienen tecnología publicitaria incorporada ni tecnologías de seguimiento no consensuadas. No intentan monetizar la atención del usuario de ninguna manera. Se crean a partir de software gratuito y de código abierto y se financian únicamente con donaciones y subvenciones.
 
-<CardGrid>
+<div class="feature-card-grid">
 
-<Card title="Gratis y de Código Abierto" icon="sourcehut">
-  Cada aplicación de App Fair es totalmente gratuita y de código abierto.
-  Cualquiera puede inspeccionar el código, contribuir con mejoras o reutilizarlo
-  para el beneficio de la comunidad en general.
-</Card>
+  <FeatureCard title="Gratis y de Código Abierto" icon="code" color="#3b82f6">
+    Cada aplicación de App Fair es totalmente gratuita y de código abierto.
+    Cualquiera puede inspeccionar el código, contribuir con mejoras o reutilizarlo
+    para el beneficio de la comunidad en general.
+  </FeatureCard>
 
-<Card title="Sin Anuncios ni Tecnología Publicitaria" icon="close">
-  Las aplicaciones de App Fair nunca muestran anuncios. No hay recolección de
-  atención, ni manipulación de la participación, y ningún incentivo para
-  optimizar los clics en lugar de los usuarios.
-</Card>
+  <FeatureCard title="Sin Anuncios ni Tecnología Publicitaria" icon="block" color="#ef4444">
+    Las aplicaciones de App Fair nunca muestran anuncios. No hay recolección de
+    atención, ni manipulación de la participación, y ningún incentivo para
+    optimizar los clics en lugar de los usuarios.
+  </FeatureCard>
 
-<Card title="Disponible en Todas Partes" icon="seti:hex">
-  Las aplicaciones de App Fair se distribuyen tanto a través de las tiendas de
-  aplicaciones comerciales, la App Store de Apple y Google Play Store, como en
-  mercados alternativos como AltStore y F-Droid.
-</Card>
-<Card title="Sin Compras Dentro de la Aplicación" icon="star">
-  Las aplicaciones de App Fair no monetizan a los usuarios finales de ninguna
-  manera. Sin suscripciones, sin compras dentro de la aplicación, y sin muros de
-  pago: la experiencia completa está disponible para todos.
-</Card>
+  <FeatureCard title="Disponible en Todas Partes" icon="public" color="#10b981">
+    Las aplicaciones de App Fair se distribuyen tanto a través de las tiendas de
+    aplicaciones comerciales, la App Store de Apple y Google Play Store, como en
+    mercados alternativos como AltStore y F-Droid.
+  </FeatureCard>
 
-<Card title="Bienes Públicos Digitais" icon="heart">
-  Los proyectos de App Fair son bienes públicos digitales, construidos por la
-  comunidad y financiados por donaciones y subvenciones para servir a la
-  sociedad.
-</Card>
+  <FeatureCard title="Sin Compras Dentro de la Aplicación" icon="money_off" color="#f59e0b">
+    Las aplicaciones de App Fair no monetizan a los usuarios finales de ninguna
+    manera. Sin suscripciones, sin compras dentro de la aplicación, y sin muros de
+    pago: la experiencia completa está disponible para todos.
+  </FeatureCard>
 
-  <Card title="Respetuoso con la Privacidad por Diseño" icon="approve-check-circle">
+  <FeatureCard title="Bienes Públicos Digitales" icon="volunteer_activism" color="#ec4899">
+    Los proyectos de App Fair son bienes públicos digitales, construidos por la
+    comunidad y financiados por donaciones y subvenciones para servir a la
+    sociedad.
+  </FeatureCard>
+
+  <FeatureCard title="Respetuoso con la Privacidad por Diseño" icon="shield" color="#8b5cf6">
     Las aplicaciones de App Fair no contienen rastreadores, ni software espía, y no solicitan permisos innecesarios.
     Tus datos permanecen en tu dispositivo a menos que compartirlos sea esencial y explícito.
-  </Card>  
-</CardGrid>
+  </FeatureCard>
+
+</div>

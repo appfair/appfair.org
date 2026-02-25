@@ -21,51 +21,53 @@ hero:
       link: /docs/
       icon: right-arrow
       variant: primary
-    - text: Loslegen
-      link: /docs/
+    - text: Apps durchsuchen
+      link: https://appfair.net
       icon: right-arrow
       variant: secondary
 ---
 
-import { Card, CardGrid } from "@astrojs/starlight/components";
+import FeatureCard from '../../../components/FeatureCard.astro';
 
 Das App Fair Projekt ist eine gemeinnützige Organisation, die sich der Erstellung von mobilen Softwareanwendungen für das Gemeinwohl widmet. Das Projekt wurde 2022 als weltweiter Knotenpunkt für den Bau, die Verteilung und die Wartung kostenloser Apps gegründet.
 
 App Fair-Apps kosten nichts und enthalten keine integrierte Werbetechnik oder nicht einvernehmliche Tracking-Technologien. Sie versuchen nicht, die Aufmerksamkeit des Benutzers in irgendeiner Weise zu monetarisieren. Sie werden aus freier und quelloffener Software erstellt und ausschließlich durch Spenden und Zuschüsse finanziert.
 
-<CardGrid>
+<div class="feature-card-grid">
 
-<Card title="Kostenlos & Open Source" icon="sourcehut">
-  Jede App Fair-App ist vollständig kostenlos und quelloffen. Jeder kann den
-  Code einsehen, Verbesserungen beitragen oder ihn zum Nutzen der breiteren
-  Gemeinschaft wiederverwenden.
-</Card>
+  <FeatureCard title="Kostenlos & Open Source" icon="code" color="#3b82f6">
+    Jede App Fair-App ist vollständig kostenlos und quelloffen. Jeder kann den
+    Code einsehen, Verbesserungen beitragen oder ihn zum Nutzen der breiteren
+    Gemeinschaft wiederverwenden.
+  </FeatureCard>
 
-<Card title="Keine Werbung oder Werbetechnik" icon="close">
-  App Fair-Apps zeigen niemals Werbung an. Es gibt keine
-  Aufmerksamkeitserfassung, keine Engagement-Manipulation und keinen Anreiz, für
-  Klicks anstelle von Benutzern zu optimieren.
-</Card>
+  <FeatureCard title="Keine Werbung oder Werbetechnik" icon="block" color="#ef4444">
+    App Fair-Apps zeigen niemals Werbung an. Es gibt keine
+    Aufmerksamkeitserfassung, keine Engagement-Manipulation und keinen Anreiz, für
+    Klicks anstelle von Benutzern zu optimieren.
+  </FeatureCard>
 
-<Card title="Überall verfügbar" icon="seti:hex">
-  App Fair-Apps werden sowohl über die kommerziellen App-Stores – den Apple App
-  Store und den Google Play Store – als auch über alternative Marktplätze wie
-  AltStore und F-Droid vertrieben.
-</Card>
-<Card title="Keine In-App-Käufe" icon="star">
-  App Fair-Apps monetarisieren Endbenutzer in keiner Weise. Keine Abonnements,
-  keine In-App-Käufe und keine Paywalls – das volle Erlebnis steht jedem zur
-  Verfügung.
-</Card>
+  <FeatureCard title="Überall verfügbar" icon="public" color="#10b981">
+    App Fair-Apps werden sowohl über die kommerziellen App-Stores – den Apple App
+    Store und den Google Play Store – als auch über alternative Marktplätze wie
+    AltStore und F-Droid vertrieben.
+  </FeatureCard>
 
-<Card title="Digitale öffentliche Güter" icon="heart">
-  App Fair-Projekte sind digitale öffentliche Güter, die von der Gemeinschaft
-  entwickelt und durch Spenden und Zuschüsse finanziert werden, um der
-  Gesellschaft zu dienen.
-</Card>
+  <FeatureCard title="Keine In-App-Käufe" icon="money_off" color="#f59e0b">
+    App Fair-Apps monetarisieren Endbenutzer in keiner Weise. Keine Abonnements,
+    keine In-App-Käufe und keine Paywalls – das volle Erlebnis steht jedem zur
+    Verfügung.
+  </FeatureCard>
 
-  <Card title="Datenschutzfreundlich durch Design" icon="approve-check-circle">
+  <FeatureCard title="Digitale öffentliche Güter" icon="volunteer_activism" color="#ec4899">
+    App Fair-Projekte sind digitale öffentliche Güter, die von der Gemeinschaft
+    entwickelt und durch Spenden und Zuschüsse finanziert werden, um der
+    Gesellschaft zu dienen.
+  </FeatureCard>
+
+  <FeatureCard title="Datenschutzfreundlich durch Design" icon="shield" color="#8b5cf6">
     App Fair-Apps enthalten keine Tracker, keine Spyware und fordern keine unnötigen Berechtigungen an.
     Ihre Daten bleiben auf Ihrem Gerät, es sei denn, die Weitergabe ist unerlässlich und explizit.
-  </Card>
-</CardGrid>
+  </FeatureCard>
+
+</div>

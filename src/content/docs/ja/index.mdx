@@ -21,40 +21,42 @@ hero:
       link: /docs/
       icon: right-arrow
       variant: primary
-    - text: はじめる
-      link: /docs/
+    - text: アプリを見る
+      link: https://appfair.net
       icon: right-arrow
       variant: secondary
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import FeatureCard from '../../../components/FeatureCard.astro';
 
 App Fairプロジェクトは、公共の利益のためにモバイルソフトウェアアプリケーションを作成することに専念する非営利の慈善団体です。このプロジェクトは、無料アプリを構築、配布、維持するための世界的な拠点として2022年に設立されました。
 
 App Fairアプリは無料で、広告技術や非同意の追跡技術は組み込まれていません。いかなる方法でもユーザーの注意を収益化しようとはしません。無料でオープンソースのソフトウェアから作成され、寄付と助成金のみによって資金提供されています。
 
-<CardGrid>
+<div class="feature-card-grid">
 
-  <Card title="無料＆オープンソース" icon="sourcehut">
+  <FeatureCard title="無料＆オープンソース" icon="code" color="#3b82f6">
     すべてのApp Fairアプリは完全に無料でオープンソースです。誰でもコードを検査し、改善に貢献し、より広いコミュニティの利益のために再利用することができます。
-  </Card>
+  </FeatureCard>
 
-  <Card title="広告やアドテクなし" icon="close">
+  <FeatureCard title="広告やアドテクなし" icon="block" color="#ef4444">
     App Fairアプリは広告を一切表示しません。アテンションハーベスティング、エンゲージメント操作、ユーザーではなくクリックを最適化するインセンティブはありません。
-  </Card>
+  </FeatureCard>
 
-  <Card title="どこでも利用可能" icon="seti:hex">
+  <FeatureCard title="どこでも利用可能" icon="public" color="#10b981">
     App Fairアプリは、Apple App StoreやGoogle Play Storeなどの商用アプリストアだけでなく、AltStoreやF-Droidなどの代替マーケットプレイスを通じても配布されます。
-  </Card>
-  <Card title="アプリ内課金なし" icon="star">
+  </FeatureCard>
+
+  <FeatureCard title="アプリ内課金なし" icon="money_off" color="#f59e0b">
     App Fairアプリはエンドユーザーをいかなる形でも収益化しません。サブスクリプション、アプリ内購入、ペイウォールはありません — 完全な体験が誰にでも利用可能です。
-  </Card>
+  </FeatureCard>
 
-  <Card title="デジタル公共財" icon="heart">
+  <FeatureCard title="デジタル公共財" icon="volunteer_activism" color="#ec4899">
     App Fairプロジェクトは、社会に貢献するためにコミュニティによって構築され、寄付や助成金によって資金提供されるデジタル公共財です。
-  </Card>
+  </FeatureCard>
 
-  <Card title="プライバシーを尊重する設計" icon="approve-check-circle">
+  <FeatureCard title="プライバシーを尊重する設計" icon="shield" color="#8b5cf6">
     App Fairアプリにはトラッカーやスパイウェアは含まれておらず、不要な権限も要求しません。共有が不可欠で明示的でない限り、あなたのデータはデバイス上に留まります。
-  </Card>  
-</CardGrid>
+  </FeatureCard>
+
+</div>

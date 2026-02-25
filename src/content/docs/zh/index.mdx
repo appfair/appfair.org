@@ -21,40 +21,42 @@ hero:
       link: /docs/
       icon: right-arrow
       variant: primary
-    - text: 开始使用
-      link: /docs/
+    - text: 浏览应用
+      link: https://appfair.net
       icon: right-arrow
       variant: secondary
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import FeatureCard from '../../../components/FeatureCard.astro';
 
 App Fair 项目是一个非营利性慈善组织，致力于为公共利益创造移动软件应用程序。该项目成立于 2022 年，是全球免费应用程序的开发、分发和维护中心。
 
 App Fair 应用程序不花费任何费用，也不包含任何内置广告技术或未经同意的跟踪技术。它们不以任何方式试图将用户的注意力商业化。它们是根据自由和开源软件创建的，仅由捐赠和赠款资助。
 
-<CardGrid>
+<div class="feature-card-grid">
 
-  <Card title="自由开源" icon="sourcehut">
+  <FeatureCard title="自由开源" icon="code" color="#3b82f6">
     每个 App Fair 应用程序都是完全自由和开源的。任何人都可以检查代码、贡献改进或重用它，以造福更广泛的社区。
-  </Card>
+  </FeatureCard>
 
-  <Card title="无广告或广告技术" icon="close">
+  <FeatureCard title="无广告或广告技术" icon="block" color="#ef4444">
     App Fair 应用程序从不显示广告。没有注意力收集，没有参与度操纵，也没有为点击而不是用户优化的动机。
-  </Card>
+  </FeatureCard>
 
-  <Card title="随处可用" icon="seti:hex">
+  <FeatureCard title="随处可用" icon="public" color="#10b981">
     App Fair 应用程序通过商业应用商店（苹果应用商店和谷歌 Play 商店）以及 AltStore 和 F-Droid 等替代市场分发。
-  </Card>
-  <Card title="无应用内购买" icon="star">
+  </FeatureCard>
+
+  <FeatureCard title="无应用内购买" icon="money_off" color="#f59e0b">
     App Fair 应用程序不以任何方式向最终用户收费。没有订阅，没有应用内购买，也没有付费墙——每个人都可以获得完整的体验。
-  </Card>
+  </FeatureCard>
 
-  <Card title="数字公共产品" icon="heart">
+  <FeatureCard title="数字公共产品" icon="volunteer_activism" color="#ec4899">
     App Fair 项目是数字公共产品，由社区构建，并由捐赠和赠款资助，以服务社会。
-  </Card>
+  </FeatureCard>
 
-  <Card title="尊重隐私的设计" icon="approve-check-circle">
+  <FeatureCard title="尊重隐私的设计" icon="shield" color="#8b5cf6">
     App Fair 应用程序不包含跟踪器、间谍软件，也不请求不必要的权限。您的数据保留在您的设备上，除非共享是必不可少且明确的。
-  </Card>  
-</CardGrid>
+  </FeatureCard>
+
+</div>

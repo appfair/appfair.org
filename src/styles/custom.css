@@ -1,6 +1,29 @@
 
 /* See theme editor at https://starlight.astro.build/guides/css-and-tailwind/#color-theme-editor */
 
+/* Material Symbols Rounded icon font */
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/material-symbols-rounded.ttf') format('truetype');
+}
+
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
 /* Dark mode colors. */
 :root {
 	--sl-color-accent-low: #082541;

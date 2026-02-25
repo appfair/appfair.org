@@ -21,46 +21,48 @@ hero:
       link: /docs/
       icon: right-arrow
       variant: primary
-    - text: 시작하기
-      link: /docs/
+    - text: 앱 둘러보기
+      link: https://appfair.net
       icon: right-arrow
       variant: secondary
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import FeatureCard from '../../../components/FeatureCard.astro';
 
 앱 페어 프로젝트는 공익을 위한 모바일 소프트웨어 애플리케이션 제작에 전념하는 비영리 자선 단체입니다. 이 프로젝트는 2022년 무료 앱을 구축, 배포 및 유지 관리하기 위한 전 세계적인 연결 고리로 설립되었습니다.
 
 앱 페어 앱은 비용이 들지 않으며 내장된 광고 기술이나 비동의 추적 기술을 포함하지 않습니다. 어떤 식으로든 사용자의 관심을 수익화하려고 시도하지 않습니다. 무료 및 오픈 소스 소프트웨어로 만들어졌으며 전적으로 기부금과 보조금으로 자금을 조달합니다.
 
-<CardGrid>
+<div class="feature-card-grid">
 
-  <Card title="무료 및 오픈 소스" icon="sourcehut">
+  <FeatureCard title="무료 및 오픈 소스" icon="code" color="#3b82f6">
     모든 앱 페어 앱은 완전히 무료이며 오픈 소스입니다. 누구나 코드를 검사하고,
     개선에 기여하거나, 더 넓은 커뮤니티의 이익을 위해 재사용할 수 있습니다.
-  </Card>
+  </FeatureCard>
 
-  <Card title="광고 또는 광고 기술 없음" icon="close">
+  <FeatureCard title="광고 또는 광고 기술 없음" icon="block" color="#ef4444">
     앱 페어 앱은 광고를 표시하지 않습니다. 관심 수확, 참여
     조작, 사용자 대신 클릭에 최적화하려는 인센티브가 없습니다.
-  </Card>
+  </FeatureCard>
 
-  <Card title="어디서나 사용 가능" icon="seti:hex">
+  <FeatureCard title="어디서나 사용 가능" icon="public" color="#10b981">
     앱 페어 앱은 상업용 앱 스토어(Apple 앱 스토어
     및 Google Play 스토어)와 AltStore 및 F-Droid와 같은 대체 마켓플레이스를 통해 배포됩니다.
-  </Card>
-  <Card title="인앱 구매 없음" icon="star">
+  </FeatureCard>
+
+  <FeatureCard title="인앱 구매 없음" icon="money_off" color="#f59e0b">
     앱 페어 앱은 어떤 식으로든 최종 사용자를 수익화하지 않습니다. 구독, 인앱
     구매 및 페이월이 없으며 모든 사람이 전체 경험을 이용할 수 있습니다.
-  </Card>
+  </FeatureCard>
 
-  <Card title="디지털 공공재" icon="heart">
+  <FeatureCard title="디지털 공공재" icon="volunteer_activism" color="#ec4899">
     앱 페어 프로젝트는 커뮤니티에 의해 구축되고 사회에 봉사하기 위해
     기부금과 보조금으로 자금을 지원받는 디지털 공공재입니다.
-  </Card>
+  </FeatureCard>
 
-  <Card title="개인 정보 보호 설계" icon="approve-check-circle">
+  <FeatureCard title="개인 정보 보호 설계" icon="shield" color="#8b5cf6">
     앱 페어 앱에는 추적기, 스파이웨어가 없으며 불필요한 권한을 요청하지 않습니다.
     데이터는 공유가 필수적이고 명시적인 경우를 제외하고는 장치에 남아 있습니다.
-  </Card>  
-</CardGrid>
+  </FeatureCard>
+
+</div>

@@ -21,50 +21,52 @@ hero:
       link: /docs/
       icon: right-arrow
       variant: primary
-    - text: Começar
-      link: /docs/
+    - text: Explorar Apps
+      link: https://appfair.net
       icon: right-arrow
       variant: secondary
 ---
 
-import { Card, CardGrid } from "@astrojs/starlight/components";
+import FeatureCard from '../../../components/FeatureCard.astro';
 
 O Projeto App Fair é uma organização de caridade sem fins lucrativos dedicada à criação de aplicativos de software móvel para o bem público. O projeto foi fundado em 2022 como um nexo mundial para a construção, distribuição e manutenção de aplicativos gratuitos.
 
 Os aplicativos da App Fair não custam nada e não contêm tecnologia de anúncios embutida ou tecnologias de rastreamento não consensuais. Eles não tentam monetizar a atenção do usuário de forma alguma. Eles são criados a partir de software gratuito e de código aberto e são financiados exclusivamente por doações e subsídios.
 
-<CardGrid>
+<div class="feature-card-grid">
 
-<Card title="Gratuito e de Código Aberto" icon="sourcehut">
-  Cada aplicativo da App Fair é totalmente gratuito e de código aberto. Qualquer
-  um pode inspecionar o código, contribuir com melhorias ou reutilizá-lo para o
-  benefício da comunidade em geral.
-</Card>
+  <FeatureCard title="Gratuito e de Código Aberto" icon="code" color="#3b82f6">
+    Cada aplicativo da App Fair é totalmente gratuito e de código aberto. Qualquer
+    um pode inspecionar o código, contribuir com melhorias ou reutilizá-lo para o
+    benefício da comunidade em geral.
+  </FeatureCard>
 
-<Card title="Sem Anúncios ou Tecnologia de Anúncios" icon="close">
-  Os aplicativos da App Fair nunca exibem anúncios. Não há coleta de atenção,
-  nem manipulação de engajamento, e nenhum incentivo para otimizar para cliques
-  em vez de usuários.
-</Card>
+  <FeatureCard title="Sem Anúncios ou Tecnologia de Anúncios" icon="block" color="#ef4444">
+    Os aplicativos da App Fair nunca exibem anúncios. Não há coleta de atenção,
+    nem manipulação de engajamento, e nenhum incentivo para otimizar para cliques
+    em vez de usuários.
+  </FeatureCard>
 
-<Card title="Disponível em Todos os Lugares" icon="seti:hex">
-  Os aplicativos da App Fair são distribuídos tanto através das lojas de
-  aplicativos comerciais — a Apple App Store e a Google Play Store — quanto em
-  mercados alternativos como a AltStore e a F-Droid.
-</Card>
-<Card title="Sem Compras no Aplicativo" icon="star">
-  Os aplicativos da App Fair não monetizam os usuários finais de forma alguma.
-  Sem assinaturas, sem compras no aplicativo, e sem paywalls — a experiência
-  completa está disponível para todos.
-</Card>
+  <FeatureCard title="Disponível em Todos os Lugares" icon="public" color="#10b981">
+    Os aplicativos da App Fair são distribuídos tanto através das lojas de
+    aplicativos comerciais — a Apple App Store e a Google Play Store — quanto em
+    mercados alternativos como a AltStore e a F-Droid.
+  </FeatureCard>
 
-<Card title="Bens Públicos Digitais" icon="heart">
-  Os projetos da App Fair são bens públicos digitais, construídos pela
-  comunidade e financiados por doações e subsídios para servir à sociedade.
-</Card>
+  <FeatureCard title="Sem Compras no Aplicativo" icon="money_off" color="#f59e0b">
+    Os aplicativos da App Fair não monetizam os usuários finais de forma alguma.
+    Sem assinaturas, sem compras no aplicativo, e sem paywalls — a experiência
+    completa está disponível para todos.
+  </FeatureCard>
 
-  <Card title="Respeito à Privacidade por Design" icon="approve-check-circle">
+  <FeatureCard title="Bens Públicos Digitais" icon="volunteer_activism" color="#ec4899">
+    Os projetos da App Fair são bens públicos digitais, construídos pela
+    comunidade e financiados por doações e subsídios para servir à sociedade.
+  </FeatureCard>
+
+  <FeatureCard title="Respeito à Privacidade por Design" icon="shield" color="#8b5cf6">
     Os aplicativos da App Fair não contêm rastreadores, nem spyware, e não solicitam permissões desnecessárias.
     Seus dados permanecem no seu dispositivo, a menos que o compartilhamento seja essencial e explícito.
-  </Card>  
-</CardGrid>
+  </FeatureCard>
+
+</div>
