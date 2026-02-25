@@ -8,14 +8,15 @@ interface Props {
 const { title, icon, color } = Astro.props;
 ---
 
-<div class="feature-card">
-  <div class="feature-card-header" style={`--icon-color: ${color};`}>
+<span class="feature-card" data-color={color}>
+  <div class="feature-card-header">
     <div class="feature-card-icon">
       <span class="material-symbols-rounded">{icon}</span>
     </div>
     <h3 class="feature-card-title">{title}</h3>
   </div>
-  <div class="feature-card-content">
+  <div class="feature-card-description">
     <slot />
   </div>
-</div>
+  <!-- <span class="feature-card-link">Learn more <span aria-hidden="true">→</span></span> -->
+</span>
