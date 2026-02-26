@@ -2,5 +2,7 @@
   "header.link.apps": "Apps",
   "header.link.docs": "Documentación",
   "header.link.blog": "Blog",
-  "header.link.sponsor": "Patrocinador"
+  "header.link.sponsor": "Patrocinador",
+  "footer.nonprofit": "El Proyecto App Fair es una organización sin fines de lucro 501(c)(3) en los Estados Unidos y una asociación sin fines de lucro registrada en Francia",
+  "footer.imprint": "Aviso legal"
 }

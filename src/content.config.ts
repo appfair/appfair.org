@@ -28,6 +28,8 @@ export const collections = {
                 'header.link.docs': z.string().optional(),
                 'header.link.blog': z.string().optional(),
                 'header.link.sponsor': z.string().optional(),
+                'footer.nonprofit': z.string().optional(),
+                'footer.imprint': z.string().optional(),
             }),
         }),
     }),

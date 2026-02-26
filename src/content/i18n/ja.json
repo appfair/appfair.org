@@ -2,5 +2,7 @@
   "header.link.apps": "アプリ",
   "header.link.docs": "ドキュメント",
   "header.link.blog": "ブログ",
-  "header.link.sponsor": "スポンサー"
+  "header.link.sponsor": "スポンサー",
+  "footer.nonprofit": "App Fairプロジェクトは米国の501(c)(3)非営利団体であり、フランスの登録非営利団体です",
+  "footer.imprint": "特定商取引法に基づく表記"
 }

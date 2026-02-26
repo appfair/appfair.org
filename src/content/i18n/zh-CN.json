@@ -2,5 +2,7 @@
   "header.link.apps": "应用",
   "header.link.docs": "文档",
   "header.link.blog": "博客",
-  "header.link.sponsor": "赞助"
+  "header.link.sponsor": "赞助",
+  "footer.nonprofit": "App Fair项目是美国的501(c)(3)非营利组织，也是法国的注册非营利协会",
+  "footer.imprint": "法律信息"
 }
