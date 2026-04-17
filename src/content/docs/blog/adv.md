@@ -4,6 +4,7 @@ date:   2026-04-01
 tags: [news, blog, google, androidm adv]
 layout: post
 author: "Marc Prud'hommeaux"
+draft: true
 ---
 
 Just in time for April Fools Day, Google this week launched their Developer Verification Console, where they offer developers around the world the dubious opportunity to pay them a fee, upload their government identification, and agree to their ever-changing and non-negotiable terms and conditions in order to be granted the privilege of creating apps for Android.
