@@ -97,9 +97,7 @@ export default defineConfig({
         { icon: 'mastodon', label: 'Mastodon', href: 'https://fosstodon.org/@appfair' },
         { icon: 'github', label: 'GitHub', href: 'https://github.com/orgs/appfair' },
       ],
-      editLink: {
-        baseUrl: 'https://github.com/appfair/fairapps.github.io/edit/main/'
-      },
+      // editLink disabled to remove "Edit page" links
       sidebar: [
         {
           label: 'Documentation',
