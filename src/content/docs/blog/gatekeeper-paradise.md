@@ -105,7 +105,7 @@ The simple solution is to adhere to a single fundamental principle: **app distri
 
 1. **No mandatory registration with the gatekeeper.** A developer should not be required to enroll in any program operated by the platform vendor, pay any fee to the platform vendor, or agree to any terms and conditions imposed by the platform vendor, as a precondition for distributing software to users of that platform. This applies equally to Apple's Developer Program and Google's Developer Verification.
 
-2. **No mandatory review or approval by the gatekeeper.** The platform vendor should have no right to review, approve, reject, or revoke any app distributed outside its own app store. Apple's "Notarization" and Google's "registration" are euphemisms for the same thing: a gatekeeper veto over all software distribution. This veto must end.
+2. **No mandatory review or approval by the gatekeeper.** The platform vendor should have no right to review, approve, reject, or revoke any app distributed outside its own app store. Apple's "Notarization" and Google's "Verification" are euphemisms for the same thing: a gatekeeper veto over all software distribution. This veto must end.
 
 3. **No technical barriers to direct installation.** Users should be able to install software (what is often misleadingly termed as "sideloading"[^sideloading]) by the same mechanism they install any other file: by downloading it and opening it. On every desktop and laptop operating system, installing software from arbitrary sources is the *default*. It should be the default on mobile platforms as well. Your computer is _your_ computer, regardless of whether it is in your pocket or on your desk.
 
