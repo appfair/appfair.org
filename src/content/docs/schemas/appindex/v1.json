@@ -1,0 +1,319 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfair.org/schemas/appindex/v1.json",
+  "title": "App Index",
+  "description": "A structured metadata document describing one or more applications, their platform-specific metadata, localized descriptions, permissions, distribution channels, and associated resources.",
+  "type": "object",
+  "required": ["$schema", "specVersion", "apps"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://appfair.org/schemas/appindex/v1.json",
+      "description": "The JSON Schema URI for this document."
+    },
+    "specVersion": {
+      "type": "string",
+      "const": "1.0",
+      "description": "The version of the App Index specification this document conforms to."
+    },
+    "generated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when this document was generated."
+    },
+    "generator": {
+      "type": "string",
+      "description": "Identifier of the tool that generated this document.",
+      "examples": ["skip/1.8.11"]
+    },
+    "apps": {
+      "type": "array",
+      "description": "One or more application entries in this index.",
+      "items": { "$ref": "#/$defs/app" },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+    "localizedString": {
+      "type": "object",
+      "description": "A map of BCP 47 locale codes to localized string values. The key \"en\" represents the default English locale. When all locales have the same value, a single \"en\" key is used.",
+      "additionalProperties": { "type": "string" }
+    },
+
+    "localizedStringArray": {
+      "type": "object",
+      "description": "A map of BCP 47 locale codes to arrays of string values (e.g. keywords).",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+
+    "localizedURL": {
+      "type": "object",
+      "description": "A map of BCP 47 locale codes to URLs. When all locales share the same URL, a single \"en\" key is used.",
+      "additionalProperties": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+
+    "imageResourceRef": {
+      "type": "object",
+      "description": "A reference to an image file with metadata for integrity verification and display sizing.",
+      "required": ["location", "size", "digest", "width", "height"],
+      "properties": {
+        "mimeType": {
+          "type": "string",
+          "description": "MIME type of the image.",
+          "examples": ["image/png", "image/jpeg", "image/webp"]
+        },
+        "location": {
+          "type": "string",
+          "format": "uri-reference",
+          "description": "Path to the image file, relative to the project root. When combined with the source.assets base URL, forms a resolvable URL."
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "File size in bytes."
+        },
+        "digest": {
+          "type": "string",
+          "description": "Content hash in the format \"algorithm:hex\".",
+          "pattern": "^[a-z0-9]+:[a-f0-9]+$"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Image width in pixels."
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Image height in pixels."
+        },
+        "caption": {
+          "type": "string",
+          "description": "Optional accessible description of the image."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "localizedImageRef": {
+      "type": "object",
+      "description": "A map of BCP 47 locale codes to image resource references.",
+      "additionalProperties": { "$ref": "#/$defs/imageResourceRef" }
+    },
+
+    "localizedScreenshots": {
+      "type": "object",
+      "description": "A map of BCP 47 locale codes to arrays of screenshot image references.",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "$ref": "#/$defs/imageResourceRef" }
+      }
+    },
+
+    "permission": {
+      "type": "object",
+      "description": "A platform-specific permission declaration. The key identifier format is defined by the platform (e.g. \"NSCameraUsageDescription\" on Apple platforms, \"android.permission.CAMERA\" on Android).",
+      "required": ["key"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Platform-specific permission identifier."
+        },
+        "description": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Localized human-readable explanation of why this permission is needed."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "channel": {
+      "type": "object",
+      "description": "A distribution channel entry with an identifier and catalog URL. Well-known channel keys include \"appleappstore\", \"googleplaystore\", \"fdroid\", \"altstore\", \"testflight\", \"amazonappstore\", \"homebrew\", \"flatpak\", and \"microsoftstore\".",
+      "required": ["id", "url"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The application's identifier within this distribution channel."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the application's listing in this distribution channel."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "assets": {
+      "type": "object",
+      "description": "Image assets for the platform. Standard keys include 'icon', 'screenshots', and 'featureGraphic'.",
+      "properties": {
+        "icon": {
+          "$ref": "#/$defs/imageResourceRef",
+          "description": "The application icon for this platform."
+        },
+        "screenshots": {
+          "$ref": "#/$defs/localizedScreenshots",
+          "description": "Localized sets of screenshot images."
+        },
+        "featureGraphic": {
+          "$ref": "#/$defs/localizedImageRef",
+          "description": "Localized feature/promotional graphic images."
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "platform": {
+      "type": "object",
+      "description": "Platform-specific metadata for one build target of the application. The platform identifier is the key in the parent \"platforms\" object (e.g. \"ios\", \"android\"), not a field within this object.",
+      "required": ["version"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Human-readable version string for this platform build."
+        },
+        "buildNumber": {
+          "type": "string",
+          "description": "Internal build number or version code."
+        },
+        "bundleIdentifier": {
+          "type": "string",
+          "description": "Apple bundle identifier (e.g. \"com.example.app\"). Present on Apple platform entries."
+        },
+        "applicationId": {
+          "type": "string",
+          "description": "Android application ID (e.g. \"com.example.app\"). Present on Android platform entries."
+        },
+        "title": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Platform-specific display name override. When absent, consumers SHOULD use the app-level title."
+        },
+        "subtitle": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Platform-specific promotional text override. When absent, consumers SHOULD use the app-level subtitle."
+        },
+        "description": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Platform-specific description override. When absent, consumers SHOULD use the app-level description."
+        },
+        "keywords": {
+          "$ref": "#/$defs/localizedStringArray",
+          "description": "Platform-specific keyword override. When absent, consumers SHOULD use the app-level keywords."
+        },
+        "releaseNotes": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Platform-specific release notes override. When absent, consumers SHOULD use the app-level releaseNotes."
+        },
+        "permissions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/permission" },
+          "description": "Platform-specific permission declarations."
+        },
+        "channels": {
+          "type": "object",
+          "description": "Distribution channels for this platform build. Keys are channel identifiers (e.g. \"appleappstore\", \"googleplaystore\").",
+          "additionalProperties": { "$ref": "#/$defs/channel" }
+        },
+        "assets": {
+          "$ref": "#/$defs/assets",
+          "description": "Image assets (icon, screenshots, feature graphics) for this platform."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Platform-specific configuration metadata (e.g. manifest, entitlements, plist data). Contents are opaque and platform-defined.",
+          "additionalProperties": true
+        },
+        "sbom": {
+          "type": "object",
+          "description": "SPDX Software Bill of Materials for this platform build. Conforms to SPDX 2.3 JSON format (https://spdx.github.io/spdx-spec/v2.3/).",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "source": {
+      "type": "object",
+      "description": "Source code repository information.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The source repository clone URL. Intentionally not constrained to format:uri because SSH clone URLs (e.g. git@github.com:Org/Repo.git) are valid values."
+        },
+        "release": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the release page for the current version."
+        },
+        "assets": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base URL for resolving image location paths. Consumers construct full image URLs as: assets + location."
+        },
+        "license": {
+          "type": "string",
+          "description": "SPDX license identifier for the source code.",
+          "examples": ["MIT", "Apache-2.0", "GPL-2.0-only", "GPL-3.0-only", "MPL-2.0", "AGPL-3.0-only"]
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "app": {
+      "type": "object",
+      "description": "Metadata for a single application across all supported platforms. Localized fields at this level are shared defaults; platform-level values take precedence when present. Consumers SHOULD resolve each locale by checking the platform first, then falling back to the app level.",
+      "required": ["name", "platforms"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The canonical machine-readable name of the application (may differ from the user-facing title)."
+        },
+        "title": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Localized display name shared across all platforms. When all locales have the same value, collapsed to a single \"en\" key."
+        },
+        "subtitle": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Localized short promotional text shared across all platforms."
+        },
+        "description": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Localized full description shared across all platforms."
+        },
+        "keywords": {
+          "$ref": "#/$defs/localizedStringArray",
+          "description": "Localized search keywords shared across all platforms."
+        },
+        "releaseNotes": {
+          "$ref": "#/$defs/localizedString",
+          "description": "Localized release notes shared across all platforms."
+        },
+        "platforms": {
+          "type": "object",
+          "description": "Per-platform metadata. Keys are platform identifiers (e.g. \"ios\", \"android\", \"macos\", \"windows\", \"linux\").",
+          "additionalProperties": { "$ref": "#/$defs/platform" }
+        },
+        "links": {
+          "type": "object",
+          "description": "Cross-platform links (privacy, support, marketing, etc.). Each value is a localized URL map.",
+          "additionalProperties": { "$ref": "#/$defs/localizedURL" }
+        },
+        "source": {
+          "$ref": "#/$defs/source",
+          "description": "Source code repository information."
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
