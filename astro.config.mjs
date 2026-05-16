@@ -100,9 +100,15 @@ export default defineConfig({
       // editLink disabled to remove "Edit page" links
       sidebar: [
         {
-          label: 'Documentation',
+          label: 'Creator Guide',
           items: [
-            'docs', // index
+            { label: 'Welcome', link: '/docs/' },
+            { label: 'Inclusion Criteria', link: '/docs/inclusion-criteria/' },
+            { label: 'Building Your App', link: '/docs/building/' },
+            { label: 'Submitting Your App', link: '/docs/submitting/' },
+            { label: 'Deployment & Distribution', link: '/docs/deploying/' },
+            { label: 'Maintaining Your App', link: '/docs/maintenance/' },
+            { label: 'FAQ', link: '/docs/faq/' },
           ],
         },
       ],

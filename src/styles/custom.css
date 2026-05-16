@@ -126,7 +126,7 @@ div.localization-screenshot-container img {
 	width: 90%;
 	padding: 15px;
 	background: white;
-	align-content: center;  
+	align-content: center;
 	margin: auto;
 	text-align: center;
 	border-radius: 10px;
@@ -325,4 +325,132 @@ div.localization-screenshot-container img {
   gap: 0.5rem;
 }
 
+
+/* ── Callouts ── */
+/* Custom aside/callout component, used instead of Starlight's :::note syntax */
+
+.callout {
+  --callout-accent: #2563eb;
+  --callout-bg: rgba(37, 99, 235, 0.06);
+  --callout-border: rgba(37, 99, 235, 0.25);
+  --callout-title: #1e3a8a;
+
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem 1rem 1.125rem;
+  background: var(--callout-bg);
+  border: 1px solid var(--callout-border);
+  border-left: 4px solid var(--callout-accent);
+  border-radius: 0.75rem;
+}
+
+.callout-icon {
+  flex-shrink: 0;
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.125rem;
+  background-color: var(--callout-accent);
+  -webkit-mask: var(--icon) no-repeat center / contain;
+  mask: var(--icon) no-repeat center / contain;
+}
+
+.callout-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.callout-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 0.35rem 0;
+  color: var(--callout-title);
+  line-height: 1.3;
+}
+
+.callout-body > p:first-child:not(.callout-title) {
+  margin-top: 0;
+}
+
+.callout-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Variants */
+.callout.callout-note {
+  --callout-accent: #2563eb;
+  --callout-bg: rgba(37, 99, 235, 0.06);
+  --callout-border: rgba(37, 99, 235, 0.25);
+  --callout-title: #1e3a8a;
+}
+
+.callout.callout-tip {
+  --callout-accent: #0d9488;
+  --callout-bg: rgba(13, 148, 136, 0.07);
+  --callout-border: rgba(13, 148, 136, 0.28);
+  --callout-title: #115e59;
+}
+
+.callout.callout-caution {
+  --callout-accent: #d97706;
+  --callout-bg: rgba(217, 119, 6, 0.08);
+  --callout-border: rgba(217, 119, 6, 0.3);
+  --callout-title: #92400e;
+}
+
+.callout.callout-warning {
+  --callout-accent: #dc2626;
+  --callout-bg: rgba(220, 38, 38, 0.07);
+  --callout-border: rgba(220, 38, 38, 0.28);
+  --callout-title: #991b1b;
+}
+
+/* Dark mode tweaks */
+:root:not([data-theme='light']) .callout.callout-note {
+  --callout-accent: #60a5fa;
+  --callout-bg: rgba(96, 165, 250, 0.08);
+  --callout-border: rgba(96, 165, 250, 0.25);
+  --callout-title: #dbeafe;
+}
+
+:root:not([data-theme='light']) .callout.callout-tip {
+  --callout-accent: #2dd4bf;
+  --callout-bg: rgba(45, 212, 191, 0.08);
+  --callout-border: rgba(45, 212, 191, 0.25);
+  --callout-title: #ccfbf1;
+}
+
+:root:not([data-theme='light']) .callout.callout-caution {
+  --callout-accent: #fbbf24;
+  --callout-bg: rgba(251, 191, 36, 0.08);
+  --callout-border: rgba(251, 191, 36, 0.25);
+  --callout-title: #fef3c7;
+}
+
+:root:not([data-theme='light']) .callout.callout-warning {
+  --callout-accent: #f87171;
+  --callout-bg: rgba(248, 113, 113, 0.08);
+  --callout-border: rgba(248, 113, 113, 0.25);
+  --callout-title: #fee2e2;
+}
+
+/* Override Starlight's default aside styling to share the same look (rounded
+   borders, no purple) for any callouts that still use the :::note syntax. */
+.starlight-aside {
+  border-radius: 0.75rem;
+}
+
+.starlight-aside--tip {
+  --sl-color-asides-text-accent: #0d9488;
+  --sl-color-asides-border: #0d9488;
+  background-color: rgba(13, 148, 136, 0.07);
+}
+
+:root:not([data-theme='light']) .starlight-aside--tip {
+  --sl-color-asides-text-accent: #2dd4bf;
+  --sl-color-asides-border: #2dd4bf;
+  background-color: rgba(45, 212, 191, 0.08);
+}
 
