@@ -27,6 +27,14 @@ Apps that include any of the following are not eligible for the App Fair catalog
 
 App Fair apps may not embed advertisements of any kind. This includes banner advertising, interstitials, native advertisements, sponsored content, affiliate links presented as recommendations, and any other mechanism whose purpose is to direct user attention to a paying third party.
 
+<aside class="callout callout-note">
+  <span class="callout-icon" style="--icon: url('/assets/icons/callout/campaign.svg');" aria-hidden="true"></span>
+  <div class="callout-body">
+    <p class="callout-title">Embedded ads versus ads in content</p>
+    <p>This prohibition applies to advertising that the app itself embeds. It does not apply (and cannot apply) to advertising that appears within third-party content the app displays. A web browser that renders web pages may show pages that contain advertising; a podcast player may play audio that includes advertisements or product endorsements; a video player may play content that includes commercials. The relevant test is whether the advertising is introduced by the app, or by the content the app is presenting on the user's behalf.</p>
+  </div>
+</aside>
+
 ### Surreptitious tracking {#no-tracking}
 
 App Fair apps may not track users in ways the user has not knowingly and explicitly consented to. This prohibition covers behavioural tracking SDKs, device fingerprinting, cross-app or cross-site identifiers, attribution services, and similar mechanisms.
@@ -71,7 +79,7 @@ Apps should aim for broad and durable utility: useful to many people, in many lo
 
 ### The Three Pillars {#three-pillars-requirement}
 
-Every App Fair app must satisfy the [three pillars](/docs/#three-pillars): **ubiquitous, global, and accessible**.
+Every App Fair app should aim to support the [three pillars](/docs/#three-pillars): **ubiquitous, global, and accessible**.
 
 - **Ubiquitous.** The app ships on both iOS and Android from a single Skip codebase. Ideas that cannot work on one of the two platforms are not eligible. Platform-specific refinements are permitted, but the core experience must be available to both audiences.
 - **Global.** Every user-facing string is externalized through a [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog), the app accommodates translated layouts, and store metadata is translated for as many of the App Fair's primary locales as is feasible.
@@ -95,9 +103,9 @@ Implementation details and a code example are in [Building Your App](/docs/build
 
 ## Licensing {#licensing}
 
-App Fair apps must be licensed under the **GNU General Public License version 2.0 or later** (GPL-2.0-or-later). This requirement is not negotiable. It exists to guarantee that the source for every shipped binary remains freely inspectable, and to allow the broader community to maintain, fork, or rescue the project if the original maintainer becomes unavailable.
+App Fair apps must be licensed under the [**GNU General Public License version 2.0 or later**](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt) (GPL-2.0-or-later). It exists to guarantee that the source for every shipped binary remains freely inspectable, and to allow the broader community to maintain, fork, or rescue the project if the original maintainer becomes unavailable.
 
-The top-level application may depend on libraries released under any GPL-compatible OSI-approved license, including Apache 2.0, MIT, BSD, and MPL 2.0.
+The top-level application may depend on libraries released under any [GPL-compatible](https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses) OSI-approved license, including Apache 2.0, MIT, BSD, and MPL 2.0.
 
 ### Dependencies {#dependencies}
 
