@@ -14,7 +14,13 @@ Every App Fair app is a **conventional Skip project** in **Skip Lite mode**:
 - Native Android app transpiled to Kotlin and Jetpack Compose. There is no embedded browser, no shared runtime, and no compromise on platform behaviour.
 - Organized as a Swift Package, an Xcode project for iOS, and a Gradle project for Android, kept in sync by Skip's tooling.
 
-Skip supports two distinct modes: **Skip Lite** (Swift source is transpiled to Kotlin, producing a native Jetpack Compose Android app) and **Skip Fuse** (Swift source is compiled directly to Android). App Fair apps must use Skip Lite. Skip Fuse is not yet suitable for App Fair distribution; its runtime characteristics, binary size, and platform coverage are still maturing. This decision is fixed for the catalog and is not a per-project choice.
+<aside class="callout callout-note">
+  <span class="callout-icon" style="--icon: url('/assets/icons/callout/alt_route.svg');" aria-hidden="true"></span>
+  <div class="callout-body">
+    <p class="callout-title">Skip Lite vs. Skip Fuse</p>
+    <p>Skip supports two distinct modes: <strong>Skip Lite</strong> (Swift source is transpiled to Kotlin, producing a native Jetpack Compose Android app) and <strong>Skip Fuse</strong> (Swift source is compiled directly to Android). App Fair apps must use Skip Lite. Skip Fuse is not yet suitable for App Fair distribution; its runtime characteristics, binary size, and platform coverage are still maturing. See <a href="https://skip.dev/docs/modes/">Skip modes</a> for the full comparison.</p>
+  </div>
+</aside>
 
 Skip has its own documentation, which this guide does not duplicate. The reference for the full project layout is [Conventional Skip Projects](https://skip.dev/docs/project-types/#conventional-skip-projects), and the on-ramp for first-time Skip users is [Getting Started](https://skip.dev/docs/gettingstarted/). The sections below focus on the App Fair-specific configuration on top of that foundation.
 
@@ -22,7 +28,9 @@ Skip has its own documentation, which this guide does not duplicate. The referen
 
 Every App Fair app must live in its own GitHub organization, including projects with a single maintainer. The organization-per-app convention makes the app a self-contained unit that can be transferred, co-maintained, or rescued by the community without entangling personal accounts.
 
-A free organization can be created at [github.com/account/organizations/new?plan=free](https://github.com/account/organizations/new?plan=free). The organization name should match the application identifier, which is typically the app's name written in Title-Case-With-Dashes (e.g. `Faire-Games` for an app named "Faire Games").
+A free organization can be created at [github.com/account/organizations/new?plan=free](https://github.com/account/organizations/new?plan=free). The organization name is the **app token**: the immutable identifier the App Fair uses for the app's source. It is typically written in Title-Case-With-Dashes (e.g. `Faire-Games`).
+
+The app token is distinct from the app's **displayed title**, which is the localizable string the user sees on their device's home screen and in store listings. For example, the [Faire-Games](https://github.com/Faire-Games/Faire-Games) repository ships under the displayed title "Fair Games"; the token (`Faire-Games`) is the identifier that appears in the GitHub URL and that never changes, while the title is set in `Skip.env` and the Fastlane metadata and may change over time (for example to resolve a trademark dispute, to update branding, or to translate into another language).
 
 <aside class="callout callout-tip">
   <span class="callout-icon" style="--icon: url('/assets/icons/callout/schedule.svg');" aria-hidden="true"></span>
@@ -36,12 +44,12 @@ A free organization can be created at [github.com/account/organizations/new?plan
 
 A public repository should be created inside the new organization at [github.com/new](https://github.com/new). Two constraints apply:
 
-- The repository name must match the organization name exactly. For the `Faire-Games` organization, the repository must also be `Faire-Games`, yielding the canonical URL `github.com/Faire-Games/Faire-Games`. This convention makes the fork-based distribution model unambiguous.
+- The repository name must match the app token (and therefore the organization name) exactly. For the `Faire-Games` token, the repository must also be `Faire-Games`, yielding the canonical URL `github.com/Faire-Games/Faire-Games`. This convention makes the fork-based distribution model unambiguous.
 - The repository must be empty (no README, no `.gitignore`, no auto-generated `LICENSE`). The `skip create --appfair` command in the next step populates the repository, including the `LICENSE.GPL` file required by the App Fair.
 
 ## Step 3: Initialize the Skip project {#skip-init}
 
-First-time Skip users should complete the [Skip Getting Started](https://skip.dev/docs/gettingstarted/) workflow to install Xcode, the Skip CLI, and the Android tooling. Once `skip checkup` reports a clean environment, the project can be initialized:
+First-time Skip users should complete the [Skip Getting Started](https://skip.dev/docs/gettingstarted/) workflow to install Xcode, the Skip CLI, and the Android tooling. Once `skip checkup` reports a clean environment, the project can be initialized (passing the app token as the final argument):
 
 ```sh
 skip create --open-xcode --appfair Faire-Games
@@ -120,9 +128,9 @@ Day-to-day development follows the standard Skip workflow:
 
 The full development reference, including parity testing, FFI, and Kotlin interop, is in the [Skip documentation](https://skip.dev/docs/). The Skip Lite vs. Skip Fuse distinction is described there for completeness; App Fair apps use Skip Lite, so the Skip Fuse documentation is not applicable.
 
-## Designing for the Three Pillars {#pillars-in-practice}
+## Designing for the Four Cornerstones {#cornerstones-in-practice}
 
-The [three pillars](/docs/#three-pillars) (ubiquitous, global, and accessible) are practical engineering constraints. Each is significantly easier to satisfy when designed for from the first commit than when retrofitted later. The remainder of this section translates each pillar into specific implementation guidance.
+The [four cornerstones](/docs/inclusion-criteria/#four-cornerstones) (transparent, ubiquitous, global, and accessible) are practical engineering constraints. Each is significantly easier to satisfy when designed for from the first commit than when retrofitted later. The remainder of this section translates each cornerstone into specific implementation guidance. (Transparent is handled by the project's licence and dependency choices, covered separately under [Licensing](/docs/inclusion-criteria/#licensing), so the rest of this section focuses on Ubiquitous, Global, and Accessible.)
 
 ### Localization (Global) {#l10n}
 
@@ -133,9 +141,15 @@ In practice:
 - Use `Text("Some string")` and `LocalizedStringKey` (or, for resources in a SPM target, `Text("Some string", bundle: .module)`) rather than `Text(verbatim: "…")`. Strings written this way are picked up automatically by Xcode's string catalog generator.
 - Keep one `Localizable.xcstrings` per target, located under `Sources/<Module>/Resources/`. The catalog is edited in Xcode and supports per-locale plural variants and per-string review states.
 - Use string-format substitutions (`"Hello, %@"`) rather than string concatenation, so translators can reorder arguments to match the grammar of the target language.
-- Provide an English translation at launch. Design every screen as if it had to accommodate Spanish, German, or Russian (each of which expands significantly relative to English), as well as Arabic or Hebrew (which read right-to-left).
+- Design every screen as if it had to accommodate Spanish, German, or Russian (each of which expands significantly relative to English), as well as Arabic or Hebrew (which read right-to-left).
 
 Skip bridges the `Localizable.xcstrings` catalog to Android's `strings.xml` resource system automatically. A translation contributed once applies correctly on iOS and Android, including bidirectional layout flipping for RTL languages and per-locale formatting of dates, numbers, and currencies.
+
+#### Minimum supported languages {#l10n-minimum}
+
+Every App Fair app must ship with at least **English** and **French** translations. This is not aimed at coverage (any catalogue serving a global audience needs many more locales than two), but at *verification*: maintaining a second locale from day one forces the maintainer to confirm that every user-facing string is actually externalized and that the app launches cleanly under a non-default locale. A project that runs only under `en-US` is one where a hard-coded English string can hide for months before a non-English user notices.
+
+The recommended workflow is to add English as the development locale, add French as the second locale in the `Localizable.xcstrings` catalogue, and run the app at least once with the iOS Simulator and Android emulator set to French before each release. Any string that appears in English while the device is set to French is a missing translation, a hard-coded literal, or a localization bug — all of which the dual-locale launch surfaces immediately. Additional locales beyond English and French are strongly encouraged and can be added by community contributors over time.
 
 <aside class="callout callout-tip">
   <span class="callout-icon" style="--icon: url('/assets/icons/callout/storefront.svg');" aria-hidden="true"></span>
@@ -176,7 +190,7 @@ Beyond the modifiers, several design practices matter:
 
 ## Additional development practices {#habits}
 
-Beyond the three pillars, the following practices are worth observing.
+Beyond the four cornerstones, the following practices are worth observing.
 
 ### Network conditions {#network}
 

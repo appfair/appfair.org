@@ -83,14 +83,14 @@ The unsigned release in the developer's own repository is not the version distri
 
 ## Step 3: Request an App Fair fork {#fork-request}
 
-Once a tagged release builds cleanly, a **fork request** should be opened on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). The request should include:
+Once a tagged release builds cleanly and the [Submission Checklist](#checklist) below is satisfied, a **fork request** should be opened on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). The request should include:
 
 - The name of the app and a link to the repository.
 - A short description of its functionality (one or two paragraphs).
 - The version intended for first release.
 - Any notable information about dependencies, platform support, or target audience.
 
-A maintainer will review the application against the [inclusion criteria](/docs/inclusion-criteria/), verifying the license, the absence of advertising, tracking, and analytics, the alignment with the project mission, and the correspondence between the code and the README. If the review is positive, a fork is created at `github.com/appfair/<App-Name>`.
+A maintainer will review the application against the [inclusion criteria](/docs/inclusion-criteria/) and confirm each item in the [Submission Checklist](#checklist): licence, absence of advertising/tracking/analytics, alignment with the project mission, correspondence between the code and the README, and the technical prerequisites. If the review is positive, a fork is created at `github.com/appfair/<app-token>`.
 
 The fork is the location where the signing credentials live. Once it exists, the remainder of the pipeline is automated. See [Deployment & Distribution](/docs/deploying/) for the details.
 
@@ -103,3 +103,59 @@ The fork is the location where the signing credentials live. Once it exists, the
 </aside>
 
 Once the fork has been created, proceed to [Deployment & Distribution](/docs/deploying/) for the rest of the pipeline.
+
+## Submission Checklist {#checklist}
+
+Before opening a fork request, verify that the app satisfies each item below. The App Fair maintainer reviewing the submission will check the same list, and submissions that pass every item are materially likely to be approved on the first pass.
+
+<ol class="submission-checklist">
+  <li>
+    <span class="submission-checklist-num">1</span>
+    <div class="submission-checklist-body">
+      <strong>Builds and launches on the latest iOS and Android.</strong>
+      <p>The app must compile and start under the most recent stable releases of both platforms, on both the iOS Simulator and the Android emulator. No platform-specific build failures or launch-time crashes.</p>
+    </div>
+  </li>
+  <li>
+    <span class="submission-checklist-num">2</span>
+    <div class="submission-checklist-body">
+      <strong>Depends on <code>appfair-app</code> and uses <code>AppFairSettings</code>.</strong>
+      <p><code>Package.swift</code> includes the <a href="https://github.com/appfair/appfair-app"><code>appfair-app</code></a> dependency, and the app exposes a prominent settings screen (a top-level <code>TabView</code> tab or a top-level toolbar button) whose contents are wrapped in <code>AppFairSettings(bundle: .module) { … }</code>. See <a href="/docs/building/#appfair-ui">AppFairUI components</a>.</p>
+    </div>
+  </li>
+  <li>
+    <span class="submission-checklist-num">3</span>
+    <div class="submission-checklist-body">
+      <strong>All dependencies are free and open-source software.</strong>
+      <p>Every direct <em>and</em> transitive dependency (Swift Package Manager, Gradle, and any platform-side imports) must ship its source freely under an OSI-approved licence. Proprietary SDKs, closed-source binaries, and libraries that rely on Google Play Services are not eligible. See <a href="/docs/inclusion-criteria/#dependencies">Dependencies</a> in the inclusion criteria.</p>
+    </div>
+  </li>
+  <li>
+    <span class="submission-checklist-num">4</span>
+    <div class="submission-checklist-body">
+      <strong>Accessibility attributes on every major UI element.</strong>
+      <p>Every interactive control, icon-only button, custom drawing, and non-text element carries an <code>.accessibilityLabel</code>; semantic SwiftUI text styles are used so Dynamic Type works; tap targets are at least 44×44 points. See <a href="/docs/building/#a11y">Accessibility</a>.</p>
+    </div>
+  </li>
+  <li>
+    <span class="submission-checklist-num">5</span>
+    <div class="submission-checklist-body">
+      <strong>Ships with at least English and French translations.</strong>
+      <p>The <code>Localizable.xcstrings</code> catalogue contains a complete set of strings for both <code>en</code> and <code>fr</code>. The app launches cleanly with the device locale set to French and displays no untranslated literals. See <a href="/docs/building/#l10n-minimum">Minimum supported languages</a>.</p>
+    </div>
+  </li>
+  <li>
+    <span class="submission-checklist-num">6</span>
+    <div class="submission-checklist-body">
+      <strong>Complete Fastlane metadata for both stores.</strong>
+      <p><code>Darwin/fastlane/metadata/</code> and <code>Android/fastlane/metadata/android/</code> each contain the required text files (title, subtitle / short description, description, keywords, release notes, support and privacy URLs) for every supported locale.</p>
+    </div>
+  </li>
+  <li>
+    <span class="submission-checklist-num">7</span>
+    <div class="submission-checklist-body">
+      <strong>At least English screenshots for both platforms.</strong>
+      <p>iOS screenshots are present under <code>Darwin/fastlane/screenshots/en-US/</code> for each device class Apple requires; Android screenshots are present under <code>Android/fastlane/metadata/android/en-US/images/phoneScreenshots/</code> (at minimum two phone screenshots).</p>
+    </div>
+  </li>
+</ol>

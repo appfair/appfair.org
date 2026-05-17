@@ -1,23 +1,11 @@
 ---
-title: FAQ
-description: Frequently asked questions about the App Fair Project.
+title: FAQ and Glossary
+description: Frequently asked questions about the App Fair Project, with a glossary of recurring terms.
 ---
 
-Questions not covered below can be raised on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions).
+Questions not covered below can be raised on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). A glossary of recurring terms is provided at the bottom of the page.
 
 ## About the project {#about}
-
-### Why Skip, and not Flutter, React Native, Xamarin, MAUI, or Capacitor? {#why-skip}
-
-Platform-native user interfaces produce the best end-user experience: lowest battery use, best performance, and the look and feel that users already know on each platform. [Skip](https://skip.dev) supports the production of native UIs (SwiftUI on iOS, Jetpack Compose on Android) from a single Swift codebase, so code can be shared without compromising the user experience. Cross-platform frameworks that ship their own rendering stack or wrap a web view tend to feel inconsistent with the host platform on at least one device class. The App Fair takes the position that user experience is worth the engineering investment of building on the native UI toolkits.
-
-### Can I use Skip Fuse instead of Skip Lite? {#why-skip-lite}
-
-No. App Fair apps must use Skip Lite, the transpiled mode in which Swift source is converted to Kotlin and built into a native Jetpack Compose Android app. Skip Fuse, the compiled mode in which Swift source is compiled directly to Android, is not yet suitable for App Fair apps. Its runtime, binary footprint, and platform coverage remain a work in progress, and the App Fair distribution pipeline currently targets Skip Lite output exclusively. This may change in the future, but is fixed for now.
-
-### Why GPL-2.0-or-later? Why not MIT, Apache, or BSD? {#why-gpl}
-
-The App Fair's mission requires that its catalog remain free of advertising, tracking, and analytics over the lifetime of the project. A permissive license would allow a third party to fork an App Fair app, add advertising or tracking, and republish the result. The GPL's copyleft prevents this: any party that distributes a derived version must publish the corresponding source, under the same license. This restriction applies to the top-level application only. Libraries on which an app depends may use any GPL-compatible license.
 
 ### Why does each app need its own GitHub organization? {#why-org}
 
@@ -57,9 +45,11 @@ Yes. An app can detect at runtime which channel it was installed from (the App S
 
 ## Submitting and releasing {#releasing}
 
-### Is an Apple Developer account really not required? {#no-apple-account}
+### Is an Apple Developer or Google Developer account required? {#no-developer-account}
 
-Correct. The App Fair Project is the entity registered as the publisher with Apple and Google. The distribution certificate, the App Store Connect API key, and the Play Console service account are managed centrally on behalf of every app in the catalog. The maintainer's name appears as the contributor in the app's About screen, README, and store description, but not as the developer of record on the stores.
+Not for distribution through the App Fair. The App Fair Project is the **publisher of record** registered with both Apple and Google, and it operates the distribution certificate, the App Store Connect API key, and the Play Console service account on behalf of every app in the catalog. The upstream app developer therefore does not need to enrol in the Apple Developer Program or the Google Play Console, and does not need to accept the terms and conditions of either programme.
+
+The upstream developer's name and project URL appear as the contributor in the app's About screen, in the README, and in the store description, but the entity Apple and Google bill, hold accountable, and correspond with is the App Fair Project. (Developers who wish to publish their app independently of the App Fair are free to do so under their own accounts; see [Apps that don't fit can still be published directly](/docs/inclusion-criteria/#unsure).)
 
 ### Can I build my own signed binaries instead of having the App Fair do it? {#self-build}
 
@@ -100,3 +90,55 @@ Public awareness is also valuable. References to the App Fair in conversations a
 ### Something not covered here.
 
 Please raise the question on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). Useful questions are typically incorporated into this FAQ for future reference.
+
+## Glossary {#glossary}
+
+Recurring terms used throughout the documentation, in alphabetical order.
+
+### App Token {#token}
+
+The immutable identifier for an App Fair app's source. The token is the name shared by the app's GitHub organization and its repository (e.g. `Faire-Games`) and is the final argument passed to `skip create --appfair`. It is distinct from the app's **displayed title** (e.g. "Fair Games"), which is localizable and may change over time.
+
+See also: [Naming](/docs/inclusion-criteria/#naming), [Create a GitHub organization](/docs/building/#org), [Initialize the Skip project](/docs/building/#skip-init).
+
+### Code Hub {#hub}
+
+A source-hosting platform on which an App Fair app's source repository lives. GitHub is the only currently supported code hub; GitLab, Codeberg, and self-hosted Forgejo are on the project roadmap.
+
+See also: [Create a GitHub organization](/docs/building/#org), [Will the App Fair support code hubs other than GitHub?](#other-hubs).
+
+### Digital Public Good {#dpg}
+
+An application that is free of cost, free of advertising and tracking, and built from free and open-source software, intended for general benefit rather than commercial gain. Every App Fair app is a digital public good in this sense.
+
+See also: [What is the App Fair?](/docs/#what), [Mission statement](/docs/inclusion-criteria/#mission).
+
+### Fastlane {#fastlane}
+
+An open-source convention for managing mobile-app store metadata as plain-text and PNG files alongside the source code. App Fair apps store their App Store and Play Store metadata under `Darwin/fastlane/` and `Android/fastlane/`.
+
+See also: [Write store metadata](/docs/submitting/#metadata), [Project layout](/docs/building/#layout), [Fastlane documentation](https://docs.fastlane.tools/).
+
+### Fork {#fork}
+
+The mirror of an App Fair app's source repository inside the [`appfair`](https://github.com/appfair) GitHub organization. The fork holds the signing credentials and store API keys, and is the entity that builds, signs, and publishes the app to the stores.
+
+See also: [The fork-based distribution model](/docs/deploying/#model), [Division of responsibilities](/docs/deploying/#responsibilities), [Request an App Fair fork](/docs/submitting/#fork-request).
+
+### Inclusion Criteria {#inclusion-criteria}
+
+The policy that defines which applications are eligible for distribution through the App Fair: prohibited content, encouraged characteristics, the four cornerstones, technical requirements, licensing, naming, and external-storefront compliance.
+
+See also: [Inclusion Criteria](/docs/inclusion-criteria/), [Submission Checklist](/docs/submitting/#checklist).
+
+### Skip {#skip}
+
+The cross-platform mobile development framework from [skip.dev](https://skip.dev/) used by every App Fair app. Skip produces a native iOS app and a native Android app from a single Swift codebase.
+
+See also: [Project model](/docs/building/#mental-model), [Skip documentation](https://skip.dev/docs/).
+
+### Skip Lite {#skip-lite}
+
+The Skip mode in which Swift source is transpiled to Kotlin, producing a native Jetpack Compose Android app. App Fair apps must use Skip Lite; the alternative Skip Fuse mode is not yet suitable for App Fair distribution.
+
+See also: [Project model](/docs/building/#mental-model), [Skip modes](https://skip.dev/docs/modes/).

@@ -13,6 +13,44 @@ The App Fair exists to create global digital public goods in the form of mobile 
   </div>
 </aside>
 
+## The Four Cornerstones of an App Fair App {#four-cornerstones}
+
+Every App Fair app is designed around four cornerstones, which build directly on the [Four Essential Freedoms of Free Software](https://en.wikipedia.org/wiki/Free_software#Definition) defined by the Free Software Foundation. Each cornerstone should shape the project from the outset; retrofitting any of them after the fact is significantly more expensive than designing for it from the first commit.
+
+### Transparent {#cornerstone-transparent}
+
+An App Fair app is open to inspection, modification, and redistribution by anyone. Its source code, build configuration, and every direct and transitive dependency are published under [free and open-source software](https://en.wikipedia.org/wiki/Free_software#Definition) licences, so that any user, auditor, or future maintainer can study how the application works, verify what it does, modify it for their own needs, and share the result.
+
+This cornerstone is the foundation the others rest on. The [Four Essential Freedoms of Free Software](https://en.wikipedia.org/wiki/Free_software#Definition) — the freedoms to run, study, modify, and redistribute the software — are what make community translation, community accessibility improvements, and independent verification possible at all. The licensing and dependency rules under [Licensing](#licensing) below are the operational expression of this cornerstone.
+
+### Ubiquitous {#cornerstone-ubiquitous}
+
+An App Fair app is available on every mobile device: both iOS and Android, from a single Skip codebase, with no second-class platform. A user on a current-model iPhone and a user on a budget Android device should receive the same set of features, each refined to feel at home on the respective platform.
+
+Skip itself handles most of this cornerstone: SwiftUI source is compiled to a native iOS app and transpiled to a native Jetpack Compose Android app. The developer's responsibility is to make platform decisions that include both audiences rather than excluding one of them.
+
+### Global {#cornerstone-global}
+
+An App Fair app supports the user's language. Every user-facing string is externalized, the supported locales are kept current, and the store listing is translated alongside the app itself. The catalog aggregates apps across more than a dozen primary locales (Arabic, Chinese, English, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Spanish, and others). The app must ship with at least **English** and **French** translations as a minimum verification baseline (see [Localization](/docs/building/#l10n-minimum)).
+
+In practice, this requires the use of SwiftUI's localization infrastructure: primarily an [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) for every visible string. Skip bridges these catalogs to Android's string-resource system automatically, so a translation contributed once applies to both platforms.
+
+### Accessible {#cornerstone-accessible}
+
+An App Fair app should be usable by people across the spectrum of abilities. This includes users of VoiceOver and TalkBack, users of Dynamic Type at the largest sizes, users of Switch Control, and users who rely on sufficient colour contrast.
+
+In SwiftUI, this is primarily a matter of applying the standard [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility): `.accessibilityLabel`, `.accessibilityHint`, `.accessibilityValue`, `.accessibilityElement(children:)`, `.accessibilityAddTraits`, and related APIs. Skip translates these modifiers into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android, so describing a UI element once makes it accessible on both platforms.
+
+<aside class="callout callout-tip">
+  <span class="callout-icon" style="--icon: url('/assets/icons/callout/hub.svg');" aria-hidden="true"></span>
+  <div class="callout-body">
+    <p class="callout-title">The cornerstones compound</p>
+    <p>An app that is not transparent denies users the four freedoms that make the rest of the project possible. A localized app that is not accessible excludes blind speakers of every supported language. A cross-platform app that is not localized excludes most of the world's mobile users. The four cornerstones deliver their full value only in combination.</p>
+  </div>
+</aside>
+
+An initial App Fair submission is not expected to be perfect against each cornerstone: they are aspirational cornerstones, and software is always a work in progress. A clear commitment to each cornerstone is expected, along with an architecture that allows each cornerstone to be improved over time.
+
 ## Mission statement {#mission}
 
 > The App Fair is a forum for the creation of global digital public goods in the form of mobile applications that are free, fair, and clean, with no goal to monetize the end-user in any way.
@@ -77,16 +115,6 @@ The general principle: an App Fair app should preserve the user's freedom to cho
 
 Apps should aim for broad and durable utility: useful to many people, in many locations, in many languages, over many years. Apps tied to specific events, current cultural moments, or content that will become stale are discouraged.
 
-### The Three Pillars {#three-pillars-requirement}
-
-Every App Fair app should aim to support the [three pillars](/docs/#three-pillars): **ubiquitous, global, and accessible**.
-
-- **Ubiquitous.** The app ships on both iOS and Android from a single Skip codebase. Ideas that cannot work on one of the two platforms are not eligible. Platform-specific refinements are permitted, but the core experience must be available to both audiences.
-- **Global.** Every user-facing string is externalized through a [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog), the app accommodates translated layouts, and store metadata is translated for as many of the App Fair's primary locales as is feasible.
-- **Accessible.** Standard SwiftUI [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility) are applied to all interactive and non-text elements, Dynamic Type is respected, and the app passes manual VoiceOver review on iOS and TalkBack review on Android. Skip translates these modifiers into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) automatically.
-
-A first submission is not expected to be perfect against each pillar. A clear commitment to each pillar is expected, along with an architecture that allows each pillar to be improved over time.
-
 ## Technical requirements {#technical-requirements}
 
 In addition to the criteria above, every App Fair app must satisfy a small set of mandatory technical requirements.
@@ -128,18 +156,43 @@ When a new App Fair project is initialized with `skip create --appfair`, a `LICE
 
 ## Naming {#naming}
 
-Each app requires a distinctive, unique name. The name must not collide with any existing App Fair app and must not be confusingly similar to any well-known application on the commercial app stores.
+Each app has two distinct names that the inclusion criteria treat differently:
+
+- The **app token** is the immutable identifier used for the app's GitHub organization and repository (e.g. `Faire-Games`). It appears in URLs and tooling and never changes for the lifetime of the project. The token only needs to be unique within the App Fair catalog and conformant with GitHub's organization-name rules.
+- The **displayed title** is the localizable string the user sees on their device home screen and in store listings (e.g. "Fair Games"). It is set in `Skip.env` and the [Fastlane metadata](/docs/submitting/#metadata), can differ per locale, and may change over time without affecting the token.
+
+The displayed title is the one that must be distinctive and unique. It must not collide with any existing App Fair app and must not be confusingly similar to any well-known application on the commercial app stores.
 
 <aside class="callout callout-caution">
   <span class="callout-icon" style="--icon: url('/assets/icons/callout/link_off.svg');" aria-hidden="true"></span>
   <div class="callout-body">
-    <p class="callout-title">Verifying name availability is non-trivial</p>
-    <p>Confirming name availability worldwide is difficult: the commercial app stores include many name-squatters, and trademark scopes vary by jurisdiction. Names should be selected with the understanding that they may need to change prior to publication. Renaming an early-stage project is straightforward; defending a name in a takedown dispute is not.</p>
+    <p class="callout-title">Verifying title availability is non-trivial</p>
+    <p>Confirming title availability worldwide is difficult: the commercial app stores include many name-squatters, and trademark scopes vary by jurisdiction. Displayed titles should be selected with the understanding that they may need to change prior to publication or in response to a later dispute. The app token, by contrast, is private to the App Fair / GitHub namespace and is not subject to commercial trademark conflict — renaming an early-stage token is straightforward, but it is not normally necessary.</p>
   </div>
 </aside>
+
+## External storefront requirements {#storefronts}
+
+Conformance to the App Fair's own inclusion criteria is necessary, but it is not sufficient for an app to reach end users. Every storefront the App Fair publishes to imposes its own additional requirements, and the binary submitted by the App Fair must satisfy each applicable store's policy on top of the criteria above. Maintainers should familiarise themselves with the relevant guidelines and design their app to meet the strictest applicable rules; where two stores' rules conflict, the app should comply with both.
+
+The canonical references for each distribution channel:
+
+- **Apple App Store.** The [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) cover content, safety, performance, business, design, and legal expectations for every app shipped through the App Store. The corresponding [App Store Connect Resources](https://developer.apple.com/app-store-connect/resources/) describe the technical submission process.
+- **Google Play Store.** The [Google Play Developer Program Policies](https://play.google.com/about/developer-content-policy/) define analogous content, monetisation, technical, privacy, and policy rules. The [Restricted Content](https://support.google.com/googleplay/android-developer/topic/9858052) and [Data Safety](https://support.google.com/googleplay/android-developer/answer/10787469) sections are the items most likely to surface during review.
+- **F-Droid.** F-Droid is the long-standing non-commercial Android storefront; distribution through it is a planned App Fair channel. Its [Inclusion Policy](https://f-droid.org/docs/Inclusion_Policy/) is more stringent on dependencies and proprietary components than the commercial stores, but in practice overlaps closely with the App Fair's own criteria.
+
+App Fair maintainers reviewing a submission do not adjudicate every store-specific rule, but a submission that visibly conflicts with a store guideline will be flagged for the developer to resolve before the binary is submitted. Rejections that arrive after submission (from Apple or Google) are surfaced to the upstream maintainer through the channel described in [Division of responsibilities](/docs/deploying/#responsibilities).
 
 ## Submitting a proposal {#unsure}
 
 When the suitability of an idea is uncertain, a proposal should be posted on the [discussion forums](https://github.com/orgs/appfair/discussions) before development begins. Pre-submission discussion costs significantly less than rejection of a completed project, and the community may identify existing projects that the contributor could join rather than start from scratch.
 
-Once an idea has been evaluated against the criteria above, proceed to **[Building Your App](/docs/building/)**.
+Once an idea has been evaluated against the criteria above, proceed to **[Building Your App](/docs/building/)**. When the app is ready to ship, the criteria here are translated into a concrete pre-submission gate in the **[Submission Checklist](/docs/submitting/#checklist)**.
+
+<aside class="callout callout-tip">
+  <span class="callout-icon" style="--icon: url('/assets/icons/callout/alt_route.svg');" aria-hidden="true"></span>
+  <div class="callout-body">
+    <p class="callout-title">Apps that don't fit can still be published directly</p>
+    <p>An app that does not satisfy the criteria above is not eligible for distribution through the App Fair, but nothing in the default project layout precludes the developer or organisation from publishing it independently. The upstream source repository remains under the developer's full control, and the Skip project scaffold imposes no encumbrance that would prevent a parallel direct submission to the stores. Direct publication to the <a href="https://developer.apple.com/programs/">Apple Developer Program</a> requires an Apple developer account, and direct publication to the <a href="https://play.google.com/console/about/">Google Play Console</a> requires a Google developer account. The App Fair operates these accounts on behalf of the catalog, but does not own or constrain the upstream source.</p>
+  </div>
+</aside>

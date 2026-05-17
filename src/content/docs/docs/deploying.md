@@ -3,13 +3,13 @@ title: Deployment & Distribution
 description: How the App Fair fork builds, signs, and distributes the application.
 ---
 
-After a fork has been created at `github.com/appfair/<App-Name>`, the application is connected to the App Fair distribution pipeline. This section describes how the pipeline operates: from the release tag through the signed binary, the app stores, and the [appfair.net](https://appfair.net) catalog.
+After a fork has been created at `github.com/appfair/<app-token>`, the application is connected to the App Fair distribution pipeline. This section describes how the pipeline operates: from the release tag through the signed binary, the app stores, and the [appfair.net](https://appfair.net) catalog.
 
 ## The fork-based distribution model {#model}
 
-Each App Fair app is associated with two repositories:
+Each App Fair app is associated with two repositories, both addressed by the app's [token](/docs/inclusion-criteria/#naming):
 
-- The **source repository** in the developer's GitHub organization, e.g. [`github.com/Faire-Games/Faire-Games`](https://github.com/Faire-Games/Faire-Games). The developer owns this repository: source code, issue tracker, and project direction.
+- The **source repository** in the developer's GitHub organization, e.g. [`github.com/Faire-Games/Faire-Games`](https://github.com/Faire-Games/Faire-Games) for the `Faire-Games` token (published under the displayed title "Fair Games"). The developer owns this repository: source code, issue tracker, and project direction.
 - The **App Fair fork** in the [`appfair`](https://github.com/appfair) organization, e.g. [`github.com/appfair/Faire-Games`](https://github.com/appfair/Faire-Games). The App Fair owns this repository, which holds the signing credentials, store API keys, and the published release pipeline.
 
 This separation has two effects. The developer retains full control of the source code, including the option to discontinue the App Fair relationship and continue independently. The App Fair handles the account-bound and certificate-bound parts of mobile app distribution.
@@ -81,22 +81,6 @@ The Apple App Store is the dominant channel for iPhone and iPad. App Fair releas
 
 The Google Play Store is the dominant channel for Android worldwide, outside mainland China. App Fair releases appear there under the App Fair Project's developer account.
 
-### The App Fair catalog {#channel-catalog}
-
-[**appfair.net**](https://appfair.net) is the App Fair's own catalog. It is a static site that is regenerated hourly. A [GitHub Actions job](https://github.com/appfair/appfair.net/blob/main/.github/workflows/aggregate.yml) walks the [`appfair`](https://github.com/appfair) organization, finds each fork, downloads the latest release's `appindex.json` from each, merges them into a single index, and rebuilds the site.
-
-Several properties follow from this design:
-
-- There is no separate "submit to the catalog" step. Once the fork exists and has a release with an `appindex.json` asset (which the build pipeline generates automatically), the app appears on the next aggregator run.
-- The catalog is always in sync with the latest release. A version bump and a released tag are sufficient to update the catalog within an hour.
-- Catalog metadata is sourced from the `fastlane/` directories. Titles, descriptions, screenshots, and supported locales come from the same content that ships to the App Store and Play Store. There is a single source of truth.
-
-The full pipeline is documented in the [appfair.net README](https://github.com/appfair/appfair.net#how-it-works).
-
-### The App Fair app {#channel-app-fair-app}
-
-The App Fair also ships its own dual-platform App Fair app, which allows users to browse, install, and update App Fair apps from a single application. It is available for Android today. Distribution within the European Union for iOS is planned, subject to regulatory roll-out.
-
 ### Future channels {#channel-future}
 
 The same `appindex.json` and signed binaries support distribution through F-Droid, AltStore, and other alternative app stores. Expansion into these channels is on the project roadmap.
@@ -113,7 +97,7 @@ This branding requirement allows users to discover the rest of the catalog from 
 
 ## Working Example {#example}
 
-The [Faire-Games](https://github.com/Faire-Games/Faire-Games) app demonstrates the full pipeline:
+The app with the [`Faire-Games`](https://github.com/Faire-Games/Faire-Games) token (published under the title "Fair Games") demonstrates the full pipeline:
 
 1. The developer maintains the source at [`Faire-Games/Faire-Games`](https://github.com/Faire-Games/Faire-Games), pushing commits, accepting PRs, and responding to issues there.
 2. When a release is ready, the developer bumps `MARKETING_VERSION` in `Skip.env`, updates the release notes, commits, and pushes a `1.5.1` tag.

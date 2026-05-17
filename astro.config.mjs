@@ -16,10 +16,10 @@ export default defineConfig({
     remarkPlugins: [remarkHeadingId],
     rehypePlugins: [[rehypeExternalLinks, {
 			target: "_blank",
-			content: {
-				type: "text",
-				value: " ↗"
-			}
+			rel: ["noopener", "noreferrer"],
+			// External links get the "external-link" class. A subtle SVG marker is
+			// added via CSS (::after) so the page text stays clean.
+			properties: { className: ["external-link"] },
 		}]
     ],
   },
@@ -50,6 +50,7 @@ export default defineConfig({
               'https://bsky.app/profile/appfair.bsky.social',
               'https://twitter.com/TheAppFair',
               'https://www.linkedin.com/company/appfair/',
+              'https://www.reddit.com/r/appfair/',
               'https://github.com/orgs/appfair',
             ],
           }),
@@ -59,6 +60,7 @@ export default defineConfig({
         { tag: 'link', attrs: { rel: 'me', href: 'https://bsky.app/profile/appfair.bsky.social' } },
         { tag: 'link', attrs: { rel: 'me', href: 'https://twitter.com/TheAppFair' } },
         { tag: 'link', attrs: { rel: 'me', href: 'https://www.linkedin.com/company/appfair/' } },
+        { tag: 'link', attrs: { rel: 'me', href: 'https://www.reddit.com/r/appfair/' } },
         { tag: 'link', attrs: { rel: 'me', href: 'https://github.com/orgs/appfair' } },
         { tag: 'link', attrs: { rel: 'me', href: 'mailto:contact@appfair.org' } },
       ],
@@ -129,8 +131,8 @@ export default defineConfig({
 			social: [
         { icon: 'discourse', label: 'Forums', href: 'https://github.com/orgs/appfair/discussions' },
         //{ icon: 'slack', label: 'Slack', href: '/slack/' },
-        { icon: 'mastodon', label: 'Mastodon', href: 'https://fosstodon.org/@appfair' },
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/orgs/appfair' },
+        // Mastodon and GitHub are linked from the footer instead.
+        // RSS is added automatically by the starlight-blog plugin.
       ],
       // editLink disabled to remove "Edit page" links
       sidebar: [
@@ -143,7 +145,7 @@ export default defineConfig({
             { label: 'Submitting Your App', link: '/docs/submitting/' },
             { label: 'Deployment & Distribution', link: '/docs/deploying/' },
             { label: 'Maintaining Your App', link: '/docs/maintenance/' },
-            { label: 'FAQ', link: '/docs/faq/' },
+            { label: 'FAQ & Glossary', link: '/docs/faq/' },
           ],
         },
       ],

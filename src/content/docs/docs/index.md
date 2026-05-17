@@ -27,43 +27,14 @@ The apps in the catalog are characterized as **global digital public goods**:
 - **Fair.** No advertising, no surreptitious tracking, no analytics SDKs, no behavioural profiling.
 - **Open.** Built from free and open-source software, so the source of every shipped binary is available for inspection.
 
-## The Three Pillars of an App Fair App {#three-pillars}
+## How does the App Fair work? {#overview}
 
-Every App Fair app is designed around three pillars. Each pillar should shape the project from the outset; retrofitting any of them after the fact is significantly more expensive than designing for it from the first commit.
+The end-to-end process has four steps:
 
-### 1. Ubiquitous {#pillar-ubiquitous}
-
-An App Fair app is available on every mobile device: both iOS and Android, from a single Skip codebase, with no second-class platform. A user on a current-model iPhone and a user on a budget Android device should receive the same set of features, each refined to feel at home on the respective platform.
-
-Skip itself handles most of this pillar: SwiftUI source is compiled to a native iOS app and transpiled to a native Jetpack Compose Android app. The developer's responsibility is to make platform decisions that include both audiences rather than excluding one of them.
-
-### 2. Global {#pillar-global}
-
-An App Fair app supports the user's language. Every user-facing string is externalized, the supported locales are kept current, and the store listing is translated alongside the app itself. The catalog aggregates apps across more than a dozen primary locales (Arabic, Chinese, English, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Spanish, and others).
-
-In practice, this requires the use of SwiftUI's localization infrastructure: primarily an [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) for every visible string. Skip bridges these catalogs to Android's string-resource system automatically, so a translation contributed once applies to both platforms.
-
-### 3. Accessible {#pillar-accessible}
-
-An App Fair app should be usable by people across the spectrum of abilities. This includes users of VoiceOver and TalkBack, users of Dynamic Type at the largest sizes, users of Switch Control, and users who rely on sufficient colour contrast.
-
-In SwiftUI, this is primarily a matter of applying the standard [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility): `.accessibilityLabel`, `.accessibilityHint`, `.accessibilityValue`, `.accessibilityElement(children:)`, `.accessibilityAddTraits`, and related APIs. Skip translates these modifiers into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android, so describing a UI element once makes it accessible on both platforms.
-
-<aside class="callout callout-tip">
-  <span class="callout-icon" style="--icon: url('/assets/icons/callout/hub.svg');" aria-hidden="true"></span>
-  <div class="callout-body">
-    <p class="callout-title">The pillars compound</p>
-    <p>A localized app that is not accessible excludes blind speakers of every supported language. A cross-platform app that is not localized excludes most of the world's mobile users. The three pillars deliver their full value only in combination.</p>
-  </div>
-</aside>
-
-## How the project fits together {#how}
-
-There are three moving pieces:
-
-1. The developer maintains a [Skip](https://skip.dev) project in their own GitHub organization. The repository is the source of truth for the application: source code, issue tracker, and project direction. Every App Fair app is a [conventional Skip project](https://skip.dev/docs/project-types/#conventional-skip-projects), which produces a native iOS app and a native Android app from a single Swift codebase.
-2. The App Fair forks the repository into the [`appfair`](https://github.com/appfair) GitHub organization. The fork holds the signing credentials and store API keys. When the developer pushes a release tag, the fork's CI workflow builds, signs, and submits the app to the Apple App Store and Google Play Store.
-3. The fork publishes an `appindex.json` describing each release. The [appfair.net](https://appfair.net) catalog aggregates these index files automatically; a new release appears in the catalog within an hour of being signed.
+1. **An app is developed independently.** The developer creates the application as a [Skip](https://skip.dev) project in its own dedicated GitHub organization (one organization per app). The application is designed to conform to the App Fair's [Inclusion Criteria](/docs/inclusion-criteria/) from the outset.
+2. **A fork request is submitted.** When the app is ready and a semantic-version release tag has been pushed, the developer opens a fork request on the App Fair [discussion forums](https://github.com/orgs/appfair/discussions).
+3. **The App Fair forks the repository and builds the initial release.** A maintainer reviews the app against the inclusion criteria and the [Submission Checklist](/docs/submitting/#checklist). On approval, the App Fair creates a fork in the [`appfair`](https://github.com/appfair) GitHub organization. The fork holds the signing credentials and store API keys; its CI workflow builds, signs, and submits the initial release to the Apple App Store and Google Play Store.
+4. **Subsequent releases publish automatically.** Each time the developer pushes a new `X.Y.Z` tag to the source repository and that tag is synchronized to the fork, the fork's CI workflow rebuilds, re-signs, and re-submits the updated app to the stores, and updates the `appindex.json` that drives the [appfair.net](https://appfair.net) catalog.
 
 <aside class="callout callout-tip">
   <span class="callout-icon" style="--icon: url('/assets/icons/callout/verified.svg');" aria-hidden="true"></span>
