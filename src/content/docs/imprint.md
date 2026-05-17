@@ -23,7 +23,7 @@ The App Fair Project is a registered 501(c)(3) nonprofit corporation in the Comm
 
 ## Contact
 
-- **Email:** [info@appfair.org](mailto:info@appfair.org)
+- **Email:** [contact@appfair.org](mailto:contact@appfair.org)
 - **Mastodon:** [@appfair@fosstodon.org](https://fosstodon.org/@appfair)
 - **GitHub:** [github.com/appfair](https://github.com/orgs/appfair)
 - **Forums:** [App Fair Discussions](https://github.com/orgs/appfair/discussions)

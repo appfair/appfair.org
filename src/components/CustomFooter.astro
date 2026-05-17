@@ -22,11 +22,56 @@ import { Icon } from '@astrojs/starlight/components';
 	}
 
 	<div class="site-footer">
-		<p class="site-footer-contact footer-contact">
-			<a href="https://fosstodon.org/@appfair" rel="me">Mastodon: @appfair@fosstodon.org</a>
-			<span class="site-footer-separator">&middot;</span>
-			<a href="mailto:info@appfair.org">info@appfair.org</a>
-		</p>
+		<ul class="site-social" aria-label="Social media and contact">
+			<li>
+				<a class="site-social-link site-social-rss" href="https://appfair.org/blog/rss.xml" aria-label="RSS feed">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">RSS</span>
+				</a>
+			</li>
+			<li>
+				<a class="site-social-link site-social-forums" href="https://github.com/orgs/appfair/discussions" aria-label="Forums">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">Forums</span>
+				</a>
+			</li>
+			<li>
+				<a class="site-social-link site-social-github" href="https://github.com/orgs/appfair" rel="me" aria-label="GitHub">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">GitHub</span>
+				</a>
+			</li>
+			<li>
+				<a class="site-social-link site-social-mastodon" href="https://fosstodon.org/@appfair" rel="me" aria-label="Mastodon">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">Mastodon</span>
+				</a>
+			</li>
+			<li>
+				<a class="site-social-link site-social-bluesky" href="https://bsky.app/profile/appfair.bsky.social" rel="me" aria-label="Bluesky">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">Bluesky</span>
+				</a>
+			</li>
+			<li>
+				<a class="site-social-link site-social-twitter" href="https://twitter.com/TheAppFair" rel="me" aria-label="Twitter">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">Twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="site-social-link site-social-linkedin" href="https://www.linkedin.com/company/appfair/" rel="me" aria-label="LinkedIn">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a class="site-social-link site-social-email" href="mailto:contact@appfair.org" aria-label="Email">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">contact@appfair.org</span>
+				</a>
+			</li>
+		</ul>
 		<p class="site-footer-nonprofit footer-contact">
 			{Astro.locals.t('footer.nonprofit')}
 			<span class="site-footer-separator">&middot;</span>
@@ -34,6 +79,97 @@ import { Icon } from '@astrojs/starlight/components';
 		</p>
 	</div>
 </footer>
+
+<style>
+	.site-social {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem 1.1rem;
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1rem;
+	}
+	.site-social li { margin: 0; }
+	.site-social-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--sl-color-gray-3);
+		text-decoration: none;
+		font-size: var(--sl-text-sm);
+		transition: color 0.2s ease, transform 0.2s ease;
+	}
+	.site-social-icon {
+		display: inline-block;
+		width: 1.25rem;
+		height: 1.25rem;
+		background-color: currentColor;
+		-webkit-mask: var(--social-icon) no-repeat center / contain;
+		mask: var(--social-icon) no-repeat center / contain;
+		flex-shrink: 0;
+	}
+	/* Brand colours: each link assumes its platform's colour on hover/focus,
+	   and its icon is permanently tinted with the brand colour. */
+	.site-social-mastodon .site-social-icon {
+		--social-icon: url('/assets/icons/social/mastodon.svg');
+		color: #6364FF;
+	}
+	.site-social-bluesky .site-social-icon {
+		--social-icon: url('/assets/icons/social/bluesky.svg');
+		color: #1185FE;
+	}
+	.site-social-twitter .site-social-icon {
+		--social-icon: url('/assets/icons/social/twitter.svg');
+		color: #1DA1F2;
+	}
+	.site-social-linkedin .site-social-icon {
+		--social-icon: url('/assets/icons/social/linkedin.svg');
+		color: #0A66C2;
+	}
+	.site-social-github .site-social-icon {
+		--social-icon: url('/assets/icons/social/github.svg');
+		/* GitHub's mark is monochromatic; follow the surrounding text colour. */
+		color: currentColor;
+	}
+	.site-social-forums .site-social-icon {
+		--social-icon: url('/assets/icons/social/forums.svg');
+		/* Emerald — distinct from the blues, blue-violet and orange in this row. */
+		color: #10B981;
+	}
+	.site-social-rss .site-social-icon {
+		--social-icon: url('/assets/icons/social/rss.svg');
+		/* Classic RSS orange (the 2005 Microsoft / Mozilla / Apple agreement). */
+		color: #F26522;
+	}
+	.site-social-email .site-social-icon {
+		--social-icon: url('/assets/icons/social/email.svg');
+		/* Warm amber — distinct from all the blues, the indigo, the emerald,
+		   and the RSS orange (it's notably more yellow than RSS's red-orange). */
+		color: #EAB308;
+	}
+	.site-social-mastodon:hover,
+	.site-social-mastodon:focus-visible { color: #6364FF; }
+	.site-social-bluesky:hover,
+	.site-social-bluesky:focus-visible  { color: #1185FE; }
+	.site-social-twitter:hover,
+	.site-social-twitter:focus-visible  { color: #1DA1F2; }
+	.site-social-linkedin:hover,
+	.site-social-linkedin:focus-visible { color: #0A66C2; }
+	.site-social-github:hover,
+	.site-social-github:focus-visible   { color: var(--sl-color-white); }
+	.site-social-forums:hover,
+	.site-social-forums:focus-visible   { color: #10B981; }
+	.site-social-rss:hover,
+	.site-social-rss:focus-visible      { color: #F26522; }
+	.site-social-email:hover,
+	.site-social-email:focus-visible    { color: #EAB308; }
+	.site-social-link:hover .site-social-icon,
+	.site-social-link:focus-visible .site-social-icon {
+		transform: translateY(-1px);
+	}
+</style>
 
 <style>
 	@layer starlight.core {

@@ -27,6 +27,41 @@ export default defineConfig({
 		starlight({
 			title: 'The App Fair Project',
       favicon: '/favicon.png',
+      head: [
+        // Restore the persisted theme-palette before paint to avoid FOUC.
+        {
+          tag: 'script',
+          content: `(function(){try{var t=localStorage.getItem('appfair-theme-style');if(t&&t!=='original'){document.documentElement.setAttribute('data-theme-style',t);}}catch(e){}})();`,
+        },
+        // JSON-LD Organization schema, declaring every social profile we control
+        // as canonically belonging to the App Fair Project (sameAs).
+        {
+          tag: 'script',
+          attrs: { type: 'application/ld+json' },
+          content: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'The App Fair Project',
+            url: 'https://appfair.org',
+            logo: 'https://appfair.org/assets/icons/appfair-icon.svg',
+            email: 'contact@appfair.org',
+            sameAs: [
+              'https://fosstodon.org/@appfair',
+              'https://bsky.app/profile/appfair.bsky.social',
+              'https://twitter.com/TheAppFair',
+              'https://www.linkedin.com/company/appfair/',
+              'https://github.com/orgs/appfair',
+            ],
+          }),
+        },
+        // rel="me" link tags for IndieWeb / Mastodon profile verification.
+        { tag: 'link', attrs: { rel: 'me', href: 'https://fosstodon.org/@appfair' } },
+        { tag: 'link', attrs: { rel: 'me', href: 'https://bsky.app/profile/appfair.bsky.social' } },
+        { tag: 'link', attrs: { rel: 'me', href: 'https://twitter.com/TheAppFair' } },
+        { tag: 'link', attrs: { rel: 'me', href: 'https://www.linkedin.com/company/appfair/' } },
+        { tag: 'link', attrs: { rel: 'me', href: 'https://github.com/orgs/appfair' } },
+        { tag: 'link', attrs: { rel: 'me', href: 'mailto:contact@appfair.org' } },
+      ],
       logo: {
         src: './public/assets/icons/appfair-icon.svg',
         replacesTitle: true,
