@@ -1,0 +1,96 @@
+/* ======================================================================
+   THEME: 60s Protest
+   Atelier Populaire silkscreens, Black Panther broadsides, May '68 Paris.
+   Day-Glo mustard paper, silkscreen blood-red, photocopy-black ink.
+   Anton screams in all-caps, Special Elite types the manifesto below.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Anton";
+  src: url('/assets/fonts/themes/protest/anton-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Special Elite";
+  src: url('/assets/fonts/themes/protest/special-elite-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (the after-curfew variant) ---- */
+:root[data-theme-style="protest"] {
+  --sl-color-black:        #0d0606;
+  --sl-color-bg:           #0d0606;
+  --sl-color-bg-nav:       #0d0606;
+  --sl-color-bg-sidebar:   #170808;
+  --sl-color-bg-inline-code: #200a0a;
+  --sl-color-white:        #f4e8c8;
+  --sl-color-gray-1:       #e6d8a8;
+  --sl-color-gray-2:       #c4b888;
+  --sl-color-gray-3:       #8e8260;
+  --sl-color-gray-4:       #5a5240;
+  --sl-color-gray-5:       #2e1a1a;
+  --sl-color-gray-6:       #200a0a;
+  --sl-color-gray-7:       #170808;
+  --sl-color-accent-low:   #3a0a0d;
+  --sl-color-accent:       #ff3d2d;
+  --sl-color-accent-high:  #ffd23f;
+  --sl-color-text:         #e0d4a8;
+  --sl-color-text-accent:  #ffd23f;
+
+  --theme-font-body: "Special Elite", "American Typewriter", "Courier New", ui-monospace, monospace;
+  --theme-font-heading: "Anton", "Bebas Neue", "Oswald", Impact, "Arial Narrow", sans-serif;
+}
+
+/* ---- Light mode (the canonical mustard-paper silkscreen) ---- */
+:root[data-theme="light"][data-theme-style="protest"] {
+  --sl-color-black:        #f4dc88;
+  --sl-color-bg:           #f4dc88;
+  --sl-color-bg-nav:       #f4dc88;
+  --sl-color-bg-sidebar:   #ecd070;
+  --sl-color-bg-inline-code: #e0c050;
+  --sl-color-white:        #0a0a0a;
+  --sl-color-gray-1:       #0a0a0a;
+  --sl-color-gray-2:       #1a1a1a;
+  --sl-color-gray-3:       #3a3026;
+  --sl-color-gray-4:       #5a4a3a;
+  --sl-color-gray-5:       #968460;
+  --sl-color-gray-6:       #d4c060;
+  --sl-color-gray-7:       #ecd070;
+  --sl-color-accent-low:   #ffb0a0;
+  --sl-color-accent:       #c8202d;
+  --sl-color-accent-high:  #8a0e16;
+  --sl-color-text:         #0a0a0a;
+  --sl-color-text-accent:  #c8202d;
+}
+
+/* ---- Typography — assertive, all-caps, hand-printed energy ---- */
+[data-theme-style="protest"] body { font-family: var(--theme-font-body); font-weight: 400; letter-spacing: 0; line-height: 1.6; }
+[data-theme-style="protest"] h1,
+[data-theme-style="protest"] h2,
+[data-theme-style="protest"] h3,
+[data-theme-style="protest"] h4,
+[data-theme-style="protest"] h5,
+[data-theme-style="protest"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+[data-theme-style="protest"] h1 { font-size: 3em; letter-spacing: 0; }
+[data-theme-style="protest"] h2 { font-size: 2em; }
+[data-theme-style="protest"] strong { color: var(--sl-color-accent); font-weight: 400; text-transform: uppercase; }
+[data-theme-style="protest"] hr { border: 0; height: 6px; background: var(--sl-color-accent); }
+[data-theme-style="protest"] blockquote {
+  font-family: var(--theme-font-heading);
+  text-transform: uppercase;
+  font-size: 1.4em;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  border-inline-start: 6px solid var(--sl-color-accent);
+  padding-inline-start: 1.25rem;
+}
+[data-theme-style="protest"] code,
+[data-theme-style="protest"] pre code,
+[data-theme-style="protest"] kbd { font-family: var(--theme-font-body); }
+[data-theme-style="protest"] .site-title { font-family: var(--theme-font-heading); text-transform: uppercase; letter-spacing: 0.02em; }

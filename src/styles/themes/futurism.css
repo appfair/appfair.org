@@ -1,0 +1,87 @@
+/* ======================================================================
+   THEME: Italian Futurism
+   Mechanical, aggressive, high-contrast. Vermilion red, charcoal, cream.
+   Condensed sans-serif typography. All-caps headings with letter-spacing.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url('/assets/fonts/themes/futurism/bebas-neue-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url('/assets/fonts/themes/futurism/barlow-condensed-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url('/assets/fonts/themes/futurism/barlow-condensed-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default) ---- */
+:root[data-theme-style="futurism"] {
+  --sl-color-black:        #0c0c0d;
+  --sl-color-bg:           #0c0c0d;
+  --sl-color-bg-nav:       #0c0c0d;
+  --sl-color-bg-sidebar:   #131314;
+  --sl-color-bg-inline-code: #1a1a1b;
+  --sl-color-white:        #f1e9d7;
+  --sl-color-gray-1:       #e6dec9;
+  --sl-color-gray-2:       #b8b1a0;
+  --sl-color-gray-3:       #8a8478;
+  --sl-color-gray-4:       #5a554c;
+  --sl-color-gray-5:       #38342e;
+  --sl-color-gray-6:       #1f1d1a;
+  --sl-color-gray-7:       #131211;
+  --sl-color-accent-low:   #3a1310;
+  --sl-color-accent:       #c8312a;
+  --sl-color-accent-high:  #f4a5a0;
+  --sl-color-text:         #d9d2bf;
+  --sl-color-text-accent:  #ffffff;
+
+  --theme-font-body: "Barlow Condensed", "Helvetica Neue Condensed", "Roboto Condensed", system-ui, sans-serif;
+  --theme-font-heading: "Bebas Neue", "Oswald", Impact, sans-serif;
+}
+
+/* ---- Light mode ---- */
+:root[data-theme="light"][data-theme-style="futurism"] {
+  --sl-color-black:        #f1e9d7;
+  --sl-color-bg:           #f1e9d7;
+  --sl-color-bg-nav:       #f1e9d7;
+  --sl-color-bg-sidebar:   #ebe2cd;
+  --sl-color-bg-inline-code: #e4dabf;
+  --sl-color-white:        #0c0c0d;
+  --sl-color-gray-1:       #1a1a1b;
+  --sl-color-gray-2:       #2d2d2e;
+  --sl-color-gray-3:       #5a554c;
+  --sl-color-gray-4:       #8a8478;
+  --sl-color-gray-5:       #b8b1a0;
+  --sl-color-gray-6:       #d4cbb3;
+  --sl-color-gray-7:       #ebe2cd;
+  --sl-color-accent-low:   #f4ccc9;
+  --sl-color-accent:       #a8261f;
+  --sl-color-accent-high:  #6e1611;
+  --sl-color-text:         #1a1a1b;
+  --sl-color-text-accent:  #0c0c0d;
+}
+
+/* ---- Typography ---- */
+[data-theme-style="futurism"] body { font-family: var(--theme-font-body); letter-spacing: 0.01em; }
+[data-theme-style="futurism"] h1,
+[data-theme-style="futurism"] h2,
+[data-theme-style="futurism"] h3,
+[data-theme-style="futurism"] h4,
+[data-theme-style="futurism"] h5,
+[data-theme-style="futurism"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+[data-theme-style="futurism"] h1 { letter-spacing: 0.08em; }
+[data-theme-style="futurism"] .site-title,
+[data-theme-style="futurism"] a.site-title,
+[data-theme-style="futurism"] .header a { font-family: var(--theme-font-heading); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }

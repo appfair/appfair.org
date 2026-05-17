@@ -1,0 +1,80 @@
+/* ======================================================================
+   THEME: Minimalist
+   Clean, spacious, modern. Pure neutrals only — no chroma in the base.
+   Inter throughout. Tight line-heights for headings, generous body.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Inter";
+  src: url('/assets/fonts/themes/minimalist/inter-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url('/assets/fonts/themes/minimalist/inter-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default) ---- */
+:root[data-theme-style="minimalist"] {
+  --sl-color-black:        #0a0a0a;
+  --sl-color-bg:           #0a0a0a;
+  --sl-color-bg-nav:       #0a0a0a;
+  --sl-color-bg-sidebar:   #111111;
+  --sl-color-bg-inline-code: #1a1a1a;
+  --sl-color-white:        #fafafa;
+  --sl-color-gray-1:       #e5e5e5;
+  --sl-color-gray-2:       #b4b4b4;
+  --sl-color-gray-3:       #888888;
+  --sl-color-gray-4:       #555555;
+  --sl-color-gray-5:       #333333;
+  --sl-color-gray-6:       #1a1a1a;
+  --sl-color-gray-7:       #111111;
+  --sl-color-accent-low:   #1a1a1a;
+  --sl-color-accent:       #fafafa;
+  --sl-color-accent-high:  #ffffff;
+  --sl-color-text:         #cccccc;
+  --sl-color-text-accent:  #fafafa;
+
+  --theme-font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --theme-font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+/* ---- Light mode ---- */
+:root[data-theme="light"][data-theme-style="minimalist"] {
+  --sl-color-black:        #ffffff;
+  --sl-color-bg:           #ffffff;
+  --sl-color-bg-nav:       #ffffff;
+  --sl-color-bg-sidebar:   #fafafa;
+  --sl-color-bg-inline-code: #f4f4f4;
+  --sl-color-white:        #0a0a0a;
+  --sl-color-gray-1:       #1a1a1a;
+  --sl-color-gray-2:       #333333;
+  --sl-color-gray-3:       #555555;
+  --sl-color-gray-4:       #888888;
+  --sl-color-gray-5:       #b4b4b4;
+  --sl-color-gray-6:       #e5e5e5;
+  --sl-color-gray-7:       #f4f4f4;
+  --sl-color-accent-low:   #f0f0f0;
+  --sl-color-accent:       #0a0a0a;
+  --sl-color-accent-high:  #000000;
+  --sl-color-text:         #333333;
+  --sl-color-text-accent:  #0a0a0a;
+}
+
+/* ---- Typography ---- */
+[data-theme-style="minimalist"] body { font-family: var(--theme-font-body); font-weight: 400; letter-spacing: -0.005em; }
+[data-theme-style="minimalist"] h1,
+[data-theme-style="minimalist"] h2,
+[data-theme-style="minimalist"] h3,
+[data-theme-style="minimalist"] h4,
+[data-theme-style="minimalist"] h5,
+[data-theme-style="minimalist"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+[data-theme-style="minimalist"] h1 { letter-spacing: -0.035em; }
+[data-theme-style="minimalist"] .site-title { font-family: var(--theme-font-heading); font-weight: 700; letter-spacing: -0.02em; }
+[data-theme-style="minimalist"] a { text-underline-offset: 0.25em; }

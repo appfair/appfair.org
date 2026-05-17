@@ -1,4 +1,21 @@
 
+/* ---- Selectable site themes (loaded before all other rules) ---- */
+@import './themes/futurism.css';
+@import './themes/space-age.css';
+@import './themes/dharma.css';
+@import './themes/minimalist.css';
+@import './themes/natural.css';
+@import './themes/solarpunk.css';
+@import './themes/brutalist.css';
+@import './themes/cyberpunk.css';
+@import './themes/newspaper.css';
+@import './themes/sumi-e.css';
+@import './themes/memphis.css';
+@import './themes/herbarium.css';
+@import './themes/protest.css';
+@import './themes/whole-earth.css';
+@import './themes/syndicalist.css';
+
 /* See theme editor at https://starlight.astro.build/guides/css-and-tailwind/#color-theme-editor */
 
 /* Material Symbols Rounded icon font */

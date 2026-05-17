@@ -1,0 +1,84 @@
+/* ======================================================================
+   THEME: Solarpunk
+   Lush, hopeful, ornate. Deep forest green, gold, warm cream.
+   Marcellus serif for elegant display, Sora sans-serif for body.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Marcellus";
+  src: url('/assets/fonts/themes/solarpunk/marcellus-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sora";
+  src: url('/assets/fonts/themes/solarpunk/sora-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sora";
+  src: url('/assets/fonts/themes/solarpunk/sora-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default) ---- */
+:root[data-theme-style="solarpunk"] {
+  --sl-color-black:        #0f1f17;
+  --sl-color-bg:           #0f1f17;
+  --sl-color-bg-nav:       #0f1f17;
+  --sl-color-bg-sidebar:   #14271d;
+  --sl-color-bg-inline-code: #1c3327;
+  --sl-color-white:        #f5f0e1;
+  --sl-color-gray-1:       #e9e1c8;
+  --sl-color-gray-2:       #c2bca5;
+  --sl-color-gray-3:       #8e9485;
+  --sl-color-gray-4:       #5e6e60;
+  --sl-color-gray-5:       #2d4232;
+  --sl-color-gray-6:       #1c3327;
+  --sl-color-gray-7:       #14271d;
+  --sl-color-accent-low:   #2b1a0a;
+  --sl-color-accent:       #d4a017;
+  --sl-color-accent-high:  #f0c757;
+  --sl-color-text:         #d8d0b8;
+  --sl-color-text-accent:  #f7c948;
+
+  --theme-font-body: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --theme-font-heading: "Marcellus", "Cormorant Garamond", "Trajan Pro", Georgia, serif;
+}
+
+/* ---- Light mode ---- */
+:root[data-theme="light"][data-theme-style="solarpunk"] {
+  --sl-color-black:        #f5f0e1;
+  --sl-color-bg:           #f5f0e1;
+  --sl-color-bg-nav:       #f5f0e1;
+  --sl-color-bg-sidebar:   #ede6cb;
+  --sl-color-bg-inline-code: #e5dbb8;
+  --sl-color-white:        #0f1f17;
+  --sl-color-gray-1:       #14271d;
+  --sl-color-gray-2:       #2d4232;
+  --sl-color-gray-3:       #5e6e60;
+  --sl-color-gray-4:       #8e9485;
+  --sl-color-gray-5:       #c2bca5;
+  --sl-color-gray-6:       #e5dbb8;
+  --sl-color-gray-7:       #ede6cb;
+  --sl-color-accent-low:   #f0e0a8;
+  --sl-color-accent:       #7a4a14;
+  --sl-color-accent-high:  #4a2a08;
+  --sl-color-text:         #1c3327;
+  --sl-color-text-accent:  #2e7d4f;
+}
+
+/* ---- Typography ---- */
+[data-theme-style="solarpunk"] body { font-family: var(--theme-font-body); font-weight: 400; }
+[data-theme-style="solarpunk"] h1,
+[data-theme-style="solarpunk"] h2,
+[data-theme-style="solarpunk"] h3,
+[data-theme-style="solarpunk"] h4,
+[data-theme-style="solarpunk"] h5,
+[data-theme-style="solarpunk"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+[data-theme-style="solarpunk"] h1 { letter-spacing: 0.02em; }
+[data-theme-style="solarpunk"] .site-title { font-family: var(--theme-font-heading); font-weight: 400; letter-spacing: 0.04em; }

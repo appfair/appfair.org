@@ -1,0 +1,91 @@
+/* ======================================================================
+   THEME: Natural and Serene
+   Warm, earthy, organic. Sage green, terracotta, warm cream.
+   Fraunces serif for headings, Karla sans-serif for body.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url('/assets/fonts/themes/natural/fraunces-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url('/assets/fonts/themes/natural/fraunces-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Karla";
+  src: url('/assets/fonts/themes/natural/karla-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Karla";
+  src: url('/assets/fonts/themes/natural/karla-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default) ---- */
+:root[data-theme-style="natural"] {
+  --sl-color-black:        #1c2520;
+  --sl-color-bg:           #1c2520;
+  --sl-color-bg-nav:       #1c2520;
+  --sl-color-bg-sidebar:   #232c27;
+  --sl-color-bg-inline-code: #2d3631;
+  --sl-color-white:        #f5efe1;
+  --sl-color-gray-1:       #e9e0cb;
+  --sl-color-gray-2:       #c4b89c;
+  --sl-color-gray-3:       #8a8576;
+  --sl-color-gray-4:       #5a5849;
+  --sl-color-gray-5:       #38362d;
+  --sl-color-gray-6:       #2d3631;
+  --sl-color-gray-7:       #232c27;
+  --sl-color-accent-low:   #2b3a30;
+  --sl-color-accent:       #b8835c;
+  --sl-color-accent-high:  #e4b993;
+  --sl-color-text:         #d6cdb4;
+  --sl-color-text-accent:  #f0d4b3;
+
+  --theme-font-body: "Karla", "Source Sans Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+  --theme-font-heading: "Fraunces", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+/* ---- Light mode ---- */
+:root[data-theme="light"][data-theme-style="natural"] {
+  --sl-color-black:        #faf6ec;
+  --sl-color-bg:           #faf6ec;
+  --sl-color-bg-nav:       #faf6ec;
+  --sl-color-bg-sidebar:   #f2ecd9;
+  --sl-color-bg-inline-code: #ebe2c8;
+  --sl-color-white:        #1c2520;
+  --sl-color-gray-1:       #232c27;
+  --sl-color-gray-2:       #38362d;
+  --sl-color-gray-3:       #5a5849;
+  --sl-color-gray-4:       #8a8576;
+  --sl-color-gray-5:       #c4b89c;
+  --sl-color-gray-6:       #ebe2c8;
+  --sl-color-gray-7:       #f2ecd9;
+  --sl-color-accent-low:   #e8d9c4;
+  --sl-color-accent:       #8a5a3a;
+  --sl-color-accent-high:  #4d2e1a;
+  --sl-color-text:         #2d3631;
+  --sl-color-text-accent:  #4d6e4f;
+}
+
+/* ---- Typography ---- */
+[data-theme-style="natural"] body { font-family: var(--theme-font-body); font-weight: 400; }
+[data-theme-style="natural"] h1,
+[data-theme-style="natural"] h2,
+[data-theme-style="natural"] h3,
+[data-theme-style="natural"] h4,
+[data-theme-style="natural"] h5,
+[data-theme-style="natural"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+[data-theme-style="natural"] h1 { font-weight: 400; font-style: italic; }
+[data-theme-style="natural"] h2 { font-weight: 700; }
+[data-theme-style="natural"] .site-title { font-family: var(--theme-font-heading); font-weight: 700; letter-spacing: 0; }

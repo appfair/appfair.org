@@ -1,0 +1,99 @@
+/* ======================================================================
+   THEME: Whole Earth Catalog
+   Stewart Brand's 1968-71 mail-order catalogue of tools. Yellowed
+   newsprint, IBM Selectric body, heavy slab-serif catalog headlines,
+   earth-tone palette. Hand-pasted-up DIY counterculture feel.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Bevan";
+  src: url('/assets/fonts/themes/whole-earth/bevan-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Special Elite";
+  src: url('/assets/fonts/themes/whole-earth/special-elite-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (the after-hours commune variant) ---- */
+:root[data-theme-style="whole-earth"] {
+  --sl-color-black:        #14100a;
+  --sl-color-bg:           #14100a;
+  --sl-color-bg-nav:       #14100a;
+  --sl-color-bg-sidebar:   #1c1810;
+  --sl-color-bg-inline-code: #281f12;
+  --sl-color-white:        #f0e0a8;
+  --sl-color-gray-1:       #e0d090;
+  --sl-color-gray-2:       #b8a878;
+  --sl-color-gray-3:       #8a7e58;
+  --sl-color-gray-4:       #5e5238;
+  --sl-color-gray-5:       #3a2e1c;
+  --sl-color-gray-6:       #281f12;
+  --sl-color-gray-7:       #1c1810;
+  --sl-color-accent-low:   #2a1a08;
+  --sl-color-accent:       #d4a017;
+  --sl-color-accent-high:  #f0c757;
+  --sl-color-text:         #d8c490;
+  --sl-color-text-accent:  #8db358;
+
+  --theme-font-body: "Special Elite", "American Typewriter", "Courier Prime", "Courier New", ui-monospace, monospace;
+  --theme-font-heading: "Bevan", "Rockwell", "Roboto Slab", "Georgia", serif;
+}
+
+/* ---- Light mode (the canonical yellowed-newsprint look) ---- */
+:root[data-theme="light"][data-theme-style="whole-earth"] {
+  --sl-color-black:        #f0e6c8;
+  --sl-color-bg:           #f0e6c8;
+  --sl-color-bg-nav:       #f0e6c8;
+  --sl-color-bg-sidebar:   #e6dab2;
+  --sl-color-bg-inline-code: #d8c890;
+  --sl-color-white:        #1a1108;
+  --sl-color-gray-1:       #2c1f0d;
+  --sl-color-gray-2:       #3e2c14;
+  --sl-color-gray-3:       #5e4824;
+  --sl-color-gray-4:       #806640;
+  --sl-color-gray-5:       #a89070;
+  --sl-color-gray-6:       #c4b088;
+  --sl-color-gray-7:       #e6dab2;
+  --sl-color-accent-low:   #e8d4a0;
+  --sl-color-accent:       #6b4517;
+  --sl-color-accent-high:  #3e2608;
+  --sl-color-text:         #2c1f0d;
+  --sl-color-text-accent:  #2c5530;
+}
+
+/* ---- Typography — chunky catalog masthead + DIY typewriter body ---- */
+[data-theme-style="whole-earth"] body { font-family: var(--theme-font-body); font-weight: 400; line-height: 1.55; }
+[data-theme-style="whole-earth"] h1,
+[data-theme-style="whole-earth"] h2,
+[data-theme-style="whole-earth"] h3,
+[data-theme-style="whole-earth"] h4,
+[data-theme-style="whole-earth"] h5,
+[data-theme-style="whole-earth"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+[data-theme-style="whole-earth"] h1 { font-size: 2.8em; }
+[data-theme-style="whole-earth"] h2 { font-size: 1.8em; }
+[data-theme-style="whole-earth"] h3 { font-size: 1.3em; text-transform: none; }
+[data-theme-style="whole-earth"] hr {
+  border: 0;
+  height: 4px;
+  background: var(--sl-color-accent);
+  border-top: 1px solid var(--sl-color-accent);
+  border-bottom: 1px solid var(--sl-color-accent);
+}
+[data-theme-style="whole-earth"] blockquote {
+  font-family: var(--theme-font-body);
+  font-size: 1.05em;
+  border-inline-start: 3px double var(--sl-color-accent);
+  padding-inline-start: 1rem;
+}
+[data-theme-style="whole-earth"] code,
+[data-theme-style="whole-earth"] pre code,
+[data-theme-style="whole-earth"] kbd { font-family: var(--theme-font-body); }
+[data-theme-style="whole-earth"] .site-title { font-family: var(--theme-font-heading); text-transform: uppercase; letter-spacing: 0; }

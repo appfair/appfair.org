@@ -1,0 +1,120 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+---
+
+<script>
+  // Theme palette switcher (independent of dark/light mode)
+  class ThemeStyleSwitcher extends HTMLElement {
+    static KEY = 'appfair-theme-style';
+    static THEMES = [
+      'original',
+      'futurism', 'space-age', 'dharma', 'minimalist', 'natural', 'solarpunk',
+      'brutalist', 'cyberpunk', 'newspaper', 'sumi-e', 'memphis', 'herbarium',
+      'protest', 'whole-earth', 'syndicalist',
+    ] as const;
+
+    connectedCallback() {
+      const stored = (typeof localStorage !== 'undefined' && localStorage.getItem(ThemeStyleSwitcher.KEY)) || 'original';
+      this.applyTheme(stored);
+      const select = this.querySelector('select');
+      if (select) {
+        select.value = stored;
+        select.addEventListener('change', () => {
+          this.applyTheme(select.value);
+          localStorage.setItem(ThemeStyleSwitcher.KEY, select.value);
+        });
+      }
+    }
+
+    applyTheme(theme: string) {
+      if (theme === 'original' || !ThemeStyleSwitcher.THEMES.includes(theme as any)) {
+        document.documentElement.removeAttribute('data-theme-style');
+      } else {
+        document.documentElement.setAttribute('data-theme-style', theme);
+      }
+    }
+  }
+  customElements.define('theme-style-switcher', ThemeStyleSwitcher);
+</script>
+
+<theme-style-switcher class="sl-flex">
+  <label aria-label="Site theme">
+    <Icon name="seti:image" class="theme-style-icon" />
+    <select>
+      <option value="original">Original</option>
+      <optgroup label="Movements">
+        <option value="futurism">Italian Futurism</option>
+        <option value="memphis">Memphis Design</option>
+        <option value="brutalist">Brutalist Concrete</option>
+        <option value="minimalist">Minimalist</option>
+      </optgroup>
+      <optgroup label="Counterculture">
+        <option value="protest">60s Protest</option>
+        <option value="whole-earth">Whole Earth Catalog</option>
+        <option value="syndicalist">Syndicalist</option>
+      </optgroup>
+      <optgroup label="Futures">
+        <option value="space-age">Space Age</option>
+        <option value="cyberpunk">Cyberpunk Neon</option>
+        <option value="solarpunk">Solarpunk</option>
+      </optgroup>
+      <optgroup label="Print &amp; ink">
+        <option value="newspaper">Newspaper Broadsheet</option>
+        <option value="sumi-e">Sumi-e Ink Wash</option>
+        <option value="dharma">Dharma Initiative</option>
+      </optgroup>
+      <optgroup label="Natural">
+        <option value="natural">Natural &amp; Serene</option>
+        <option value="herbarium">Botanical Herbarium</option>
+      </optgroup>
+    </select>
+    <Icon name="down-caret" class="theme-style-caret" />
+  </label>
+</theme-style-switcher>
+
+<style>
+  theme-style-switcher { align-items: center; }
+  label {
+    --sl-style-icon-size: 0.95rem;
+    --sl-style-caret-size: 1.1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--sl-color-gray-1);
+    cursor: pointer;
+  }
+  label:hover { color: var(--sl-color-gray-2); }
+  .theme-style-icon {
+    font-size: var(--sl-style-icon-size);
+    position: absolute;
+    inset-inline-start: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .theme-style-caret {
+    font-size: var(--sl-style-caret-size);
+    position: absolute;
+    inset-inline-end: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  select {
+    border: 0;
+    padding-block: 0.5rem;
+    padding-inline: calc(var(--sl-style-icon-size) + 0.4rem) calc(var(--sl-style-caret-size) + 0.25rem);
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    appearance: none;
+    font-size: var(--sl-text-sm);
+    max-width: 11rem;
+    text-overflow: ellipsis;
+  }
+  option {
+    background-color: var(--sl-color-bg-nav);
+    color: var(--sl-color-gray-1);
+  }
+</style>

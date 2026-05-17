@@ -1,0 +1,90 @@
+/* ======================================================================
+   THEME: Memphis Design
+   1980s Memphis Group / Ettore Sottsass. Loud, playful, primary-coloured.
+   Hot pink, electric cyan, sunshine yellow, charcoal. Fjalla One blocky
+   display, Lexend rounded body.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Fjalla One";
+  src: url('/assets/fonts/themes/memphis/fjalla-one-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Lexend";
+  src: url('/assets/fonts/themes/memphis/lexend-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Lexend";
+  src: url('/assets/fonts/themes/memphis/lexend-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (the after-hours Memphis variant) ---- */
+:root[data-theme-style="memphis"] {
+  --sl-color-black:        #14122a;
+  --sl-color-bg:           #14122a;
+  --sl-color-bg-nav:       #14122a;
+  --sl-color-bg-sidebar:   #1c1a36;
+  --sl-color-bg-inline-code: #2a2747;
+  --sl-color-white:        #f6f1e8;
+  --sl-color-gray-1:       #e8e0d0;
+  --sl-color-gray-2:       #b8b0a0;
+  --sl-color-gray-3:       #8a82a8;
+  --sl-color-gray-4:       #5a5478;
+  --sl-color-gray-5:       #3a345c;
+  --sl-color-gray-6:       #2a2747;
+  --sl-color-gray-7:       #1c1a36;
+  --sl-color-accent-low:   #3a0a2a;
+  --sl-color-accent:       #ff3d8b;
+  --sl-color-accent-high:  #ffd23f;
+  --sl-color-text:         #d6d0bc;
+  --sl-color-text-accent:  #06d6e8;
+
+  --theme-font-body: "Lexend", "Avenir Next", -apple-system, BlinkMacSystemFont, sans-serif;
+  --theme-font-heading: "Fjalla One", "Oswald", Impact, sans-serif;
+}
+
+/* ---- Light mode (the canonical bright Memphis look) ---- */
+:root[data-theme="light"][data-theme-style="memphis"] {
+  --sl-color-black:        #f6f1e8;
+  --sl-color-bg:           #f6f1e8;
+  --sl-color-bg-nav:       #f6f1e8;
+  --sl-color-bg-sidebar:   #ede6d6;
+  --sl-color-bg-inline-code: #e0d5be;
+  --sl-color-white:        #14122a;
+  --sl-color-gray-1:       #1c1a36;
+  --sl-color-gray-2:       #2a2747;
+  --sl-color-gray-3:       #4a4670;
+  --sl-color-gray-4:       #6e6890;
+  --sl-color-gray-5:       #968fb0;
+  --sl-color-gray-6:       #c0b9d0;
+  --sl-color-gray-7:       #ede6d6;
+  --sl-color-accent-low:   #ffd0e0;
+  --sl-color-accent:       #c41858;
+  --sl-color-accent-high:  #8a0e3d;
+  --sl-color-text:         #2a2747;
+  --sl-color-text-accent:  #006a78;
+}
+
+/* ---- Typography — chunky display + readable body ---- */
+[data-theme-style="memphis"] body { font-family: var(--theme-font-body); font-weight: 400; letter-spacing: -0.005em; }
+[data-theme-style="memphis"] h1,
+[data-theme-style="memphis"] h2,
+[data-theme-style="memphis"] h3,
+[data-theme-style="memphis"] h4,
+[data-theme-style="memphis"] h5,
+[data-theme-style="memphis"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+[data-theme-style="memphis"] h1 { font-size: 2.6em; letter-spacing: 0; }
+[data-theme-style="memphis"] hr { border: 0; height: 6px; background: repeating-linear-gradient(90deg, var(--sl-color-accent) 0 12px, transparent 12px 18px); }
+[data-theme-style="memphis"] code,
+[data-theme-style="memphis"] pre code,
+[data-theme-style="memphis"] kbd { font-family: "JetBrains Mono", "Courier New", ui-monospace, monospace; background: var(--sl-color-bg-inline-code); }
+[data-theme-style="memphis"] .site-title { font-family: var(--theme-font-heading); text-transform: uppercase; letter-spacing: 0.02em; }

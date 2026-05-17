@@ -1,0 +1,91 @@
+/* ======================================================================
+   THEME: Brutalist Concrete
+   Raw, harsh, mid-century concrete. Pure black, raw concrete grey, hi-vis
+   orange single accent. Heavy display headings, monospace body. No rounded
+   corners, dense layouts.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Archivo Black";
+  src: url('/assets/fonts/themes/brutalist/archivo-black-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url('/assets/fonts/themes/brutalist/space-mono-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url('/assets/fonts/themes/brutalist/space-mono-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default) ---- */
+:root[data-theme-style="brutalist"] {
+  --sl-color-black:        #000000;
+  --sl-color-bg:           #000000;
+  --sl-color-bg-nav:       #000000;
+  --sl-color-bg-sidebar:   #0a0a0a;
+  --sl-color-bg-inline-code: #1a1a1a;
+  --sl-color-white:        #f0f0ec;
+  --sl-color-gray-1:       #d4d4d0;
+  --sl-color-gray-2:       #a8a8a4;
+  --sl-color-gray-3:       #7c7c78;
+  --sl-color-gray-4:       #50504c;
+  --sl-color-gray-5:       #2a2a26;
+  --sl-color-gray-6:       #16161a;
+  --sl-color-gray-7:       #0a0a0a;
+  --sl-color-accent-low:   #3a1c00;
+  --sl-color-accent:       #ff6b00;
+  --sl-color-accent-high:  #ffa066;
+  --sl-color-text:         #c4c4c0;
+  --sl-color-text-accent:  #ff6b00;
+
+  --theme-font-body: "Space Mono", "JetBrains Mono", "Courier New", ui-monospace, monospace;
+  --theme-font-heading: "Archivo Black", "Helvetica Black", Impact, sans-serif;
+}
+
+/* ---- Light mode ---- */
+:root[data-theme="light"][data-theme-style="brutalist"] {
+  --sl-color-black:        #d4d2cb;
+  --sl-color-bg:           #d4d2cb;
+  --sl-color-bg-nav:       #d4d2cb;
+  --sl-color-bg-sidebar:   #c2c0b8;
+  --sl-color-bg-inline-code: #b0aea5;
+  --sl-color-white:        #000000;
+  --sl-color-gray-1:       #0a0a0a;
+  --sl-color-gray-2:       #1c1c1c;
+  --sl-color-gray-3:       #3a3a36;
+  --sl-color-gray-4:       #5e5e58;
+  --sl-color-gray-5:       #8a8884;
+  --sl-color-gray-6:       #b0aea5;
+  --sl-color-gray-7:       #c2c0b8;
+  --sl-color-accent-low:   #ffd9b8;
+  --sl-color-accent:       #c44a00;
+  --sl-color-accent-high:  #8a3300;
+  --sl-color-text:         #1a1a1a;
+  --sl-color-text-accent:  #c44a00;
+}
+
+/* ---- Typography & harsh structural rules ---- */
+[data-theme-style="brutalist"] body { font-family: var(--theme-font-body); font-weight: 400; letter-spacing: -0.02em; }
+[data-theme-style="brutalist"] h1,
+[data-theme-style="brutalist"] h2,
+[data-theme-style="brutalist"] h3,
+[data-theme-style="brutalist"] h4,
+[data-theme-style="brutalist"] h5,
+[data-theme-style="brutalist"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+[data-theme-style="brutalist"] h1 { font-size: 2.6em; }
+[data-theme-style="brutalist"] code,
+[data-theme-style="brutalist"] pre code,
+[data-theme-style="brutalist"] kbd { font-family: var(--theme-font-body); }
+[data-theme-style="brutalist"] a { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 2px; }
+[data-theme-style="brutalist"] hr { border: 0; border-top: 4px solid var(--sl-color-accent); }
+[data-theme-style="brutalist"] .site-title { font-family: var(--theme-font-heading); text-transform: uppercase; letter-spacing: 0; }

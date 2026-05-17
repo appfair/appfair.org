@@ -1,0 +1,91 @@
+/* ======================================================================
+   THEME: Cyberpunk Neon
+   Vaporwave / Blade Runner. Deep magenta-purple, electric cyan, hot pink.
+   All-mono typography. Glowing text-shadows. Scan-line feel.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Major Mono Display";
+  src: url('/assets/fonts/themes/cyberpunk/major-mono-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url('/assets/fonts/themes/cyberpunk/jetbrains-mono-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url('/assets/fonts/themes/cyberpunk/jetbrains-mono-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default — the canonical cyberpunk look) ---- */
+:root[data-theme-style="cyberpunk"] {
+  --sl-color-black:        #0a0014;
+  --sl-color-bg:           #0a0014;
+  --sl-color-bg-nav:       #0a0014;
+  --sl-color-bg-sidebar:   #100022;
+  --sl-color-bg-inline-code: #1a0033;
+  --sl-color-white:        #e6f7ff;
+  --sl-color-gray-1:       #b8e3f0;
+  --sl-color-gray-2:       #8a9fd0;
+  --sl-color-gray-3:       #6075a8;
+  --sl-color-gray-4:       #3d4a78;
+  --sl-color-gray-5:       #251847;
+  --sl-color-gray-6:       #1a0033;
+  --sl-color-gray-7:       #100022;
+  --sl-color-accent-low:   #3d0033;
+  --sl-color-accent:       #ff0080;
+  --sl-color-accent-high:  #ff66b3;
+  --sl-color-text:         #b8e3f0;
+  --sl-color-text-accent:  #00ffd5;
+
+  --theme-font-body: "JetBrains Mono", "Fira Code", "SF Mono", Menlo, ui-monospace, monospace;
+  --theme-font-heading: "Major Mono Display", "JetBrains Mono", "Courier New", ui-monospace, monospace;
+}
+
+/* ---- Light mode (the daylight-cyberpunk variant) ---- */
+:root[data-theme="light"][data-theme-style="cyberpunk"] {
+  --sl-color-black:        #fce6ff;
+  --sl-color-bg:           #fce6ff;
+  --sl-color-bg-nav:       #fce6ff;
+  --sl-color-bg-sidebar:   #f5d6ff;
+  --sl-color-bg-inline-code: #ebc1f5;
+  --sl-color-white:        #1a0033;
+  --sl-color-gray-1:       #251847;
+  --sl-color-gray-2:       #3d2a6a;
+  --sl-color-gray-3:       #5c468f;
+  --sl-color-gray-4:       #8a73ad;
+  --sl-color-gray-5:       #b8a4cc;
+  --sl-color-gray-6:       #ebc1f5;
+  --sl-color-gray-7:       #f5d6ff;
+  --sl-color-accent-low:   #ffb8db;
+  --sl-color-accent:       #c4006b;
+  --sl-color-accent-high:  #8a004a;
+  --sl-color-text:         #251847;
+  --sl-color-text-accent:  #006b7a;
+}
+
+/* ---- Typography & glow effects ---- */
+[data-theme-style="cyberpunk"] body { font-family: var(--theme-font-body); font-weight: 400; letter-spacing: 0.02em; }
+[data-theme-style="cyberpunk"] h1,
+[data-theme-style="cyberpunk"] h2,
+[data-theme-style="cyberpunk"] h3,
+[data-theme-style="cyberpunk"] h4,
+[data-theme-style="cyberpunk"] h5,
+[data-theme-style="cyberpunk"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  line-height: 1.25;
+}
+[data-theme-style="cyberpunk"] h1 { letter-spacing: 0.18em; }
+[data-theme-style="cyberpunk"] h2 { letter-spacing: 0.14em; }
+[data-theme-style="cyberpunk"] a { text-shadow: 0 0 8px currentColor; }
+[data-theme="light"][data-theme-style="cyberpunk"] a { text-shadow: none; }
+[data-theme-style="cyberpunk"] code,
+[data-theme-style="cyberpunk"] pre code,
+[data-theme-style="cyberpunk"] kbd { font-family: var(--theme-font-body); }
+[data-theme-style="cyberpunk"] .site-title { font-family: var(--theme-font-heading); letter-spacing: 0.15em; text-transform: lowercase; }

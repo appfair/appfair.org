@@ -1,0 +1,92 @@
+/* ======================================================================
+   THEME: Sumi-e Ink Wash
+   Japanese ink-painting minimalism. Sumi-black ink, washi-paper cream, a
+   single restrained vermilion-seal accent. Quiet, spacious, contemplative.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Noto Serif JP";
+  src: url('/assets/fonts/themes/sumi-e/noto-serif-jp-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Noto Serif JP";
+  src: url('/assets/fonts/themes/sumi-e/noto-serif-jp-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url('/assets/fonts/themes/sumi-e/cormorant-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (the night-ink variant) ---- */
+:root[data-theme-style="sumi-e"] {
+  --sl-color-black:        #0a0908;
+  --sl-color-bg:           #0a0908;
+  --sl-color-bg-nav:       #0a0908;
+  --sl-color-bg-sidebar:   #14120f;
+  --sl-color-bg-inline-code: #1f1b16;
+  --sl-color-white:        #f0eadf;
+  --sl-color-gray-1:       #e0d8c4;
+  --sl-color-gray-2:       #b8b09c;
+  --sl-color-gray-3:       #888272;
+  --sl-color-gray-4:       #5a5448;
+  --sl-color-gray-5:       #2e2a22;
+  --sl-color-gray-6:       #1f1b16;
+  --sl-color-gray-7:       #14120f;
+  --sl-color-accent-low:   #3a0c0a;
+  --sl-color-accent:       #c43a3a;
+  --sl-color-accent-high:  #e88080;
+  --sl-color-text:         #cec6b2;
+  --sl-color-text-accent:  #e0e0d8;
+
+  --theme-font-body: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "Georgia", serif;
+  --theme-font-heading: "Cormorant Garamond", "Noto Serif JP", "Hiragino Mincho ProN", Georgia, serif;
+}
+
+/* ---- Light mode (the canonical washi-paper look) ---- */
+:root[data-theme="light"][data-theme-style="sumi-e"] {
+  --sl-color-black:        #f5efe2;
+  --sl-color-bg:           #f5efe2;
+  --sl-color-bg-nav:       #f5efe2;
+  --sl-color-bg-sidebar:   #ede5d0;
+  --sl-color-bg-inline-code: #e0d6b8;
+  --sl-color-white:        #0a0908;
+  --sl-color-gray-1:       #14120f;
+  --sl-color-gray-2:       #26221a;
+  --sl-color-gray-3:       #4a4438;
+  --sl-color-gray-4:       #6e6757;
+  --sl-color-gray-5:       #9a9382;
+  --sl-color-gray-6:       #c4bca6;
+  --sl-color-gray-7:       #ede5d0;
+  --sl-color-accent-low:   #e8c0c0;
+  --sl-color-accent:       #a3262c;
+  --sl-color-accent-high:  #6e1417;
+  --sl-color-text:         #26221a;
+  --sl-color-text-accent:  #2a2a20;
+}
+
+/* ---- Typography — quiet, generous, spacious ---- */
+[data-theme-style="sumi-e"] body { font-family: var(--theme-font-body); font-weight: 400; line-height: 1.8; letter-spacing: 0.01em; }
+[data-theme-style="sumi-e"] h1,
+[data-theme-style="sumi-e"] h2,
+[data-theme-style="sumi-e"] h3,
+[data-theme-style="sumi-e"] h4,
+[data-theme-style="sumi-e"] h5,
+[data-theme-style="sumi-e"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+[data-theme-style="sumi-e"] h1 { font-style: italic; font-size: 2.4em; letter-spacing: 0.06em; }
+[data-theme-style="sumi-e"] h2 { font-weight: 400; letter-spacing: 0.05em; }
+[data-theme-style="sumi-e"] blockquote {
+  font-family: var(--theme-font-heading);
+  font-style: italic;
+  border-inline-start: 1px solid var(--sl-color-accent);
+  padding-inline-start: 1.5rem;
+}
+[data-theme-style="sumi-e"] hr { border: 0; border-top: 1px solid var(--sl-color-gray-4); opacity: 0.4; }
+[data-theme-style="sumi-e"] .site-title { font-family: var(--theme-font-heading); font-weight: 400; letter-spacing: 0.05em; }
