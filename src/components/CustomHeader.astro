@@ -6,6 +6,7 @@ import Search from '@astrojs/starlight/components/Search.astro';
 import SiteTitle from './SiteTitle.astro';
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
 import ThemeSelect from './ThemeSelect.astro';
+import ThemeStyleSelect from './ThemeStyleSelect.astro';
 
 const curLocale = Astro.locals.starlightRoute.locale;
 const slug = Astro.locals.starlightRoute.entry.slug;
@@ -63,6 +64,7 @@ const links: Link[] = [
       <SocialIcons />
     </div>
     {/* <LanguageSelect /> — disabled until the docs site has translations to offer */}
+    <ThemeStyleSelect />
     <ThemeSelect />
   </div>
 </div>

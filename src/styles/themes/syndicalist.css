@@ -1,0 +1,108 @@
+/* ======================================================================
+   THEME: Syndicalist
+   Anarcho-syndicalist / IWW / CNT-FAI labour-press iconography. Pure
+   black and red, no compromise. Wood-type industrial gothic display
+   over a sober slab-serif manifesto body.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Big Shoulders Display";
+  src: url('/assets/fonts/themes/syndicalist/big-shoulders-display-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Roboto Slab";
+  src: url('/assets/fonts/themes/syndicalist/roboto-slab-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Roboto Slab";
+  src: url('/assets/fonts/themes/syndicalist/roboto-slab-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (the canonical black-and-red banner) ---- */
+:root[data-theme-style="syndicalist"] {
+  --sl-color-black:        #060606;
+  --sl-color-bg:           #060606;
+  --sl-color-bg-nav:       #060606;
+  --sl-color-bg-sidebar:   #0e0e0e;
+  --sl-color-bg-inline-code: #1a0808;
+  --sl-color-white:        #f4ede0;
+  --sl-color-gray-1:       #e6dec9;
+  --sl-color-gray-2:       #b8b0a0;
+  --sl-color-gray-3:       #8a8276;
+  --sl-color-gray-4:       #5a5448;
+  --sl-color-gray-5:       #2e1c1c;
+  --sl-color-gray-6:       #1a0808;
+  --sl-color-gray-7:       #0e0e0e;
+  --sl-color-accent-low:   #3a0608;
+  --sl-color-accent:       #e63329;
+  --sl-color-accent-high:  #ff8478;
+  --sl-color-text:         #d8d0bc;
+  --sl-color-text-accent:  #ffffff;
+
+  --theme-font-body: "Roboto Slab", "Rockwell", "Georgia", serif;
+  --theme-font-heading: "Big Shoulders Display", "Oswald", "Arial Narrow Black", Impact, sans-serif;
+}
+
+/* ---- Light mode (the printers'-ink-on-cream variant) ---- */
+:root[data-theme="light"][data-theme-style="syndicalist"] {
+  --sl-color-black:        #f4ede0;
+  --sl-color-bg:           #f4ede0;
+  --sl-color-bg-nav:       #f4ede0;
+  --sl-color-bg-sidebar:   #ebe2cd;
+  --sl-color-bg-inline-code: #e0d4b3;
+  --sl-color-white:        #060606;
+  --sl-color-gray-1:       #0e0e0e;
+  --sl-color-gray-2:       #1a1a1a;
+  --sl-color-gray-3:       #383838;
+  --sl-color-gray-4:       #5e5e5e;
+  --sl-color-gray-5:       #8a8478;
+  --sl-color-gray-6:       #c8c0a8;
+  --sl-color-gray-7:       #ebe2cd;
+  --sl-color-accent-low:   #ffcfc6;
+  --sl-color-accent:       #b81818;
+  --sl-color-accent-high:  #7a0a0a;
+  --sl-color-text:         #0e0e0e;
+  --sl-color-text-accent:  #b81818;
+}
+
+/* ---- Typography — wood-type display, slab-serif manifesto body ---- */
+[data-theme-style="syndicalist"] body { font-family: var(--theme-font-body); font-weight: 400; line-height: 1.6; }
+[data-theme-style="syndicalist"] h1,
+[data-theme-style="syndicalist"] h2,
+[data-theme-style="syndicalist"] h3,
+[data-theme-style="syndicalist"] h4,
+[data-theme-style="syndicalist"] h5,
+[data-theme-style="syndicalist"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+}
+[data-theme-style="syndicalist"] h1 { font-size: 3.2em; letter-spacing: 0.02em; }
+[data-theme-style="syndicalist"] h2 { font-size: 2em; letter-spacing: 0.04em; }
+[data-theme-style="syndicalist"] strong { color: var(--sl-color-accent); font-weight: 700; }
+[data-theme-style="syndicalist"] hr {
+  border: 0;
+  height: 0;
+  border-top: 6px solid var(--sl-color-accent);
+  border-bottom: 2px solid currentColor;
+  padding-block-end: 2px;
+}
+[data-theme-style="syndicalist"] blockquote {
+  font-family: var(--theme-font-heading);
+  text-transform: uppercase;
+  font-size: 1.3em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  border-inline-start: 8px solid var(--sl-color-accent);
+  padding-inline-start: 1.25rem;
+}
+[data-theme-style="syndicalist"] code,
+[data-theme-style="syndicalist"] pre code,
+[data-theme-style="syndicalist"] kbd { font-family: "JetBrains Mono", "Courier New", ui-monospace, monospace; }
+[data-theme-style="syndicalist"] .site-title { font-family: var(--theme-font-heading); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }

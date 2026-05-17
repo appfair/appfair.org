@@ -1,0 +1,107 @@
+/* ======================================================================
+   THEME: Botanical Herbarium
+   Victorian pressed-flower herbarium plate. Aged-paper cream, olive sage,
+   sepia ink. Calligraphic Italianno display, EB Garamond classical body.
+   Scholarly, hand-prepared, museum-archive feel.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Italianno";
+  src: url('/assets/fonts/themes/herbarium/italianno-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: url('/assets/fonts/themes/herbarium/eb-garamond-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: url('/assets/fonts/themes/herbarium/eb-garamond-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (the closed-cabinet variant) ---- */
+:root[data-theme-style="herbarium"] {
+  --sl-color-black:        #14180f;
+  --sl-color-bg:           #14180f;
+  --sl-color-bg-nav:       #14180f;
+  --sl-color-bg-sidebar:   #1c2017;
+  --sl-color-bg-inline-code: #262a1f;
+  --sl-color-white:        #f0e8d4;
+  --sl-color-gray-1:       #e0d8c0;
+  --sl-color-gray-2:       #b8b098;
+  --sl-color-gray-3:       #8a8470;
+  --sl-color-gray-4:       #5a564a;
+  --sl-color-gray-5:       #36392c;
+  --sl-color-gray-6:       #262a1f;
+  --sl-color-gray-7:       #1c2017;
+  --sl-color-accent-low:   #1a2a14;
+  --sl-color-accent:       #9bb074;
+  --sl-color-accent-high:  #c8d99c;
+  --sl-color-text:         #d0c8b0;
+  --sl-color-text-accent:  #e0d4a0;
+
+  --theme-font-body: "EB Garamond", "Adobe Garamond Pro", Garamond, "Times New Roman", serif;
+  --theme-font-heading: "EB Garamond", "Adobe Garamond Pro", Garamond, Georgia, serif;
+  --theme-font-display: "Italianno", "Snell Roundhand", "Apple Chancery", cursive;
+}
+
+/* ---- Light mode (the canonical sun-bleached herbarium leaf) ---- */
+:root[data-theme="light"][data-theme-style="herbarium"] {
+  --sl-color-black:        #f0e8d4;
+  --sl-color-bg:           #f0e8d4;
+  --sl-color-bg-nav:       #f0e8d4;
+  --sl-color-bg-sidebar:   #e7debf;
+  --sl-color-bg-inline-code: #ddd2a8;
+  --sl-color-white:        #14180f;
+  --sl-color-gray-1:       #1c2017;
+  --sl-color-gray-2:       #2d3220;
+  --sl-color-gray-3:       #4a4d35;
+  --sl-color-gray-4:       #6e6f50;
+  --sl-color-gray-5:       #969078;
+  --sl-color-gray-6:       #c4bc9a;
+  --sl-color-gray-7:       #e7debf;
+  --sl-color-accent-low:   #d6e0b8;
+  --sl-color-accent:       #506033;
+  --sl-color-accent-high:  #2e3818;
+  --sl-color-text:         #2d3220;
+  --sl-color-text-accent:  #6e3a14;
+}
+
+/* ---- Typography — calligraphic H1, classical H2-H6 ---- */
+[data-theme-style="herbarium"] body { font-family: var(--theme-font-body); font-weight: 400; line-height: 1.7; font-feature-settings: "liga", "kern", "onum"; }
+[data-theme-style="herbarium"] h1,
+[data-theme-style="herbarium"] h2,
+[data-theme-style="herbarium"] h3,
+[data-theme-style="herbarium"] h4,
+[data-theme-style="herbarium"] h5,
+[data-theme-style="herbarium"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+[data-theme-style="herbarium"] h1 {
+  font-family: var(--theme-font-display);
+  font-weight: 400;
+  font-size: 3.6em;
+  line-height: 1;
+  letter-spacing: 0;
+}
+[data-theme-style="herbarium"] h2 { font-style: italic; font-weight: 400; }
+[data-theme-style="herbarium"] h3 { font-variant: small-caps; letter-spacing: 0.08em; font-weight: 700; }
+[data-theme-style="herbarium"] blockquote {
+  font-family: var(--theme-font-heading);
+  font-style: italic;
+  border-inline-start: 2px solid var(--sl-color-accent);
+}
+[data-theme-style="herbarium"] hr {
+  border: 0;
+  height: 1px;
+  background: var(--sl-color-accent);
+  opacity: 0.5;
+  margin-inline: auto;
+  width: 40%;
+}
+[data-theme-style="herbarium"] .site-title { font-family: var(--theme-font-display); font-size: 1.6em; font-weight: 400; }

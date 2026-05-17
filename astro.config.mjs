@@ -27,6 +27,12 @@ export default defineConfig({
 		starlight({
 			title: 'The App Fair Project',
       favicon: '/favicon.png',
+      head: [
+        {
+          tag: 'script',
+          content: `(function(){try{var t=localStorage.getItem('appfair-theme-style');if(t&&t!=='original'){document.documentElement.setAttribute('data-theme-style',t);}}catch(e){}})();`,
+        },
+      ],
       logo: {
         src: './public/assets/icons/appfair-icon.svg',
         replacesTitle: true,

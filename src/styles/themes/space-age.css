@@ -1,0 +1,86 @@
+/* ======================================================================
+   THEME: Space Age
+   Mid-century atomic-age retrofuturism. Turquoise, orange, mustard yellow.
+   Orbitron for display headings, Quicksand for rounded friendly body.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Orbitron";
+  src: url('/assets/fonts/themes/space-age/orbitron-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Quicksand";
+  src: url('/assets/fonts/themes/space-age/quicksand-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Quicksand";
+  src: url('/assets/fonts/themes/space-age/quicksand-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default) ---- */
+:root[data-theme-style="space-age"] {
+  --sl-color-black:        #0d1f24;
+  --sl-color-bg:           #0d1f24;
+  --sl-color-bg-nav:       #0d1f24;
+  --sl-color-bg-sidebar:   #112a31;
+  --sl-color-bg-inline-code: #173943;
+  --sl-color-white:        #f5e9c8;
+  --sl-color-gray-1:       #e8dab2;
+  --sl-color-gray-2:       #c9bb95;
+  --sl-color-gray-3:       #95a0a3;
+  --sl-color-gray-4:       #5a7480;
+  --sl-color-gray-5:       #1f4651;
+  --sl-color-gray-6:       #173943;
+  --sl-color-gray-7:       #102a31;
+  --sl-color-accent-low:   #0c3a40;
+  --sl-color-accent:       #1d9aaa;
+  --sl-color-accent-high:  #6cd5e2;
+  --sl-color-text:         #d8cba5;
+  --sl-color-text-accent:  #ffd770;
+
+  --theme-font-body: "Quicksand", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --theme-font-heading: "Orbitron", "Avenir Next", "Helvetica Neue", sans-serif;
+}
+
+/* ---- Light mode ---- */
+:root[data-theme="light"][data-theme-style="space-age"] {
+  --sl-color-black:        #f5ecd2;
+  --sl-color-bg:           #f7eed4;
+  --sl-color-bg-nav:       #f7eed4;
+  --sl-color-bg-sidebar:   #f0e3c0;
+  --sl-color-bg-inline-code: #e8dab2;
+  --sl-color-white:        #0d1f24;
+  --sl-color-gray-1:       #102a31;
+  --sl-color-gray-2:       #1f4651;
+  --sl-color-gray-3:       #5a7480;
+  --sl-color-gray-4:       #95a0a3;
+  --sl-color-gray-5:       #c9bb95;
+  --sl-color-gray-6:       #e8dab2;
+  --sl-color-gray-7:       #f0e3c0;
+  --sl-color-accent-low:   #ccecef;
+  --sl-color-accent:       #0d6a76;
+  --sl-color-accent-high:  #053b42;
+  --sl-color-text:         #102a31;
+  --sl-color-text-accent:  #c45213;
+}
+
+/* ---- Typography ---- */
+[data-theme-style="space-age"] body { font-family: var(--theme-font-body); font-weight: 400; }
+[data-theme-style="space-age"] h1,
+[data-theme-style="space-age"] h2,
+[data-theme-style="space-age"] h3,
+[data-theme-style="space-age"] h4,
+[data-theme-style="space-age"] h5,
+[data-theme-style="space-age"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+[data-theme-style="space-age"] h1 { letter-spacing: 0.06em; text-transform: uppercase; }
+[data-theme-style="space-age"] .site-title { font-family: var(--theme-font-heading); letter-spacing: 0.06em; font-weight: 700; }
+[data-theme-style="space-age"] code,
+[data-theme-style="space-age"] pre code { font-family: "JetBrains Mono", "Courier New", ui-monospace, monospace; }

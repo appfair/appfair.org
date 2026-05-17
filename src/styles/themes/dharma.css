@@ -1,0 +1,81 @@
+/* ======================================================================
+   THEME: Dharma Initiative
+   1970s scientific research institute. Parchment & charcoal & amber.
+   IBM Plex Mono throughout for a typewriter / research-document feel.
+   ====================================================================== */
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url('/assets/fonts/themes/dharma/ibm-plex-mono-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url('/assets/fonts/themes/dharma/ibm-plex-mono-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (default) ---- */
+:root[data-theme-style="dharma"] {
+  --sl-color-black:        #16140f;
+  --sl-color-bg:           #16140f;
+  --sl-color-bg-nav:       #16140f;
+  --sl-color-bg-sidebar:   #1c1a14;
+  --sl-color-bg-inline-code: #28241b;
+  --sl-color-white:        #f5f1e6;
+  --sl-color-gray-1:       #ede6cf;
+  --sl-color-gray-2:       #c8c0a8;
+  --sl-color-gray-3:       #948c75;
+  --sl-color-gray-4:       #6a634f;
+  --sl-color-gray-5:       #3b362a;
+  --sl-color-gray-6:       #28241b;
+  --sl-color-gray-7:       #1c1a14;
+  --sl-color-accent-low:   #3a2308;
+  --sl-color-accent:       #d4a017;
+  --sl-color-accent-high:  #ffd770;
+  --sl-color-text:         #d4cdb4;
+  --sl-color-text-accent:  #fbbf24;
+
+  --theme-font-body: "IBM Plex Mono", "SF Mono", "Menlo", "Consolas", ui-monospace, monospace;
+  --theme-font-heading: "IBM Plex Mono", "SF Mono", "Menlo", "Consolas", ui-monospace, monospace;
+}
+
+/* ---- Light mode ---- */
+:root[data-theme="light"][data-theme-style="dharma"] {
+  --sl-color-black:        #f1e9d7;
+  --sl-color-bg:           #f1e9d7;
+  --sl-color-bg-nav:       #f1e9d7;
+  --sl-color-bg-sidebar:   #e8dec5;
+  --sl-color-bg-inline-code: #e0d4b3;
+  --sl-color-white:        #16140f;
+  --sl-color-gray-1:       #1c1a14;
+  --sl-color-gray-2:       #2d2a20;
+  --sl-color-gray-3:       #4b4538;
+  --sl-color-gray-4:       #6a634f;
+  --sl-color-gray-5:       #948c75;
+  --sl-color-gray-6:       #c8c0a8;
+  --sl-color-gray-7:       #e0d4b3;
+  --sl-color-accent-low:   #f4e3b3;
+  --sl-color-accent:       #92590a;
+  --sl-color-accent-high:  #5a3a0a;
+  --sl-color-text:         #2d2a20;
+  --sl-color-text-accent:  #b45309;
+}
+
+/* ---- Typography ---- */
+[data-theme-style="dharma"] body { font-family: var(--theme-font-body); font-weight: 400; letter-spacing: 0; }
+[data-theme-style="dharma"] h1,
+[data-theme-style="dharma"] h2,
+[data-theme-style="dharma"] h3,
+[data-theme-style="dharma"] h4,
+[data-theme-style="dharma"] h5,
+[data-theme-style="dharma"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+[data-theme-style="dharma"] h1 { letter-spacing: 0.08em; }
+[data-theme-style="dharma"] code,
+[data-theme-style="dharma"] pre code { font-family: var(--theme-font-body); }
+[data-theme-style="dharma"] .site-title { font-family: var(--theme-font-heading); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }

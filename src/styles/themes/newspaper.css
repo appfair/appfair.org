@@ -1,0 +1,98 @@
+/* ======================================================================
+   THEME: Newspaper Broadsheet
+   Editorial, classical, print-publication. Aged newsprint cream, deep ink
+   black, sepia-brown rule colour. Playfair Display headlines, PT Serif
+   body. Tight, justified prose feel.
+   ====================================================================== */
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url('/assets/fonts/themes/newspaper/playfair-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url('/assets/fonts/themes/newspaper/playfair-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "PT Serif";
+  src: url('/assets/fonts/themes/newspaper/pt-serif-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "PT Serif";
+  src: url('/assets/fonts/themes/newspaper/pt-serif-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Dark mode (the late-night-edition variant) ---- */
+:root[data-theme-style="newspaper"] {
+  --sl-color-black:        #14110d;
+  --sl-color-bg:           #14110d;
+  --sl-color-bg-nav:       #14110d;
+  --sl-color-bg-sidebar:   #1c1813;
+  --sl-color-bg-inline-code: #261f17;
+  --sl-color-white:        #f4ecd6;
+  --sl-color-gray-1:       #e6dcc0;
+  --sl-color-gray-2:       #bdb398;
+  --sl-color-gray-3:       #8a8270;
+  --sl-color-gray-4:       #5a5443;
+  --sl-color-gray-5:       #3a3326;
+  --sl-color-gray-6:       #261f17;
+  --sl-color-gray-7:       #1c1813;
+  --sl-color-accent-low:   #3d2a18;
+  --sl-color-accent:       #c8965a;
+  --sl-color-accent-high:  #e8ba80;
+  --sl-color-text:         #d8cca8;
+  --sl-color-text-accent:  #e6c285;
+
+  --theme-font-body: "PT Serif", "Georgia", "Times New Roman", "Iowan Old Style", serif;
+  --theme-font-heading: "Playfair Display", "Didot", "Bodoni 72", Georgia, serif;
+}
+
+/* ---- Light mode (the canonical broadsheet) ---- */
+:root[data-theme="light"][data-theme-style="newspaper"] {
+  --sl-color-black:        #f4ecd6;
+  --sl-color-bg:           #f4ecd6;
+  --sl-color-bg-nav:       #f4ecd6;
+  --sl-color-bg-sidebar:   #ebe1c4;
+  --sl-color-bg-inline-code: #e0d3ac;
+  --sl-color-white:        #14110d;
+  --sl-color-gray-1:       #1c1813;
+  --sl-color-gray-2:       #2d251a;
+  --sl-color-gray-3:       #4d4332;
+  --sl-color-gray-4:       #6e6451;
+  --sl-color-gray-5:       #968a6e;
+  --sl-color-gray-6:       #c4b894;
+  --sl-color-gray-7:       #ebe1c4;
+  --sl-color-accent-low:   #e8d4ad;
+  --sl-color-accent:       #8a5a14;
+  --sl-color-accent-high:  #4d3008;
+  --sl-color-text:         #2d251a;
+  --sl-color-text-accent:  #6e3a08;
+}
+
+/* ---- Typography & editorial flourishes ---- */
+[data-theme-style="newspaper"] body { font-family: var(--theme-font-body); font-weight: 400; line-height: 1.65; }
+[data-theme-style="newspaper"] h1,
+[data-theme-style="newspaper"] h2,
+[data-theme-style="newspaper"] h3,
+[data-theme-style="newspaper"] h4,
+[data-theme-style="newspaper"] h5,
+[data-theme-style="newspaper"] h6 {
+  font-family: var(--theme-font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+[data-theme-style="newspaper"] h1 { font-weight: 400; font-size: 2.6em; letter-spacing: -0.02em; }
+[data-theme-style="newspaper"] h2 { font-style: italic; font-weight: 400; }
+[data-theme-style="newspaper"] blockquote {
+  font-family: var(--theme-font-heading);
+  font-style: italic;
+  font-size: 1.2em;
+  border-inline-start: 3px solid var(--sl-color-accent);
+}
+[data-theme-style="newspaper"] hr { border: 0; border-top: 1px solid var(--sl-color-accent); border-bottom: 1px solid var(--sl-color-accent); height: 4px; }
+[data-theme-style="newspaper"] .site-title { font-family: var(--theme-font-heading); font-weight: 700; letter-spacing: -0.01em; }
