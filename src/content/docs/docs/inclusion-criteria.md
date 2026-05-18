@@ -29,7 +29,7 @@ App Fair apps may not embed advertisements of any kind. This includes banner adv
   </div>
 </aside>
 
-### Surreptitious tracking {#no-tracking}
+### Tracking {#no-tracking}
 
 App Fair apps may not track users in ways the user has not knowingly and explicitly consented to. This prohibition covers behavioural tracking SDKs, device fingerprinting, cross-app or cross-site identifiers, attribution services, and similar mechanisms.
 
