@@ -118,9 +118,9 @@ Several points are worth noting:
 
 ## Development workflow {#dev-loop}
 
-Day-to-day development follows the standard Skip workflow:
+Day-to-day development follows a standard SwiftUI workflow:
 
-1. Open the project in Xcode (via `Project.xcworkspace` at the repository root, or with `skip app launch` from the terminal). Swift and SwiftUI development proceeds as normal; Skip's plugin keeps the Android target in sync.
+1. Open the project in Xcode (via `Project.xcworkspace` at the repository root, or with `skip app launch` from the terminal). Swift and SwiftUI development proceeds as normal; the Android target is kept in sync automatically.
 2. Run the app on the iOS Simulator directly from Xcode.
 3. Run the app on the Android emulator by first launching an emulator from Android Studio's Device Manager, then building from Xcode. The "Launch Android APK" build phase deploys the transpiled Kotlin app to the running emulator. iOS logs appear in Xcode's console; Android logs appear in Android Studio's Logcat tab.
 4. Commit and push. Each push triggers the CI workflow, which builds both targets and surfaces cross-platform regressions early.
@@ -143,7 +143,7 @@ In practice:
 - Use string-format substitutions (`"Hello, %@"`) rather than string concatenation, so translators can reorder arguments to match the grammar of the target language.
 - Design every screen as if it had to accommodate Spanish, German, or Russian (each of which expands significantly relative to English), as well as Arabic or Hebrew (which read right-to-left).
 
-Skip bridges the `Localizable.xcstrings` catalog to Android's `strings.xml` resource system automatically. A translation contributed once applies correctly on iOS and Android, including bidirectional layout flipping for RTL languages and per-locale formatting of dates, numbers, and currencies.
+The `Localizable.xcstrings` catalog is bridged to Android's `strings.xml` resource system automatically. A translation contributed once applies correctly on iOS and Android, including bidirectional layout flipping for RTL languages and per-locale formatting of dates, numbers, and currencies.
 
 #### Minimum supported languages {#l10n-minimum}
 
@@ -161,7 +161,7 @@ The recommended workflow is to add English as the development locale, add French
 
 ### Accessibility (Accessible) {#a11y}
 
-App Fair apps should function for users across the spectrum of abilities, including users of VoiceOver and TalkBack, users of Dynamic Type, users of Switch Control, and users who depend on sufficient colour contrast. SwiftUI provides most of the necessary infrastructure through its [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility), and Skip translates those modifiers into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android. A UI element described once is accessible on both platforms.
+App Fair apps should function for users across the spectrum of abilities, including users of VoiceOver and TalkBack, users of Dynamic Type, users of Switch Control, and users who depend on sufficient colour contrast. SwiftUI provides most of the necessary infrastructure through its [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility), which are translated into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android. A UI element described once is accessible on both platforms.
 
 The most frequently used modifiers:
 

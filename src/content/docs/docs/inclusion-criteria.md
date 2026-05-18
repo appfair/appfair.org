@@ -17,6 +17,10 @@ The App Fair exists to create global digital public goods in the form of mobile 
 
 Every App Fair app is designed around four cornerstones, which build directly on the [Four Essential Freedoms of Free Software](https://en.wikipedia.org/wiki/Free_software#Definition) defined by the Free Software Foundation. Each cornerstone should shape the project from the outset; retrofitting any of them after the fact is significantly more expensive than designing for it from the first commit.
 
+<div class="diagram-vector cornerstones">
+<img style="width: 100%; max-width: 720px; margin: 1.5rem auto; display: block; background: transparent; padding: 0; border-radius: 0;" alt="The four cornerstones of an App Fair app: Transparent, Ubiquitous, Global, and Accessible, arranged in a 2×2 grid." src="/assets/images/cornerstones.svg" />
+</div>
+
 ### Transparent {#cornerstone-transparent}
 
 An App Fair app is open to inspection, modification, and redistribution by anyone. Its source code, build configuration, and every direct and transitive dependency are published under [free and open-source software](https://en.wikipedia.org/wiki/Free_software#Definition) licences, so that any user, auditor, or future maintainer can study how the application works, verify what it does, modify it for their own needs, and share the result.
@@ -25,21 +29,21 @@ This cornerstone is the foundation the others rest on. The [Four Essential Freed
 
 ### Ubiquitous {#cornerstone-ubiquitous}
 
-An App Fair app is available on every mobile device: both iOS and Android, from a single Skip codebase, with no second-class platform. A user on a current-model iPhone and a user on a budget Android device should receive the same set of features, each refined to feel at home on the respective platform.
+An App Fair app strives to be available for every mobile device and operating system. Currently, this entails support for both iOS and Android. In the future, this will include additional emerging platforms as they become more prominent. A user on a current-model iPhone and a user on a budget Android device should receive the same set of features, each refined to feel at home on the respective platform.
 
-Skip itself handles most of this cornerstone: SwiftUI source is compiled to a native iOS app and transpiled to a native Jetpack Compose Android app. The developer's responsibility is to make platform decisions that include both audiences rather than excluding one of them.
+SwiftUI source is compiled to a native iOS app and transpiled to a native Jetpack Compose Android app, so the underlying mechanics of cross-platform delivery are handled automatically. The developer's responsibility is to make platform decisions that include both audiences rather than excluding one of them.
 
 ### Global {#cornerstone-global}
 
 An App Fair app supports the user's language. Every user-facing string is externalized, the supported locales are kept current, and the store listing is translated alongside the app itself. The catalog aggregates apps across more than a dozen primary locales (Arabic, Chinese, English, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Spanish, and others). The app must ship with at least **English** and **French** translations as a minimum verification baseline (see [Localization](/docs/building/#l10n-minimum)).
 
-In practice, this requires the use of SwiftUI's localization infrastructure: primarily an [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) for every visible string. Skip bridges these catalogs to Android's string-resource system automatically, so a translation contributed once applies to both platforms.
+In practice, this requires the use of SwiftUI's localization infrastructure: primarily an [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) for every visible string. These catalogs are bridged to Android's string-resource system automatically, so a translation contributed once applies to both platforms.
 
 ### Accessible {#cornerstone-accessible}
 
 An App Fair app should be usable by people across the spectrum of abilities. This includes users of VoiceOver and TalkBack, users of Dynamic Type at the largest sizes, users of Switch Control, and users who rely on sufficient colour contrast.
 
-In SwiftUI, this is primarily a matter of applying the standard [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility): `.accessibilityLabel`, `.accessibilityHint`, `.accessibilityValue`, `.accessibilityElement(children:)`, `.accessibilityAddTraits`, and related APIs. Skip translates these modifiers into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android, so describing a UI element once makes it accessible on both platforms.
+In SwiftUI, this is primarily a matter of applying the standard [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility): `.accessibilityLabel`, `.accessibilityHint`, `.accessibilityValue`, `.accessibilityElement(children:)`, `.accessibilityAddTraits`, and related APIs. These modifiers are translated into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android, so describing a UI element once makes it accessible on both platforms.
 
 <aside class="callout callout-tip">
   <span class="callout-icon" style="--icon: url('/assets/icons/callout/hub.svg');" aria-hidden="true"></span>

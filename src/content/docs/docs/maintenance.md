@@ -31,7 +31,7 @@ Major version bumps are an appropriate time to refresh screenshots, review marke
 
 Because **Global** is one of the [four cornerstones](/docs/inclusion-criteria/#cornerstone-global), keeping translations current is part of ongoing maintenance. If the app was set up with a [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) as recommended in [Building Your App](/docs/building/#l10n), community translators can contribute new locales by opening pull requests against the source repository. A translation consists of two parts:
 
-- **In-app strings** in `Localizable.xcstrings` (or, in older projects, `<locale>.lproj/Localizable.strings`). Skip handles the bridge to Android's `strings.xml` automatically.
+- **In-app strings** in `Localizable.xcstrings` (or, in older projects, `<locale>.lproj/Localizable.strings`). These are bridged to Android's `strings.xml` automatically.
 - **Store metadata** in `Darwin/fastlane/metadata/<locale>/` and `Android/fastlane/metadata/android/<locale>/`.
 
 Both parts are equally important. An app translated into Spanish whose Play Store listing remains English-only is effectively invisible to most Spanish-speaking users.
@@ -47,7 +47,7 @@ Accessibility is the easiest cornerstone to regress on without detection, becaus
 - Audit the new SwiftUI [accessibility modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility). Every icon-only button, every custom drawing, and every gesture requires an `.accessibilityLabel`.
 - Walk through the change with VoiceOver enabled. Five minutes of muscle memory here prevents hours of frustration for blind users.
 - Test Dynamic Type at the largest accessibility sizes. New layouts typically break first at these sizes.
-- Verify on Android with TalkBack. Skip translates SwiftUI's accessibility modifiers to [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility), but the result should still be confirmed.
+- Verify on Android with TalkBack. SwiftUI's accessibility modifiers are translated to [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility), but the result should still be confirmed.
 
 A patch release that addresses an accessibility regression is at least as valuable as one that addresses a functional bug.
 

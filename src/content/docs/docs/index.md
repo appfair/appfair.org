@@ -46,7 +46,7 @@ The end-to-end process has four steps:
 
 ## Prerequisites {#requirements}
 
-- A **macOS development machine** capable of running the latest Xcode. Skip uses Xcode to build the iOS target and to transpile the Android target, so macOS is currently required for development. The Android emulator can be launched from Xcode.
+- A **macOS development machine** capable of running the latest Xcode. Xcode is used to build the iOS target and to transpile the Android target, so macOS is currently required for development. The Android emulator can be launched from Xcode.
 - A **free GitHub account**. Enrolment in the Apple Developer Program or the Google Play Console is not required, and the terms and conditions of those programs do not need to be accepted.
 - An idea that satisfies the [Inclusion Criteria](/docs/inclusion-criteria/).
 

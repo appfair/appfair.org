@@ -37,7 +37,7 @@ No. App Fair apps must support both iOS and Android. Platform-specific features 
 
 ### What are the minimum OS versions an App Fair app must support? {#os-versions}
 
-The default Skip and App Fair targets are iOS 17 or later, and Android 10 (API 29) or later. Individual apps may require higher minimum versions where necessary, but this is discouraged because each version bump excludes users on older devices.
+The default App Fair targets are iOS 17 or later, and Android 10 (API 29) or later. Individual apps may require higher minimum versions where necessary, but this is discouraged because each version bump excludes users on older devices.
 
 ### Can an app provide different features on different distribution channels? {#heterogeneous}
 

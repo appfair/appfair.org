@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 720 420" role="img" aria-labelledby="cs-t cs-d">
+  <title id="cs-t">The Four Cornerstones of an App Fair App</title>
+  <desc id="cs-d">A 2×2 grid: Transparent (with the four software freedoms), Ubiquitous (iOS and Android), Global (Greek, Latin, CJK, and Arabic/Hebrew scripts), Accessible (sight, hearing, motion, and understanding).</desc>
+  <style><![CDATA[
+    .lbl  { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+    .sub  { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; }
+    .t-c { fill: #0284c7; } .u-c { fill: #4f46e5; } .g-c { fill: #16a34a; } .a-c { fill: #ea580c; }
+    .t-l { fill: #075985; } .u-l { fill: #3730a3; } .g-l { fill: #14532d; } .a-l { fill: #9a3412; }
+
+    /* ── Generic chip styling. Each chip's parent <g> sets --c (the tint). ── */
+    .chip-tile  { fill: var(--c); fill-opacity: 0.18; stroke: var(--c); stroke-opacity: 0.55; stroke-width: 1; }
+    .chip-icon  { fill: var(--c); }
+    .chip-glyph { fill: var(--c); font-family: "Inter", "Noto Sans", -apple-system, BlinkMacSystemFont, sans-serif; font-size: 22px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+
+    /* Each cornerstone's four sub-block tints form a rainbow gradient that
+       sits inside its parent's hue zone, harmonising with the surrounding
+       card colour and reading visually as a smooth left-to-right,
+       top-to-bottom progression (TL → TR → BL → BR). */
+
+    /* ── Transparent (sky parent) → cyan · sky · blue · indigo ── */
+    .f-use     { --c: #06b6d4; }  /* cyan-500   */
+    .f-study   { --c: #0ea5e9; }  /* sky-500    */
+    .f-copy    { --c: #3b82f6; }  /* blue-500   */
+    .f-improve { --c: #6366f1; }  /* indigo-500 */
+
+    /* ── Ubiquitous (indigo parent) → indigo · violet · purple · fuchsia ── */
+    .u-phone   { --c: #6366f1; }  /* indigo-500  */
+    .u-tablet  { --c: #8b5cf6; }  /* violet-500  */
+    .u-watch   { --c: #a855f7; }  /* purple-500  */
+    .u-desktop { --c: #d946ef; }  /* fuchsia-500 */
+
+    /* ── Global (green parent) → teal · emerald · green · lime ── */
+    .g-greek   { --c: #14b8a6; }  /* teal-500    */
+    .g-latin   { --c: #10b981; }  /* emerald-500 */
+    .g-cjk     { --c: #22c55e; }  /* green-500   */
+    .g-arabic  { --c: #84cc16; }  /* lime-500    */
+
+    /* ── Accessible (orange parent) → amber · orange · red · rose ── */
+    .a-sight    { --c: #f59e0b; }  /* amber-500  */
+    .a-hearing  { --c: #f97316; }  /* orange-500 */
+    .a-motion   { --c: #ef4444; }  /* red-500    */
+    .a-mind     { --c: #f43f5e; }  /* rose-500   */
+
+    @media (prefers-color-scheme: dark) {
+      .t-c { fill: #38bdf8; } .u-c { fill: #818cf8; } .g-c { fill: #4ade80; } .a-c { fill: #fb923c; }
+      .t-l { fill: #bae6fd; } .u-l { fill: #c7d2fe; } .g-l { fill: #bbf7d0; } .a-l { fill: #fed7aa; }
+      /* Same rainbow flows, shifted to lighter (300-level) tints for legibility
+         over the dark page background. */
+      .f-use     { --c: #22d3ee; }  /* cyan-400   */
+      .f-study   { --c: #38bdf8; }  /* sky-400    */
+      .f-copy    { --c: #60a5fa; }  /* blue-400   */
+      .f-improve { --c: #818cf8; }  /* indigo-400 */
+      .u-phone   { --c: #a5b4fc; }  /* indigo-300  */
+      .u-tablet  { --c: #c4b5fd; }  /* violet-300  */
+      .u-watch   { --c: #d8b4fe; }  /* purple-300  */
+      .u-desktop { --c: #f0abfc; }  /* fuchsia-300 */
+      .g-greek   { --c: #5eead4; }  /* teal-300    */
+      .g-latin   { --c: #6ee7b7; }  /* emerald-300 */
+      .g-cjk     { --c: #86efac; }  /* green-300   */
+      .g-arabic  { --c: #bef264; }  /* lime-300    */
+      .a-sight    { --c: #fcd34d; }  /* amber-300  */
+      .a-hearing  { --c: #fdba74; }  /* orange-300 */
+      .a-motion   { --c: #fca5a5; }  /* red-300    */
+      .a-mind     { --c: #fda4af; }  /* rose-300   */
+    }
+  ]]></style>
+
+  <!-- Background is intentionally transparent so the page's active light/dark
+       theme shows through behind the four tinted cards. -->
+
+  <!-- ════════════════════════════════════════════════════════
+       Top-left: Transparent — with the Four Software Freedoms
+       ════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="40"  y="60"  width="305" height="180" rx="14" fill="#0284c7" fill-opacity="0.08"/>
+    <rect x="40"  y="60"  width="305" height="180" rx="14" fill="none" stroke="#0284c7" stroke-opacity="0.55" stroke-width="1.5"/>
+    <g class="t-c" transform="translate(85 110) scale(0.045) translate(-480 480)">
+      <path d="M240-640h360v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85h-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640Zm0 480h480v-400H240v400Zm296.5-143.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM240-160v-400 400Z"/>
+    </g>
+    <text class="lbl t-l" x="64" y="180">Transparent</text>
+    <text class="sub t-c" x="64" y="208">FREE &amp; OPEN SOURCE</text>
+
+    <!-- Four Freedoms: 0 Use, 1 Study, 2 Copy, 3 Improve -->
+    <g class="f-use">
+      <rect class="chip-tile" x="185" y="80"  width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(220 96) scale(0.022) translate(-480 480)">
+        <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/>
+      </g>
+    </g>
+    <g class="f-study">
+      <rect class="chip-tile" x="261" y="80"  width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(296 96) scale(0.022) translate(-480 480)">
+        <path d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z"/>
+      </g>
+    </g>
+    <g class="f-copy">
+      <rect class="chip-tile" x="185" y="118" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(220 134) scale(0.022) translate(-480 480)">
+        <path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/>
+      </g>
+    </g>
+    <g class="f-improve">
+      <rect class="chip-tile" x="261" y="118" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(296 134) scale(0.022) translate(-480 480)">
+        <path d="M686-132 444-376q-20 8-40.5 12t-43.5 4q-100 0-170-70t-70-170q0-36 10-68.5t28-61.5l146 146 72-72-146-146q29-18 61.5-28t68.5-10q100 0 170 70t70 170q0 23-4 43.5T584-516l244 242q12 12 12 29t-12 29l-84 84q-12 12-29 12t-29-12Zm29-85 27-27-256-256q18-20 26-46.5t8-53.5q0-60-38.5-104.5T386-758l74 74q12 12 12 28t-12 28L332-500q-12 12-28 12t-28-12l-74-74q9 57 53.5 95.5T360-440q26 0 52-8t47-25l256 256ZM472-488Z"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ════════════════════════════════════════════════════════
+       Top-right: Ubiquitous — iOS and Android
+       ════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="375" y="60"  width="305" height="180" rx="14" fill="#4f46e5" fill-opacity="0.08"/>
+    <rect x="375" y="60"  width="305" height="180" rx="14" fill="none" stroke="#4f46e5" stroke-opacity="0.55" stroke-width="1.5"/>
+    <g class="u-c" transform="translate(420 110) scale(0.045) translate(-480 480)">
+      <path d="M480-540ZM80-160v-80h400v80H80Zm120-120q-33 0-56.5-23.5T120-360v-360q0-33 23.5-56.5T200-800h560q33 0 56.5 23.5T840-720H200v360h280v80H200Zm600 40v-320H640v320h160Zm-180 80q-25 0-42.5-17.5T560-220v-360q0-25 17.5-42.5T620-640h200q25 0 42.5 17.5T880-580v360q0 25-17.5 42.5T820-160H620Zm100-300q13 0 21.5-9t8.5-21q0-13-8.5-21.5T720-520q-12 0-21 8.5t-9 21.5q0 12 9 21t21 9Zm0 60Z"/>
+    </g>
+    <text class="lbl u-l" x="399" y="180">Ubiquitous</text>
+    <text class="sub u-c" x="399" y="208">EVERY DEVICE</text>
+
+    <!-- Devices: phone, tablet, watch, desktop -->
+    <g class="u-phone">
+      <rect class="chip-tile" x="520" y="80"  width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(555 96) scale(0.022) translate(-480 480)">
+        <path d="M280-40q-33 0-56.5-23.5T200-120v-720q0-33 23.5-56.5T280-920h400q33 0 56.5 23.5T760-840v720q0 33-23.5 56.5T680-40H280Zm0-80h400v-720H280v720Zm0 0v-720 720Zm228.5-611.5Q520-743 520-760t-11.5-28.5Q497-800 480-800t-28.5 11.5Q440-777 440-760t11.5 28.5Q463-720 480-720t28.5-11.5Z"/>
+      </g>
+    </g>
+    <g class="u-tablet">
+      <rect class="chip-tile" x="596" y="80"  width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(631 96) scale(0.022) translate(-480 480)">
+        <path d="M120-160q-33 0-56.5-23.5T40-240v-480q0-33 23.5-56.5T120-800h720q33 0 56.5 23.5T920-720v480q0 33-23.5 56.5T840-160H120Zm40-560h-40v480h40v-480Zm80 480h480v-480H240v480Zm560-480v480h40v-480h-40Zm0 0h40-40Zm-640 0h-40 40Z"/>
+      </g>
+    </g>
+    <g class="u-watch">
+      <rect class="chip-tile" x="520" y="118" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(555 134) scale(0.022) translate(-480 480)">
+        <path d="M420-800h120-120Zm0 640h120-120Zm-60 80-54-182q-48-38-77-95t-29-123q0-66 29-123t77-95l54-182h240l54 182q48 38 77 95t29 123q0 66-29 123t-77 95L600-80H360Zm261.5-258.5Q680-397 680-480t-58.5-141.5Q563-680 480-680t-141.5 58.5Q280-563 280-480t58.5 141.5Q397-280 480-280t141.5-58.5ZM404-750q20-5 38.5-8t37.5-3q19 0 37.5 3t38.5 8l-16-50H420l-16 50Zm16 590h120l16-50q-20 5-38.5 7.5T480-200q-19 0-37.5-2.5T404-210l16 50Z"/>
+      </g>
+    </g>
+    <g class="u-desktop">
+      <rect class="chip-tile" x="596" y="118" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(631 134) scale(0.022) translate(-480 480)">
+        <path d="M320-120v-80h80v-80H160q-33 0-56.5-23.5T80-360v-400q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v400q0 33-23.5 56.5T800-280H560v80h80v80H320ZM160-360h640v-400H160v400Zm0 0v-400 400Z"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ════════════════════════════════════════════════════════
+       Bottom-left: Global — Greek, Latin, CJK, Arabic/Hebrew
+       ════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="40"  y="270" width="305" height="180" rx="14" fill="#16a34a" fill-opacity="0.08"/>
+    <rect x="40"  y="270" width="305" height="180" rx="14" fill="none" stroke="#16a34a" stroke-opacity="0.55" stroke-width="1.5"/>
+    <g class="g-c" transform="translate(85 320) scale(0.045) translate(-480 480)">
+      <path d="M325-111.5q-73-31.5-127.5-86t-86-127.5Q80-398 80-480.5t31.5-155q31.5-72.5 86-127t127.5-86Q398-880 480.5-880t155 31.5q72.5 31.5 127 86t86 127Q880-563 880-480.5T848.5-325q-31.5 73-86 127.5t-127 86Q563-80 480.5-80T325-111.5ZM480-162q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"/>
+    </g>
+    <text class="lbl g-l" x="64" y="390">Global</text>
+    <text class="sub g-c" x="64" y="418">EVERY LANGUAGE</text>
+
+    <!-- Script families: each chip displays one representative glyph.
+         Chip centres: top row y=306, bottom row y=344. Vertical centring
+         relies on dominant-baseline: central declared on .chip-glyph. -->
+    <g class="g-greek">
+      <rect class="chip-tile" x="185" y="290" width="70" height="32" rx="6"/>
+      <text class="chip-glyph" x="220" y="306">α</text>
+    </g>
+    <g class="g-latin">
+      <rect class="chip-tile" x="261" y="290" width="70" height="32" rx="6"/>
+      <text class="chip-glyph" x="296" y="306">A</text>
+    </g>
+    <g class="g-cjk">
+      <rect class="chip-tile" x="185" y="328" width="70" height="32" rx="6"/>
+      <text class="chip-glyph" x="220" y="344">文</text>
+    </g>
+    <g class="g-arabic">
+      <rect class="chip-tile" x="261" y="328" width="70" height="32" rx="6"/>
+      <text class="chip-glyph" x="296" y="344">ع</text>
+    </g>
+  </g>
+
+  <!-- ════════════════════════════════════════════════════════
+       Bottom-right: Accessible — Sight, Hearing, Motion, Mind
+       ════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="375" y="270" width="305" height="180" rx="14" fill="#ea580c" fill-opacity="0.08"/>
+    <rect x="375" y="270" width="305" height="180" rx="14" fill="none" stroke="#ea580c" stroke-opacity="0.55" stroke-width="1.5"/>
+    <g class="a-c" transform="translate(420 320) scale(0.045) translate(-480 480)">
+      <path d="M423.5-743.5Q400-767 400-800t23.5-56.5Q447-880 480-880t56.5 23.5Q560-833 560-800t-23.5 56.5Q513-720 480-720t-56.5-23.5ZM360-80v-520q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-720l20 80q-56 15-118 25t-122 15v520h-80v-240h-80v240h-80Z"/>
+    </g>
+    <text class="lbl a-l" x="399" y="390">Accessible</text>
+    <text class="sub a-c" x="399" y="418">EVERY ABILITY</text>
+
+    <!-- Abilities: sight, hearing, motion, understanding -->
+    <g class="a-sight">
+      <rect class="chip-tile" x="520" y="290" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(555 306) scale(0.022) translate(-480 480)">
+        <path d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5ZM480-500Zm207.5 160.5Q782-399 832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280q113 0 207.5-59.5Z"/>
+      </g>
+    </g>
+    <g class="a-hearing">
+      <rect class="chip-tile" x="596" y="290" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(631 306) scale(0.022) translate(-480 480)">
+        <path d="M280-80q62 0 101.5-31t60.5-91q17-50 32.5-70t71.5-64q62-50 98-113t36-151q0-119-80.5-199.5T400-880q-119 0-199.5 80.5T120-600h80q0-85 57.5-142.5T400-800q85 0 142.5 57.5T600-600q0 68-27 116t-77 86q-52 38-81 74t-43 78q-14 44-33.5 65T280-160q-33 0-56.5-23.5T200-240h-80q0 66 47 113t113 47Zm432-210q59-60 93.5-139.5T840-600q0-92-34.5-172T712-912l-58 56q50 50 78 115.5T760-600q0 74-28 139t-78 115l58 56ZM471-529.5q29-29.5 29-70.5 0-42-29-71t-71-29q-42 0-71 29t-29 71q0 41 29 70.5t71 29.5q42 0 71-29.5Z"/>
+      </g>
+    </g>
+    <g class="a-motion">
+      <rect class="chip-tile" x="520" y="328" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(555 344) scale(0.022) translate(-480 480)">
+        <path d="M423.5-743.5Q400-767 400-800t23.5-56.5Q447-880 480-880t56.5 23.5Q560-833 560-800t-23.5 56.5Q513-720 480-720t-56.5-23.5ZM680-80v-200H480q-33 0-56.5-23.5T400-360v-240q0-33 23.5-56.5T480-680q24 0 41.5 10.5T559-636q55 66 99.5 90.5T760-520v80q-53 0-107-23t-93-55v138h120q33 0 56.5 23.5T760-300v220h-80Zm-280 0q-83 0-141.5-58.5T200-280q0-72 45.5-127T360-476v82q-35 14-57.5 44.5T280-280q0 50 35 85t85 35q39 0 69.5-22.5T514-240h82q-14 69-69 114.5T400-80Z"/>
+      </g>
+    </g>
+    <g class="a-mind">
+      <rect class="chip-tile" x="596" y="328" width="70" height="32" rx="6"/>
+      <g class="chip-icon" transform="translate(631 344) scale(0.022) translate(-480 480)">
+        <path d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l52 205q5 19-7 34.5T840-360h-80v120q0 33-23.5 56.5T680-160h-80v80h-80v-160h160v-200h108l-38-155q-23-91-98-148t-172-57q-116 0-198 81t-82 197q0 60 24.5 114t69.5 96l26 24v208h-80Zm254-360Zm-54 80h80l6-50q8-3 14.5-7t11.5-9l46 20 40-68-40-30q2-8 2-16t-2-16l40-30-40-68-46 20q-5-5-11.5-9t-14.5-7l-6-50h-80l-6 50q-8 3-14.5 7t-11.5 9l-46-20-40 68 40 30q-2 8-2 16t2 16l-40 30 40 68 46-20q5 5 11.5 9t14.5 7l6 50Zm-2.5-117.5Q420-495 420-520t17.5-42.5Q455-580 480-580t42.5 17.5Q540-545 540-520t-17.5 42.5Q505-460 480-460t-42.5-17.5Z"/>
+      </g>
+    </g>
+  </g>
+
+</svg>
