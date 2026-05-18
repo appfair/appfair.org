@@ -94,7 +94,7 @@ This requirement is the practical extension of the project's commitment to verif
 
 When the licensing or openness of a prospective dependency is uncertain, the question should be raised on the [discussion forums](https://github.com/orgs/appfair/discussions) before the dependency is added to the project. Identifying a problematic library at the proposal stage costs significantly less than removing it from a substantially developed app.
 
-When a new App Fair project is initialized with `skip create --appfair`, a `LICENSE.GPL` file is added to the repository. This file should not be removed.
+When a new App Fair project is initialized with `skip init --appfair`, a `LICENSE.GPL` file is added to the repository. This file should not be removed.
 
 ## Naming {#naming}
 

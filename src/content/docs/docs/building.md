@@ -45,19 +45,25 @@ The app token is distinct from the app's **displayed title**, which is the local
 A public repository should be created inside the new organization at [github.com/new](https://github.com/new). Two constraints apply:
 
 - The repository name must match the app token (and therefore the organization name) exactly. For the `Faire-Games` token, the repository must also be `Faire-Games`, yielding the canonical URL `github.com/Faire-Games/Faire-Games`. This convention makes the fork-based distribution model unambiguous.
-- The repository must be empty (no README, no `.gitignore`, no auto-generated `LICENSE`). The `skip create --appfair` command in the next step populates the repository, including the `LICENSE.GPL` file required by the App Fair.
+- The repository must be empty (no README, no `.gitignore`, no auto-generated `LICENSE`). The `skip init --appfair` command in the next step populates the repository, including the `LICENSE.GPL` file required by the App Fair.
 
 ## Step 3: Initialize the Skip project {#skip-init}
 
-First-time Skip users should complete the [Skip Getting Started](https://skip.dev/docs/gettingstarted/) workflow to install Xcode, the Skip CLI, and the Android tooling. Once `skip checkup` reports a clean environment, the project can be initialized (passing the app token as the final argument):
+First-time Skip users should complete the [Skip Getting Started](https://skip.dev/docs/gettingstarted/) workflow to install Xcode, the Skip CLI, and the Android tooling. Once `skip checkup` reports a clean environment, the project can be initialized:
 
 ```sh
-skip create --open-xcode --appfair Faire-Games
+skip init --appfair --transpiled-app --appid=org.appfair.app.Faire-Games Faire-Games FaireGamesUI FaireGamesModel
 ```
 
-The `--appfair` flag instructs `skip create` to configure the project for App Fair distribution. Specifically, it:
+The positional arguments name the project: first the **app token** (`Faire-Games`), then the UI Swift Package target (`FaireGamesUI`), then the model target (`FaireGamesModel`). The flags configure the project for App Fair distribution:
 
-- Configures `Package.swift`, `Skip.env`, and the Xcode and Gradle projects with App Fair-conventional defaults (bundle identifier under `org.appfair.app.*`, marketing version, etc.).
+- `--appfair`: enables App Fair-conventional defaults — namespaced bundle ID, `LICENSE.GPL`, `appfair/`-fork release pipeline, and the `appfair/appfair-app` package dependency.
+- `--transpiled-app`: explicitly selects [Skip Lite](https://skip.dev/docs/modes/), the only mode App Fair apps may use.
+- `--appid=…`: sets the upstream bundle identifier written into `Skip.env`. For App Fair distribution the `appfair/` fork rewrites this to `org.appfair.app.<token>` at sign time, so the value here is most useful as the development team's own ID for sideloading onto a real iOS device. See [Bundle identifiers](#bundle-id) below.
+
+The initializer:
+
+- Configures `Package.swift`, `Skip.env`, and the Xcode and Gradle projects with App Fair-conventional defaults (App Fair-namespaced bundle ID, marketing version, etc.).
 - Adds a `LICENSE.GPL` file (GNU GPL v2.0-or-later).
 - Adds the `appfair/appfair-app` Swift package dependency for shared `AppFairUI` components.
 - Generates a `.github/workflows/<app>.yml` workflow that invokes the [`skiptools/actions`](https://github.com/skiptools/actions) reusable build pipeline.
@@ -81,7 +87,7 @@ The repository now contains a valid (though minimal) App Fair app. Each push to 
   <span class="callout-icon" style="--icon: url('/assets/icons/callout/play_circle.svg');" aria-hidden="true"></span>
   <div class="callout-body">
     <p class="callout-title">CI must remain enabled</p>
-    <p>The GitHub Actions workflow created by <code>skip create --appfair</code> is required by the App Fair distribution process. It verifies that the application builds on both platforms before each release. The workflow should not be disabled.</p>
+    <p>The GitHub Actions workflow created by <code>skip init --appfair</code> is required by the App Fair distribution process. It verifies that the application builds on both platforms before each release. The workflow should not be disabled.</p>
   </div>
 </aside>
 
@@ -221,7 +227,7 @@ Avoid background work the user has not requested. Avoid polling. Avoid burning C
 
 ### The AppFairUI components {#appfair-ui}
 
-Every App Fair app depends on the [`appfair-app`](https://github.com/appfair/appfair-app) package, which exposes the `AppFairUI` module. The dependency is added automatically by `skip create --appfair` and is mandatory for every catalog app.
+Every App Fair app depends on the [`appfair-app`](https://github.com/appfair/appfair-app) package, which exposes the `AppFairUI` module. The dependency is added automatically by `skip init --appfair` and is mandatory for every catalog app.
 
 The package supplies the shared About screen, attribution metadata, third-party license rows, the "Made with Skip / Distributed through the App Fair" credits, and the `AppFairSettings` wrapper described below.
 

@@ -7,7 +7,7 @@ Recurring terms used throughout the documentation, in alphabetical order. Questi
 
 ## App Token {#token}
 
-The immutable identifier for an App Fair app's source. The token is the name shared by the app's GitHub organization and its repository (e.g. `Faire-Games`) and is the final argument passed to `skip create --appfair`. It is distinct from the app's **displayed title** (e.g. "Fair Games"), which is localizable and may change over time.
+The immutable identifier for an App Fair app's source. The token is the name shared by the app's GitHub organization and its repository (e.g. `Faire-Games`) and is the first positional argument passed to `skip init --appfair`. It is distinct from the app's **displayed title** (e.g. "Fair Games"), which is localizable and may change over time.
 
 See also: [Naming](/docs/inclusion-criteria/#naming), [Create a GitHub organization](/docs/building/#org), [Initialize the Skip project](/docs/building/#skip-init).
 
