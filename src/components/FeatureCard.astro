@@ -3,12 +3,17 @@ interface Props {
   title: string;
   icon: string;
   color: string;
+  href?: string;
 }
 
-const { title, icon, color } = Astro.props;
+const { title, icon, color, href } = Astro.props;
+// When an href is supplied the entire card becomes a clickable link; the
+// existing .feature-card CSS already sets text-decoration: none and
+// color: inherit so anchor styling does not bleed through.
+const Tag = href ? 'a' : 'span';
 ---
 
-<span class="feature-card" data-color={color}>
+<Tag class="feature-card" data-color={color} href={href}>
   <div class="feature-card-header">
     <div class="feature-card-icon">
       <span class="material-symbols-rounded">{icon}</span>
@@ -18,5 +23,4 @@ const { title, icon, color } = Astro.props;
   <div class="feature-card-description">
     <slot />
   </div>
-  <!-- <span class="feature-card-link">Learn more <span aria-hidden="true">→</span></span> -->
-</span>
+</Tag>

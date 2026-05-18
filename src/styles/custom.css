@@ -356,17 +356,12 @@ div.localization-screenshot-container img {
   --color-cornerstone-accessible:  var(--color-cornerstone-accessible-light);
 }
 
-/* Heading-icon styling. Targets the four cornerstone H3 anchors in the
-   Inclusion Criteria; the icon precedes the heading text via ::before with
-   CSS mask, so it adopts the cornerstone's distinctive colour. */
-h3#cornerstone-transparent,
-h3#cornerstone-ubiquitous,
-h3#cornerstone-global,
-h3#cornerstone-accessible {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
+/* Heading-icon styling. The four cornerstone H3s render their distinctive
+   icon via a ::before pseudo-element. The icon is rendered inline-block (not
+   via flex) so that Starlight's autolink anchor — which sits as a sibling
+   immediately after each heading and overlaps it via a negative inline margin
+   — keeps sliding onto the same baseline as the heading on hover, rather than
+   being pushed onto a second line by a block-level flex container. */
 h3#cornerstone-transparent::before,
 h3#cornerstone-ubiquitous::before,
 h3#cornerstone-global::before,
@@ -375,7 +370,8 @@ h3#cornerstone-accessible::before {
   display: inline-block;
   width: 1.35em;
   height: 1.35em;
-  flex-shrink: 0;
+  vertical-align: -0.25em;
+  margin-inline-end: 0.55rem;
   background-color: var(--cornerstone-color);
   -webkit-mask: var(--cornerstone-icon) no-repeat center / contain;
           mask: var(--cornerstone-icon) no-repeat center / contain;

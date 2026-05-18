@@ -116,6 +116,25 @@ Several points are worth noting:
 - The Swift sources are shared between platforms. Skip handles transpilation to Kotlin and Jetpack Compose. Where platform-specific code is genuinely required, the `#if SKIP` and `#if !SKIP` directives can be used to branch.
 - Fastlane metadata is checked in under `Darwin/fastlane/` and `Android/fastlane/`. The contents of these directories are described in [Submitting Your App](/docs/submitting/). The general-purpose references are the [Fastlane documentation](https://docs.fastlane.tools/) and the [Skip Fastlane deployment guide](https://skip.dev/docs/deployment/#fastlane).
 
+### Bundle identifiers {#bundle-id}
+
+Every App Fair app published through the `appfair/` fork is built with a canonical bundle identifier of `org.appfair.app.<token>`. For the `Faire-Games` token this means the production binary ships with:
+
+- **iOS** `PRODUCT_BUNDLE_IDENTIFIER` = `org.appfair.app.Faire-Games`
+- **Android** package name = `org.appfair.app.Faire_Games` (underscores replace dashes, since Java package segments cannot contain hyphens)
+
+The `Skip.env` value in the source repository is the *upstream* bundle identifier, used during local development. It can be set to anything the developer team controls — for example `com.example.fairegames` under the developer's own Apple Developer team — which is what makes it possible to sideload and run the app on a real iOS device using the developer's own signing identity. The `appfair/` fork rewrites this value to the canonical `org.appfair.app.<token>` form before signing the production binary, so the upstream bundle ID never reaches end users through the App Fair.
+
+<aside class="callout callout-caution">
+  <span class="callout-icon" style="--icon: url('/assets/icons/callout/warning.svg');" aria-hidden="true"></span>
+  <div class="callout-body">
+    <p class="callout-title">Leaving the App Fair changes the bundle identifier</p>
+    <p>Bundle identifiers are how Apple and Google decide which installed app a binary updates. An app signed with one bundle ID and an app signed with another are, from the operating system's perspective, two unrelated applications.</p>
+    <p>If a maintainer leaves the App Fair and resumes publishing the app independently under their own developer accounts, the self-published binary will use the developer's chosen bundle ID rather than <code>org.appfair.app.&lt;token&gt;</code>. Existing users who installed the app from the App Fair catalog would not receive the self-published version as an update; they would have to install it as a separate application, and the new installation would have no access to any data the prior installation stored (preferences, sync state, locally cached content, and so on). Users would effectively start fresh.</p>
+    <p>This is a one-way consequence of the publisher-of-record arrangement: the App Fair Project owns the <code>org.appfair.app.*</code> namespace, so a departing maintainer cannot take the catalog bundle ID with them.</p>
+  </div>
+</aside>
+
 ## Development workflow {#dev-loop}
 
 Day-to-day development follows a standard SwiftUI workflow:
@@ -130,7 +149,7 @@ The full development reference, including parity testing, FFI, and Kotlin intero
 
 ## Designing for the Four Cornerstones {#cornerstones-in-practice}
 
-The [four cornerstones](/docs/inclusion-criteria/#four-cornerstones) (transparent, ubiquitous, global, and accessible) are practical engineering constraints. Each is significantly easier to satisfy when designed for from the first commit than when retrofitted later. The remainder of this section translates each cornerstone into specific implementation guidance. (Transparent is handled by the project's licence and dependency choices, covered separately under [Licensing](/docs/inclusion-criteria/#licensing), so the rest of this section focuses on Ubiquitous, Global, and Accessible.)
+The [four cornerstones](/docs/philosophy/#four-cornerstones) (transparent, ubiquitous, global, and accessible) are practical engineering constraints. Each is significantly easier to satisfy when designed for from the first commit than when retrofitted later. The remainder of this section translates each cornerstone into specific implementation guidance. (Transparent is handled by the project's licence and dependency choices, covered separately under [Licensing](/docs/inclusion-criteria/#licensing), so the rest of this section focuses on Ubiquitous, Global, and Accessible.)
 
 ### Localization (Global) {#l10n}
 
@@ -202,7 +221,7 @@ Avoid background work the user has not requested. Avoid polling. Avoid burning C
 
 ### The AppFairUI components {#appfair-ui}
 
-Every App Fair app depends on the [`appfair-app`](https://github.com/appfair/appfair-app) package, which exposes the `AppFairUI` module. The dependency is added automatically by `skip create --appfair` and is mandatory for every catalog app (see [Technical requirements](/docs/inclusion-criteria/#technical-requirements)).
+Every App Fair app depends on the [`appfair-app`](https://github.com/appfair/appfair-app) package, which exposes the `AppFairUI` module. The dependency is added automatically by `skip create --appfair` and is mandatory for every catalog app.
 
 The package supplies the shared About screen, attribution metadata, third-party license rows, the "Made with Skip / Distributed through the App Fair" credits, and the `AppFairSettings` wrapper described below.
 

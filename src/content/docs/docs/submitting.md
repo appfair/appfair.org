@@ -1,6 +1,6 @@
 ---
 title: Submitting Your App
-description: Writing Fastlane metadata, tagging a release, and requesting an App Fair fork.
+description: Writing Fastlane metadata, tagging a release, and requesting an `appfair/` fork.
 ---
 
 Once an application implements its core functionality and builds reliably on both platforms, it is ready for submission. The submission process has three stages: writing the metadata that will appear on the app stores, tagging a release, and requesting that the App Fair create a fork in the `appfair/` organization.
@@ -79,18 +79,18 @@ git push origin 1.0.0
 
 Pushing the tag triggers the repository's CI workflow in release mode. It builds unsigned `.ipa`, `.apk`, and `.aab` binaries for both platforms and attaches them to a GitHub Release, alongside an `appindex.json` describing the release. The unsigned builds serve as verification that the release builds cleanly, and allow independent inspectors to verify the binary against the source.
 
-The unsigned release in the developer's own repository is not the version distributed to end users. Distribution is the responsibility of the App Fair fork, described in the next step.
+The unsigned release in the developer's own repository is not the version distributed to end users. Distribution is the responsibility of the `appfair/` fork, described in the next step.
 
-## Step 3: Request an App Fair fork {#fork-request}
+## Step 3: Request an `appfair/` fork {#fork-request}
 
-Once a tagged release builds cleanly and the [Submission Checklist](#checklist) below is satisfied, a **fork request** should be opened on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). The request should include:
+Once a tagged release builds cleanly and the [Submission checklist](#checklist) below is satisfied, a **fork request** should be opened on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). The request should include:
 
 - The name of the app and a link to the repository.
 - A short description of its functionality (one or two paragraphs).
 - The version intended for first release.
 - Any notable information about dependencies, platform support, or target audience.
 
-A maintainer will review the application against the [inclusion criteria](/docs/inclusion-criteria/) and confirm each item in the [Submission Checklist](#checklist): licence, absence of advertising/tracking/analytics, alignment with the project mission, correspondence between the code and the README, and the technical prerequisites. If the review is positive, a fork is created at `github.com/appfair/<app-token>`.
+A maintainer will review the application against the [inclusion criteria](/docs/inclusion-criteria/) and confirm each item in the [Submission checklist](#checklist): licence, absence of advertising/tracking/analytics, alignment with the project mission, correspondence between the code and the README, and the technical prerequisites. If the review is positive, a fork is created at `github.com/appfair/<app-token>`.
 
 The fork is the location where the signing credentials live. Once it exists, the remainder of the pipeline is automated. See [Deployment & Distribution](/docs/deploying/) for the details.
 
@@ -104,7 +104,7 @@ The fork is the location where the signing credentials live. Once it exists, the
 
 Once the fork has been created, proceed to [Deployment & Distribution](/docs/deploying/) for the rest of the pipeline.
 
-## Submission Checklist {#checklist}
+## Submission checklist {#checklist}
 
 Before opening a fork request, verify that the app satisfies each item below. The App Fair maintainer reviewing the submission will check the same list, and submissions that pass every item are materially likely to be approved on the first pass.
 

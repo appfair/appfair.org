@@ -29,7 +29,7 @@ Major version bumps are an appropriate time to refresh screenshots, review marke
 
 ## Localization and translations {#localization}
 
-Because **Global** is one of the [four cornerstones](/docs/inclusion-criteria/#cornerstone-global), keeping translations current is part of ongoing maintenance. If the app was set up with a [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) as recommended in [Building Your App](/docs/building/#l10n), community translators can contribute new locales by opening pull requests against the source repository. A translation consists of two parts:
+Because **Global** is one of the [four cornerstones](/docs/philosophy/#cornerstone-global), keeping translations current is part of ongoing maintenance. If the app was set up with a [`Localizable.xcstrings` String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) as recommended in [Building Your App](/docs/building/#l10n), community translators can contribute new locales by opening pull requests against the source repository. A translation consists of two parts:
 
 - **In-app strings** in `Localizable.xcstrings` (or, in older projects, `<locale>.lproj/Localizable.strings`). These are bridged to Android's `strings.xml` automatically.
 - **Store metadata** in `Darwin/fastlane/metadata/<locale>/` and `Android/fastlane/metadata/android/<locale>/`.

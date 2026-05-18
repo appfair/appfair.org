@@ -1,13 +1,13 @@
 ---
-title: FAQ and Glossary
-description: Frequently asked questions about the App Fair Project, with a glossary of recurring terms.
+title: FAQ
+description: Frequently asked questions about the App Fair Project.
 ---
 
-Questions not covered below can be raised on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). A glossary of recurring terms is provided at the bottom of the page.
+Questions not covered below can be raised on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). For definitions of recurring terms, see the [Glossary](/docs/glossary/).
 
-## About the project {#about}
+## General {#general}
 
-### Why does each app need its own GitHub organization? {#why-org}
+### Why does each app need its own GitHub organization? {#per-app-organization}
 
 Several reasons. The organization-per-app convention keeps the app's source separable from any individual maintainer's account, which makes ownership transfers and community rescues straightforward. It produces an unambiguous canonical URL for each app (`github.com/<App>/<App>`). And it provides each app with a context in which a contributor community can develop independently of permission entanglements.
 
@@ -16,6 +16,10 @@ For a solo project the convention may appear excessive, but the one-time cost is
 ### Will the App Fair support code hubs other than GitHub? {#other-hubs}
 
 Yes, this is planned. GitLab, Codeberg, and self-hosted Forgejo are all candidates. The build pipeline is currently tightly coupled to GitHub Actions, so this is not a short-term change. Preference for a particular platform can be expressed on the forums.
+
+### Something not covered here. {#other}
+
+Please raise the question on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). Useful questions are typically incorporated into this FAQ for future reference.
 
 ## Building and developing {#building}
 
@@ -41,7 +45,7 @@ The default App Fair targets are iOS 17 or later, and Android 10 (API 29) or lat
 
 ### Can an app provide different features on different distribution channels? {#heterogeneous}
 
-Yes. An app can detect at runtime which channel it was installed from (the App Store, the Play Store, the App Fair app, or another channel) and adjust its features accordingly. This is sometimes necessary to comply with a particular store's policies.
+Yes. An app can detect at runtime which channel it was installed from (the App Store, the Play Store, or another channel) and adjust its features accordingly. This is sometimes necessary to comply with a particular store's policies.
 
 ## Submitting and releasing {#releasing}
 
@@ -49,7 +53,7 @@ Yes. An app can detect at runtime which channel it was installed from (the App S
 
 Not for distribution through the App Fair. The App Fair Project is the **publisher of record** registered with both Apple and Google, and it operates the distribution certificate, the App Store Connect API key, and the Play Console service account on behalf of every app in the catalog. The upstream app developer therefore does not need to enrol in the Apple Developer Program or the Google Play Console, and does not need to accept the terms and conditions of either programme.
 
-The upstream developer's name and project URL appear as the contributor in the app's About screen, in the README, and in the store description, but the entity Apple and Google bill, hold accountable, and correspond with is the App Fair Project. (Developers who wish to publish their app independently of the App Fair are free to do so under their own accounts; see [Apps that don't fit can still be published directly](/docs/inclusion-criteria/#unsure).)
+The upstream developer's name and project URL appear as the contributor in the app's About screen, in the README, and in the store description, but the entity Apple and Google bill, hold accountable, and correspond with is the App Fair Project. (Developers who wish to publish their app independently of the App Fair are free to do so under their own accounts; see [Apps that don't fit can still be published directly](/docs/inclusion-criteria/#proposal).)
 
 ### Can I build my own signed binaries instead of having the App Fair do it? {#self-build}
 
@@ -65,7 +69,7 @@ Yes. Per-channel unpublication is supported. A request can be opened on the foru
 
 ### Can I leave the App Fair entirely? {#leave-project}
 
-Yes. The source code remains the developer's property under GPL-2.0-or-later. The App Fair fork can be archived or removed at the developer's request, and the app can be distributed independently through any channel and under any developer accounts. The only assets that do not transfer are the App Fair branding and the centralized publisher relationships.
+Yes. The source code remains the developer's property under GPL-2.0-or-later. The `appfair/` fork can be archived or removed at the developer's request, and the app can be distributed independently through any channel and under any developer accounts. The assets that do not transfer are the App Fair branding, the centralized publisher relationships, and the canonical `org.appfair.app.<token>` bundle identifier — the self-published version will use the developer's own bundle ID instead. Existing users would therefore install the self-published version as a separate application alongside the App Fair version, with no access to data the prior installation stored; see [Bundle identifiers](/docs/building/#bundle-id) for the full discussion.
 
 ## Contributing {#contributing}
 
@@ -84,67 +88,3 @@ Partial coverage is welcome. Adding the `title` and `short_description` for a ne
 The App Fair Project depends on donations. Hosting fees, store fees, and infrastructure costs are not free. Financial contributions can be made at [appfair.org/donate/](/donate/).
 
 Public awareness is also valuable. References to the App Fair in conversations about advertising and tracking in commercial apps, recommendations of specific App Fair apps, and written commentary on the project all contribute to its visibility.
-
-## Other questions {#something-else}
-
-### Something not covered here.
-
-Please raise the question on the [App Fair discussion forums](https://github.com/orgs/appfair/discussions). Useful questions are typically incorporated into this FAQ for future reference.
-
-## Glossary {#glossary}
-
-Recurring terms used throughout the documentation, in alphabetical order.
-
-### App Token {#token}
-
-The immutable identifier for an App Fair app's source. The token is the name shared by the app's GitHub organization and its repository (e.g. `Faire-Games`) and is the final argument passed to `skip create --appfair`. It is distinct from the app's **displayed title** (e.g. "Fair Games"), which is localizable and may change over time.
-
-See also: [Naming](/docs/inclusion-criteria/#naming), [Create a GitHub organization](/docs/building/#org), [Initialize the Skip project](/docs/building/#skip-init).
-
-### Call for Maintenance (CFM) {#cfm}
-
-A public posting on the App Fair discussion forums asking the community to take over maintenance of an app whose original maintainer can no longer continue. The CFM describes the project, its current state, and the expectations on a successor; if someone steps forward, they can be added to the app's GitHub organization and ownership is transferred incrementally. The organization-per-app convention is what makes a CFM handoff feasible without entangling personal accounts.
-
-See also: [Project handoff](/docs/maintenance/#handoff).
-
-### Code Hub {#hub}
-
-A source-hosting platform on which an App Fair app's source repository lives. GitHub is the only currently supported code hub; GitLab, Codeberg, and self-hosted Forgejo are on the project roadmap.
-
-See also: [Create a GitHub organization](/docs/building/#org), [Will the App Fair support code hubs other than GitHub?](#other-hubs).
-
-### Digital Public Good {#dpg}
-
-An application that is free of cost, free of advertising and tracking, and built from free and open-source software, intended for general benefit rather than commercial gain. Every App Fair app is a digital public good in this sense.
-
-See also: [What is the App Fair?](/docs/#what), [Mission statement](/docs/inclusion-criteria/#mission).
-
-### Fastlane {#fastlane}
-
-An open-source convention for managing mobile-app store metadata as plain-text and PNG files alongside the source code. App Fair apps store their App Store and Play Store metadata under `Darwin/fastlane/` and `Android/fastlane/`.
-
-See also: [Write store metadata](/docs/submitting/#metadata), [Project layout](/docs/building/#layout), [Fastlane documentation](https://docs.fastlane.tools/).
-
-### Fork {#fork}
-
-The mirror of an App Fair app's source repository inside the [`appfair`](https://github.com/appfair) GitHub organization. The fork holds the signing credentials and store API keys, and is the entity that builds, signs, and publishes the app to the stores.
-
-See also: [The fork-based distribution model](/docs/deploying/#model), [Division of responsibilities](/docs/deploying/#responsibilities), [Request an App Fair fork](/docs/submitting/#fork-request).
-
-### Inclusion Criteria {#inclusion-criteria}
-
-The policy that defines which applications are eligible for distribution through the App Fair: prohibited content, encouraged characteristics, the four cornerstones, technical requirements, licensing, naming, and external-storefront compliance.
-
-See also: [Inclusion Criteria](/docs/inclusion-criteria/), [Submission Checklist](/docs/submitting/#checklist).
-
-### Skip {#skip}
-
-The cross-platform mobile development framework from [skip.dev](https://skip.dev/) used by every App Fair app. Skip produces a native iOS app and a native Android app from a single Swift codebase.
-
-See also: [Project model](/docs/building/#mental-model), [Skip documentation](https://skip.dev/docs/).
-
-### Skip Lite {#skip-lite}
-
-The Skip mode in which Swift source is transpiled to Kotlin, producing a native Jetpack Compose Android app. App Fair apps must use Skip Lite; the alternative Skip Fuse mode is not yet suitable for App Fair distribution.
-
-See also: [Project model](/docs/building/#mental-model), [Skip modes](https://skip.dev/docs/modes/).

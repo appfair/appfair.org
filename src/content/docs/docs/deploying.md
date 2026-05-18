@@ -1,6 +1,6 @@
 ---
 title: Deployment & Distribution
-description: How the App Fair fork builds, signs, and distributes the application.
+description: How the `appfair/` fork builds, signs, and distributes the application.
 ---
 
 After a fork has been created at `github.com/appfair/<app-token>`, the application is connected to the App Fair distribution pipeline. This section describes how the pipeline operates: from the release tag through the signed binary, the app stores, and the [appfair.net](https://appfair.net) catalog.
@@ -10,7 +10,7 @@ After a fork has been created at `github.com/appfair/<app-token>`, the applicati
 Each App Fair app is associated with two repositories, both addressed by the app's [token](/docs/inclusion-criteria/#naming):
 
 - The **source repository** in the developer's GitHub organization, e.g. [`github.com/Faire-Games/Faire-Games`](https://github.com/Faire-Games/Faire-Games) for the `Faire-Games` token (published under the displayed title "Fair Games"). The developer owns this repository: source code, issue tracker, and project direction.
-- The **App Fair fork** in the [`appfair`](https://github.com/appfair) organization, e.g. [`github.com/appfair/Faire-Games`](https://github.com/appfair/Faire-Games). The App Fair owns this repository, which holds the signing credentials, store API keys, and the published release pipeline.
+- The **`appfair/` fork** in the [`appfair`](https://github.com/appfair) GitHub organization, e.g. [`github.com/appfair/Faire-Games`](https://github.com/appfair/Faire-Games). The App Fair owns this repository, which holds the signing credentials, store API keys, and the published release pipeline.
 
 This separation has two effects. The developer retains full control of the source code, including the option to discontinue the App Fair relationship and continue independently. The App Fair handles the account-bound and certificate-bound parts of mobile app distribution.
 
@@ -66,7 +66,7 @@ When a release tag (for example, `1.0.0`) is synchronized from the source reposi
 2. Builds the Android target with `skip export` and signs it with the App Fair keystore.
 3. Reads the Fastlane metadata from `Darwin/fastlane/` and `Android/fastlane/` and uploads it alongside the signed binaries to App Store Connect and the Play Console.
 4. Submits the build for review.
-5. Generates an `appindex.json` describing the release and publishes it (together with the signed binaries) as assets on the corresponding GitHub Release in the App Fair fork. The source repository is not modified by this step.
+5. Generates an `appindex.json` describing the release and publishes it (together with the signed binaries) as assets on the corresponding GitHub Release in the `appfair/` fork. The source repository is not modified by this step.
 
 Store review timing is outside the App Fair's control. Apple and Google operate their own review queues, but updates typically appear within a few days. The progress of each step can be observed in real time on the Actions tab of the fork.
 
@@ -76,7 +76,7 @@ After a release has been signed, submitted, and approved, users can install the 
 
 ### The Apple App Store {#channel-app-store}
 
-The Apple App Store is the dominant channel for iPhone and iPad. App Fair releases appear there under the App Fair Project's developer name. Within the European Union, [alternative distribution channels for iOS](https://appfair.org/marketplace/) are also planned.
+The Apple App Store is the dominant channel for iPhone and iPad. App Fair releases appear there under the App Fair Project's developer name.
 
 ### The Google Play Store {#channel-play-store}
 
@@ -96,7 +96,7 @@ App Fair apps are built by their developers, but the App Fair Project appears pr
 
 This branding requirement allows users to discover the rest of the catalog from any one App Fair app.
 
-## Working Example {#example}
+## Working example {#example}
 
 The app with the [`Faire-Games`](https://github.com/Faire-Games/Faire-Games) token (published under the title "Fair Games") demonstrates the full pipeline:
 
