@@ -393,6 +393,56 @@ h3#cornerstone-accessible {
   --cornerstone-icon: url('/assets/icons/cornerstone/accessible.svg');
 }
 
+/* ── Inclusion-Criteria section headings ──
+   Two semantic groupings: 'prohibited' items (red) and 'encouraged' items
+   (teal). Each H3 gets its own icon via the same ::before mask trick used
+   for the cornerstone headings. */
+:root {
+  --color-criteria-prohibited-light: #dc2626;
+  --color-criteria-prohibited-dark:  #fca5a5;
+  --color-criteria-encouraged-light: #0d9488;
+  --color-criteria-encouraged-dark:  #5eead4;
+  --color-criteria-prohibited: var(--color-criteria-prohibited-dark);
+  --color-criteria-encouraged: var(--color-criteria-encouraged-dark);
+}
+:root[data-theme='light'] {
+  --color-criteria-prohibited: var(--color-criteria-prohibited-light);
+  --color-criteria-encouraged: var(--color-criteria-encouraged-light);
+}
+
+h3#no-ads::before,
+h3#no-tracking::before,
+h3#no-analytics::before,
+h3#no-gambling::before,
+h3#no-crypto::before,
+h3#all-ages::before,
+h3#platform-apps::before,
+h3#multi-service::before,
+h3#useful::before {
+  content: '';
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: -0.22em;
+  margin-inline-end: 0.45rem;
+  background-color: var(--criteria-color);
+  -webkit-mask: var(--criteria-icon) no-repeat center / contain;
+          mask: var(--criteria-icon) no-repeat center / contain;
+}
+
+/* Prohibited items (red) */
+h3#no-ads        { --criteria-color: var(--color-criteria-prohibited); --criteria-icon: url('/assets/icons/criteria/campaign.svg'); }
+h3#no-tracking   { --criteria-color: var(--color-criteria-prohibited); --criteria-icon: url('/assets/icons/criteria/track_changes.svg'); }
+h3#no-analytics  { --criteria-color: var(--color-criteria-prohibited); --criteria-icon: url('/assets/icons/criteria/analytics.svg'); }
+h3#no-gambling   { --criteria-color: var(--color-criteria-prohibited); --criteria-icon: url('/assets/icons/criteria/casino.svg'); }
+h3#no-crypto     { --criteria-color: var(--color-criteria-prohibited); --criteria-icon: url('/assets/icons/criteria/currency_bitcoin.svg'); }
+
+/* Encouraged items (teal) */
+h3#all-ages      { --criteria-color: var(--color-criteria-encouraged); --criteria-icon: url('/assets/icons/criteria/family_restroom.svg'); }
+h3#platform-apps { --criteria-color: var(--color-criteria-encouraged); --criteria-icon: url('/assets/icons/criteria/apps.svg'); }
+h3#multi-service { --criteria-color: var(--color-criteria-encouraged); --criteria-icon: url('/assets/icons/criteria/lan.svg'); }
+h3#useful        { --criteria-color: var(--color-criteria-encouraged); --criteria-icon: url('/assets/icons/criteria/recommend.svg'); }
+
 
 /* ── External-link marker ──
    Replaces the previous "↗" text indicator added by rehype-external-links.
