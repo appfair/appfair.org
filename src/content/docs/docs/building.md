@@ -161,7 +161,7 @@ The recommended workflow is to add English as the development locale, add French
 
 ### Accessibility (Accessible) {#a11y}
 
-App Fair apps should function for users across the spectrum of abilities, including users of VoiceOver and TalkBack, users of Dynamic Type, users of Switch Control, and users who depend on sufficient colour contrast. SwiftUI provides most of the necessary infrastructure through its [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility), which are translated into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android. A UI element described once is accessible on both platforms.
+App Fair apps should function for users across the spectrum of abilities, including users of [VoiceOver](https://support.apple.com/guide/iphone/turn-on-and-practice-voiceover-iph3e2e415f/ios) and [TalkBack](https://support.google.com/accessibility/android/answer/6283677), users of [Dynamic Type](https://developer.apple.com/design/human-interface-guidelines/typography#Dynamic-Type), users of [Switch Control](https://support.apple.com/guide/iphone/use-switch-control-iph2db00bef0/ios), and users who depend on sufficient colour contrast. SwiftUI provides most of the necessary infrastructure through its [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility), which are translated into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android. A UI element described once is accessible on both platforms.
 
 The most frequently used modifiers:
 
