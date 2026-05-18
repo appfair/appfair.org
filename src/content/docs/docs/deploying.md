@@ -25,6 +25,7 @@ The organization that maintains the app's source repository is responsible for t
 - **Core development and maintenance** of the application: features, bug fixes, refactoring, and the project's overall direction.
 - **Responding to support requests** from users, whether they arrive through GitHub Issues, store reviews, or other channels.
 - **Keeping dependencies current**, including Skip, the platform SDKs, and any third-party libraries the app uses.
+- **Service and server maintenance**, for any external services the app directly relies on. If the app requires a backend service that the upstream organization operates (its own API server, an authentication endpoint, a sync service, a content backend, and so on), keeping that service available, current, and operational is the upstream developer's responsibility. An App Fair app whose required backend service becomes non-functional may be removed from distribution by the App Fair, since users installing the app from the catalog would otherwise encounter a broken application.
 - **Regulatory and policy compliance**, including data-protection obligations that fall on the application itself (privacy disclosures within the app, lawful handling of any data the app processes, age-appropriate content, jurisdiction-specific requirements, and so on).
 
 ### Downstream (the `appfair/` fork) {#downstream-responsibilities}

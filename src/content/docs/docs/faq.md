@@ -101,6 +101,12 @@ The immutable identifier for an App Fair app's source. The token is the name sha
 
 See also: [Naming](/docs/inclusion-criteria/#naming), [Create a GitHub organization](/docs/building/#org), [Initialize the Skip project](/docs/building/#skip-init).
 
+### Call for Maintenance (CFM) {#cfm}
+
+A public posting on the App Fair discussion forums asking the community to take over maintenance of an app whose original maintainer can no longer continue. The CFM describes the project, its current state, and the expectations on a successor; if someone steps forward, they can be added to the app's GitHub organization and ownership is transferred incrementally. The organization-per-app convention is what makes a CFM handoff feasible without entangling personal accounts.
+
+See also: [Project handoff](/docs/maintenance/#handoff).
+
 ### Code Hub {#hub}
 
 A source-hosting platform on which an App Fair app's source repository lives. GitHub is the only currently supported code hub; GitLab, Codeberg, and self-hosted Forgejo are on the project roadmap.
