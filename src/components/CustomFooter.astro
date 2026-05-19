@@ -72,6 +72,12 @@ import { Icon } from '@astrojs/starlight/components';
 				</a>
 			</li>
 			<li>
+				<a class="site-social-link site-social-discord" href="https://discord.com/invite/KkmhEQTmgh" rel="me" aria-label="Discord">
+					<span class="site-social-icon" aria-hidden="true"></span>
+					<span class="site-social-label">Discord</span>
+				</a>
+			</li>
+			<li>
 				<a class="site-social-link site-social-email" href="mailto:contact@appfair.org" aria-label="Email">
 					<span class="site-social-icon" aria-hidden="true"></span>
 					<span class="site-social-label">contact@appfair.org</span>
@@ -139,6 +145,11 @@ import { Icon } from '@astrojs/starlight/components';
 		/* Reddit's "OrangeRed" brand colour. */
 		color: #FF4500;
 	}
+	.site-social-discord .site-social-icon {
+		--social-icon: url('/assets/icons/social/discord.svg');
+		/* Discord's "Blurple" brand colour. */
+		color: #5865F2;
+	}
 	.site-social-github .site-social-icon {
 		--social-icon: url('/assets/icons/social/github.svg');
 		/* GitHub's mark is monochromatic; follow the surrounding text colour. */
@@ -170,6 +181,8 @@ import { Icon } from '@astrojs/starlight/components';
 	.site-social-linkedin:focus-visible { color: #0A66C2; }
 	.site-social-reddit:hover,
 	.site-social-reddit:focus-visible   { color: #FF4500; }
+	.site-social-discord:hover,
+	.site-social-discord:focus-visible  { color: #5865F2; }
 	.site-social-github:hover,
 	.site-social-github:focus-visible   { color: var(--sl-color-white); }
 	.site-social-forums:hover,

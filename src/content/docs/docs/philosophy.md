@@ -37,7 +37,7 @@ In practice, this requires the use of SwiftUI's localization infrastructure: pri
 
 An App Fair app should be usable by people across the spectrum of abilities. This includes users of [VoiceOver](https://support.apple.com/guide/iphone/turn-on-and-practice-voiceover-iph3e2e415f/ios) and [TalkBack](https://support.google.com/accessibility/android/answer/6283677), users of [Dynamic Type](https://developer.apple.com/design/human-interface-guidelines/typography#Dynamic-Type) at the largest sizes, users of [Switch Control](https://support.apple.com/guide/iphone/use-switch-control-iph2db00bef0/ios), and users who rely on sufficient colour contrast.
 
-In SwiftUI, this is primarily a matter of applying the standard [accessibility view modifiers](https://developer.apple.com/documentation/swiftui/view-accessibility): `.accessibilityLabel`, `.accessibilityHint`, `.accessibilityValue`, `.accessibilityElement(children:)`, `.accessibilityAddTraits`, and related APIs. These modifiers are translated into the equivalent [Jetpack Compose accessibility semantics](https://developer.android.com/develop/ui/compose/accessibility) on Android, so describing a UI element once makes it accessible on both platforms.
+None of this is optional. Building accessibility in from the start is cheap; retrofitting it later isn't. The same affordances (larger text, better contrast, bigger tap targets) turn out to help most users at some point, not only the users who need them every day.
 
 <aside class="callout callout-tip">
   <span class="callout-icon" style="--icon: url('/assets/icons/callout/hub.svg');" aria-hidden="true"></span>
