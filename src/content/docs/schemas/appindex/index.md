@@ -1,5 +1,6 @@
 ---
 title: App Index Schema
+template: splash
 ---
 
 # App Index Schema
