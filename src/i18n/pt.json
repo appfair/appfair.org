@@ -92,7 +92,8 @@
       "popups": {
         "free": {
           "text": "Os aplicativos distribuídos pelo Projeto App Fair são livres: não apenas gratuitos, mas também respeitam as {freedoms}.",
-          "freedomsLabel": "quatro liberdades essenciais do software livre"
+          "freedomsLabel": "quatro liberdades essenciais do software livre",
+          "url": "https://www.gnu.org/philosophy/free-sw.pt-br.html"
         },
         "noAds": {
           "text": "Anúncios são abundantes nas lojas de aplicativos comerciais e são a forma mais comum de monetizar aplicativos comerciais que se dizem “gratuitos”. Os aplicativos da App Fair não incluem publicidade embutida nem tecnologia de anúncios."
@@ -147,7 +148,7 @@
         {
           "icon": "code",
           "title": "Construir às claras",
-          "body": "Um desenvolvedor cria o aplicativo em seu próprio repositório, sob a GPL, com todas as dependências livres e de código aberto."
+          "body": "Um desenvolvedor cria o aplicativo em seu próprio repositório, sob a Licença Pública Geral GNU, com todas as dependências livres e de código aberto."
         },
         {
           "icon": "package-check",

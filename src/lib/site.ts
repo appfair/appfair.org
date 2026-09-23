@@ -4,8 +4,6 @@ export const site = {
   catalog: 'https://appfair.net',
   email: 'contact@appfair.org',
   forums: 'https://github.com/orgs/appfair/discussions',
-  /** The FSF's definition, linked from the "Free" popup on the hero graphic. */
-  freedoms: 'https://www.gnu.org/philosophy/free-sw.html',
   rss: '/blog/rss.xml',
   social: [
     { id: 'forums', label: 'Forums', href: 'https://github.com/orgs/appfair/discussions', color: '#10B981' },

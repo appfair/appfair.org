@@ -92,7 +92,8 @@
       "popups": {
         "free": {
           "text": "App Fairプロジェクトを通じて配布されるアプリは、料金が無料であるだけでなく、{freedoms}を尊重するという意味でも自由です。",
-          "freedomsLabel": "自由ソフトウェアの4つの基本的な自由"
+          "freedomsLabel": "自由ソフトウェアの4つの基本的な自由",
+          "url": "https://www.gnu.org/philosophy/free-sw.ja.html"
         },
         "noAds": {
           "text": "商用アプリストアには広告があふれており、「無料」を謳う商用アプリを収益化する最も一般的な手段となっています。App Fairアプリには、ネイティブ広告やアドテクは一切含まれていません。"
@@ -147,7 +148,7 @@
         {
           "icon": "code",
           "title": "公開の場で開発",
-          "body": "開発者は自分のリポジトリで、GPLの下、すべての依存関係を自由でオープンソースなものにしてアプリを作ります。"
+          "body": "開発者は自分のリポジトリで、GNU General Public Licenseの下、すべての依存関係を自由でオープンソースなものにしてアプリを作ります。"
         },
         {
           "icon": "package-check",

@@ -92,7 +92,8 @@
       "popups": {
         "free": {
           "text": "App Fair 프로젝트를 통해 배포되는 앱은 자유롭습니다. 비용이 무료일 뿐만 아니라 {freedoms}를 존중한다는 의미에서도 그렇습니다.",
-          "freedomsLabel": "자유 소프트웨어의 네 가지 필수 자유"
+          "freedomsLabel": "자유 소프트웨어의 네 가지 필수 자유",
+          "url": "https://www.gnu.org/philosophy/free-sw.ko.html"
         },
         "noAds": {
           "text": "상업용 앱 스토어에는 광고가 만연하며, '무료'를 표방하는 상업용 앱을 수익화하는 가장 흔한 수단입니다. App Fair 앱에는 기본 광고나 광고 기술이 전혀 포함되어 있지 않습니다."
@@ -147,7 +148,7 @@
         {
           "icon": "code",
           "title": "공개적으로 개발",
-          "body": "개발자가 자신의 저장소에서 GPL 라이선스로, 모든 의존성을 자유 오픈 소스로 하여 앱을 만듭니다."
+          "body": "개발자가 자신의 저장소에서 GNU 일반 공중 사용 허가서(GNU General Public License)로, 모든 의존성을 자유 오픈 소스로 하여 앱을 만듭니다."
         },
         {
           "icon": "package-check",

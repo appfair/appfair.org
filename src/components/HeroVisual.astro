@@ -9,7 +9,7 @@
 // design picker via <html data-visual>.
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { site, design, designOptions } from '../lib/site';
+import { design, designOptions } from '../lib/site';
 import { useTranslations } from '../i18n';
 
 const { t } = useTranslations(Astro.currentLocale);
@@ -64,7 +64,7 @@ const [freeBefore, freeAfter = ''] = t('home.visual.popups.free.text').split('{f
       <div class="popup" id={`hv-${variant}-${tag.key}`} data-key={tag.key} role="dialog" aria-label={t(`home.visual.${tag.key}`)} hidden>
         <div class="popup-head"><span class="popup-icon"><Icon name={tag.icon} /></span><h4>{t(`home.visual.${tag.key}`)}</h4></div>
         {tag.key === 'free' ? (
-          <p>{freeBefore}<a href={site.freedoms} rel="noopener">{t('home.visual.popups.free.freedomsLabel')}</a>{freeAfter}</p>
+          <p>{freeBefore}<a href={t('home.visual.popups.free.url')} rel="noopener">{t('home.visual.popups.free.freedomsLabel')}</a>{freeAfter}</p>
         ) : (
           <p>{t(`home.visual.popups.${tag.key}.text`)}</p>
         )}

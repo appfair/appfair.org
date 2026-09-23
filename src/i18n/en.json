@@ -128,7 +128,7 @@
         {
           "icon": "code",
           "title": "Build in the open",
-          "body": "A developer creates the app in their own repository, under the GPL, with every dependency free and open source."
+          "body": "A developer creates the app in their own repository, under the GNU General Public License, with every dependency free and open source."
         },
         {
           "icon": "package-check",
@@ -163,7 +163,8 @@
       "popups": {
         "free": {
           "text": "Apps distributed through the App Fair Project are free, not just in terms of money, but also in that they respect the {freedoms}.",
-          "freedomsLabel": "four essential freedoms of free software"
+          "freedomsLabel": "four essential freedoms of free software",
+          "url": "https://www.gnu.org/philosophy/free-sw.html"
         },
         "noAds": {
           "text": "Advertisements are rife in the commercial app stores, and are the most common avenue for monetizing commercial applications that purport to be “free”. App Fair apps do not include any native advertising or ad-tech."

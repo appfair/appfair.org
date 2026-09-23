@@ -92,7 +92,8 @@
       "popups": {
         "free": {
           "text": "通过 App Fair 项目分发的应用是自由的：不仅免费，而且尊重{freedoms}。",
-          "freedomsLabel": "自由软件的四项基本自由"
+          "freedomsLabel": "自由软件的四项基本自由",
+          "url": "https://www.gnu.org/philosophy/free-sw.zh-cn.html"
         },
         "noAds": {
           "text": "商业应用商店中广告泛滥，是号称“免费”的商业应用最常见的变现途径。App Fair 应用不包含任何内置广告或广告技术。"
@@ -147,7 +148,7 @@
         {
           "icon": "code",
           "title": "公开构建",
-          "body": "开发者在自己的仓库中以 GPL 许可证创建应用，所有依赖均为自由开源软件。"
+          "body": "开发者在自己的仓库中以 GNU 通用公共许可证创建应用，所有依赖均为自由开源软件。"
         },
         {
           "icon": "package-check",
