@@ -1,7 +1,8 @@
 {
   "site": {
     "name": "App Fair 项目",
-    "tagline": "适用于 iPhone 和 Android 的自由开源应用商店"
+    "tagline": "适用于 iPhone 和 Android 的自由开源应用商店",
+    "description": "App Fair 项目是一个致力于为公共利益创造移动应用的非营利组织：应用免费、无广告、无追踪，并由自由开源软件构建。"
   },
   "nav": {
     "apps": "应用",
@@ -12,7 +13,8 @@
     "close": "关闭",
     "language": "语言",
     "theme": "主题",
-    "skip": "跳到正文"
+    "skip": "跳到正文",
+    "home": "App Fair 首页"
   },
   "theme": {
     "light": "浅色",
@@ -26,7 +28,10 @@
     "policies": "政策",
     "blog": "博客",
     "donate": "捐赠",
-    "catalog": "浏览目录"
+    "catalog": "浏览目录",
+    "project": "项目",
+    "community": "社区",
+    "schema": "App Index 架构"
   },
   "home": {
     "title": "App Fair 项目",
@@ -74,7 +79,9 @@
           "title": "尊重隐私的设计",
           "body": "App Fair 应用程序不包含跟踪器、间谍软件，也不请求不必要的权限。您的数据保留在您的设备上，除非共享是必不可少且明确的。"
         }
-      ]
+      ],
+      "eyebrow": "App Fair 应用的标准",
+      "heading": "为用户而建，而非为广告商"
     },
     "visual": {
       "free": "免费",
@@ -97,6 +104,74 @@
           "text": "商业应用商店中充斥着隐蔽且未经同意的追踪，几乎没有任何监督。您的隐私对我们很重要：App Fair 应用不包含任何追踪、遥测、分析或其他间谍软件。"
         }
       }
+    },
+    "stores": {
+      "body": "每个版本在进入目录前都会提交给 App Fair 进行审查和批准，随后由 App Fair 发布到 App Store 和 Google Play。通过 F-Droid 和 AltStore 分发已在规划中。",
+      "app-store": "在 App Store 下载",
+      "play-store": "在 Google Play 获取",
+      "f-droid": "在 F-Droid 获取",
+      "altstore": "在 AltStore 获取",
+      "roadmap": "规划中"
+    },
+    "cornerstones": {
+      "eyebrow": "四大基石",
+      "heading": "App Fair 应用的品质",
+      "lead": "它们建立在自由软件的四项基本自由之上，并以覆盖范围、语言和无障碍加以扩展，让应用的自由对全球移动用户真正有意义。",
+      "items": [
+        {
+          "icon": "eye",
+          "title": "透明",
+          "body": "任何人都可以检查、修改和再分发。源代码、构建配置和每一个依赖都以自由开源许可证发布。"
+        },
+        {
+          "icon": "smartphone",
+          "title": "无处不在",
+          "body": "在每个移动平台上都可用。同一套代码库生成原生 iOS 应用和原生 Android 应用，功能完全一致。"
+        },
+        {
+          "icon": "languages",
+          "title": "全球化",
+          "body": "使用用户的语言。所有字符串都已外部化，支持的语言保持更新，商店页面也与应用一同翻译。"
+        },
+        {
+          "icon": "accessibility",
+          "title": "无障碍",
+          "body": "适合不同能力的人使用：屏幕阅读器、最大字号、切换控制和充足的对比度，从第一次提交起就内置其中。"
+        }
+      ]
+    },
+    "how": {
+      "eyebrow": "运作方式",
+      "heading": "开发者公开构建，其余交给 App Fair。",
+      "steps": [
+        {
+          "icon": "code",
+          "title": "公开构建",
+          "body": "开发者在自己的仓库中以 GPL 许可证创建应用，所有依赖均为自由开源软件。"
+        },
+        {
+          "icon": "package-check",
+          "title": "提交审查",
+          "body": "版本准备就绪后提交给 App Fair，依据收录标准审查并批准进入目录。"
+        },
+        {
+          "icon": "download",
+          "title": "发布到商店",
+          "body": "批准的版本由 App Fair 发布到 App Store 和 Google Play，用户从自己常用的商店安装。"
+        }
+      ],
+      "note": "每个版本在被接受前，都会与开发者自己发布的构建进行核对。"
+    },
+    "latest": {
+      "eyebrow": "来自博客",
+      "heading": "最新文章",
+      "all": "所有文章"
+    },
+    "cta": {
+      "heading": "帮助建设数字公共产品目录",
+      "body": "App Fair 完全依靠捐赠和资助运营。您的支持将用于开发、审查和基础设施，让目录对所有人保持免费。",
+      "donate": "捐赠",
+      "browse": "浏览目录"
     }
   },
   "blog": {
@@ -104,6 +179,16 @@
     "all": "所有文章",
     "back": "博客",
     "prev": "上一篇",
-    "next": "下一篇"
+    "next": "下一篇",
+    "description": "App Fair 项目的新闻、演讲与政策文章。",
+    "eyebrow": "App Fair 博客",
+    "readingTime": "阅读约 {n} 分钟",
+    "by": "作者：{author}",
+    "subscribe": "通过 RSS 订阅",
+    "draft": "草稿",
+    "readMore": "阅读全文"
+  },
+  "search": {
+    "placeholder": "搜索本站"
   }
 }

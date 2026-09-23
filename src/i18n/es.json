@@ -1,7 +1,8 @@
 {
   "site": {
     "name": "El Proyecto App Fair",
-    "tagline": "La tienda de aplicaciones gratuita y de código abierto para iPhone y Android"
+    "tagline": "La tienda de aplicaciones gratuita y de código abierto para iPhone y Android",
+    "description": "El Proyecto App Fair es una organización sin fines de lucro dedicada a crear aplicaciones móviles para el bien público: gratuitas, sin anuncios ni rastreo, y construidas con software libre y de código abierto."
   },
   "nav": {
     "apps": "Apps",
@@ -12,7 +13,8 @@
     "close": "Cerrar",
     "language": "Idioma",
     "theme": "Tema",
-    "skip": "Ir al contenido"
+    "skip": "Ir al contenido",
+    "home": "Inicio de App Fair"
   },
   "theme": {
     "light": "Claro",
@@ -26,7 +28,10 @@
     "policies": "Políticas",
     "blog": "Blog",
     "donate": "Donar",
-    "catalog": "Explorar el catálogo"
+    "catalog": "Explorar el catálogo",
+    "project": "Proyecto",
+    "community": "Comunidad",
+    "schema": "Esquema App Index"
   },
   "home": {
     "title": "El Proyecto App Fair",
@@ -74,7 +79,9 @@
           "title": "Respetuoso con la Privacidad por Diseño",
           "body": "Las aplicaciones de App Fair no contienen rastreadores, ni software espía, y no solicitan permisos innecesarios. Tus datos permanecen en tu dispositivo a menos que compartirlos sea esencial y explícito."
         }
-      ]
+      ],
+      "eyebrow": "Qué define a una aplicación de App Fair",
+      "heading": "Hechas para los usuarios, no para los anunciantes"
     },
     "visual": {
       "free": "Gratis",
@@ -97,6 +104,74 @@
           "text": "El rastreo subrepticio y sin consentimiento abunda en las tiendas de aplicaciones comerciales, con poca o ninguna supervisión. Tu privacidad nos importa: las aplicaciones de App Fair no contienen rastreo, telemetría, analítica ni ningún otro software espía."
         }
       }
+    },
+    "stores": {
+      "body": "Cada versión se envía al App Fair para su revisión y aprobación antes de entrar en el catálogo, y después el App Fair la publica en la App Store y Google Play. La distribución a través de F-Droid y AltStore está en la hoja de ruta.",
+      "app-store": "Descárgalo en el App Store",
+      "play-store": "Disponible en Google Play",
+      "f-droid": "Disponible en F-Droid",
+      "altstore": "Disponible en AltStore",
+      "roadmap": "En la hoja de ruta"
+    },
+    "cornerstones": {
+      "eyebrow": "Los cuatro pilares",
+      "heading": "Las cualidades de una aplicación de App Fair",
+      "lead": "Se basan en las cuatro libertades esenciales del software libre y las amplían con el alcance, el idioma y la accesibilidad que hacen que la libertad de una aplicación tenga sentido para un público móvil global.",
+      "items": [
+        {
+          "icon": "eye",
+          "title": "Transparente",
+          "body": "Abierta a la inspección, modificación y redistribución por parte de cualquiera. El código fuente, la configuración de compilación y cada dependencia se publican bajo licencias libres y de código abierto."
+        },
+        {
+          "icon": "smartphone",
+          "title": "Ubicua",
+          "body": "Disponible en todas las plataformas móviles. Una sola base de código se entrega como una aplicación nativa de iOS y otra nativa de Android, con las mismas funciones en cada una."
+        },
+        {
+          "icon": "languages",
+          "title": "Global",
+          "body": "Habla el idioma del usuario. Cada cadena está externalizada, los idiomas admitidos se mantienen al día y la ficha de la tienda se traduce junto con la aplicación."
+        },
+        {
+          "icon": "accessibility",
+          "title": "Accesible",
+          "body": "Utilizable por personas con todo tipo de capacidades: lectores de pantalla, los tamaños de texto más grandes, control por interruptores y contraste suficiente, integrados desde el primer commit."
+        }
+      ]
+    },
+    "how": {
+      "eyebrow": "Cómo funciona",
+      "heading": "Los desarrolladores construyen a la vista de todos. El App Fair hace el resto.",
+      "steps": [
+        {
+          "icon": "code",
+          "title": "Construir a la vista de todos",
+          "body": "Un desarrollador crea la aplicación en su propio repositorio, bajo la GPL, con todas las dependencias libres y de código abierto."
+        },
+        {
+          "icon": "package-check",
+          "title": "Enviada a revisión",
+          "body": "Cuando una versión está lista, se envía al App Fair, donde se revisa según los criterios de inclusión y se aprueba para el catálogo."
+        },
+        {
+          "icon": "download",
+          "title": "Publicada en las tiendas",
+          "body": "El App Fair publica las versiones aprobadas en la App Store y Google Play, y los usuarios las instalan desde la tienda que ya usan."
+        }
+      ],
+      "note": "Cada versión se comprueba contra la compilación publicada por el propio desarrollador antes de aceptarse."
+    },
+    "latest": {
+      "eyebrow": "Del blog",
+      "heading": "Últimos artículos",
+      "all": "Todas las publicaciones"
+    },
+    "cta": {
+      "heading": "Ayuda a construir un catálogo de bienes públicos digitales",
+      "body": "El App Fair se financia únicamente con donaciones y subvenciones. Tu apoyo paga el desarrollo, la revisión y la infraestructura que mantienen el catálogo gratuito para todos.",
+      "donate": "Donar",
+      "browse": "Explorar el catálogo"
     }
   },
   "blog": {
@@ -104,6 +179,16 @@
     "all": "Todas las publicaciones",
     "back": "Blog",
     "prev": "Anterior",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "description": "Noticias, charlas y análisis de políticas del Proyecto App Fair.",
+    "eyebrow": "El blog de App Fair",
+    "readingTime": "{n} min de lectura",
+    "by": "Por {author}",
+    "subscribe": "Suscribirse por RSS",
+    "draft": "Borrador",
+    "readMore": "Leer más"
+  },
+  "search": {
+    "placeholder": "Buscar en el sitio"
   }
 }

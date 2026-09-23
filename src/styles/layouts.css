@@ -52,7 +52,7 @@
 :root[data-layout='split'] .step .icon { position: static; margin-bottom: 8px; }
 :root[data-layout='split'] .how .split { align-items: start; }
 :root[data-layout='split'] .how .section-head { position: sticky; top: calc(var(--nav-h) + 20px); }
-:root[data-layout='split'] .cta-box .actions { justify-content: flex-end; margin-top: 8px; }
+:root[data-layout='split'] .cta-box .actions { justify-content: center; margin-top: 8px; }
 
 /* ===== bold: full-bleed oversized hero, floating pill nav, bento grid ===== */
 :root[data-layout='bold'] { --nav-h: 82px; }

@@ -1,7 +1,8 @@
 {
   "site": {
     "name": "앱 페어 프로젝트",
-    "tagline": "iPhone 및 Android용 무료 오픈소스 앱 스토어"
+    "tagline": "iPhone 및 Android용 무료 오픈소스 앱 스토어",
+    "description": "App Fair 프로젝트는 공익을 위한 모바일 앱을 만드는 비영리 단체입니다. 앱은 무료이며 광고와 추적이 없고, 자유 오픈 소스 소프트웨어로 만들어집니다."
   },
   "nav": {
     "apps": "앱",
@@ -12,7 +13,8 @@
     "close": "닫기",
     "language": "언어",
     "theme": "테마",
-    "skip": "본문으로 건너뛰기"
+    "skip": "본문으로 건너뛰기",
+    "home": "App Fair 홈"
   },
   "theme": {
     "light": "라이트",
@@ -26,7 +28,10 @@
     "policies": "정책",
     "blog": "블로그",
     "donate": "후원",
-    "catalog": "카탈로그 둘러보기"
+    "catalog": "카탈로그 둘러보기",
+    "project": "프로젝트",
+    "community": "커뮤니티",
+    "schema": "App Index 스키마"
   },
   "home": {
     "title": "앱 페어 프로젝트",
@@ -74,7 +79,9 @@
           "title": "개인 정보 보호 설계",
           "body": "앱 페어 앱에는 추적기, 스파이웨어가 없으며 불필요한 권한을 요청하지 않습니다. 데이터는 공유가 필수적이고 명시적인 경우를 제외하고는 장치에 남아 있습니다."
         }
-      ]
+      ],
+      "eyebrow": "App Fair 앱의 조건",
+      "heading": "광고주가 아닌 사용자를 위해 만들어진 앱"
     },
     "visual": {
       "free": "무료",
@@ -97,6 +104,74 @@
           "text": "상업용 앱 스토어에서는 은밀하고 동의 없는 추적이 만연하며 감독은 거의 또는 전혀 없습니다. 당신의 개인정보는 소중합니다. App Fair 앱에는 추적, 원격 측정, 분석 또는 기타 스파이웨어가 포함되어 있지 않습니다."
         }
       }
+    },
+    "stores": {
+      "body": "모든 릴리스는 카탈로그에 등록되기 전에 App Fair에 제출되어 검토와 승인을 거치며, 이후 App Fair가 App Store와 Google Play에 게시합니다. F-Droid와 AltStore를 통한 배포는 지원 예정입니다.",
+      "app-store": "App Store에서 다운로드",
+      "play-store": "Google Play에서 다운로드",
+      "f-droid": "F-Droid에서 받기",
+      "altstore": "AltStore에서 받기",
+      "roadmap": "지원 예정"
+    },
+    "cornerstones": {
+      "eyebrow": "네 가지 기본 원칙",
+      "heading": "App Fair 앱의 자질",
+      "lead": "자유 소프트웨어의 네 가지 필수 자유를 바탕으로, 전 세계 모바일 사용자에게 앱의 자유가 실질적인 의미를 갖도록 도달 범위, 언어, 접근성을 더합니다.",
+      "items": [
+        {
+          "icon": "eye",
+          "title": "투명성",
+          "body": "누구나 검사하고 수정하고 재배포할 수 있습니다. 소스 코드, 빌드 구성, 모든 의존성이 자유 오픈 소스 라이선스로 공개됩니다."
+        },
+        {
+          "icon": "smartphone",
+          "title": "보편성",
+          "body": "모든 모바일 플랫폼에서 사용할 수 있습니다. 하나의 코드베이스에서 네이티브 iOS 앱과 네이티브 Android 앱이 만들어지며, 두 앱의 기능은 동일합니다."
+        },
+        {
+          "icon": "languages",
+          "title": "글로벌",
+          "body": "사용자의 언어로 말합니다. 모든 문자열이 외부화되어 있고, 지원 언어는 최신 상태로 유지되며, 스토어 설명도 앱과 함께 번역됩니다."
+        },
+        {
+          "icon": "accessibility",
+          "title": "접근성",
+          "body": "다양한 능력을 가진 사람들이 사용할 수 있습니다. 스크린 리더, 가장 큰 글자 크기, 스위치 제어, 충분한 대비를 첫 커밋부터 갖추고 있습니다."
+        }
+      ]
+    },
+    "how": {
+      "eyebrow": "작동 방식",
+      "heading": "개발자는 공개적으로 만들고, 나머지는 App Fair가 맡습니다.",
+      "steps": [
+        {
+          "icon": "code",
+          "title": "공개적으로 개발",
+          "body": "개발자가 자신의 저장소에서 GPL 라이선스로, 모든 의존성을 자유 오픈 소스로 하여 앱을 만듭니다."
+        },
+        {
+          "icon": "package-check",
+          "title": "검토를 위해 제출",
+          "body": "릴리스가 준비되면 App Fair에 제출되어 포함 기준에 따라 검토되고 카탈로그 등록이 승인됩니다."
+        },
+        {
+          "icon": "download",
+          "title": "스토어에 게시",
+          "body": "승인된 릴리스는 App Fair가 App Store와 Google Play에 게시하며, 사용자는 이미 쓰고 있는 스토어에서 설치합니다."
+        }
+      ],
+      "note": "모든 릴리스는 수락되기 전에 개발자가 직접 게시한 빌드와 대조하여 확인됩니다."
+    },
+    "latest": {
+      "eyebrow": "블로그에서",
+      "heading": "최신 글",
+      "all": "모든 글"
+    },
+    "cta": {
+      "heading": "디지털 공공재 카탈로그를 함께 만들어 주세요",
+      "body": "App Fair는 전적으로 기부금과 보조금으로 운영됩니다. 여러분의 후원이 카탈로그를 모두에게 무료로 유지하는 개발, 검토, 인프라 비용을 감당합니다.",
+      "donate": "후원하기",
+      "browse": "카탈로그 둘러보기"
     }
   },
   "blog": {
@@ -104,6 +179,16 @@
     "all": "모든 글",
     "back": "블로그",
     "prev": "이전",
-    "next": "다음"
+    "next": "다음",
+    "description": "App Fair 프로젝트의 소식, 강연, 정책 관련 글.",
+    "eyebrow": "App Fair 블로그",
+    "readingTime": "{n}분 읽기",
+    "by": "작성자: {author}",
+    "subscribe": "RSS로 구독",
+    "draft": "초안",
+    "readMore": "더 읽기"
+  },
+  "search": {
+    "placeholder": "사이트 검색"
   }
 }

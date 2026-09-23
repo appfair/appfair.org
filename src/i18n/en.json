@@ -188,7 +188,8 @@
     "all": "All posts",
     "back": "Blog",
     "subscribe": "Subscribe via RSS",
-    "draft": "Draft"
+    "draft": "Draft",
+    "readMore": "Read more"
   },
   "page": {
     "updated": "Last updated {date}"
