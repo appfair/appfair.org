@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import HeroVisual from '../components/HeroVisual.astro';
+import StoreBadges from '../components/StoreBadges.astro';
+import PostCard from '../components/PostCard.astro';
+import { site } from '../lib/site';
+import { useTranslations, localizePath, DEFAULT_LOCALE, resolveLocale } from '../i18n';
+
+const locale = resolveLocale(Astro.currentLocale);
+const { t, tr } = useTranslations(locale);
+type Item = { icon: string; tone?: string; title: string; body: string };
+const features = tr<Item[]>('home.features.items');
+const cornerstones = tr<Item[]>('home.cornerstones.items');
+const steps = tr<Item[]>('home.how.steps');
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+<BaseLayout active="home" ogImage="/og/index.png">
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">{t('home.title')}</p>
+        <h1>{t('home.tagline')}</h1>
+        <p class="lead">{t('home.intro1')}</p>
+        <div class="actions">
+          <a class="btn btn-primary" href={site.catalog} rel="noopener">{t('home.browse')} <Icon name="arrow-right" /></a>
+          <a class="btn btn-ghost" href={localizePath('/blog/', locale)}>{t('home.readBlog')}</a>
+        </div>
+      </div>
+      <div class="hero-visual"><HeroVisual /></div>
+    </div>
+    <div class="container hero-stores">
+      <p>{t('home.stores.body')}</p>
+      <StoreBadges />
+    </div>
+  </section>
+
+  <section class="section features">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{t('home.features.eyebrow')}</p>
+          <h2>{t('home.features.heading')}</h2>
+        </div>
+        <p class="section-lead">{t('home.intro2')}</p>
+      </div>
+      <div class="feature-grid">
+        {features.map((f) => (
+          <article class="feature-card" data-tone={f.tone ?? 'blue'}>
+            <div class="feature-icon"><Icon name={f.icon} /></div>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cornerstones">
+    <div class="container split">
+      <div class="section-head">
+        <p class="eyebrow">{t('home.cornerstones.eyebrow')}</p>
+        <h2>{t('home.cornerstones.heading')}</h2>
+        <p class="section-lead">{t('home.cornerstones.lead')}</p>
+      </div>
+      <div class="cornerstone-list">
+        {cornerstones.map((c) => (
+          <article class="cornerstone">
+            <Icon name={c.icon} />
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section how">
+    <div class="container split">
+      <div class="section-head">
+        <p class="eyebrow">{t('home.how.eyebrow')}</p>
+        <h2>{t('home.how.heading')}</h2>
+        <p class="how-note">{t('home.how.note')}</p>
+      </div>
+      <div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li class="step">
+              <span class="step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <Icon name={s.icon} />
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section latest">
+      <div class="container">
+        <div class="section-head latest-head">
+          <div>
+            <p class="eyebrow">{t('home.latest.eyebrow')}</p>
+            <h2>{t('home.latest.heading')}</h2>
+          </div>
+          <a class="btn btn-ghost btn-sm" href={localizePath('/blog/', locale)}>{t('home.latest.all')} <Icon name="arrow-right" /></a>
+        </div>
+        <div class="post-grid">
+          {posts.map((p) => <PostCard post={p} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>{t('home.cta.heading')}</h2>
+        <p>{t('home.cta.body')}</p>
+        <div class="actions">
+          <a class="btn btn-primary" href={localizePath('/donate/', locale)}><Icon name="heart" /> {t('home.cta.donate')}</a>
+          <a class="btn btn-ghost" href={site.catalog} rel="noopener">{t('home.cta.browse')} <Icon name="external" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .latest-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; max-width: 100%; }
+  .latest-head h2 { margin-bottom: 0; }
+  :global(:root[data-layout='classic']) .latest-head { flex-direction: column; align-items: center; text-align: center; }
+  @media (max-width: 560px) { .latest-head { flex-direction: column; align-items: flex-start; } }
+</style>

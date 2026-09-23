@@ -1,0 +1,65 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../lib/site';
+import { useTranslations, localizePath } from '../i18n';
+const locale = Astro.currentLocale;
+const { t } = useTranslations(locale);
+const project = [
+  { href: localizePath('/blog/', locale), label: t('footer.blog') },
+  { href: localizePath('/donate/', locale), label: t('footer.donate') },
+  { href: localizePath('/marketplace/', locale), label: t('footer.policies') },
+  { href: localizePath('/schemas/appindex/', locale), label: t('footer.schema') },
+  { href: localizePath('/privacy/', locale), label: t('footer.privacy') },
+  { href: localizePath('/imprint/', locale), label: t('footer.imprint') },
+];
+---
+<footer class="footer" data-pagefind-ignore>
+  <div class="container foot-inner">
+    <div class="foot-brand">
+      <a class="brand" href={localizePath('/', locale)} aria-label={t('nav.home')}><Logo size={24} /><span>{t('site.name')}</span></a>
+      <p class="foot-tag">{t('site.tagline')}</p>
+      <a class="btn btn-ghost btn-sm" href={site.catalog} rel="noopener">{t('footer.catalog')} ↗</a>
+    </div>
+    <nav class="foot-cols" aria-label="Footer">
+      <div>
+        <h4>{t('footer.project')}</h4>
+        {project.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+      <div>
+        <h4>{t('footer.community')}</h4>
+        <ul class="social" aria-label={t('footer.community')}>
+          {site.social.map((s) => (
+            <li>
+              <a href={s.href} rel={s.me ? 'me' : undefined} style={`--social-color: ${s.color}`} data-social={s.id}>
+                <span class="social-icon" style={`--social-icon: url('/assets/icons/social/${s.id}.svg')`} aria-hidden="true"></span>
+                <span>{s.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="container foot-legal">
+    <p>{t('footer.nonprofit')}</p>
+  </div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--border-soft); background: var(--bg-2); padding-block: 56px 28px; margin-top: 40px; }
+  .foot-inner { display: flex; flex-wrap: wrap; gap: 40px 64px; justify-content: space-between; }
+  .brand { display: inline-flex; align-items: center; gap: 9px; color: var(--text); font-weight: 750; font-size: 1.05rem; }
+  .brand :global(img) { border-radius: 6px; }
+  .foot-tag { color: var(--faint); max-width: 34ch; margin: 12px 0 16px; font-size: 0.92rem; }
+  .foot-cols { display: flex; gap: 64px; }
+  .foot-cols h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 0 0 12px; font-family: var(--font); font-weight: 700; }
+  .foot-cols > div > a { display: block; color: var(--muted); font-size: 0.94rem; margin-bottom: 8px; }
+  .foot-cols > div > a:hover { color: var(--text); }
+  .social { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, auto); gap: 8px 28px; }
+  .social a { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.94rem; }
+  .social a:hover { color: var(--social-color, var(--text)); }
+  .social-icon { display: inline-block; width: 1.1rem; height: 1.1rem; background-color: var(--social-color, currentColor); -webkit-mask: var(--social-icon) no-repeat center / contain; mask: var(--social-icon) no-repeat center / contain; flex: none; }
+  .foot-legal { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-soft); color: var(--faint); font-size: 0.84rem; }
+  .foot-legal p { margin: 0; }
+  @media (max-width: 720px) { .foot-cols { gap: 36px; flex-wrap: wrap; } .social { grid-template-columns: 1fr; } }
+</style>

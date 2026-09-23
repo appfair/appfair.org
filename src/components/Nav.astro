@@ -1,0 +1,99 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import Search from './Search.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import { site } from '../lib/site';
+import { useTranslations, localizePath } from '../i18n';
+
+interface Props { active?: string }
+const { active } = Astro.props;
+const locale = Astro.currentLocale;
+const { t } = useTranslations(locale);
+const links = [
+  { href: site.catalog, label: t('nav.apps'), key: 'apps', external: true },
+  { href: localizePath('/blog/', locale), label: t('nav.blog'), key: 'blog' },
+  { href: localizePath('/donate/', locale), label: t('nav.donate'), key: 'donate' },
+];
+---
+<header class="nav" data-pagefind-ignore>
+  <div class="container nav-inner">
+    <a class="brand" href={localizePath('/', locale)} aria-label={t('nav.home')}>
+      <Logo size={30} />
+      <span class="brand-name">{t('site.short')}</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      {links.map((l) => (
+        <a href={l.href} class:list={['nav-link', { on: active === l.key }]} rel={l.external ? 'noopener' : undefined}>
+          {l.label}{l.external && <Icon name="external" class="icon ext" />}
+        </a>
+      ))}
+    </nav>
+    <div class="nav-tools">
+      <Search />
+      <div class="desktop-only"><LangSwitcher /></div>
+      <div class="desktop-only"><ThemeToggle /></div>
+      <button type="button" class="menu-btn" data-menu-btn aria-expanded="false" aria-controls="site-menu" aria-label={t('nav.menu')}>
+        <Icon name="menu" class="icon i-open" /><Icon name="x" class="icon i-close" />
+      </button>
+    </div>
+    <div class="nav-menu" id="site-menu" data-menu hidden>
+      {links.map((l) => (
+        <a href={l.href} class:list={['menu-link', { on: active === l.key }]}>{l.label}{l.external && <Icon name="external" class="icon ext" />}</a>
+      ))}
+      <div class="menu-row"><span>{t('nav.language')}</span><LangSwitcher /></div>
+      <div class="menu-row"><span>{t('nav.theme')}</span><ThemeToggle /></div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-menu-btn]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  if (btn && menu) {
+    const set = (open: boolean) => { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); document.body.classList.toggle('menu-open', open); };
+    btn.addEventListener('click', () => set(menu.hidden));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+    matchMedia('(min-width: 861px)').addEventListener('change', (e) => { if (e.matches) set(false); });
+  }
+</script>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(150%) blur(12px); -webkit-backdrop-filter: saturate(150%) blur(12px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-inner { position: relative; display: flex; align-items: center; gap: 28px; height: var(--nav-h); }
+  .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); }
+  .brand:hover { color: var(--text); }
+  .brand :global(img) { border-radius: 7px; }
+  .brand-name { font-weight: 750; font-size: 1.1rem; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 24px; }
+  .nav-link { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font-weight: 600; font-size: 0.95rem; }
+  .nav-link:hover, .nav-link.on { color: var(--text); }
+  .nav-link :global(.ext) { width: 12px; height: 12px; opacity: 0.6; }
+  .nav-tools { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+  .menu-btn { display: none; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid var(--border); background: var(--hover); border-radius: 999px; color: var(--text); cursor: pointer; }
+  .menu-btn :global(.icon) { width: 18px; height: 18px; }
+  .menu-btn[aria-expanded='true'] :global(.i-open), .menu-btn[aria-expanded='false'] :global(.i-close) { display: none; }
+  .nav-menu {
+    position: absolute; left: 0; right: 0; top: 100%; z-index: 55;
+    margin: 0 24px; padding: 12px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .nav-menu[hidden] { display: none; }
+  .menu-link { display: flex; align-items: center; gap: 6px; padding: 12px 14px; border-radius: var(--radius); color: var(--text); font-weight: 650; font-size: 1.02rem; }
+  .menu-link:hover, .menu-link.on { background: var(--hover); color: var(--text); }
+  .menu-link :global(.ext) { width: 13px; height: 13px; opacity: 0.6; }
+  .menu-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--border-soft); color: var(--faint); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+  @media (max-width: 860px) {
+    .nav-links, .desktop-only { display: none; }
+    .menu-btn { display: grid; }
+    .nav-inner { gap: 16px; }
+  }
+  @media (max-width: 420px) { .brand-name { display: none; } }
+</style>

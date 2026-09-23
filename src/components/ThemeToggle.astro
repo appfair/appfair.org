@@ -1,0 +1,71 @@
+---
+// Three-way theme selector (light / system / dark), stored as 'appfair-theme'. BaseLayout's inline
+// script applies the resolved value to <html data-theme> before paint; this reflects and updates it.
+import Icon from './Icon.astro';
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
+const choices = [
+  { id: 'light', icon: 'sun' },
+  { id: 'system', icon: 'monitor' },
+  { id: 'dark', icon: 'moon' },
+] as const;
+---
+<div class="seg" role="radiogroup" aria-label={t('nav.theme')} data-theme-toggle>
+  {choices.map((c) => (
+    <button type="button" role="radio" aria-checked="false" tabindex="-1" data-theme-choice={c.id} aria-label={t(`theme.${c.id}`)} title={t(`theme.${c.id}`)}>
+      <Icon name={c.icon} />
+    </button>
+  ))}
+</div>
+
+<script>
+  const KEY = 'appfair-theme';
+  const ORDER = ['light', 'system', 'dark'];
+  const root = document.documentElement;
+  const darkMq = matchMedia('(prefers-color-scheme: dark)');
+  const getPref = () => { try { return localStorage.getItem(KEY) || 'system'; } catch { return 'system'; } };
+  const resolve = (pref: string) => (pref === 'dark' || (pref === 'system' && darkMq.matches) ? 'dark' : 'light');
+
+  document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((group) => {
+    const buttons = Array.from(group.querySelectorAll<HTMLButtonElement>('[data-theme-choice]'));
+    const reflect = (pref: string) => {
+      for (const b of buttons) {
+        const on = b.dataset.themeChoice === pref;
+        b.setAttribute('aria-checked', on ? 'true' : 'false');
+        b.tabIndex = on ? 0 : -1;
+        b.classList.toggle('on', on);
+      }
+    };
+    const choose = (pref: string, focus: boolean) => {
+      try { localStorage.setItem(KEY, pref); } catch { /* private mode */ }
+      root.dataset.theme = resolve(pref);
+      document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((g) => {
+        g.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach((b) => {
+          const on = b.dataset.themeChoice === pref;
+          b.setAttribute('aria-checked', on ? 'true' : 'false');
+          b.tabIndex = on ? 0 : -1;
+          b.classList.toggle('on', on);
+        });
+      });
+      if (focus) group.querySelector<HTMLButtonElement>('[aria-checked="true"]')?.focus();
+    };
+    reflect(getPref());
+    for (const b of buttons) {
+      b.addEventListener('click', () => choose(b.dataset.themeChoice!, false));
+      b.addEventListener('keydown', (e) => {
+        const i = ORDER.indexOf(getPref());
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); choose(ORDER[(i + 1) % ORDER.length], true); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); choose(ORDER[(i + ORDER.length - 1) % ORDER.length], true); }
+      });
+    }
+  });
+  darkMq.addEventListener('change', () => { if (getPref() === 'system') root.dataset.theme = resolve('system'); });
+</script>
+
+<style>
+  .seg { display: inline-flex; gap: 2px; padding: 3px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; }
+  .seg button { display: inline-grid; place-items: center; width: 32px; height: 28px; padding: 0; border: 0; background: transparent; color: var(--faint); border-radius: 999px; cursor: pointer; transition: color 0.15s ease, background 0.15s ease; }
+  .seg button:hover { color: var(--text); }
+  .seg button.on { background: var(--surface); color: var(--brand); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); }
+  .seg :global(.icon) { width: 15px; height: 15px; }
+</style>

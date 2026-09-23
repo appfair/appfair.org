@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { excerpt, readingTime } from '../../lib/posts';
+import { useTranslations, localizePath, formatDate, resolveLocale } from '../../i18n';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    // Newest first, so "previous" is the older post and "next" the newer one.
+    props: { post, older: posts[i + 1] ?? null, newer: posts[i - 1] ?? null },
+  }));
+}
+const { post, older, newer } = Astro.props;
+const { Content } = await render(post);
+const locale = resolveLocale(Astro.currentLocale);
+const { t } = useTranslations(locale);
+const description = post.data.description ?? excerpt(post.body ?? '');
+---
+<BaseLayout title={post.data.title} description={description} active="blog" ogImage={`/og/blog/${post.id}.png`}>
+  <article class="container">
+    <header class="page-head">
+      <a class="back" href={localizePath('/blog/', locale)}><Icon name="arrow-left" /> {t('blog.back')}</a>
+      <h1>{post.data.title}</h1>
+      <div class="article-meta">
+        <span><Icon name="user" /> {post.data.author}</span>
+        <time datetime={post.data.date.toISOString()}><Icon name="calendar" /> {formatDate(post.data.date, locale)}</time>
+        <span><Icon name="clock" /> {t('blog.readingTime', { n: readingTime(post.body ?? '') })}</span>
+        {post.data.draft && <span class="pill">{t('blog.draft')}</span>}
+      </div>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    {post.data.tags.length > 0 && (
+      <p class="tags" data-pagefind-ignore>{post.data.tags.map((tag) => <span class="pill">{tag}</span>)}</p>
+    )}
+    {(older || newer) && (
+      <nav class="prevnext" aria-label="Pagination" data-pagefind-ignore>
+        {older ? <a href={localizePath(`/blog/${older.id}/`, locale)} class="pn"><span>← {t('blog.prev')}</span><b>{older.data.title}</b></a> : <span />}
+        {newer ? <a href={localizePath(`/blog/${newer.id}/`, locale)} class="pn next"><span>{t('blog.next')} →</span><b>{newer.data.title}</b></a> : <span />}
+      </nav>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .back { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.9rem; margin-bottom: 20px; }
+  .page-head h1 { max-width: 28ch; }
+  .article-meta span, .article-meta time { display: inline-flex; align-items: center; gap: 6px; }
+  .article-meta :global(.icon) { width: 14px; height: 14px; opacity: 0.8; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 40px 0 0; }
+  article { padding-bottom: 40px; }
+</style>

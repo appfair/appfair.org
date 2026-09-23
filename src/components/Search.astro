@@ -1,0 +1,84 @@
+---
+// Pagefind indexes the built site (`pagefind --site dist` in the build script) into /pagefind/. Its UI
+// is generated at build time, so search works in production and `preview`, not `dev`.
+import Icon from './Icon.astro';
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
+const unavailable = t('search.unavailable');
+const placeholder = t('search.placeholder');
+---
+<button type="button" class="search-trigger" data-search-open aria-label={t('nav.search')} aria-keyshortcuts="Meta+K Control+K">
+  <Icon name="search" />
+  <span class="st-text">{t('nav.search')}</span>
+  <kbd>⌘K</kbd>
+</button>
+
+<dialog class="search-modal" data-search-dialog aria-label={t('nav.search')} data-pagefind-ignore>
+  <div class="search-panel"><div id="pagefind-search" data-search-mount></div></div>
+</dialog>
+
+<script is:inline define:vars={{ unavailable, placeholder }}>
+  (() => {
+    const dialog = document.querySelector('[data-search-dialog]');
+    const mount = document.querySelector('[data-search-mount]');
+    if (!dialog || !mount) return;
+    let loaded = false;
+    function load() {
+      if (loaded) return Promise.resolve();
+      loaded = true;
+      return new Promise((resolve) => {
+        const css = document.createElement('link');
+        css.rel = 'stylesheet'; css.href = '/pagefind/pagefind-ui.css';
+        document.head.appendChild(css);
+        const js = document.createElement('script');
+        js.src = '/pagefind/pagefind-ui.js';
+        js.onload = () => {
+          // eslint-disable-next-line no-undef
+          new PagefindUI({ element: mount, showSubResults: true, showImages: false, resetStyles: false, translations: { placeholder } });
+          resolve();
+        };
+        js.onerror = () => {
+          const p = document.createElement('p'); p.className = 'search-unavailable'; p.textContent = unavailable;
+          mount.replaceChildren(p); resolve();
+        };
+        document.body.appendChild(js);
+      });
+    }
+    async function open() { await load(); if (!dialog.open) dialog.showModal(); setTimeout(() => dialog.querySelector('input')?.focus(), 40); }
+    const close = () => dialog.open && dialog.close();
+    document.querySelectorAll('[data-search-open]').forEach((b) => b.addEventListener('click', open));
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); dialog.open ? close() : open(); }
+    });
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); });
+  })();
+</script>
+
+<style>
+  .search-trigger {
+    display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px 0 11px;
+    border-radius: 999px; border: 1px solid var(--border); background: var(--hover);
+    color: var(--muted); font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .search-trigger:hover { color: var(--text); border-color: var(--brand); }
+  .search-trigger :global(.icon) { width: 15px; height: 15px; }
+  .search-trigger kbd { font-family: var(--mono); font-size: 0.7rem; color: var(--faint); background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 1px 5px; }
+  .search-modal {
+    --pagefind-ui-primary: var(--brand);
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-background: var(--surface);
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-tag: var(--surface-2);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 10px;
+    --pagefind-ui-font: var(--font);
+    width: min(680px, calc(100vw - 32px)); max-height: min(72vh, 680px);
+    margin: 10vh auto auto; padding: 18px;
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    background: var(--surface); color: var(--text); box-shadow: var(--shadow); overflow: auto;
+  }
+  .search-modal::backdrop { background: rgba(4, 7, 14, 0.55); backdrop-filter: blur(4px); }
+  .search-unavailable { color: var(--muted); font-size: 0.92rem; margin: 6px 2px; }
+  @media (max-width: 720px) { .search-trigger .st-text, .search-trigger kbd { display: none; } .search-trigger { padding: 0 9px; } }
+</style>

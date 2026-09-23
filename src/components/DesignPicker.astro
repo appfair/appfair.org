@@ -1,0 +1,113 @@
+---
+// DEVELOPMENT ONLY: the style / layout / theme picker in the bottom-right corner (BaseLayout includes it
+// when import.meta.env.DEV). Midnight + Split is the chosen default; the other options stay for comparison.
+// It sets <html data-style data-layout> (persisted as 'appfair-design') and reuses the theme
+// toggle's 'appfair-theme'. `?style=…&layout=…` in the URL wins and is remembered. Delete this
+// component, its include in BaseLayout, and `designOptions` in src/lib/site.ts once a design is chosen.
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { designOptions } from '../lib/site';
+---
+<div class="dp" data-design-picker data-pagefind-ignore>
+  <button type="button" class="dp-btn" aria-expanded="false" aria-controls="dp-panel" title="Design picker (temporary)">
+    <Icon name="palette" /><span class="dp-label" data-dp-label>Design</span><Icon name="chevron-down" class="icon caret" />
+  </button>
+  <div class="dp-panel" id="dp-panel" hidden>
+    <p class="dp-note">Development-only picker (not rendered in production builds). Midnight · Split is the site default; the rest are kept for comparison. Choices are remembered in this browser and shareable with <code>?style=…&amp;layout=…</code>.</p>
+    <fieldset>
+      <legend>Style</legend>
+      {designOptions.styles.map((s) => (
+        <label><input type="radio" name="dp-style" value={s.id} /><span><b>{s.label}</b><small>{s.blurb}</small></span></label>
+      ))}
+    </fieldset>
+    <fieldset>
+      <legend>Layout</legend>
+      {designOptions.layouts.map((l) => (
+        <label><input type="radio" name="dp-layout" value={l.id} /><span><b>{l.label}</b><small>{l.blurb}</small></span></label>
+      ))}
+    </fieldset>
+    <div class="dp-theme"><span>Theme</span><ThemeToggle /></div>
+    <div class="dp-actions">
+      <button type="button" class="btn btn-ghost btn-sm" data-dp-copy>Copy link to this combination</button>
+      <button type="button" class="btn btn-ghost btn-sm" data-dp-next>Next combination →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = 'appfair-design';
+  const root = document.documentElement;
+  const picker = document.querySelector<HTMLElement>('[data-design-picker]');
+  if (picker) {
+    const btn = picker.querySelector<HTMLButtonElement>('.dp-btn')!;
+    const panel = picker.querySelector<HTMLElement>('.dp-panel')!;
+    const label = picker.querySelector<HTMLElement>('[data-dp-label]')!;
+    const styles = Array.from(picker.querySelectorAll<HTMLInputElement>('input[name="dp-style"]'));
+    const layouts = Array.from(picker.querySelectorAll<HTMLInputElement>('input[name="dp-layout"]'));
+    const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+    const reflect = () => {
+      const st = root.dataset.style!, ly = root.dataset.layout!;
+      styles.forEach((i) => (i.checked = i.value === st));
+      layouts.forEach((i) => (i.checked = i.value === ly));
+      label.textContent = `${cap(st)} · ${cap(ly)}`;
+    };
+    const apply = (style: string, layout: string) => {
+      root.dataset.style = style; root.dataset.layout = layout;
+      try { localStorage.setItem(KEY, JSON.stringify({ style, layout })); } catch { /* ignore */ }
+      reflect();
+    };
+    const set = (open: boolean) => { panel.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', () => set(panel.hidden));
+    document.addEventListener('click', (e) => { if (!picker.contains(e.target as Node)) set(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+    styles.forEach((i) => i.addEventListener('change', () => apply(i.value, root.dataset.layout!)));
+    layouts.forEach((i) => i.addEventListener('change', () => apply(root.dataset.style!, i.value)));
+    picker.querySelector('[data-dp-next]')?.addEventListener('click', () => {
+      const si = styles.findIndex((i) => i.checked), li = layouts.findIndex((i) => i.checked);
+      const nl = (li + 1) % layouts.length;
+      const ns = nl === 0 ? (si + 1) % styles.length : si;
+      apply(styles[ns].value, layouts[nl].value);
+    });
+    picker.querySelector('[data-dp-copy]')?.addEventListener('click', async (e) => {
+      const u = new URL(location.href);
+      u.searchParams.set('style', root.dataset.style!); u.searchParams.set('layout', root.dataset.layout!);
+      const theme = (() => { try { return localStorage.getItem('appfair-theme') || 'system'; } catch { return 'system'; } })();
+      u.searchParams.set('theme', theme);
+      try { await navigator.clipboard.writeText(u.toString()); (e.currentTarget as HTMLElement).textContent = 'Copied!'; } catch { prompt('Copy this link', u.toString()); }
+    });
+    reflect();
+  }
+</script>
+
+<style>
+  .dp { position: fixed; bottom: 16px; right: 16px; z-index: 70; font-family: var(--font); }
+  .dp-btn {
+    display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px 0 11px;
+    border-radius: 999px; border: 1px dashed color-mix(in srgb, var(--accent) 60%, var(--border));
+    background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(10px);
+    color: var(--text); font: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer; box-shadow: var(--shadow);
+  }
+  .dp-btn :global(.icon) { width: 15px; height: 15px; color: var(--accent); }
+  .dp-btn :global(.caret) { width: 13px; height: 13px; color: var(--faint); }
+  .dp-panel {
+    position: absolute; right: 0; bottom: calc(100% + 8px); width: min(360px, calc(100vw - 32px));
+    padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 14px; max-height: calc(100vh - 80px); overflow: auto;
+  }
+  .dp-panel[hidden] { display: none; }
+  .dp-note { margin: 0; font-size: 0.8rem; color: var(--faint); line-height: 1.5; }
+  .dp-note code { font-size: 0.78rem; }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 4px; }
+  legend { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--faint); margin-bottom: 8px; }
+  label { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: var(--radius); cursor: pointer; }
+  label:hover { background: var(--hover); }
+  label:has(input:checked) { background: color-mix(in srgb, var(--accent) 10%, transparent); outline: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+  label input { margin: 4px 0 0; accent-color: var(--accent); }
+  label span { display: flex; flex-direction: column; gap: 2px; }
+  label b { font-size: 0.9rem; color: var(--text); }
+  label small { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+  .dp-theme { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--border-soft); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--faint); }
+  .dp-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .dp-actions .btn { font-size: 0.8rem; }
+  @media (max-width: 720px) { .dp-label { display: none; } }
+</style>

@@ -1,0 +1,32 @@
+---
+// Standalone markdown pages from src/content/pages: /<id>/ — an `index` file serves its folder.
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations, formatDate, resolveLocale } from '../i18n';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => ({ params: { slug: page.id.replace(/(^|\/)index$/, '') || undefined }, props: { page } }));
+}
+const { page } = Astro.props;
+const { Content, headings } = await render(page);
+const locale = resolveLocale(Astro.currentLocale);
+const { t } = useTranslations(locale);
+// Pages whose markdown opens with its own H1 keep it; the rest get one from frontmatter.
+const hasOwnH1 = headings.some((h) => h.depth === 1);
+const updated = page.data.updated ?? page.data.date;
+---
+<BaseLayout title={page.data.title} description={page.data.description} ogImage={`/og/${page.id.replace(/(^|\/)index$/, '') || 'index'}.png`}>
+  <div class="container">
+    <div class:list={['prose', 'page-body', { wide: page.data.width === 'wide' }]}>
+      {!hasOwnH1 && <h1>{page.data.title}</h1>}
+      <Content />
+      {updated && <p class="updated">{t('page.updated', { date: formatDate(updated, locale) })}</p>}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-body { padding-block: 56px 48px; }
+  .updated { margin-top: 40px; font-size: 0.85rem; color: var(--faint); }
+</style>

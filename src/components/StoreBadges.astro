@@ -1,0 +1,13 @@
+---
+import { site } from '../lib/site';
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
+---
+<div class="stores">
+  {site.stores.map((s) => (
+    <a class:list={['store-badge', { 'is-roadmap': !s.live }]} href={s.href} rel="noopener" aria-label={t(`home.stores.${s.id}`) + (s.live ? '' : ` (${t('home.stores.roadmap')})`)}>
+      <img src={s.badge} alt="" height="44" loading="lazy" decoding="async" />
+      {!s.live && <span class="roadmap-tag">{t('home.stores.roadmap')}</span>}
+    </a>
+  ))}
+</div>

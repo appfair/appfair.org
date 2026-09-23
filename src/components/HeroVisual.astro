@@ -1,0 +1,69 @@
+---
+// A theme-adaptive mock-up of the catalog on a phone, drawn in CSS so it needs no screenshot and
+// follows the palette. Used by the `split` layout beside the hero copy (and faintly, as decoration,
+// by `bold`). The floating tags repeat the four promises the headline makes.
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
+const apps = [
+  { tone: 'blue', w: 62 }, { tone: 'green', w: 48 }, { tone: 'amber', w: 70 }, { tone: 'purple', w: 55 }, { tone: 'teal', w: 44 },
+];
+---
+<div class="hv" aria-hidden="true">
+  <div class="phone">
+    <div class="phone-top"><Logo size={22} /><span class="bar" style="width: 40%"></span><span class="dot"></span></div>
+    <div class="phone-search"><Icon name="search" /><span class="bar" style="width: 55%"></span></div>
+    <ul class="apps">
+      {apps.map((a) => (
+        <li data-tone={a.tone}>
+          <span class="app-icon"></span>
+          <span class="lines"><span class="bar strong" style={`width: ${a.w}%`}></span><span class="bar" style={`width: ${Math.min(90, a.w + 25)}%`}></span></span>
+          <span class="get">GET</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <span class="float-tag t1"><Icon name="tag-off" />{t('home.visual.free')}</span>
+  <span class="float-tag t2"><Icon name="ban" />{t('home.visual.noAds')}</span>
+  <span class="float-tag t3"><Icon name="code" />{t('home.visual.openSource')}</span>
+  <span class="float-tag t4"><Icon name="shield" />{t('home.visual.noTracking')}</span>
+</div>
+
+<style>
+  .hv { position: relative; width: min(100%, 380px); margin-inline: auto; padding: 24px 0; }
+  .phone {
+    position: relative; margin-inline: auto; width: 270px; aspect-ratio: 9 / 18.5;
+    border-radius: 38px; padding: 18px 14px;
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow), inset 0 0 0 6px color-mix(in srgb, var(--bg) 70%, var(--border-soft));
+    overflow: hidden;
+  }
+  .phone::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 84px; height: 22px; border-radius: 999px; background: var(--bg); }
+  .phone-top { display: flex; align-items: center; gap: 10px; margin: 30px 4px 14px; }
+  .phone-top :global(img) { border-radius: 6px; }
+  .dot { width: 22px; height: 22px; border-radius: 999px; margin-left: auto; background: linear-gradient(135deg, var(--tone-blue), var(--tone-purple)); opacity: 0.8; }
+  .phone-search { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border-radius: 10px; background: var(--hover-strong); margin: 0 2px 14px; color: var(--faint); }
+  .phone-search :global(.icon) { width: 14px; height: 14px; }
+  .bar { display: block; height: 7px; border-radius: 999px; background: var(--border); }
+  .bar.strong { background: var(--faint); height: 8px; }
+  .apps { list-style: none; margin: 0; padding: 0 2px; display: flex; flex-direction: column; gap: 10px; }
+  .apps li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 8px; border-radius: 12px; background: color-mix(in srgb, var(--surface) 60%, transparent); border: 1px solid var(--border-soft); }
+  .app-icon { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(145deg, color-mix(in srgb, var(--tone) 85%, white), var(--tone)); box-shadow: inset 0 -6px 12px rgba(0,0,0,0.14); }
+  .lines { display: flex; flex-direction: column; gap: 6px; }
+  .get { font: 700 0.62rem var(--font); letter-spacing: 0.06em; color: var(--brand); padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--brand) 14%, transparent); }
+  .float-tag {
+    position: absolute; display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text); box-shadow: var(--shadow);
+    animation: bob 6s ease-in-out infinite;
+  }
+  .float-tag :global(.icon) { width: 14px; height: 14px; color: var(--accent); }
+  .t1 { left: -4px; top: 15%; }
+  .t2 { right: -10px; top: 32%; animation-delay: -1.5s; }
+  .t3 { left: -2px; bottom: 28%; animation-delay: -3s; }
+  .t4 { right: -6px; bottom: 11%; animation-delay: -4.5s; }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @media (max-width: 420px) { .float-tag { display: none; } }
+</style>

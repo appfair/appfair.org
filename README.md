@@ -1,103 +1,67 @@
-# App Fair web site
+# appfair.org
 
-This is the source for the [appfair.org](https://appfair.org) home page
-It is implemented with Astro and Starlight.
+The source for the [App Fair Project](https://appfair.org) website: a static site built with
+[Astro](https://astro.build) and deployed to GitHub Pages by `.github/workflows/`.
 
-## Contribution Guide
+## Local development
 
-We appreciate contributions to the documentation in the form
-of [PRs](https://github.com/appfair/fairapps.github.io/pulls). The
-simplest way to make a contribution for a particular
-page you see on the site is to scroll to the bottom of the
-page and click the "Edit this page" link, which will
-automatically bring you into this repository's editor
-for that page. Larger edits that span multiple pages
-might instead warrant forking this repository and
-checking it out locally to make changes.
-
-## Running locally
-
-For large-scale changes that you want to be able to preview before
-contributing, you can run this site locally.
-The site uses Astro and Starlight as a static site generator,
-which is then distributed through GitHub Pages.
-
-See the [Starlight docs](https://starlight.astro.build/) and
-[Astro documentation](https://docs.astro.build) to learn
-more, but in general to preview changes locally, you should be able to
-just run:
+Requires Node 22.12 or newer.
 
 ```console
-npm run dev
+npm install
+npm run dev       # http://localhost:4321, with hot reload
+npm run build     # production build into dist/, then the Pagefind search index
+npm run preview   # serve dist/ (search only works here and in production, not in dev)
 ```
 
-Before contributing, be sure to run a full production build,
-which will run the link checker and other validations:
+## Structure
 
-```console
-npm run build
+```text
+astro.config.mjs        site URL, i18n routing, markdown pipeline
+src/
+├── content/
+│   ├── blog/           blog posts (markdown; the file name is the URL slug)
+│   └── pages/          standalone pages, served at /<path>/ (marketplace/, imprint, privacy, …)
+├── content.config.ts   the two collections' frontmatter schemas
+├── i18n/               en.json and one JSON table per locale, plus the t() helper
+├── layouts/            BaseLayout: <head>, nav, footer, theme + design bootstrap
+├── components/         Nav, Footer, ThemeToggle, LangSwitcher, Search, HeroVisual, …
+├── pages/              routes: index, blog/, blog/[slug], blog/rss.xml, [...slug], og/, 404
+├── styles/             global.css (system), themes.css (styles × light/dark), layouts.css
+└── lib/                site constants (URLs, social links, stores), post helpers
+public/                 static assets (icons, store badges, images, the App Index schema)
 ```
 
-### Commands
+## Localization
 
-All commands are run from the root of the project, from a terminal:
+Every string in the site chrome and on the homepage is looked up by key from `src/i18n/<locale>.json`,
+falling back to `en.json` for any key a locale has not translated. To translate more of the site,
+add keys to the locale file; to add a locale, add it to `src/i18n/locales.mjs` and create its JSON.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Locale routes (`/fr/…`, `/de/…`, …) exist for every page. Pages without a translated copy — the blog
+and the policy pages today — render their English content under the locale prefix with localized
+chrome (Astro's i18n `fallback` with `fallbackType: 'rewrite'`). A translated page would be a
+localized copy of the markdown file; wiring that up is the next step when translations arrive.
 
-### Project Structure
+## Design picker (development only)
 
-Following is an abbreviated outline of the structure of the
-documentation folders and files:
+The site's design is **Midnight** (style) + **Split** (layout), set as `DESIGN` in `src/layouts/BaseLayout.astro`.
+In `npm run dev` a **Design** button in the bottom-right corner switches between the alternative styles
+and layouts that were built for comparison. It sets `data-style` / `data-layout` on `<html>`, remembers the
+choice in `localStorage`, and honours `?style=…&layout=…&theme=…` in the URL. Production builds
+(`npm run build`, and so the deployed site) render neither the picker nor its bootstrap script, so they
+always show the default.
 
-```
-.
-├── astro.config.mjs
-├── LICENSE.txt
-├── package-lock.json
-├── package.json
-├── public
-│   └── favicon.svg
-├── README.md
-├── src
-│   ├── assets
-│   │   └── favicon.png
-│   ├── components
-│   │   └── CustomHeader.astro
-│   ├── content
-│   │   ├── docs
-│   │   │   ├── blog
-│   │   │   ├── docs
-│   │   │   ├── index.mdx
-│   │   │   ├── sponsor
-│   │   │   └── tour
-│   │   ├── i18n
-│   │   │   ├── fr.json
-│   │   │   └── zh-cn.json
-│   │   └── tour-collection
-│   │       ├── introduction.mdx
-│   │       └── teaser.mdx
-│   ├── content.config.ts
-│   ├── pages
-│   │   └── example.astro
-│   ├── routeData.ts
-│   └── styles
-│       └── custom.css
-└── tsconfig.json
-```
+To retire the alternatives: delete `src/components/DesignPicker.astro`, its two `showPicker` includes in
+`BaseLayout.astro`, `designOptions` in `src/lib/site.ts`, and the unused blocks in `themes.css` and `layouts.css`.
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## Search
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
-
-Static assets, like favicons, can be placed in the `public/` directory.
+[Pagefind](https://pagefind.app) indexes `dist/` after the build (`npm run build`). Only
+default-locale pages carry `data-pagefind-body`, and the index is forced to one language, so a
+visitor on any locale searches the whole (English) site.
 
 ## License
 
-The App Fair Project © 2026 by <a href="https://appfair.org">the App Fair</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+The App Fair Project © 2026 by <a href="https://appfair.org">the App Fair</a> is licensed under
+<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.

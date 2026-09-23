@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations, localizePath, resolveLocale } from '../i18n';
+const locale = resolveLocale(Astro.currentLocale);
+const { t } = useTranslations(locale);
+---
+<BaseLayout title={t('notFound.title')} searchable={false}>
+  <section class="section">
+    <div class="container nf">
+      <p class="eyebrow">404</p>
+      <h1>{t('notFound.title')}</h1>
+      <p class="lead">{t('notFound.body')}</p>
+      <a class="btn btn-primary" href={localizePath('/', locale)}>{t('notFound.home')}</a>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .nf { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding-block: 40px; }
+  .nf h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0; }
+  .nf .lead { margin: 0 0 12px; }
+</style>

@@ -1,0 +1,37 @@
+{
+  "site": {
+    "name": "Das App Fair Projekt",
+    "tagline": "Der kostenlose und quelloffene App-Store für iPhone und Android"
+  },
+  "nav": { "apps": "Apps", "blog": "Blog", "donate": "Spenden", "search": "Suchen", "menu": "Menü", "close": "Schließen", "language": "Sprache", "theme": "Design", "skip": "Zum Inhalt springen" },
+  "theme": { "light": "Hell", "system": "System", "dark": "Dunkel" },
+  "footer": {
+    "nonprofit": "Das App Fair Projekt ist eine gemeinnützige 501(c)(3)-Organisation in den Vereinigten Staaten und ein eingetragener gemeinnütziger Verein in Frankreich",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "policies": "Richtlinien",
+    "blog": "Blog",
+    "donate": "Spenden",
+    "catalog": "Katalog durchsuchen"
+  },
+  "home": {
+    "title": "Das App Fair Projekt",
+    "tagline": "Der kostenlose und quelloffene App-Store für iPhone und Android",
+    "intro1": "Das App Fair Projekt ist eine gemeinnützige Organisation, die sich der Erstellung von mobilen Softwareanwendungen für das Gemeinwohl widmet. Das Projekt wurde 2022 als weltweiter Knotenpunkt für den Bau, die Verteilung und die Wartung kostenloser Apps gegründet.",
+    "intro2": "App Fair-Apps kosten nichts und enthalten keine integrierte Werbetechnik oder nicht einvernehmliche Tracking-Technologien. Sie versuchen nicht, die Aufmerksamkeit des Benutzers in irgendeiner Weise zu monetarisieren. Sie werden aus freier und quelloffener Software erstellt und ausschließlich durch Spenden und Zuschüsse finanziert.",
+    "browse": "Apps durchsuchen",
+    "readBlog": "Blog lesen",
+    "support": "Projekt unterstützen",
+    "features": {
+      "items": [
+        { "icon": "code", "tone": "blue", "title": "Kostenlos & Open Source", "body": "Jede App Fair-App ist vollständig kostenlos und quelloffen. Jeder kann den Code einsehen, Verbesserungen beitragen oder ihn zum Nutzen der breiteren Gemeinschaft wiederverwenden." },
+        { "icon": "ban", "tone": "red", "title": "Keine Werbung oder Werbetechnik", "body": "App Fair-Apps zeigen niemals Werbung an. Es gibt keine Aufmerksamkeitserfassung, keine Engagement-Manipulation und keinen Anreiz, für Klicks anstelle von Benutzern zu optimieren." },
+        { "icon": "globe", "tone": "amber", "title": "Überall verfügbar", "body": "App Fair-Apps werden sowohl über die kommerziellen App-Stores – den Apple App Store und den Google Play Store – als auch über alternative Marktplätze wie AltStore und F-Droid vertrieben." },
+        { "icon": "tag-off", "tone": "green", "title": "Keine In-App-Käufe", "body": "App Fair-Apps monetarisieren Endbenutzer in keiner Weise. Keine Abonnements, keine In-App-Käufe und keine Paywalls – das volle Erlebnis steht jedem zur Verfügung." },
+        { "icon": "heart", "tone": "teal", "title": "Digitale öffentliche Güter", "body": "App Fair-Projekte sind digitale öffentliche Güter, die von der Gemeinschaft entwickelt und durch Spenden und Zuschüsse finanziert werden, um der Gesellschaft zu dienen." },
+        { "icon": "shield", "tone": "purple", "title": "Datenschutzfreundlich durch Design", "body": "App Fair-Apps enthalten keine Tracker, keine Spyware und fordern keine unnötigen Berechtigungen an. Ihre Daten bleiben auf Ihrem Gerät, es sei denn, die Weitergabe ist unerlässlich und explizit." }
+      ]
+    }
+  },
+  "blog": { "title": "Blog", "all": "Alle Beiträge", "back": "Blog", "prev": "Zurück", "next": "Weiter" }
+}

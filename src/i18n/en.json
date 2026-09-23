@@ -1,0 +1,192 @@
+{
+  "site": {
+    "name": "The App Fair Project",
+    "short": "App Fair",
+    "tagline": "The free and open-source app store for the iPhone and Android",
+    "description": "The App Fair Project is a nonprofit dedicated to creating mobile apps for the public good: free of cost, free of ads and tracking, and built from free and open-source software."
+  },
+  "nav": {
+    "home": "App Fair home",
+    "apps": "Apps",
+    "blog": "Blog",
+    "donate": "Donate",
+    "search": "Search",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language",
+    "theme": "Theme",
+    "skip": "Skip to content"
+  },
+  "theme": {
+    "light": "Light",
+    "system": "System",
+    "dark": "Dark"
+  },
+  "footer": {
+    "nonprofit": "The App Fair Project is a 501(c)(3) nonprofit in the United States and a registered nonprofit association in France",
+    "project": "Project",
+    "community": "Community",
+    "blog": "Blog",
+    "donate": "Donate",
+    "policies": "Policies",
+    "privacy": "Privacy",
+    "imprint": "Imprint",
+    "schema": "App Index schema",
+    "catalog": "Browse the catalog"
+  },
+  "home": {
+    "eyebrow": "A nonprofit app store",
+    "title": "The App Fair Project",
+    "tagline": "The free and open-source app store for the iPhone and Android",
+    "intro1": "The App Fair Project is a non-profit charitable organization dedicated to the creation of mobile software applications for the public good. The project was founded in 2022 as a worldwide nexus for free apps to be built, distributed, and maintained.",
+    "intro2": "App Fair apps cost nothing and contain no built-in ad-tech or non-consensual tracking technologies. They do not attempt to monetize the attention of the user in any way. They are created from free and open-source software and are funded solely by donations and grants.",
+    "browse": "Browse Apps",
+    "readBlog": "Read the blog",
+    "support": "Support the project",
+    "stores": {
+      "heading": "Install from the store you already use",
+      "body": "Every release is submitted to the App Fair for review and approval before it enters the catalog, and the App Fair then publishes it to the App Store and Google Play. Distribution through F-Droid and AltStore is on the roadmap.",
+      "app-store": "Download on the App Store",
+      "play-store": "Get it on Google Play",
+      "f-droid": "Get it on F-Droid",
+      "altstore": "Get it on AltStore",
+      "roadmap": "On the roadmap"
+    },
+    "features": {
+      "eyebrow": "What makes an App Fair app",
+      "heading": "Built for users, not advertisers",
+      "items": [
+        {
+          "icon": "code",
+          "tone": "blue",
+          "title": "Free & Open Source",
+          "body": "Every App Fair app is fully free and open source. Anyone can inspect the code, contribute improvements, or reuse it for the benefit of the wider community."
+        },
+        {
+          "icon": "ban",
+          "tone": "red",
+          "title": "No Advertisements or Ad-Tech",
+          "body": "App Fair apps never show ads. There is no attention harvesting, no engagement manipulation, and no incentive to optimize for clicks instead of users."
+        },
+        {
+          "icon": "globe",
+          "tone": "amber",
+          "title": "Available Everywhere",
+          "body": "App Fair apps are distributed both through the commercial app stores — the Apple App Store and Google Play Store — as well as alternative marketplaces like AltStore and F-Droid."
+        },
+        {
+          "icon": "tag-off",
+          "tone": "green",
+          "title": "No In-App Purchases",
+          "body": "App Fair apps do not monetize end users in any way. No subscriptions, no in-app purchases, and no paywalls — the full experience is available to everyone."
+        },
+        {
+          "icon": "heart",
+          "tone": "teal",
+          "title": "Digital Public Goods",
+          "body": "App Fair projects are digital public goods, built by the community and funded by donations and grants to serve society."
+        },
+        {
+          "icon": "shield",
+          "tone": "purple",
+          "title": "Privacy-Respecting by Design",
+          "body": "App Fair apps contain no trackers, no spyware, and request no unnecessary permissions. Your data stays on your device unless sharing is essential and explicit."
+        }
+      ]
+    },
+    "cornerstones": {
+      "eyebrow": "The Four Cornerstones",
+      "heading": "The qualities of an App Fair App",
+      "lead": "They build on the Four Essential Freedoms of free software, and extend them with the reach, language, and ability that make a free application's freedom meaningful for a global mobile audience.",
+      "items": [
+        {
+          "icon": "eye",
+          "title": "Transparent",
+          "body": "Open to inspection, modification, and redistribution by anyone. The source, the build configuration, and every dependency are published under free and open-source licences."
+        },
+        {
+          "icon": "smartphone",
+          "title": "Ubiquitous",
+          "body": "Available on every mobile platform. A single codebase ships as a native iOS app and a native Android app, with the same features on each."
+        },
+        {
+          "icon": "languages",
+          "title": "Global",
+          "body": "Speaks the user's language. Every string is externalized, the supported locales are kept current, and the store listing is translated alongside the app."
+        },
+        {
+          "icon": "accessibility",
+          "title": "Accessible",
+          "body": "Usable across the spectrum of abilities: screen readers, the largest text sizes, switch control, and sufficient contrast, built in from the first commit."
+        }
+      ]
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "heading": "Developers build in the open. The App Fair does the rest.",
+      "steps": [
+        {
+          "icon": "code",
+          "title": "Build in the open",
+          "body": "A developer creates the app in their own repository, under the GPL, with every dependency free and open source."
+        },
+        {
+          "icon": "package-check",
+          "title": "Submitted for review",
+          "body": "When a release is ready, it is submitted to the App Fair, where it is reviewed against the inclusion criteria and approved for the catalog."
+        },
+        {
+          "icon": "download",
+          "title": "Published to the stores",
+          "body": "Approved releases are published by the App Fair to the App Store and Google Play, and users install them from the store they already use."
+        }
+      ],
+      "note": "Each release is checked against the developer's own published build before it is accepted."
+    },
+    "latest": {
+      "eyebrow": "From the blog",
+      "heading": "Latest writing",
+      "all": "All posts"
+    },
+    "cta": {
+      "heading": "Help build a catalog of digital public goods",
+      "body": "The App Fair is funded solely by donations and grants. Your support pays for the development, review, and infrastructure that keep the catalog free for everyone.",
+      "donate": "Donate",
+      "browse": "Browse the catalog"
+    },
+    "visual": {
+      "free": "Free",
+      "noAds": "No ads",
+      "openSource": "Open source",
+      "noTracking": "No tracking"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "News, talks, and policy writing from the App Fair Project.",
+    "eyebrow": "The App Fair blog",
+    "readingTime": "{n} min read",
+    "by": "By {author}",
+    "prev": "Previous",
+    "next": "Next",
+    "all": "All posts",
+    "back": "Blog",
+    "subscribe": "Subscribe via RSS",
+    "draft": "Draft"
+  },
+  "page": {
+    "updated": "Last updated {date}"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "There is nothing at this address. It may have moved, or the link may be out of date.",
+    "home": "Go to the homepage"
+  },
+  "search": {
+    "placeholder": "Search the site",
+    "unavailable": "Search is indexed at build time. Run a production build and preview it to try it locally."
+  },
+  "a11y": {
+    "externalLink": "opens in a new tab"
+  }
+}

@@ -1,0 +1,7 @@
+---
+// The App Fair mark: the animated blue badge from public/assets/icons/appfair-icon.svg. An <img> keeps
+// the SVG's own SMIL animation (the rotating carriage) and caches across pages.
+interface Props { size?: number; class?: string }
+const { size = 28, class: cls = '' } = Astro.props;
+---
+<img src="/assets/icons/appfair-icon.svg" width={size} height={size} class={cls} alt="" aria-hidden="true" decoding="async" />

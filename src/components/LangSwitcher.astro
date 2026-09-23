@@ -1,0 +1,61 @@
+---
+// Language menu. Each entry links to the same path under the other locale's prefix; with the
+// fallback rewrite in astro.config every page exists under every locale.
+import Icon from './Icon.astro';
+import { LOCALES, useTranslations, resolveLocale, stripLocale, localizePath } from '../i18n';
+const current = resolveLocale(Astro.currentLocale);
+const { t } = useTranslations(current);
+const base = stripLocale(Astro.url.pathname);
+const currentLabel = LOCALES.find((l) => l.code === current)?.label ?? 'English';
+---
+<div class="lang" data-lang>
+  <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label={`${t('nav.language')}: ${currentLabel}`} title={t('nav.language')}>
+    <Icon name="languages" />
+    <span class="lang-code">{current.toUpperCase()}</span>
+    <Icon name="chevron-down" class="icon caret" />
+  </button>
+  <ul class="lang-menu" role="menu" hidden>
+    {LOCALES.map((l) => (
+      <li role="none">
+        <a role="menuitem" href={localizePath(base, l.code)} hreflang={l.lang} lang={l.lang} aria-current={l.code === current ? 'true' : undefined} class:list={{ on: l.code === current }}>
+          {l.label}
+          {l.code === current && <Icon name="check" />}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-lang]').forEach((root) => {
+    const btn = root.querySelector<HTMLButtonElement>('.lang-btn')!;
+    const menu = root.querySelector<HTMLElement>('.lang-menu')!;
+    const set = (open: boolean) => { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', () => set(menu.hidden));
+    document.addEventListener('click', (e) => { if (!root.contains(e.target as Node)) set(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+  });
+</script>
+
+<style>
+  .lang { position: relative; }
+  .lang-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 34px; padding: 0 9px 0 10px;
+    border-radius: 999px; border: 1px solid var(--border); background: var(--hover);
+    color: var(--muted); font: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .lang-btn:hover { color: var(--text); border-color: var(--brand); }
+  .lang-btn :global(.icon) { width: 15px; height: 15px; }
+  .lang-btn :global(.caret) { width: 13px; height: 13px; opacity: 0.7; }
+  .lang-menu {
+    position: absolute; right: 0; top: calc(100% + 8px); z-index: 60;
+    min-width: 180px; margin: 0; padding: 6px; list-style: none;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .lang-menu a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 10px; border-radius: calc(var(--radius) - 6px); color: var(--muted); font-size: 0.92rem; font-weight: 600; }
+  .lang-menu a:hover { background: var(--hover); color: var(--text); }
+  .lang-menu a.on { color: var(--text); }
+  .lang-menu a :global(.icon) { width: 14px; height: 14px; color: var(--brand); }
+</style>
