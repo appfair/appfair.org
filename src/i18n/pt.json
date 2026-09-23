@@ -3,8 +3,22 @@
     "name": "O Projeto App Fair",
     "tagline": "A loja de aplicativos gratuita e de código aberto para iPhone e Android"
   },
-  "nav": { "apps": "Apps", "blog": "Blog", "donate": "Doar", "search": "Buscar", "menu": "Menu", "close": "Fechar", "language": "Idioma", "theme": "Tema", "skip": "Pular para o conteúdo" },
-  "theme": { "light": "Claro", "system": "Sistema", "dark": "Escuro" },
+  "nav": {
+    "apps": "Apps",
+    "blog": "Blog",
+    "donate": "Doar",
+    "search": "Buscar",
+    "menu": "Menu",
+    "close": "Fechar",
+    "language": "Idioma",
+    "theme": "Tema",
+    "skip": "Pular para o conteúdo"
+  },
+  "theme": {
+    "light": "Claro",
+    "system": "Sistema",
+    "dark": "Escuro"
+  },
   "footer": {
     "nonprofit": "O Projeto App Fair é uma organização sem fins lucrativos 501(c)(3) nos Estados Unidos e uma associação sem fins lucrativos registrada na França",
     "imprint": "Informações legais",
@@ -24,14 +38,72 @@
     "support": "Apoiar o projeto",
     "features": {
       "items": [
-        { "icon": "code", "tone": "blue", "title": "Gratuito e de Código Aberto", "body": "Cada aplicativo da App Fair é totalmente gratuito e de código aberto. Qualquer um pode inspecionar o código, contribuir com melhorias ou reutilizá-lo para o benefício da comunidade em geral." },
-        { "icon": "ban", "tone": "red", "title": "Sem Anúncios ou Tecnologia de Anúncios", "body": "Os aplicativos da App Fair nunca exibem anúncios. Não há coleta de atenção, nem manipulação de engajamento, e nenhum incentivo para otimizar para cliques em vez de usuários." },
-        { "icon": "globe", "tone": "amber", "title": "Disponível em Todos os Lugares", "body": "Os aplicativos da App Fair são distribuídos tanto através das lojas de aplicativos comerciais — a Apple App Store e a Google Play Store — quanto em mercados alternativos como a AltStore e a F-Droid." },
-        { "icon": "tag-off", "tone": "green", "title": "Sem Compras no Aplicativo", "body": "Os aplicativos da App Fair não monetizam os usuários finais de forma alguma. Sem assinaturas, sem compras no aplicativo, e sem paywalls — a experiência completa está disponível para todos." },
-        { "icon": "heart", "tone": "teal", "title": "Bens Públicos Digitais", "body": "Os projetos da App Fair são bens públicos digitais, construídos pela comunidade e financiados por doações e subsídios para servir à sociedade." },
-        { "icon": "shield", "tone": "purple", "title": "Respeito à Privacidade por Design", "body": "Os aplicativos da App Fair não contêm rastreadores, nem spyware, e não solicitam permissões desnecessárias. Seus dados permanecem no seu dispositivo, a menos que o compartilhamento seja essencial e explícito." }
+        {
+          "icon": "code",
+          "tone": "blue",
+          "title": "Gratuito e de Código Aberto",
+          "body": "Cada aplicativo da App Fair é totalmente gratuito e de código aberto. Qualquer um pode inspecionar o código, contribuir com melhorias ou reutilizá-lo para o benefício da comunidade em geral."
+        },
+        {
+          "icon": "ban",
+          "tone": "red",
+          "title": "Sem Anúncios ou Tecnologia de Anúncios",
+          "body": "Os aplicativos da App Fair nunca exibem anúncios. Não há coleta de atenção, nem manipulação de engajamento, e nenhum incentivo para otimizar para cliques em vez de usuários."
+        },
+        {
+          "icon": "globe",
+          "tone": "amber",
+          "title": "Disponível em Todos os Lugares",
+          "body": "Os aplicativos da App Fair são distribuídos tanto através das lojas de aplicativos comerciais — a Apple App Store e a Google Play Store — quanto em mercados alternativos como a AltStore e a F-Droid."
+        },
+        {
+          "icon": "tag-off",
+          "tone": "green",
+          "title": "Sem Compras no Aplicativo",
+          "body": "Os aplicativos da App Fair não monetizam os usuários finais de forma alguma. Sem assinaturas, sem compras no aplicativo, e sem paywalls — a experiência completa está disponível para todos."
+        },
+        {
+          "icon": "heart",
+          "tone": "teal",
+          "title": "Bens Públicos Digitais",
+          "body": "Os projetos da App Fair são bens públicos digitais, construídos pela comunidade e financiados por doações e subsídios para servir à sociedade."
+        },
+        {
+          "icon": "shield",
+          "tone": "purple",
+          "title": "Respeito à Privacidade por Design",
+          "body": "Os aplicativos da App Fair não contêm rastreadores, nem spyware, e não solicitam permissões desnecessárias. Seus dados permanecem no seu dispositivo, a menos que o compartilhamento seja essencial e explícito."
+        }
       ]
+    },
+    "visual": {
+      "free": "Gratuito",
+      "noAds": "Sem anúncios",
+      "openSource": "Código aberto",
+      "noTracking": "Sem rastreamento",
+      "ok": "OK",
+      "popups": {
+        "free": {
+          "text": "Os aplicativos distribuídos pelo Projeto App Fair são livres: não apenas gratuitos, mas também respeitam as {freedoms}.",
+          "freedomsLabel": "quatro liberdades essenciais do software livre"
+        },
+        "noAds": {
+          "text": "Anúncios são abundantes nas lojas de aplicativos comerciais e são a forma mais comum de monetizar aplicativos comerciais que se dizem “gratuitos”. Os aplicativos da App Fair não incluem publicidade embutida nem tecnologia de anúncios."
+        },
+        "openSource": {
+          "text": "Confie, mas verifique. Os aplicativos da App Fair são garantidamente 100% software de código aberto, então cada componente que os compõe está livremente disponível para revisão aberta, auditorias de segurança e escrutínio público. Nada fica escondido de você ao usar um aplicativo da App Fair."
+        },
+        "noTracking": {
+          "text": "O rastreamento furtivo e sem consentimento é abundante nas lojas de aplicativos comerciais, com pouca ou nenhuma supervisão. Sua privacidade importa para nós: os aplicativos da App Fair não contêm rastreamento, telemetria, analytics ou qualquer outro spyware."
+        }
+      }
     }
   },
-  "blog": { "title": "Blog", "all": "Todas as publicações", "back": "Blog", "prev": "Anterior", "next": "Próximo" }
+  "blog": {
+    "title": "Blog",
+    "all": "Todas as publicações",
+    "back": "Blog",
+    "prev": "Anterior",
+    "next": "Próximo"
+  }
 }

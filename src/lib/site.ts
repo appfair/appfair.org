@@ -4,6 +4,8 @@ export const site = {
   catalog: 'https://appfair.net',
   email: 'contact@appfair.org',
   forums: 'https://github.com/orgs/appfair/discussions',
+  /** The FSF's definition, linked from the "Free" popup on the hero graphic. */
+  freedoms: 'https://www.gnu.org/philosophy/free-sw.html',
   rss: '/blog/rss.xml',
   social: [
     { id: 'forums', label: 'Forums', href: 'https://github.com/orgs/appfair/discussions', color: '#10B981' },
@@ -17,15 +19,20 @@ export const site = {
     { id: 'email', label: 'contact@appfair.org', href: 'mailto:contact@appfair.org', color: '#EAB308' },
     { id: 'rss', label: 'RSS', href: '/blog/rss.xml', color: '#F26522' },
   ],
-  stores: [
-    { id: 'app-store', badge: '/assets/badges/apple-app-store.svg', href: 'https://appfair.net', live: true },
-    { id: 'play-store', badge: '/assets/badges/google-play-store.svg', href: 'https://appfair.net', live: true },
-    { id: 'f-droid', badge: '/assets/badges/f-droid.svg', href: 'https://appfair.net', live: false },
-    { id: 'altstore', badge: '/assets/badges/altstore.svg', href: 'https://appfair.net', live: false },
+  stores: <{ id: string; badge: string; href?: string; live: boolean }[]>[
+    // The two live channels link to the App Fair Project's developer page on each store.
+    { id: 'app-store', badge: '/assets/badges/apple-app-store.svg', href: 'https://apps.apple.com/developer/the-app-fair-project-inc/id1638877580', live: true },
+    { id: 'play-store', badge: '/assets/badges/google-play-store.svg', href: 'https://play.google.com/store/apps/developer?id=The+App+Fair+Project', live: true },
+    // Roadmap channels have nothing to link to yet, so they render as plain badges.
+    { id: 'f-droid', badge: '/assets/badges/f-droid.svg', live: false },
+    { id: 'altstore', badge: '/assets/badges/altstore.svg', live: false },
   ],
 };
 
-/** Option sets for the development-only design picker (DesignPicker.astro). The site default is set in BaseLayout. */
+/** The site's design. BaseLayout puts style/layout on <html>; HeroVisual renders the chosen graphic. */
+export const design = { style: 'midnight', layout: 'split', visual: 'catalog' };
+
+/** Option sets for the development-only design picker (DesignPicker.astro). */
 export const designOptions = {
   styles: [
     { id: 'midnight', label: 'Midnight (default)', blurb: 'Dark-first, indigo→sky gradient accents, glassy surfaces.' },
@@ -37,5 +44,11 @@ export const designOptions = {
     { id: 'split', label: 'Split (default)', blurb: 'Two-column hero with a catalog mock-up; alternating sections.' },
     { id: 'classic', label: 'Classic', blurb: 'Centered hero, three-column cards, stacked sections.' },
     { id: 'bold', label: 'Bold', blurb: 'Full-bleed oversized hero, floating pill nav, bento grid.' },
+  ],
+  visuals: [
+    { id: 'catalog', label: 'Catalog (default)', blurb: 'One phone showing the catalog, the four tags pinned around it.' },
+    { id: 'stacked', label: 'Stacked', blurb: 'Phone on the left, the four tags in a tidy column beside it.' },
+    { id: 'duo', label: 'Duo', blurb: 'Two overlapping phones (iPhone and Android), tags in a row below.' },
+    { id: 'emblem', label: 'Emblem', blurb: 'No phone: the App Fair mark in a glow, tags at the four corners.' },
   ],
 };

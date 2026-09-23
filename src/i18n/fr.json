@@ -3,8 +3,22 @@
     "name": "Le Projet App Fair",
     "tagline": "Le magasin d'applications libre et open-source pour iPhone et Android"
   },
-  "nav": { "apps": "Applis", "blog": "Blog", "donate": "Faire un don", "search": "Rechercher", "menu": "Menu", "close": "Fermer", "language": "Langue", "theme": "Thème", "skip": "Aller au contenu" },
-  "theme": { "light": "Clair", "system": "Système", "dark": "Sombre" },
+  "nav": {
+    "apps": "Applis",
+    "blog": "Blog",
+    "donate": "Faire un don",
+    "search": "Rechercher",
+    "menu": "Menu",
+    "close": "Fermer",
+    "language": "Langue",
+    "theme": "Thème",
+    "skip": "Aller au contenu"
+  },
+  "theme": {
+    "light": "Clair",
+    "system": "Système",
+    "dark": "Sombre"
+  },
   "footer": {
     "nonprofit": "Le Projet App Fair est une organisation à but non lucratif 501(c)(3) aux États-Unis et une association à but non lucratif enregistrée en France",
     "imprint": "Mentions légales",
@@ -24,14 +38,72 @@
     "support": "Soutenir le projet",
     "features": {
       "items": [
-        { "icon": "code", "tone": "blue", "title": "Libre et Open Source", "body": "Chaque application App Fair est entièrement libre et open source. Tout le monde peut inspecter le code, apporter des améliorations ou le réutiliser au profit de la communauté élargie." },
-        { "icon": "ban", "tone": "red", "title": "Aucune publicité ni technologie publicitaire", "body": "Les applications App Fair n'affichent jamais de publicités. Il n'y a pas de collecte d'attention, pas de manipulation de l'engagement et aucune incitation à optimiser pour les clics au lieu des utilisateurs." },
-        { "icon": "globe", "tone": "amber", "title": "Disponible partout", "body": "Les applications App Fair sont distribuées à la fois via les magasins d'applications commerciaux — l'App Store d'Apple et le Google Play Store — ainsi que sur des marchés alternatifs comme AltStore et F-Droid." },
-        { "icon": "tag-off", "tone": "green", "title": "Aucun achat intégré", "body": "Les applications App Fair ne monétisent en aucun cas les utilisateurs finaux. Pas d'abonnements, pas d'achats intégrés et pas de murs payants — l'expérience complète est accessible à tous." },
-        { "icon": "heart", "tone": "teal", "title": "Biens publics numériques", "body": "Les projets App Fair sont des biens publics numériques, construits par la communauté et financés par des dons et des subventions pour servir la société." },
-        { "icon": "shield", "tone": "purple", "title": "Respectueux de la vie privée par conception", "body": "Les applications App Fair ne contiennent aucun traqueur, aucun logiciel espion et ne demandent aucune autorisation inutile. Vos données restent sur votre appareil, à moins que le partage ne soit essentiel et explicite." }
+        {
+          "icon": "code",
+          "tone": "blue",
+          "title": "Libre et Open Source",
+          "body": "Chaque application App Fair est entièrement libre et open source. Tout le monde peut inspecter le code, apporter des améliorations ou le réutiliser au profit de la communauté élargie."
+        },
+        {
+          "icon": "ban",
+          "tone": "red",
+          "title": "Aucune publicité ni technologie publicitaire",
+          "body": "Les applications App Fair n'affichent jamais de publicités. Il n'y a pas de collecte d'attention, pas de manipulation de l'engagement et aucune incitation à optimiser pour les clics au lieu des utilisateurs."
+        },
+        {
+          "icon": "globe",
+          "tone": "amber",
+          "title": "Disponible partout",
+          "body": "Les applications App Fair sont distribuées à la fois via les magasins d'applications commerciaux — l'App Store d'Apple et le Google Play Store — ainsi que sur des marchés alternatifs comme AltStore et F-Droid."
+        },
+        {
+          "icon": "tag-off",
+          "tone": "green",
+          "title": "Aucun achat intégré",
+          "body": "Les applications App Fair ne monétisent en aucun cas les utilisateurs finaux. Pas d'abonnements, pas d'achats intégrés et pas de murs payants — l'expérience complète est accessible à tous."
+        },
+        {
+          "icon": "heart",
+          "tone": "teal",
+          "title": "Biens publics numériques",
+          "body": "Les projets App Fair sont des biens publics numériques, construits par la communauté et financés par des dons et des subventions pour servir la société."
+        },
+        {
+          "icon": "shield",
+          "tone": "purple",
+          "title": "Respectueux de la vie privée par conception",
+          "body": "Les applications App Fair ne contiennent aucun traqueur, aucun logiciel espion et ne demandent aucune autorisation inutile. Vos données restent sur votre appareil, à moins que le partage ne soit essentiel et explicite."
+        }
       ]
+    },
+    "visual": {
+      "free": "Gratuit",
+      "noAds": "Sans publicité",
+      "openSource": "Open source",
+      "noTracking": "Sans pistage",
+      "ok": "OK",
+      "popups": {
+        "free": {
+          "text": "Les applications distribuées par le Projet App Fair sont libres : gratuites, bien sûr, mais aussi respectueuses des {freedoms}.",
+          "freedomsLabel": "quatre libertés essentielles du logiciel libre"
+        },
+        "noAds": {
+          "text": "La publicité est omniprésente dans les magasins d'applications commerciaux, et c'est le moyen le plus courant de monétiser des applications prétendument « gratuites ». Les applications App Fair ne contiennent aucune publicité intégrée ni technologie publicitaire."
+        },
+        "openSource": {
+          "text": "Faire confiance, mais vérifier. Les applications App Fair sont garanties 100 % logiciel libre et open source : chaque composant qui les compose est librement disponible pour examen, audit de sécurité et contrôle public. Rien ne vous est caché lorsque vous utilisez une application App Fair."
+        },
+        "noTracking": {
+          "text": "Le pistage furtif et non consenti est monnaie courante dans les magasins d'applications commerciaux, avec peu ou pas de contrôle. Votre vie privée compte pour nous : les applications App Fair ne contiennent ni pistage, ni télémétrie, ni analytique, ni aucun autre logiciel espion."
+        }
+      }
     }
   },
-  "blog": { "title": "Blog", "all": "Tous les articles", "back": "Blog", "prev": "Précédent", "next": "Suivant" }
+  "blog": {
+    "title": "Blog",
+    "all": "Tous les articles",
+    "back": "Blog",
+    "prev": "Précédent",
+    "next": "Suivant"
+  }
 }

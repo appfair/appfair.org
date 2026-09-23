@@ -3,8 +3,22 @@
     "name": "Das App Fair Projekt",
     "tagline": "Der kostenlose und quelloffene App-Store für iPhone und Android"
   },
-  "nav": { "apps": "Apps", "blog": "Blog", "donate": "Spenden", "search": "Suchen", "menu": "Menü", "close": "Schließen", "language": "Sprache", "theme": "Design", "skip": "Zum Inhalt springen" },
-  "theme": { "light": "Hell", "system": "System", "dark": "Dunkel" },
+  "nav": {
+    "apps": "Apps",
+    "blog": "Blog",
+    "donate": "Spenden",
+    "search": "Suchen",
+    "menu": "Menü",
+    "close": "Schließen",
+    "language": "Sprache",
+    "theme": "Design",
+    "skip": "Zum Inhalt springen"
+  },
+  "theme": {
+    "light": "Hell",
+    "system": "System",
+    "dark": "Dunkel"
+  },
   "footer": {
     "nonprofit": "Das App Fair Projekt ist eine gemeinnützige 501(c)(3)-Organisation in den Vereinigten Staaten und ein eingetragener gemeinnütziger Verein in Frankreich",
     "imprint": "Impressum",
@@ -24,14 +38,72 @@
     "support": "Projekt unterstützen",
     "features": {
       "items": [
-        { "icon": "code", "tone": "blue", "title": "Kostenlos & Open Source", "body": "Jede App Fair-App ist vollständig kostenlos und quelloffen. Jeder kann den Code einsehen, Verbesserungen beitragen oder ihn zum Nutzen der breiteren Gemeinschaft wiederverwenden." },
-        { "icon": "ban", "tone": "red", "title": "Keine Werbung oder Werbetechnik", "body": "App Fair-Apps zeigen niemals Werbung an. Es gibt keine Aufmerksamkeitserfassung, keine Engagement-Manipulation und keinen Anreiz, für Klicks anstelle von Benutzern zu optimieren." },
-        { "icon": "globe", "tone": "amber", "title": "Überall verfügbar", "body": "App Fair-Apps werden sowohl über die kommerziellen App-Stores – den Apple App Store und den Google Play Store – als auch über alternative Marktplätze wie AltStore und F-Droid vertrieben." },
-        { "icon": "tag-off", "tone": "green", "title": "Keine In-App-Käufe", "body": "App Fair-Apps monetarisieren Endbenutzer in keiner Weise. Keine Abonnements, keine In-App-Käufe und keine Paywalls – das volle Erlebnis steht jedem zur Verfügung." },
-        { "icon": "heart", "tone": "teal", "title": "Digitale öffentliche Güter", "body": "App Fair-Projekte sind digitale öffentliche Güter, die von der Gemeinschaft entwickelt und durch Spenden und Zuschüsse finanziert werden, um der Gesellschaft zu dienen." },
-        { "icon": "shield", "tone": "purple", "title": "Datenschutzfreundlich durch Design", "body": "App Fair-Apps enthalten keine Tracker, keine Spyware und fordern keine unnötigen Berechtigungen an. Ihre Daten bleiben auf Ihrem Gerät, es sei denn, die Weitergabe ist unerlässlich und explizit." }
+        {
+          "icon": "code",
+          "tone": "blue",
+          "title": "Kostenlos & Open Source",
+          "body": "Jede App Fair-App ist vollständig kostenlos und quelloffen. Jeder kann den Code einsehen, Verbesserungen beitragen oder ihn zum Nutzen der breiteren Gemeinschaft wiederverwenden."
+        },
+        {
+          "icon": "ban",
+          "tone": "red",
+          "title": "Keine Werbung oder Werbetechnik",
+          "body": "App Fair-Apps zeigen niemals Werbung an. Es gibt keine Aufmerksamkeitserfassung, keine Engagement-Manipulation und keinen Anreiz, für Klicks anstelle von Benutzern zu optimieren."
+        },
+        {
+          "icon": "globe",
+          "tone": "amber",
+          "title": "Überall verfügbar",
+          "body": "App Fair-Apps werden sowohl über die kommerziellen App-Stores – den Apple App Store und den Google Play Store – als auch über alternative Marktplätze wie AltStore und F-Droid vertrieben."
+        },
+        {
+          "icon": "tag-off",
+          "tone": "green",
+          "title": "Keine In-App-Käufe",
+          "body": "App Fair-Apps monetarisieren Endbenutzer in keiner Weise. Keine Abonnements, keine In-App-Käufe und keine Paywalls – das volle Erlebnis steht jedem zur Verfügung."
+        },
+        {
+          "icon": "heart",
+          "tone": "teal",
+          "title": "Digitale öffentliche Güter",
+          "body": "App Fair-Projekte sind digitale öffentliche Güter, die von der Gemeinschaft entwickelt und durch Spenden und Zuschüsse finanziert werden, um der Gesellschaft zu dienen."
+        },
+        {
+          "icon": "shield",
+          "tone": "purple",
+          "title": "Datenschutzfreundlich durch Design",
+          "body": "App Fair-Apps enthalten keine Tracker, keine Spyware und fordern keine unnötigen Berechtigungen an. Ihre Daten bleiben auf Ihrem Gerät, es sei denn, die Weitergabe ist unerlässlich und explizit."
+        }
       ]
+    },
+    "visual": {
+      "free": "Kostenlos",
+      "noAds": "Keine Werbung",
+      "openSource": "Open Source",
+      "noTracking": "Kein Tracking",
+      "ok": "OK",
+      "popups": {
+        "free": {
+          "text": "Apps, die über das App Fair Projekt vertrieben werden, sind frei – nicht nur kostenlos, sondern sie respektieren auch die {freedoms}.",
+          "freedomsLabel": "vier wesentlichen Freiheiten freier Software"
+        },
+        "noAds": {
+          "text": "Werbung ist in den kommerziellen App-Stores allgegenwärtig und der häufigste Weg, angeblich „kostenlose“ kommerzielle Apps zu monetarisieren. App Fair-Apps enthalten keinerlei eingebaute Werbung oder Werbetechnik."
+        },
+        "openSource": {
+          "text": "Vertrauen ist gut, Kontrolle ist besser. App Fair-Apps sind garantiert zu 100 % Open-Source-Software: Jede Komponente ist frei verfügbar für offene Prüfung, Sicherheitsaudits und öffentliche Kontrolle. Bei einer App Fair-App bleibt nichts vor Ihnen verborgen."
+        },
+        "noTracking": {
+          "text": "Heimliches Tracking ohne Einwilligung ist in den kommerziellen App-Stores weit verbreitet – mit wenig oder gar keiner Aufsicht. Ihre Privatsphäre ist uns wichtig: App Fair-Apps enthalten kein Tracking, keine Telemetrie, keine Analytik und keine andere Spyware."
+        }
+      }
     }
   },
-  "blog": { "title": "Blog", "all": "Alle Beiträge", "back": "Blog", "prev": "Zurück", "next": "Weiter" }
+  "blog": {
+    "title": "Blog",
+    "all": "Alle Beiträge",
+    "back": "Blog",
+    "prev": "Zurück",
+    "next": "Weiter"
+  }
 }

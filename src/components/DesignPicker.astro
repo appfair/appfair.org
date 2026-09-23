@@ -13,11 +13,17 @@ import { designOptions } from '../lib/site';
     <Icon name="palette" /><span class="dp-label" data-dp-label>Design</span><Icon name="chevron-down" class="icon caret" />
   </button>
   <div class="dp-panel" id="dp-panel" hidden>
-    <p class="dp-note">Development-only picker (not rendered in production builds). Midnight · Split is the site default; the rest are kept for comparison. Choices are remembered in this browser and shareable with <code>?style=…&amp;layout=…</code>.</p>
+    <p class="dp-note">Development-only picker (not rendered in production builds). Midnight · Split · Catalog is the site default; the rest are kept for comparison. Choices are remembered in this browser and shareable with <code>?style=…&amp;layout=…&amp;visual=…</code>.</p>
     <fieldset>
       <legend>Style</legend>
       {designOptions.styles.map((s) => (
         <label><input type="radio" name="dp-style" value={s.id} /><span><b>{s.label}</b><small>{s.blurb}</small></span></label>
+      ))}
+    </fieldset>
+    <fieldset>
+      <legend>Graphic</legend>
+      {designOptions.visuals.map((v) => (
+        <label><input type="radio" name="dp-visual" value={v.id} /><span><b>{v.label}</b><small>{v.blurb}</small></span></label>
       ))}
     </fieldset>
     <fieldset>
@@ -44,16 +50,18 @@ import { designOptions } from '../lib/site';
     const label = picker.querySelector<HTMLElement>('[data-dp-label]')!;
     const styles = Array.from(picker.querySelectorAll<HTMLInputElement>('input[name="dp-style"]'));
     const layouts = Array.from(picker.querySelectorAll<HTMLInputElement>('input[name="dp-layout"]'));
+    const visuals = Array.from(picker.querySelectorAll<HTMLInputElement>('input[name="dp-visual"]'));
     const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
     const reflect = () => {
-      const st = root.dataset.style!, ly = root.dataset.layout!;
+      const st = root.dataset.style!, ly = root.dataset.layout!, vi = root.dataset.visual!;
       styles.forEach((i) => (i.checked = i.value === st));
       layouts.forEach((i) => (i.checked = i.value === ly));
-      label.textContent = `${cap(st)} · ${cap(ly)}`;
+      visuals.forEach((i) => (i.checked = i.value === vi));
+      label.textContent = `${cap(st)} · ${cap(ly)} · ${cap(vi)}`;
     };
-    const apply = (style: string, layout: string) => {
-      root.dataset.style = style; root.dataset.layout = layout;
-      try { localStorage.setItem(KEY, JSON.stringify({ style, layout })); } catch { /* ignore */ }
+    const apply = (style: string, layout: string, visual: string = root.dataset.visual!) => {
+      root.dataset.style = style; root.dataset.layout = layout; root.dataset.visual = visual;
+      try { localStorage.setItem(KEY, JSON.stringify({ style, layout, visual })); } catch { /* ignore */ }
       reflect();
     };
     const set = (open: boolean) => { panel.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
@@ -62,6 +70,7 @@ import { designOptions } from '../lib/site';
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
     styles.forEach((i) => i.addEventListener('change', () => apply(i.value, root.dataset.layout!)));
     layouts.forEach((i) => i.addEventListener('change', () => apply(root.dataset.style!, i.value)));
+    visuals.forEach((i) => i.addEventListener('change', () => apply(root.dataset.style!, root.dataset.layout!, i.value)));
     picker.querySelector('[data-dp-next]')?.addEventListener('click', () => {
       const si = styles.findIndex((i) => i.checked), li = layouts.findIndex((i) => i.checked);
       const nl = (li + 1) % layouts.length;
@@ -70,7 +79,7 @@ import { designOptions } from '../lib/site';
     });
     picker.querySelector('[data-dp-copy]')?.addEventListener('click', async (e) => {
       const u = new URL(location.href);
-      u.searchParams.set('style', root.dataset.style!); u.searchParams.set('layout', root.dataset.layout!);
+      u.searchParams.set('style', root.dataset.style!); u.searchParams.set('layout', root.dataset.layout!); u.searchParams.set('visual', root.dataset.visual!);
       const theme = (() => { try { return localStorage.getItem('appfair-theme') || 'system'; } catch { return 'system'; } })();
       u.searchParams.set('theme', theme);
       try { await navigator.clipboard.writeText(u.toString()); (e.currentTarget as HTMLElement).textContent = 'Copied!'; } catch { prompt('Copy this link', u.toString()); }

@@ -10,8 +10,7 @@ const currentLabel = LOCALES.find((l) => l.code === current)?.label ?? 'English'
 ---
 <div class="lang" data-lang>
   <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label={`${t('nav.language')}: ${currentLabel}`} title={t('nav.language')}>
-    <Icon name="languages" />
-    <span class="lang-code">{current.toUpperCase()}</span>
+    <span class="lang-name">{currentLabel}</span>
     <Icon name="chevron-down" class="icon caret" />
   </button>
   <ul class="lang-menu" role="menu" hidden>
@@ -43,11 +42,10 @@ const currentLabel = LOCALES.find((l) => l.code === current)?.label ?? 'English'
     display: inline-flex; align-items: center; gap: 6px;
     height: 34px; padding: 0 9px 0 10px;
     border-radius: 999px; border: 1px solid var(--border); background: var(--hover);
-    color: var(--muted); font: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    color: var(--muted); font: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer;
     transition: color 0.15s ease, border-color 0.15s ease;
   }
   .lang-btn:hover { color: var(--text); border-color: var(--brand); }
-  .lang-btn :global(.icon) { width: 15px; height: 15px; }
   .lang-btn :global(.caret) { width: 13px; height: 13px; opacity: 0.7; }
   .lang-menu {
     position: absolute; right: 0; top: calc(100% + 8px); z-index: 60;

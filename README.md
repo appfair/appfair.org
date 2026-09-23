@@ -45,15 +45,18 @@ localized copy of the markdown file; wiring that up is the next step when transl
 
 ## Design picker (development only)
 
-The site's design is **Midnight** (style) + **Split** (layout), set as `DESIGN` in `src/layouts/BaseLayout.astro`.
-In `npm run dev` a **Design** button in the bottom-right corner switches between the alternative styles
-and layouts that were built for comparison. It sets `data-style` / `data-layout` on `<html>`, remembers the
-choice in `localStorage`, and honours `?style=…&layout=…&theme=…` in the URL. Production builds
-(`npm run build`, and so the deployed site) render neither the picker nor its bootstrap script, so they
-always show the default.
+The site's design is **Midnight** (style) + **Split** (layout) + **Catalog** (hero graphic), set as `design`
+in `src/lib/site.ts`. In `npm run dev` a **Design** button in the bottom-right corner switches between the
+alternative styles, layouts and graphics that were built for comparison. It sets `data-style` /
+`data-layout` / `data-visual` on `<html>`, remembers the choice in `localStorage`, and honours
+`?style=…&layout=…&visual=…&theme=…` in the URL. Production builds (`npm run build`, and so the deployed
+site) render neither the picker nor its bootstrap script, and `HeroVisual.astro` emits only the chosen
+graphic, so they always show the default. In dev, `?popup=free|noAds|openSource|noTracking` opens one of
+the graphic's dialogs on load, for reviewing it without a pointer.
 
 To retire the alternatives: delete `src/components/DesignPicker.astro`, its two `showPicker` includes in
-`BaseLayout.astro`, `designOptions` in `src/lib/site.ts`, and the unused blocks in `themes.css` and `layouts.css`.
+`BaseLayout.astro`, `designOptions` in `src/lib/site.ts`, the non-default variants in `HeroVisual.astro`,
+and the unused blocks in `themes.css` and `layouts.css`.
 
 ## Search
 

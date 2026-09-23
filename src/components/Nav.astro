@@ -32,8 +32,8 @@ const links = [
     </nav>
     <div class="nav-tools">
       <Search />
-      <div class="desktop-only"><LangSwitcher /></div>
       <div class="desktop-only"><ThemeToggle /></div>
+      <div class="desktop-only"><LangSwitcher /></div>
       <button type="button" class="menu-btn" data-menu-btn aria-expanded="false" aria-controls="site-menu" aria-label={t('nav.menu')}>
         <Icon name="menu" class="icon i-open" /><Icon name="x" class="icon i-close" />
       </button>
@@ -42,8 +42,8 @@ const links = [
       {links.map((l) => (
         <a href={l.href} class:list={['menu-link', { on: active === l.key }]}>{l.label}{l.external && <Icon name="external" class="icon ext" />}</a>
       ))}
-      <div class="menu-row"><span>{t('nav.language')}</span><LangSwitcher /></div>
       <div class="menu-row"><span>{t('nav.theme')}</span><ThemeToggle /></div>
+      <div class="menu-row"><span>{t('nav.language')}</span><LangSwitcher /></div>
     </div>
   </div>
 </header>

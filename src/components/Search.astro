@@ -10,7 +10,6 @@ const placeholder = t('search.placeholder');
 <button type="button" class="search-trigger" data-search-open aria-label={t('nav.search')} aria-keyshortcuts="Meta+K Control+K">
   <Icon name="search" />
   <span class="st-text">{t('nav.search')}</span>
-  <kbd>⌘K</kbd>
 </button>
 
 <dialog class="search-modal" data-search-dialog aria-label={t('nav.search')} data-pagefind-ignore>
@@ -63,7 +62,6 @@ const placeholder = t('search.placeholder');
   }
   .search-trigger:hover { color: var(--text); border-color: var(--brand); }
   .search-trigger :global(.icon) { width: 15px; height: 15px; }
-  .search-trigger kbd { font-family: var(--mono); font-size: 0.7rem; color: var(--faint); background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 1px 5px; }
   .search-modal {
     --pagefind-ui-primary: var(--brand);
     --pagefind-ui-text: var(--text);
@@ -80,5 +78,5 @@ const placeholder = t('search.placeholder');
   }
   .search-modal::backdrop { background: rgba(4, 7, 14, 0.55); backdrop-filter: blur(4px); }
   .search-unavailable { color: var(--muted); font-size: 0.92rem; margin: 6px 2px; }
-  @media (max-width: 720px) { .search-trigger .st-text, .search-trigger kbd { display: none; } .search-trigger { padding: 0 9px; } }
+  @media (max-width: 720px) { .search-trigger .st-text { display: none; } .search-trigger { padding: 0 9px; } }
 </style>

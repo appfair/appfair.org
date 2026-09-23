@@ -3,8 +3,22 @@
     "name": "App Fair 项目",
     "tagline": "适用于 iPhone 和 Android 的自由开源应用商店"
   },
-  "nav": { "apps": "应用", "blog": "博客", "donate": "捐赠", "search": "搜索", "menu": "菜单", "close": "关闭", "language": "语言", "theme": "主题", "skip": "跳到正文" },
-  "theme": { "light": "浅色", "system": "跟随系统", "dark": "深色" },
+  "nav": {
+    "apps": "应用",
+    "blog": "博客",
+    "donate": "捐赠",
+    "search": "搜索",
+    "menu": "菜单",
+    "close": "关闭",
+    "language": "语言",
+    "theme": "主题",
+    "skip": "跳到正文"
+  },
+  "theme": {
+    "light": "浅色",
+    "system": "跟随系统",
+    "dark": "深色"
+  },
   "footer": {
     "nonprofit": "App Fair项目是美国的501(c)(3)非营利组织，也是法国的注册非营利协会",
     "imprint": "法律信息",
@@ -24,14 +38,72 @@
     "support": "支持项目",
     "features": {
       "items": [
-        { "icon": "code", "tone": "blue", "title": "自由开源", "body": "每个 App Fair 应用程序都是完全自由和开源的。任何人都可以检查代码、贡献改进或重用它，以造福更广泛的社区。" },
-        { "icon": "ban", "tone": "red", "title": "无广告或广告技术", "body": "App Fair 应用程序从不显示广告。没有注意力收集，没有参与度操纵，也没有为点击而不是用户优化的动机。" },
-        { "icon": "globe", "tone": "amber", "title": "随处可用", "body": "App Fair 应用程序通过商业应用商店（苹果应用商店和谷歌 Play 商店）以及 AltStore 和 F-Droid 等替代市场分发。" },
-        { "icon": "tag-off", "tone": "green", "title": "无应用内购买", "body": "App Fair 应用程序不以任何方式向最终用户收费。没有订阅，没有应用内购买，也没有付费墙——每个人都可以获得完整的体验。" },
-        { "icon": "heart", "tone": "teal", "title": "数字公共产品", "body": "App Fair 项目是数字公共产品，由社区构建，并由捐赠和赠款资助，以服务社会。" },
-        { "icon": "shield", "tone": "purple", "title": "尊重隐私的设计", "body": "App Fair 应用程序不包含跟踪器、间谍软件，也不请求不必要的权限。您的数据保留在您的设备上，除非共享是必不可少且明确的。" }
+        {
+          "icon": "code",
+          "tone": "blue",
+          "title": "自由开源",
+          "body": "每个 App Fair 应用程序都是完全自由和开源的。任何人都可以检查代码、贡献改进或重用它，以造福更广泛的社区。"
+        },
+        {
+          "icon": "ban",
+          "tone": "red",
+          "title": "无广告或广告技术",
+          "body": "App Fair 应用程序从不显示广告。没有注意力收集，没有参与度操纵，也没有为点击而不是用户优化的动机。"
+        },
+        {
+          "icon": "globe",
+          "tone": "amber",
+          "title": "随处可用",
+          "body": "App Fair 应用程序通过商业应用商店（苹果应用商店和谷歌 Play 商店）以及 AltStore 和 F-Droid 等替代市场分发。"
+        },
+        {
+          "icon": "tag-off",
+          "tone": "green",
+          "title": "无应用内购买",
+          "body": "App Fair 应用程序不以任何方式向最终用户收费。没有订阅，没有应用内购买，也没有付费墙——每个人都可以获得完整的体验。"
+        },
+        {
+          "icon": "heart",
+          "tone": "teal",
+          "title": "数字公共产品",
+          "body": "App Fair 项目是数字公共产品，由社区构建，并由捐赠和赠款资助，以服务社会。"
+        },
+        {
+          "icon": "shield",
+          "tone": "purple",
+          "title": "尊重隐私的设计",
+          "body": "App Fair 应用程序不包含跟踪器、间谍软件，也不请求不必要的权限。您的数据保留在您的设备上，除非共享是必不可少且明确的。"
+        }
       ]
+    },
+    "visual": {
+      "free": "免费",
+      "noAds": "无广告",
+      "openSource": "开源",
+      "noTracking": "无追踪",
+      "ok": "好",
+      "popups": {
+        "free": {
+          "text": "通过 App Fair 项目分发的应用是自由的：不仅免费，而且尊重{freedoms}。",
+          "freedomsLabel": "自由软件的四项基本自由"
+        },
+        "noAds": {
+          "text": "商业应用商店中广告泛滥，是号称“免费”的商业应用最常见的变现途径。App Fair 应用不包含任何内置广告或广告技术。"
+        },
+        "openSource": {
+          "text": "信任，但要验证。App Fair 应用保证是 100% 开源软件，因此其中的每一个组件都可供公开审阅、安全审计和公众监督。使用 App Fair 应用时，没有任何东西对您隐藏。"
+        },
+        "noTracking": {
+          "text": "商业应用商店中充斥着隐蔽且未经同意的追踪，几乎没有任何监督。您的隐私对我们很重要：App Fair 应用不包含任何追踪、遥测、分析或其他间谍软件。"
+        }
+      }
     }
   },
-  "blog": { "title": "博客", "all": "所有文章", "back": "博客", "prev": "上一篇", "next": "下一篇" }
+  "blog": {
+    "title": "博客",
+    "all": "所有文章",
+    "back": "博客",
+    "prev": "上一篇",
+    "next": "下一篇"
+  }
 }

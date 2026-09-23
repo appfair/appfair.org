@@ -75,7 +75,7 @@
 :root[data-layout='bold'] .hero .lead { font-size: 1.25rem; max-width: 56ch; }
 :root[data-layout='bold'] .hero .eyebrow { font-size: 0.82rem; }
 :root[data-layout='bold'] .hero-visual { display: block; position: absolute; left: 64%; top: 30px; width: min(38vw, 520px); opacity: 0.2; pointer-events: none; transform: rotate(-6deg); }
-:root[data-layout='bold'] .hero-visual .float-tag { display: none; }
+:root[data-layout='bold'] .hero-visual .tags, :root[data-layout='bold'] .hero-visual .popup { display: none; }
 :root[data-layout='bold'] .hero-stores { border-top: 0; margin-top: 40px; padding-top: 0; }
 :root[data-layout='bold'] .section-head h2 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); }
 :root[data-layout='bold'] .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }

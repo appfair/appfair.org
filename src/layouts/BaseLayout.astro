@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import DesignPicker from '../components/DesignPicker.astro';
-import { site } from '../lib/site';
+import { site, design } from '../lib/site';
 import { useTranslations, langOf, resolveLocale, stripLocale, localizePath, LOCALES, DEFAULT_LOCALE } from '../i18n';
 
 interface Props {
@@ -22,13 +22,12 @@ const fullTitle = title ? `${title} — ${t('site.short')}` : `${t('site.name')}
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const og = new URL(ogImage ?? '/assets/social-header.png', site.url).href;
 const base = stripLocale(Astro.url.pathname);
-// The chosen design. The picker (and the localStorage / ?style= override it relies on) only exists in
-// development builds; a deployed page always renders exactly this.
-const DESIGN = { style: 'midnight', layout: 'split' };
+// The chosen design lives in src/lib/site.ts. The picker (and the localStorage / ?style= override it
+// relies on) only exists in development builds; a deployed page always renders exactly the default.
 const showPicker = import.meta.env.DEV;
 ---
 <!doctype html>
-<html lang={langOf(locale)} data-style={DESIGN.style} data-layout={DESIGN.layout}>
+<html lang={langOf(locale)} data-style={design.style} data-layout={design.layout} data-visual={design.visual}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,13 +49,14 @@ const showPicker = import.meta.env.DEV;
           const root = document.documentElement;
           try {
             const q = new URLSearchParams(location.search);
-            const styles = ['midnight', 'fairground', 'editorial', 'civic'], layouts = ['split', 'classic', 'bold'];
+            const styles = ['midnight', 'fairground', 'editorial', 'civic'], layouts = ['split', 'classic', 'bold'], visuals = ['catalog', 'stacked', 'duo', 'emblem'];
             let d = {};
             try { d = JSON.parse(localStorage.getItem('appfair-design') || '{}') || {}; } catch (e) {}
             const s = styles.includes(q.get('style')) ? q.get('style') : (styles.includes(d.style) ? d.style : root.dataset.style);
             const l = layouts.includes(q.get('layout')) ? q.get('layout') : (layouts.includes(d.layout) ? d.layout : root.dataset.layout);
-            root.dataset.style = s; root.dataset.layout = l;
-            if (q.has('style') || q.has('layout')) localStorage.setItem('appfair-design', JSON.stringify({ style: s, layout: l }));
+            const v = visuals.includes(q.get('visual')) ? q.get('visual') : (visuals.includes(d.visual) ? d.visual : root.dataset.visual);
+            root.dataset.style = s; root.dataset.layout = l; root.dataset.visual = v;
+            if (q.has('style') || q.has('layout') || q.has('visual')) localStorage.setItem('appfair-design', JSON.stringify({ style: s, layout: l, visual: v }));
             const t = q.get('theme');
             if (t && ['light', 'system', 'dark'].includes(t)) {
               localStorage.setItem('appfair-theme', t);

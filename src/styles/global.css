@@ -195,9 +195,8 @@ code, pre, kbd { font-family: var(--mono); }
 .stores { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; padding-bottom: 18px; }
 .store-badge { display: inline-flex; align-items: center; position: relative; }
 .store-badge img { height: 44px; width: auto; border-radius: 7px; transition: transform 0.15s ease, opacity 0.15s ease; }
-.store-badge:hover img { transform: translateY(-1px); }
+a.store-badge:hover img { transform: translateY(-1px); }
 .store-badge.is-roadmap img { opacity: 0.55; filter: grayscale(0.6); }
-.store-badge.is-roadmap:hover img { opacity: 0.8; }
 /* The tag hangs below the badge without taking part in the row's layout, so all four badges
    stay centred on one line; `.stores` reserves the room underneath. */
 .store-badge .roadmap-tag { position: absolute; top: 100%; left: 0; right: 0; margin-top: 5px; text-align: center; white-space: nowrap; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--faint); }
