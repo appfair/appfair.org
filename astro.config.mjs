@@ -137,22 +137,9 @@ export default defineConfig({
         // RSS is added automatically by the starlight-blog plugin.
       ],
       // editLink disabled to remove "Edit page" links
-      sidebar: [
-        {
-          label: 'Creator Guide',
-          items: [
-            { label: 'Welcome', link: '/docs/' },
-            { label: 'Philosophy', link: '/docs/philosophy/' },
-            { label: 'Inclusion Criteria', link: '/docs/inclusion-criteria/' },
-            { label: 'Building Your App', link: '/docs/building/' },
-            { label: 'Submitting Your App', link: '/docs/submitting/' },
-            { label: 'Deployment & Distribution', link: '/docs/deploying/' },
-            { label: 'Maintaining Your App', link: '/docs/maintenance/' },
-            { label: 'Glossary', link: '/docs/glossary/' },
-            { label: 'FAQ', link: '/docs/faq/' },
-          ],
-        },
-      ],
+      // An explicit empty sidebar: omitting this key entirely would make
+      // Starlight autogenerate one from every top-level content directory.
+      sidebar: [],
 		}),
 	],
 });

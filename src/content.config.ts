@@ -25,7 +25,6 @@ export const collections = {
         loader: i18nLoader(),
         schema: i18nSchema({
             extend: z.object({
-                'header.link.docs': z.string().optional(),
                 'header.link.blog': z.string().optional(),
                 'header.link.sponsor': z.string().optional(),
                 'footer.nonprofit': z.string().optional(),
