@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import CodeCopy from '../components/CodeCopy.astro';
 import DesignPicker from '../components/DesignPicker.astro';
 import { site, design } from '../lib/site';
 import { useTranslations, langOf, resolveLocale, stripLocale, localizePath, LOCALES, DEFAULT_LOCALE } from '../i18n';
@@ -109,5 +110,6 @@ const showPicker = import.meta.env.DEV;
       <slot />
     </main>
     <Footer />
+    <CodeCopy />
   </body>
 </html>

@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import rehypeAdmonitions from './src/lib/rehype-admonitions.mjs';
 import rehypeExternalLinks from 'rehype-external-links';
 import { LOCALE_CODES, DEFAULT_LOCALE } from './src/i18n/locales.mjs';
 
@@ -39,6 +40,7 @@ export default defineConfig({
     shikiConfig: { theme: 'github-dark-dimmed', wrap: false },
     processor: unified({
       rehypePlugins: [
+        rehypeAdmonitions,
         // External links open in a new tab and carry the "external-link" class; global.css appends
         // a small "open in new" glyph after them so the prose stays clean.
         [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'], properties: { className: ['external-link'] } }],

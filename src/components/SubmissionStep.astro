@@ -1,0 +1,67 @@
+---
+import CodeBlock from './CodeBlock.astro';
+import { defaults, steps, stepIds } from '../lib/submission.mjs';
+const { id, anchor = `step-title-${id}`, integrated = false } = Astro.props;
+const step = steps(defaults).find(step => step.id === id);
+if (!step) throw new Error(`Unknown submission step: ${id}`);
+const index = stepIds.indexOf(id);
+---
+<section id={`step-${id}`} class:list={['check-step', { integrated }]} data-guide-step={id} aria-labelledby={anchor}>
+  <h2 id={anchor}><span class="step-index">{String(index).padStart(2, '0')}</span><span class="step-label">{step.title}</span></h2>
+  {Astro.slots.has('default') && <div class="step-explanation"><slot /></div>}
+  <div class="step-content">
+    <p class="step-location">{step.location}</p><p class="step-description">{step.text}</p>
+    {step.installations && <>
+      <ul class="installations">
+        {step.installations.map(item => <li data-installation={item.id} class:list={{ unavailable: item.disabled }} hidden={item.hidden}>
+          <a href={item.disabled ? undefined : item.href} target="_blank" rel="noopener noreferrer" role="link" aria-disabled={item.disabled ? 'true' : undefined} tabindex={item.disabled ? '-1' : undefined}>{item.title}</a>
+          <small>{item.detail.split("`").map((part, i) => i % 2 ? <code>{part}</code> : part)}</small>
+        </li>)}
+      </ul>
+    </>}
+    {step.command && <CodeBlock class="command-block" code={step.command} label={`Copy commands for ${step.title}`} />}
+    {step.optional && <div class="command-optional">
+      <h3>{step.optional.title}</h3>{step.optional.text && <p>{step.optional.text}</p>}
+      <CodeBlock class="command-block optional-command" code={step.optional.command} label={`Copy commands for ${step.optional.title}`} />
+      {step.optional.instructions && <ol class="optional-instructions">{step.optional.instructions.map(instruction => <li>{instruction}</li>)}</ol>}
+    </div>}
+    {step.operations && <ul class="step-operations">
+      {step.operations.map(([label, href, detail]) => <li><a href={href} target="_blank" rel="noopener noreferrer">{label}</a>{detail && <small>{detail}</small>}</li>)}
+    </ul>}
+    {step.alternative && <div class="command-alternative">
+      <h3>{step.alternative.title}</h3><p>{step.alternative.text}</p>
+      <ul class="step-operations"><li><a href={step.alternative.href} target="_blank" rel="noopener noreferrer">{step.alternative.label}</a></li></ul>
+      <CodeBlock class="command-block alternative-command" code={step.alternative.command} label="Copy Git remote command" />
+    </div>}
+    <ul class="step-links">{step.links.map(([label, href]) => <li><a href={href} target={/^https?:\/\//.test(href) ? '_blank' : undefined} rel={/^https?:\/\//.test(href) ? 'noopener noreferrer' : undefined}>{label}</a></li>)}<li><a href={step.help}>Troubleshoot this step</a></li></ul>
+  </div>
+</section>
+<style>
+  [hidden] { display: none !important; }
+  .check-step { margin-top: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); scroll-margin-top: calc(var(--nav-h) + 20px); }
+  .check-step > h2 { display: flex; align-items: baseline; gap: 14px; margin: 0; padding: 18px 20px 12px; line-height: 1.45; }
+  .command-alternative, .command-optional { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .command-alternative h3, .command-optional h3 { margin: 0 0 8px; font-size: .9rem; }
+  .step-index { color: var(--brand-strong); font: 600 .8rem ui-monospace,monospace; }
+  .step-label { font-size: .95rem; font-weight: 650; flex: 1; }
+  .step-content { padding: 0 20px 20px; font-size: .94rem; }
+  .step-content .step-location { color: var(--brand-strong); font-size: .8rem; margin: 2px 0 12px; }
+  .step-description:empty { display: none; }
+  .step-content .installations, .step-content .step-operations { list-style: disc; padding-left: 1.25rem; margin: 12px 0; }
+  .installations li, .step-operations li { padding: 5px 0; }
+  .installations a, .step-operations a { font-weight: 600; }
+  .installations small, .step-operations small { display: block; margin-top: 3px; color: var(--muted); font-size: .85rem; line-height: 1.6; }
+  .installations .unavailable a, .installations .unavailable small { color: var(--faint); }
+  .installations .unavailable a { cursor: not-allowed; text-decoration: none; }
+  .step-content .step-links { padding: 12px 0 0; margin: 20px 0 0; border-top: 1px solid var(--border); list-style: none; display: flex; flex-wrap: wrap; gap: 3px 16px; font-size: .76rem; line-height: 1.6; }
+  .step-links a { color: var(--muted); }
+  .step-links a:hover { color: var(--brand-strong); }
+  @media(max-width: 540px) { .check-step > h2 { padding: 16px 14px 12px; gap: 9px; } .step-content { padding-inline: 14px; } }
+  .integrated { margin: 48px 0 0; border: 0; border-radius: 0; background: transparent; }
+  .integrated > h2 { padding: 0; margin-bottom: 20px; border: 0; }
+  .integrated .step-index { font-size: .9rem; }
+  .integrated .step-label { font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.3; }
+  .integrated .step-content { padding: 0; font-size: 1rem; }
+  .integrated .step-location { margin-top: 24px; }
+  .step-explanation :global([data-guide-value]) { overflow-wrap: anywhere; }
+</style>

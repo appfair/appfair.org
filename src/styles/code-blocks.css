@@ -1,0 +1,16 @@
+.code-block { position: relative; min-width: 0; margin: 1em 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--code-background, var(--bg)); overflow: hidden; }
+.code-block > pre { margin: 0; padding: 14px 18px; border: 0; border-radius: 0; background: transparent; box-shadow: none; overflow-x: auto; }
+.code-block[data-copy-ready] > pre { margin-right: 46px; }
+.code-block .copy-command { position: absolute; right: 8px; top: 6px; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; color: inherit; background: var(--code-background, var(--bg)); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
+.code-block .copy-command:hover { border-color: var(--brand); }
+.code-block .copy-command:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.code-block .copied-icon, .code-block [data-copied] .copy-icon { display: none; }
+.code-block [data-copied] .copied-icon { display: block; }
+.code-block [data-copied] { color: #168653; border-color: currentColor; }
+[data-theme="dark"] .code-block [data-copied] { color: #6ee7b7; }
+.code-block .copy-feedback { position: absolute; top: 6px; right: 46px; max-width: calc(100% - 54px); font: 500 .8rem/1.5 system-ui, sans-serif; color: var(--text); background: var(--surface); border-radius: 6px; pointer-events: none; z-index: 1; }
+.code-block .copy-feedback:not(:empty) { padding: 5px 9px; border: 1px solid var(--border); }
+@media print {
+  .code-block .copy-command, .code-block .copy-feedback { display: none; }
+  .code-block[data-copy-ready] > pre { margin-right: 0; }
+}

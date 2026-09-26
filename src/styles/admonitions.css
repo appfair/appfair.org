@@ -1,0 +1,24 @@
+/* Site-wide callouts. Type names and distinct icons supplement color. */
+.admonition { --admonition-accent: #1d4ed8; margin: 24px 0; padding: 18px 20px; border: 1px solid color-mix(in srgb, var(--admonition-accent) 28%, var(--border)); border-left: 4px solid var(--admonition-accent); border-radius: 12px; background: linear-gradient(120deg, color-mix(in srgb, var(--admonition-accent) 9%, var(--surface)), color-mix(in srgb, var(--admonition-accent) 3%, var(--surface))); overflow-wrap: anywhere; }
+.admonition[hidden] { display: none !important; }
+.admonition-info { --admonition-accent: #0369a1; }
+.admonition-tip { --admonition-accent: #15803d; }
+.admonition-important { --admonition-accent: #6d28d9; }
+.admonition-warning { --admonition-accent: #92400e; }
+.admonition-caution { --admonition-accent: #b91c1c; }
+[data-theme=dark] .admonition { --admonition-accent: #93c5fd; }
+[data-theme=dark] .admonition-info { --admonition-accent: #7dd3fc; }
+[data-theme=dark] .admonition-tip { --admonition-accent: #86efac; }
+[data-theme=dark] .admonition-important { --admonition-accent: #c4b5fd; }
+[data-theme=dark] .admonition-warning { --admonition-accent: #fcd34d; }
+[data-theme=dark] .admonition-caution { --admonition-accent: #fca5a5; }
+.admonition .admonition-heading { display: flex; align-items: center; gap: 12px; margin: 0 0 10px; color: var(--admonition-accent); font-size: .94rem; font-weight: 700; line-height: 1.4; }
+.admonition-icon { box-sizing: content-box; flex: none; padding: 7px; border-radius: 10px; background: color-mix(in srgb, var(--admonition-accent) 12%, transparent); }
+.admonition-body { font-size: .94rem; line-height: 1.65; }
+.admonition .admonition-body, .admonition .admonition-body :is(p,li) { color: var(--text); }
+.admonition-body > :first-child { margin-top: 0; }
+.admonition-body > :last-child { margin-bottom: 0; }
+.admonition-body a { color: var(--admonition-accent); text-decoration: underline; text-underline-offset: 3px; }
+.admonition-body pre { max-width: 100%; }
+@media(max-width: 540px) { .admonition { padding: 15px; } }
+@media(forced-colors: active) { .admonition { border-color: CanvasText; } .admonition .admonition-heading { color: CanvasText; } }

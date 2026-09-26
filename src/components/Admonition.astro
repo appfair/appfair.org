@@ -1,0 +1,19 @@
+---
+import { admonitions, admonitionHeading } from '../lib/admonitions.mjs';
+interface Props {
+  kind?: keyof typeof admonitions;
+  title?: string;
+  id?: string;
+  hidden?: boolean;
+  class?: string;
+}
+const { kind = 'note', title, id, hidden, class: className } = Astro.props;
+const heading = admonitionHeading(kind, title);
+---
+<aside id={id} class:list={['admonition', `admonition-${kind}`, className]} role="note" aria-label={heading} hidden={hidden}>
+  <p class="admonition-heading">
+    <svg class="admonition-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d={admonitions[kind].icon} /></svg>
+    <span>{heading}</span>
+  </p>
+  <div class="admonition-body"><slot /></div>
+</aside>

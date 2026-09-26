@@ -1,0 +1,18 @@
+---
+import Admonition from './Admonition.astro';
+import SubmissionForm from './SubmissionForm.astro';
+import SubmissionStep from './SubmissionStep.astro';
+import { stepIds } from '../lib/submission.mjs';
+---
+<section class="checklist" aria-label="Personalized submission checklist">
+  <SubmissionForm />
+  <noscript><Admonition kind="note" title="JavaScript is off">Commands below use Orbit-Notes on macOS; substitute your own values.</Admonition></noscript>
+  <p class="command-note">Bash/zsh commands; Git Bash on Windows.</p>
+  <div id="checklist-steps">
+    {stepIds.map(id => <SubmissionStep id={id} />)}
+  </div>
+</section>
+<style>
+  .checklist { margin-top: 28px; }
+  .command-note { font-size: .8rem; line-height: 1.6; }
+</style>

@@ -1,0 +1,14 @@
+---
+import '../styles/code-blocks.css';
+---
+<template id="code-copy-template">
+  <button type="button" class="copy-command" title="Copy to clipboard" aria-label="Copy code to clipboard" data-pagefind-ignore>
+    <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></svg>
+    <svg class="copied-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6" /></svg>
+  </button>
+  <span class="copy-feedback" role="status" aria-live="polite" data-pagefind-ignore></span>
+</template>
+<script>
+  import { setupCodeBlocks } from '../lib/code-blocks';
+  setupCodeBlocks();
+</script>

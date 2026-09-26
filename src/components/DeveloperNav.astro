@@ -1,0 +1,14 @@
+---
+const { current } = Astro.props;
+const links = [
+  ['/docs/', 'Overview'],
+  ['/docs/getting-started/', 'Getting started'],
+  ['/docs/releases/', 'Releases & updates'],
+  ['/docs/troubleshooting/', 'Troubleshooting'],
+];
+---
+<nav class="developer-nav" aria-label="Developer documentation" data-pagefind-ignore>
+  <a class="docs-home" href="/docs/">Developer guide</a>
+  {links.map(([href, title]) => <a href={href} aria-current={current === href ? 'page' : undefined}>{title}</a>)}
+  <a class="docs-source" href="https://github.com/appfair/appfair-apps/blob/main/CONTRIBUTING.md">Submission reference ↗</a>
+</nav>

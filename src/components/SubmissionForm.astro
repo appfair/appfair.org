@@ -1,0 +1,105 @@
+---
+import Admonition from './Admonition.astro';
+import { defaults } from '../lib/submission.mjs';
+const { compact = false } = Astro.props;
+---
+  <form class:list={{ compact }} id="submission-form" novalidate data-pagefind-ignore>
+    <div class="fields">
+      <div class="token-field">
+        <label for="app-token">App token</label>
+        <div class="token-input">
+          <button type="button" id="checklist-shuffle" aria-label="Generate a new app token and name" title="Generate a new app token and name">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <path d="M20 7v5h-5M4 17v-5h5M6.1 6.1A8 8 0 0 1 19.6 10M4.4 14A8 8 0 0 0 17.9 17.9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <input id="app-token" name="token" value={defaults.token} required maxlength="39" autocomplete="off" spellcheck="false" aria-describedby="token-help token-error token-availability-text" />
+          <span id="token-availability" role="status" aria-live="polite" aria-atomic="true" hidden>
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10" fill="currentColor" opacity=".13" />
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span id="token-availability-text"></span>
+          </span>
+        </div>
+        <small id="token-help">Unique GitHub organization and matching repository.</small><small class="field-error" id="token-error"></small>
+      </div>
+      <label>App name<input name="title" value={defaults.title} required maxlength="80" autocomplete="off" aria-describedby="title-error" /><small class="field-error" id="title-error"></small></label>
+      <fieldset id="host-picker" aria-describedby="host-error">
+        <legend>Development Computer</legend>
+        <div class="host-segments">
+          {([['macos', 'macOS'], ['windows', 'Windows'], ['linux', 'Linux']]).map(([value, label]) => <label class="host-option"><input type="radio" name="host" value={value} checked={defaults.host === value} /><span>{label}</span></label>)}
+        </div>
+        <small class="field-error" id="host-error"></small>
+      </fieldset>
+    </div>
+    <span id="checklist-status" role="status" aria-live="polite"></span>
+    <Admonition kind="warning" title="App details cannot be saved" id="storage-note" hidden />
+  </form>
+<script>
+  import { setupSubmissionChecklist } from '../lib/submission-checklist';
+  setupSubmissionChecklist();
+</script>
+<style>
+  form { border: 1px solid var(--border); border-radius: 16px; padding: 24px; background: var(--surface); }
+  label small, .token-field small { color: var(--muted); font-size: .8rem; font-weight: 400; }
+  #host-picker { border: 0; padding: 0; margin: 0; min-width: 0; grid-column: 1 / -1; }
+  #host-picker legend { padding: 0; margin-bottom: 8px; font-size: .88rem; font-weight: 650; }
+  .host-segments { display: flex; width: fit-content; max-width: 100%; padding: 3px; gap: 3px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; }
+  .host-option { position: relative; cursor: pointer; min-width: 0; }
+  .host-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .host-option span { display: block; padding: 12px 20px; border-radius: 7px; color: var(--muted); font-size: .85rem; line-height: 20px; font-weight: 600; }
+  .host-option input:checked + span { background: var(--brand); color: #fff; }
+  .host-option input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .fields { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .fields > label, .token-field { display: grid; align-content: start; gap: 6px; font-size: .88rem; font-weight: 650; }
+  input:not([type=checkbox]):not([type=radio]) { width: 100%; min-width: 0; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 10px 12px; font: inherit; min-height: 44px; }
+  input:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .fields .field-error { color: var(--text); font-weight: 600; }
+  .field-error:empty { display: none; }
+  input[aria-invalid=true] { border: 2px solid #e67f79; }
+  button { color: var(--text); background: var(--hover); border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px; font: 600 .85rem system-ui,sans-serif; cursor: pointer; }
+  button:hover { border-color: var(--brand); }
+  .token-input { display: flex; gap: 8px; align-items: center; }
+  #token-availability { flex: 0 0 26px; display: grid; place-items: center; color: var(--muted); cursor: help; }
+  #token-availability[data-state="checking"] { color: #2563eb; }
+  #token-availability[data-state="checking"] svg { animation: token-check-spin .8s linear infinite; transform-origin: center; }
+  #token-availability[data-state="checking"] circle { fill: none; stroke: currentColor; stroke-width: 2; }
+  @keyframes token-check-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    #token-availability[data-state="checking"] svg { animation: none; }
+  }
+  #token-availability[data-state="available"] { color: #168653; }
+  #token-availability[data-state="taken"] { color: #c43843; }
+  #token-availability[data-state="unknown"] { color: #a65d00; }
+  :global([data-theme="dark"]) #token-availability[data-state="checking"] { color: #93c5fd; }
+  :global([data-theme="dark"]) #token-availability[data-state="available"] { color: #6ee7b7; }
+  :global([data-theme="dark"]) #token-availability[data-state="taken"] { color: #fda4af; }
+  :global([data-theme="dark"]) #token-availability[data-state="unknown"] { color: #fcd34d; }
+  #token-availability-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  #checklist-shuffle { display: grid; place-items: center; flex: 0 0 44px; padding: 0; min-height: 44px; color: var(--brand-strong); }
+  #checklist-shuffle:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  #checklist-status { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  [hidden] { display: none !important; }
+
+  form.compact { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; column-gap: 16px; padding: 0; border: 0; border-radius: 0; background: transparent; width: 100%; }
+  .compact .fields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; align-items: start; gap: 16px; }
+  .compact #host-picker { grid-column: auto; }
+  .compact #host-picker legend { margin-bottom: 6px; }
+  .compact .host-option span { padding: 8px 14px; }
+  .compact #token-help { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .compact :global(#storage-note) { grid-column: 1 / -1; margin-bottom: 0; }
+  @media(max-width: 900px) {
+    .compact .fields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; }
+    .compact #host-picker { grid-column: 1 / -1; }
+  }
+  @media(max-width: 540px) {
+    form:not(.compact) { padding: 18px; }
+    form.compact { column-gap: 8px; }
+    .compact .fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .compact .host-option span { padding-inline: 10px; }
+    .compact input:not([type=radio]) { font-size: .8rem; padding-inline: 8px; }
+    .compact .token-input { gap: 4px; }
+    .compact #checklist-shuffle { flex-basis: 34px; }
+  }
+</style>

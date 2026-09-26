@@ -4,6 +4,7 @@
 
 @import './themes.css';
 @import './layouts.css';
+@import './admonitions.css';
 
 * { box-sizing: border-box; }
 
@@ -301,22 +302,6 @@ a.store-badge:hover img { transform: translateY(-1px); }
 .prose .footnotes p { color: var(--faint); }
 .prose sup a { text-decoration: none; }
 .prose iframe { max-width: 100%; border-radius: var(--radius); }
-
-/* External-link marker: a small "open in new" glyph after links the rehype plugin tagged. Image
-   and SVG-wrapping links are excluded so the marker never appears after icons. */
-a.external-link:not(:has(> img)):not(:has(> svg))::after {
-  content: '';
-  display: inline-block;
-  width: 0.7em; height: 0.7em;
-  margin-inline-start: 0.22em;
-  vertical-align: 0.05em;
-  background-color: currentColor;
-  opacity: 0.45;
-  -webkit-mask: url('/assets/icons/external-link.svg') no-repeat center / contain;
-          mask: url('/assets/icons/external-link.svg') no-repeat center / contain;
-}
-a.external-link:hover::after { opacity: 0.85; }
-.nav a.external-link::after, .footer a.external-link::after, .btn.external-link::after { display: none; }
 
 /* Content-specific classes that the markdown pages carry (talk transcripts, the donate page). */
 .prose .video { margin: 24px 0; }

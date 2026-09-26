@@ -1,0 +1,42 @@
+---
+import Admonition from './Admonition.astro';
+import SubmissionFlow from './SubmissionFlow.astro';
+import SubmissionForm from './SubmissionForm.astro';
+const { title } = Astro.props;
+---
+<div class="submission-guide" id="submission-guide">
+  <header class="guide-intro">
+    <a class="docs-kicker" href="/docs/">App Fair / Developers</a>
+    <h1>{title}</h1>
+    <section class="guide-overview" aria-labelledby="process-overview">
+      <h2 id="process-overview">Process overview</h2>
+      <SubmissionFlow local horizontal />
+      <a class="start-guide" href="#submission-form">Start setup</a>
+    </section>
+  </header>
+  <div class="guide-body prose">
+    <div class="guide-settings">
+      <SubmissionForm compact />
+      <noscript><Admonition kind="note" title="JavaScript is off">Commands below use Orbit-Notes on macOS; substitute your own values.</Admonition></noscript>
+      <p class="command-note">Bash/zsh commands; Git Bash on Windows.</p>
+    </div>
+    <div id="checklist-steps" data-integrated><slot /></div>
+  </div>
+</div>
+<script>
+  import { setupSubmissionGuide } from '../lib/submission-guide';
+  setupSubmissionGuide();
+</script>
+<style>
+  .submission-guide { min-width: 0; }
+  .guide-intro .docs-kicker { display: inline-block; text-decoration: none; margin-bottom: 12px; }
+  .guide-intro h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.2; margin: 0 0 28px; }
+  .guide-overview h2 { font-size: 1.1rem; margin: 0; }
+  .start-guide { color: var(--brand-strong); font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
+  .guide-body { max-width: 860px; margin: 40px auto 0; }
+  .guide-settings { padding: 24px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); }
+  .command-note { font-size: .8rem; line-height: 1.6; margin: 18px 0 0; }
+  :global(#submission-guide [id]) { scroll-margin-top: calc(var(--nav-h) + 24px); }
+  @media(max-width: 540px) { .guide-settings { padding: 16px; } }
+  @media print { .guide-settings { display: none; } }
+</style>

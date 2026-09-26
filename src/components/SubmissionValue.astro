@@ -1,0 +1,7 @@
+---
+import { defaults } from '../lib/submission.mjs';
+import { guideValues } from '../lib/submission-values.mjs';
+const { field, link = false } = Astro.props;
+const value = guideValues(defaults)[field];
+---
+{link ? <a data-guide-value={field} data-guide-link href={value} target="_blank" rel="noopener noreferrer">{value}</a> : <code data-guide-value={field}>{value}</code>}

@@ -1,0 +1,25 @@
+.developer-layout { display: grid; grid-template-columns: 195px minmax(0, 1fr); gap: 48px; padding-block: 46px 72px; }
+.developer-nav { position: sticky; top: calc(var(--nav-h) + 28px); align-self: start; display: grid; gap: 5px; font-size: .88rem; }
+.developer-nav a { padding: 9px 12px; color: var(--muted); border-radius: 8px; }
+.developer-nav a:hover, .developer-nav a[aria-current] { color: var(--text); background: var(--hover); }
+.developer-nav a[aria-current] { box-shadow: inset 3px 0 var(--brand); }
+.developer-nav .docs-home { color: var(--text); font-weight: 750; margin-bottom: 8px; }
+.developer-nav .docs-source { margin-top: 14px; border-top: 1px solid var(--border-soft); border-radius: 0; font-size: .8rem; }
+.developer-article { min-width: 0; max-width: 850px; }
+.developer-article h1 { max-width: 24ch; }
+.developer-article :is(h2,h3,[id]) { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.docs-kicker { color: var(--brand-strong); font: 700 .75rem var(--font); text-transform: uppercase; letter-spacing: .16em; margin-bottom: 12px; }
+.docs-lead { font-size: 1.2rem; max-width: 59ch; }
+.docs-cards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 28px 0; }
+.docs-cards a { display: block; padding: 22px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); text-decoration: none; transition: border-color .15s; }
+.docs-cards a:hover { border-color: var(--brand); }
+.docs-cards strong { display: block; margin-bottom: 6px; }
+.docs-cards span { display: block; color: var(--muted); font-size: .92rem; line-height: 1.5; }
+.docs-next { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+@media(max-width: 960px) {
+  .developer-layout { grid-template-columns: minmax(0,1fr); gap: 28px; padding-top: 24px; }
+  .developer-nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; }
+  .developer-nav .docs-home, .developer-nav .docs-source { display: none; }
+  .developer-nav a { padding: 7px 10px; }
+}
+@media(max-width: 540px) { .docs-cards { grid-template-columns: 1fr; } }

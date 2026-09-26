@@ -1,0 +1,93 @@
+---
+interface Props { local?: boolean; horizontal?: boolean; }
+const { local = false, horizontal = false } = Astro.props;
+const prefix = local ? '' : '/docs/getting-started/';
+const steps = [
+  { id: 'choose-a-token', title: 'Choose a token', detail: 'A unique project address', icon: '01', x: 18, y: 48 },
+  { id: 'create-the-app', title: 'Create & test', detail: 'Day + App Fair template', icon: '02', x: 294, y: 48 },
+  { id: 'create-the-repository', title: 'Host the source', detail: 'Organization / repository', icon: '03', x: 570, y: 48 },
+  { id: 'configure-pages', title: 'Publish the website', detail: 'Pages + CI walkthroughs', icon: '04', x: 18, y: 208 },
+  { id: 'release', title: 'Tag a release', detail: 'Packages + screenshots', icon: '05', x: 294, y: 208 },
+  { id: 'submit', title: 'Submit for review', detail: 'One catalog pull request', icon: '06', x: 570, y: 208 },
+];
+---
+<figure class:list={["submission-flow", { horizontal }]}>
+  {horizontal && <svg class="flow-horizontal" viewBox="0 0 1660 258" role="group" aria-labelledby="flow-horizontal-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="flow-horizontal-title">From a project to the app stores. Select a stage to open its instructions.</title>
+    <text x="20" y="24" class="eyebrow">YOUR REPOSITORY</text>
+    {steps.map((step, i) => <>
+      <a href={`${prefix}#${step.id}`} aria-label={step.title}>
+        <rect x={18 + i * 276} y="48" width="246" height="108" rx="14" class="step-card" />
+        <text x={35 + i * 276} y="77" class="step-number">{step.icon}</text>
+        <text x={35 + i * 276} y="106" class="step-title">{step.title}</text>
+        <text x={35 + i * 276} y="130" class="step-detail">{step.detail}</text>
+      </a>
+      {i < steps.length - 1 && <path d={`M${266 + i * 276} 102h20m-5-4 5 4-5 4`} fill="none" stroke="#818cf8" stroke-width="2" />}
+    </>)}
+    <path d="M1520 158v22m-4-4 4 4 4-4" fill="none" stroke="#818cf8" stroke-width="2" />
+    <a href={`${prefix}#approval`} aria-label="App Fair approval and store deployment">
+      <rect x="18" y="184" width="1626" height="56" rx="14" class="store-card" />
+      <text x="38" y="219" class="store-text">APP FAIR</text>
+      <text x="174" y="219" class="step-detail">Review → sign → submit → App Store &amp; Google Play</text>
+    </a>
+  </svg>}
+  <svg class="flow-wide" viewBox="0 0 840 420" role="group" aria-labelledby="flow-title flow-description" xmlns="http://www.w3.org/2000/svg">
+    <title id="flow-title">From a project to the app stores</title>
+    <desc id="flow-description">Choose a token, create and test the app, host the source, publish the website, tag a release, and submit a pull request. App Fair reviews, signs and submits to Apple and Google. Each step links to its instructions.</desc>
+    <defs>
+      <linearGradient id="flow-line"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+      <marker id="flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#818cf8"/></marker>
+    </defs>
+    <text x="20" y="24" class="eyebrow">YOUR REPOSITORY</text>
+    <g fill="none" stroke="url(#flow-line)" stroke-width="2" marker-end="url(#flow-arrow)">
+      <path d="M264 102 H288"/><path d="M540 102 H564"/>
+      <path d="M694 156 V178 H142 V202"/>
+      <path d="M264 262 H288"/><path d="M540 262 H564"/>
+      <path d="M694 316 V348"/>
+    </g>
+    {steps.map((step) => <a href={`${prefix}#${step.id}`} aria-label={step.title}>
+      <rect x={step.x} y={step.y} width="246" height="108" rx="14" class="step-card" />
+      <text x={step.x + 17} y={step.y + 29} class="step-number">{step.icon}</text>
+      <text x={step.x + 17} y={step.y + 58} class="step-title">{step.title}</text>
+      <text x={step.x + 17} y={step.y + 82} class="step-detail">{step.detail}</text>
+    </a>)}
+    <a href={`${prefix}#approval`} aria-label="App Fair approval and store deployment">
+      <rect x="18" y="354" width="798" height="52" rx="14" class="store-card"/>
+      <text x="38" y="386" class="store-text">APP FAIR</text>
+      <text x="174" y="386" class="step-detail">Review → sign → submit → App Store &amp; Google Play</text>
+    </a>
+  </svg>
+  <svg class="flow-narrow" viewBox="0 0 400 900" role="group" aria-labelledby="flow-mobile-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="flow-mobile-title">Submission steps. Each card links to its instructions.</title>
+    <text x="20" y="24" class="eyebrow">YOUR REPOSITORY</text>
+    {steps.map((step, i) => <>
+      <a href={`${prefix}#${step.id}`} aria-label={step.title}>
+        <rect x="18" y={46 + i * 126} width="364" height="102" rx="14" class="step-card" />
+        <text x="36" y={76 + i * 126} class="step-number">{step.icon}</text>
+        <text x="76" y={76 + i * 126} class="step-title">{step.title}</text>
+        <text x="76" y={110 + i * 126} class="step-detail">{step.detail}</text>
+      </a>
+      <path d={`M200 ${150 + i * 126} v14 m-4 -4 l4 4 l4 -4`} fill="none" stroke="#818cf8" stroke-width="2" />
+    </>)}
+    <a href={`${prefix}#approval`} aria-label="App Fair approval and store deployment">
+      <rect x="18" y="804" width="364" height="80" rx="14" class="store-card"/>
+      <text x="36" y="834" class="store-text">APP FAIR REVIEW &amp; PUBLICATION</text>
+      <text x="36" y="861" class="step-detail">App Store &amp; Google Play</text>
+    </a>
+  </svg>
+</figure>
+<style>
+  .submission-flow { margin: 28px 0 34px; }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .flow-narrow, .flow-horizontal { display: none; }
+  @media(min-width: 1100px) { .horizontal .flow-wide { display: none; } .horizontal .flow-horizontal { display: block; } }
+  a { text-decoration: none; }
+  .step-card { fill: var(--surface); stroke: var(--border); transition: stroke .15s; }
+  a:hover .step-card, a:focus .step-card, a:focus .store-card { stroke: var(--brand); stroke-width: 2; }
+  .eyebrow, .step-number, .store-text { fill: var(--brand-strong); font: 700 13px system-ui,sans-serif; letter-spacing: 1.5px; }
+  .step-title { fill: var(--text); font: 650 19px system-ui,sans-serif; }
+  .step-detail { fill: var(--muted); font: 14px system-ui,sans-serif; }
+  .store-card { fill: color-mix(in srgb,var(--brand) 9%,var(--surface)); stroke: var(--border); }
+  figcaption { color: var(--faint); font-size: .8rem; line-height: 1.5; margin-top: 12px; }
+  @media(max-width: 540px) { .flow-wide { display: none; } .flow-narrow { display: block; } }
+</style>

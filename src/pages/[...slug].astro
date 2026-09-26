@@ -2,6 +2,9 @@
 // Standalone markdown pages from src/content/pages: /<id>/ — an `index` file serves its folder.
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SubmissionGuide from '../components/SubmissionGuide.astro';
+import DeveloperNav from '../components/DeveloperNav.astro';
+import '../styles/developers.css';
 import { useTranslations, formatDate, resolveLocale } from '../i18n';
 
 export async function getStaticPaths() {
@@ -14,16 +17,21 @@ const locale = resolveLocale(Astro.currentLocale);
 const { t } = useTranslations(locale);
 // Pages whose markdown opens with its own H1 keep it; the rest get one from frontmatter.
 const hasOwnH1 = headings.some((h) => h.depth === 1);
+const isDocs = page.id === 'docs' || page.id.startsWith('docs/');
+const docsPath = '/' + page.id.replace(/(^|\/)index$/, '').replace(/\/$/, '') + '/';
+const isGettingStarted = page.id === 'docs/getting-started';
 const updated = page.data.updated ?? page.data.date;
 ---
-<BaseLayout title={page.data.title} description={page.data.description} ogImage={`/og/${page.id.replace(/(^|\/)index$/, '') || 'index'}.png`}>
-  <div class="container">
-    <div class:list={['prose', 'page-body', { wide: page.data.width === 'wide' }]}>
+<BaseLayout active={isDocs ? 'developers' : undefined} title={page.data.title} description={page.data.description} ogImage={`/og/${page.id.replace(/(^|\/)index$/, '') || 'index'}.png`}>
+  {isGettingStarted ? <div class="container developer-layout"><DeveloperNav current={docsPath} /><SubmissionGuide title={page.data.title}><Content /></SubmissionGuide></div> : <div class:list={['container', { 'developer-layout': isDocs }]}>
+    {isDocs && <DeveloperNav current={docsPath} />}
+    <div class:list={['prose', { 'page-body': !isDocs, wide: page.data.width === 'wide', 'developer-article': isDocs }]}>
+      {isDocs && <div class="docs-kicker" data-pagefind-ignore>App Fair / Developers</div>}
       {!hasOwnH1 && <h1>{page.data.title}</h1>}
       <Content />
       {updated && <p class="updated">{t('page.updated', { date: formatDate(updated, locale) })}</p>}
     </div>
-  </div>
+  </div>}
 </BaseLayout>
 
 <style>

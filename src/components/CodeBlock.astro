@@ -1,0 +1,9 @@
+---
+interface Props {
+  code: string;
+  label?: string;
+  class?: string;
+}
+const { code, label = 'Copy code to clipboard', class: className } = Astro.props;
+---
+<div class:list={['code-block', className]} data-code-block data-copy-label={label}><pre><code>{code}</code></pre></div>

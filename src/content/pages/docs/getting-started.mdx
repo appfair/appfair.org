@@ -1,0 +1,104 @@
+---
+title: Create an App Fair app
+description: Create a Day app, test it locally and in CI, and submit a release for App Fair distribution.
+---
+import Admonition from '../../../components/Admonition.astro';
+import SubmissionValue from '../../../components/SubmissionValue.astro';
+import SubmissionStep from '../../../components/SubmissionStep.astro';
+
+<SubmissionStep id="prerequisites" anchor="install-prerequisites" integrated>
+
+Day compiles Rust against each platform’s native SDK. **Development Computer** selects your host’s tools and commands; it does not limit the platforms your app can support.
+
+Only local builds need local SDKs. GitHub CI supplies its own build environment.
+
+<Admonition kind="info" title="iOS testing in CI" id="ios-ci-note">
+You cannot build or test iOS locally on Windows or Linux. GitHub CI can still run iOS tests and capture screenshots. [CI results](#push-and-check-ci)
+</Admonition>
+
+</SubmissionStep>
+
+<SubmissionStep id="install" anchor="install-day" integrated>
+
+Cargo installs the Day CLI. It creates projects, builds native apps and runs dayscript tests. `day doctor` checks whether the required tools are available.
+
+For VSCode users, the Day extension adds build and launch controls; rust-analyzer adds Rust completion and navigation. The extension commands are optional and use VSCode’s `code` CLI.
+
+</SubmissionStep>
+
+<SubmissionStep id="token" anchor="choose-a-token" integrated>
+
+The app token is an **arbitrary, unique identifier**. It need not match the app name. This workflow uses the token for both the GitHub organization and its repository: <SubmissionValue field="repo" />. The refresh button suggests a name; it does not reserve it.
+
+The App Fair Publisher app needs access to the organization to attach signed packages to releases. Store credentials remain with App Fair.
+
+> [!IMPORTANT] Names can change
+> The display name can change independently. Renaming a published app’s token requires coordinated changes to the organization, repository and catalog entry, while preserving its store IDs.
+
+</SubmissionStep>
+
+<SubmissionStep id="create" anchor="create-the-app" integrated>
+
+The App Fair template supplies starter screens, store metadata, a dayscript walkthrough, a website and GitHub Actions workflows. The default platform selection is included.
+
+`Day-appfair.toml` holds the generated store identities; these must remain stable after publication. The template’s license texts and source notices stay with the project.
+
+</SubmissionStep>
+
+<SubmissionStep id="local" anchor="test-locally" integrated>
+
+`day launch` builds and runs the app using your platform’s default toolkit. The dayscript walkthrough checks behavior and produces named screenshots; keep `dayscript/demo.yaml` in step with UI changes.
+
+Mobile behavior still needs testing on an iOS simulator, Android emulator or connected device. CI also runs the walkthrough on its configured targets.
+
+</SubmissionStep>
+
+<SubmissionStep id="repository" anchor="create-the-repository" integrated>
+
+App Fair expects a public repository named <SubmissionValue field="repo" />. Source, license files and `Cargo.lock` belong in the initial commit; credentials and build output do not.
+
+<p id="using-git-and-the-browser">Git manages the local history. The remote can be created in GitHub’s website or with the optional GitHub CLI.</p>
+
+<p id="using-github-cli-instead">Both methods connect the same local project to the same remote. Choose one; running both would try to create the repository and its <code>origin</code> remote twice.</p>
+
+</SubmissionStep>
+
+<SubmissionStep id="pages" anchor="configure-pages" integrated>
+
+The template publishes the website through GitHub Actions. The Pages environment must permit deployments from both the main branch and release tags, because a release also updates download links.
+
+The default GitHub Pages address is sufficient. A custom domain is optional.
+
+</SubmissionStep>
+
+<SubmissionStep id="ci" anchor="push-and-check-ci" integrated>
+
+A push starts lint, platform builds and the walkthrough across the configured locales and themes. CI produces test results, packages and screenshots, then publishes the website and web app.
+
+A passing run confirms the automated checks. Review its screenshots for layout or rendering problems before releasing.
+
+</SubmissionStep>
+
+<SubmissionStep id="release" anchor="release" integrated>
+
+A version tag pins the source App Fair will review. Tagging starts CI and creates a **public pre-release** containing packages, `gallery.json` and `screenshots.zip`. A draft release is not accessible to the catalog; a separate manual release is unnecessary.
+
+The commands use the template’s first version. Later releases need a new version and a higher store build number. Once submitted, correct a faulty release with a new tag instead of moving the reviewed tag.
+
+</SubmissionStep>
+
+<SubmissionStep id="submit" anchor="submit" integrated>
+
+The catalog entry, <SubmissionValue field="catalogFile" />, records the release tag, full commit hash and requested stores. The helper generates it from release metadata in a separate fork of the App Fair catalog.
+
+App Fair rebuilds that pinned commit for review. Metadata corrections stay on the catalog pull request; source changes require a new app release and an updated submission.
+
+</SubmissionStep>
+
+<SubmissionStep id="approval" anchor="approval" integrated>
+
+After a maintainer approves publication, App Fair signs and submits the packages through its store accounts. Apple and Google then process and review the app. A merged catalog pull request does not mean the app is live; the store listings confirm availability.
+
+Updates keep the same organization, repository and store IDs. Each version goes through a new release and catalog pull request.
+
+</SubmissionStep>

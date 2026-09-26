@@ -1,0 +1,41 @@
+---
+title: Build and publish with App Fair
+description: Create a Day app, test it on GitHub, and submit releases to the App Fair catalog for distribution through the App Store and Google Play.
+---
+import SubmissionFlow from '../../../components/SubmissionFlow.astro';
+
+<p class="docs-lead">Maintain the app in your own repository. App Fair reviews each submitted release, builds it, and publishes it through its store accounts.</p>
+
+<div class="docs-cards">
+  <a href="/docs/getting-started/"><strong>Getting started →</strong><span>Create your app with personalized commands, then submit its first release.</span></a>
+  <a href="/docs/releases/"><strong>Releases &amp; updates →</strong><span>Versioning, release assets, catalog pull requests and store approval.</span></a>
+  <a href="/docs/troubleshooting/"><strong>Troubleshooting →</strong><span>Find the failing stage and the files or settings to fix.</span></a>
+</div>
+
+<SubmissionFlow />
+
+## Before you start
+
+You need a GitHub account, permission to create an organization, and a development computer with Rust and Git. Use [Day](https://daybrite.dev/docs/) to build the app. You can start with a local web or desktop build; test the mobile targets before submission. iOS builds require macOS and Xcode.
+
+For a first app, open a [discussion](https://github.com/orgs/appfair/discussions) with its purpose, maintainer and source repository, if one exists. Read the [inclusion criteria](/docs/inclusion-criteria/). Updates to an accepted app go directly to a catalog pull request.
+
+## What you maintain
+
+| In your app repository | In the App Fair catalog |
+| --- | --- |
+| Source, dependencies and license notices | `apps/<token>.yaml` |
+| UI tests and screenshots | A release tag and its full commit hash |
+| App identity, version and build number | Requested distribution channels |
+| Store text, icon and release notes | Review and publication status |
+
+Your app lives at `github.com/<token>/<token>`. The token is an arbitrary, unique project address; it need not match the display name. For example, an app called **Field Notes** could use **Orbit-Notes** as its token. [Choosing and changing a token](/docs/getting-started/#choose-a-token) explains the constraints.
+
+## What App Fair handles
+
+The catalog runs an independent build and package checks. An App Fair maintainer approves publication, and separate jobs sign and submit the packages using App Fair’s developer accounts. You do not need to put App Fair signing keys in your repository.
+
+> [!NOTE] Supported stores
+> The implemented catalog channels are the Apple App Store and Google Play. Other channels listed in catalog policy are planned, not available submission targets. App Fair approval and the stores’ own review are separate steps; neither has a guaranteed turnaround time.
+
+The [catalog contribution reference](https://github.com/appfair/appfair-apps/blob/main/CONTRIBUTING.md) defines the submission fields and current checks. The [template](https://github.com/appfair/day-appfair) contains the starter project and workflow.

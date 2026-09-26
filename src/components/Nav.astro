@@ -13,6 +13,7 @@ const locale = Astro.currentLocale;
 const { t } = useTranslations(locale);
 const links = [
   { href: site.catalog, label: t('nav.apps'), key: 'apps', external: true },
+  { href: localizePath('/docs/', locale), label: t('nav.developers'), key: 'developers' },
   { href: localizePath('/blog/', locale), label: t('nav.blog'), key: 'blog' },
   { href: localizePath('/donate/', locale), label: t('nav.donate'), key: 'donate' },
 ];
