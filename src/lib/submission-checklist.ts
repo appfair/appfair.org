@@ -32,6 +32,7 @@ export function setupSubmissionChecklist() {
           const row = detail.querySelector<HTMLElement>(`[data-installation=${item.id}]`)!;
           const link = row.querySelector<HTMLAnchorElement>('a')!;
           row.hidden = item.hidden;
+          if (item.id === 'xcode') row.querySelector<HTMLElement>('#ios-ci-note')!.hidden = !item.disabled;
           row.classList.toggle('unavailable', item.disabled);
           link.textContent = item.title;
           if (item.disabled) { link.removeAttribute('href'); link.setAttribute('aria-disabled', 'true'); link.tabIndex = -1; }
@@ -49,11 +50,14 @@ export function setupSubmissionChecklist() {
           const item = document.createElement('li'); item.textContent = text; return item;
         }));
       }
-      if (step.alternative) {
-        detail.querySelector('.alternative-command code')!.textContent = step.alternative.command;
-        const link = detail.querySelector<HTMLAnchorElement>('.command-alternative .step-operations a')!;
-        link.href = step.alternative.href;
-        link.textContent = step.alternative.label;
+      for (const method of step.methods ?? []) {
+        const panel = detail.querySelector<HTMLElement>(`[data-method="${method.id}"]`)!;
+        panel.querySelector('.method-description')!.textContent = method.text;
+        panel.querySelector('code')!.textContent = method.command;
+        method.operations?.forEach(([text, href], i) => {
+          const link = panel.querySelectorAll<HTMLAnchorElement>('.method-operations a')[i];
+          link.textContent = text; link.href = href;
+        });
       }
       step.operations?.forEach(([label, href, text], i) => {
         const row = detail.querySelectorAll('.step-content > .step-operations li')[i];

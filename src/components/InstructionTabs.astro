@@ -1,0 +1,45 @@
+---
+import CodeBlock from './CodeBlock.astro';
+interface Method {
+  id: string;
+  title: string;
+  text: string;
+  command: string;
+  operations?: string[][];
+}
+interface Props { id: string; label: string; methods: Method[]; }
+const { id, label, methods } = Astro.props;
+---
+<div class="instruction-tabs" data-instruction-tabs>
+  <div class="method-tabs" aria-label={label} hidden>
+    {methods.map(method => <button type="button" id={`${id}-tab-${method.id}`} aria-controls={`${id}-method-${method.id}`}>{method.title}</button>)}
+  </div>
+  {methods.map(method => <div class="method-panel" id={`${id}-method-${method.id}`} data-method={method.id}>
+    <h3 class="method-heading">{method.title}</h3>
+    <p class="method-description">{method.text}</p>
+    {method.operations && <ul class="method-operations">{method.operations.map(([text, href]) => <li><a href={href} target="_blank" rel="noopener noreferrer">{text}</a></li>)}</ul>}
+    <CodeBlock code={method.command} label={`Copy ${method.title} commands`} />
+  </div>)}
+</div>
+<script>
+  import { setupInstructionTabs } from '../lib/instruction-tabs';
+  setupInstructionTabs();
+</script>
+<style>
+  [hidden] { display: none !important; }
+  .instruction-tabs { margin-top: 24px; }
+  .method-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); }
+  .method-tabs button { padding: 10px 14px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); font: 600 .88rem var(--font); cursor: pointer; }
+  .method-tabs button[aria-selected="true"] { color: var(--brand-strong); border-bottom-color: var(--brand); background: var(--hover); }
+  .method-tabs button:focus-visible, .method-panel:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .method-panel { padding-top: 16px; }
+  .method-description { margin-top: 0; }
+  .method-heading { font-size: 1rem; }
+  [data-tabs-ready] .method-heading { display: none; }
+  .method-operations { padding-left: 1.25rem; }
+  .method-operations a { font-weight: 600; }
+  @media print {
+    .method-tabs { display: none; }
+    .method-panel[hidden], [data-tabs-ready] .method-heading { display: block !important; }
+  }
+</style>

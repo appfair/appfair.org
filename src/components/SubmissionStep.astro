@@ -1,5 +1,7 @@
 ---
+import Admonition from './Admonition.astro';
 import CodeBlock from './CodeBlock.astro';
+import InstructionTabs from './InstructionTabs.astro';
 import { defaults, steps, stepIds } from '../lib/submission.mjs';
 const { id, anchor = `step-title-${id}`, integrated = false } = Astro.props;
 const step = steps(defaults).find(step => step.id === id);
@@ -16,10 +18,14 @@ const index = stepIds.indexOf(id);
         {step.installations.map(item => <li data-installation={item.id} class:list={{ unavailable: item.disabled }} hidden={item.hidden}>
           <a href={item.disabled ? undefined : item.href} target="_blank" rel="noopener noreferrer" role="link" aria-disabled={item.disabled ? 'true' : undefined} tabindex={item.disabled ? '-1' : undefined}>{item.title}</a>
           <small>{item.detail.split("`").map((part, i) => i % 2 ? <code>{part}</code> : part)}</small>
+          {item.id === 'xcode' && <Admonition kind="info" title="iOS testing in CI" id="ios-ci-note" hidden={!item.disabled}>
+            <p>You cannot build or test iOS locally on Windows or Linux. GitHub CI can still run iOS tests and capture screenshots. <a href={integrated ? '#push-and-check-ci' : '/docs/getting-started/#push-and-check-ci'}>CI results</a></p>
+          </Admonition>}
         </li>)}
       </ul>
     </>}
     {step.command && <CodeBlock class="command-block" code={step.command} label={`Copy commands for ${step.title}`} />}
+    {step.methods && <InstructionTabs id={id} label={`${step.title}: choose a method`} methods={step.methods} />}
     {step.optional && <div class="command-optional">
       <h3>{step.optional.title}</h3>{step.optional.text && <p>{step.optional.text}</p>}
       <CodeBlock class="command-block optional-command" code={step.optional.command} label={`Copy commands for ${step.optional.title}`} />
@@ -28,11 +34,6 @@ const index = stepIds.indexOf(id);
     {step.operations && <ul class="step-operations">
       {step.operations.map(([label, href, detail]) => <li><a href={href} target="_blank" rel="noopener noreferrer">{label}</a>{detail && <small>{detail}</small>}</li>)}
     </ul>}
-    {step.alternative && <div class="command-alternative">
-      <h3>{step.alternative.title}</h3><p>{step.alternative.text}</p>
-      <ul class="step-operations"><li><a href={step.alternative.href} target="_blank" rel="noopener noreferrer">{step.alternative.label}</a></li></ul>
-      <CodeBlock class="command-block alternative-command" code={step.alternative.command} label="Copy Git remote command" />
-    </div>}
     <ul class="step-links">{step.links.map(([label, href]) => <li><a href={href} target={/^https?:\/\//.test(href) ? '_blank' : undefined} rel={/^https?:\/\//.test(href) ? 'noopener noreferrer' : undefined}>{label}</a></li>)}<li><a href={step.help}>Troubleshoot this step</a></li></ul>
   </div>
 </section>
@@ -40,8 +41,8 @@ const index = stepIds.indexOf(id);
   [hidden] { display: none !important; }
   .check-step { margin-top: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); scroll-margin-top: calc(var(--nav-h) + 20px); }
   .check-step > h2 { display: flex; align-items: baseline; gap: 14px; margin: 0; padding: 18px 20px 12px; line-height: 1.45; }
-  .command-alternative, .command-optional { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
-  .command-alternative h3, .command-optional h3 { margin: 0 0 8px; font-size: .9rem; }
+  .command-optional { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .command-optional h3 { margin: 0 0 8px; font-size: .9rem; }
   .step-index { color: var(--brand-strong); font: 600 .8rem ui-monospace,monospace; }
   .step-label { font-size: .95rem; font-weight: 650; flex: 1; }
   .step-content { padding: 0 20px 20px; font-size: .94rem; }
@@ -51,8 +52,8 @@ const index = stepIds.indexOf(id);
   .installations li, .step-operations li { padding: 5px 0; }
   .installations a, .step-operations a { font-weight: 600; }
   .installations small, .step-operations small { display: block; margin-top: 3px; color: var(--muted); font-size: .85rem; line-height: 1.6; }
-  .installations .unavailable a, .installations .unavailable small { color: var(--faint); }
-  .installations .unavailable a { cursor: not-allowed; text-decoration: none; }
+  .installations .unavailable > a, .installations .unavailable > small { color: var(--faint); }
+  .installations .unavailable > a { cursor: not-allowed; text-decoration: none; }
   .step-content .step-links { padding: 12px 0 0; margin: 20px 0 0; border-top: 1px solid var(--border); list-style: none; display: flex; flex-wrap: wrap; gap: 3px 16px; font-size: .76rem; line-height: 1.6; }
   .step-links a { color: var(--muted); }
   .step-links a:hover { color: var(--brand-strong); }

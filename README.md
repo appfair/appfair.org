@@ -156,3 +156,10 @@ and amber means the check failed. GitHub can still reserve or reject a name at c
 Results are cached in memory for five minutes; obsolete requests are aborted and ignored.
 Checks time out after eight seconds and pause on API rate limits. They never block the guide
 or request credentials. Invalid tokens do not trigger requests.
+
+### Alternative instructions
+
+`InstructionTabs.astro` presents a step's `methods` as keyboard-accessible tabs. The first
+method is selected initially; arrow keys, Home and End switch methods. App-detail edits update
+both panels without changing the selected tab. Without JavaScript, or when printed, both
+methods remain visible. Each panel uses the shared `CodeBlock` copy control.

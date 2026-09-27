@@ -49,17 +49,18 @@ test('commands and settings URLs consistently use the supplied token', () => {
   assert.deepEqual(list.map(s => s.id), stepIds);
   assert.match(list.find(s => s.id === 'create').command, /day new app 'New-Token'/);
   assert.match(list.find(s => s.id === 'create').command, /--title 'A Different Name'/);
-  assert.doesNotMatch(list.find(s => s.id === 'create').command, /--toolkit|--no-input|mkdir/);
+  assert.ok(list.find(s => s.id === 'create').command.split('\n')[0].endsWith(' --no-input'));
+  assert.doesNotMatch(list.find(s => s.id === 'create').command, /--toolkit|mkdir/);
   assert.equal(list.find(s => s.id === 'pages').operations[0][1], 'https://github.com/New-Token/New-Token/settings/pages');
-  assert.match(list.find(s => s.id === 'submit').command, /--tag 'v0.1.0'/);
-  assert.match(list.find(s => s.id === 'submit').command, /--head "\$GH_USER:add-New-Token-v0.1.0"/);
+  assert.match(list.find(s => s.id === 'submit').command, /--tag 'v0.1.1'/);
+  assert.match(list.find(s => s.id === 'submit').command, /--head "\$GH_USER:add-New-Token-v0.1.1"/);
   assert.ok(list.every(s => s.help.startsWith('/docs/troubleshooting/#')));
   assert.ok(!JSON.stringify(list).includes('Orbit-Notes'));
 });
 test('every generated command block is valid Bash for each development computer', () => {
   for (const host of ['macos', 'linux', 'windows']) {
     for (const step of steps({ ...defaults, host, title: "O'Brien's Notes" })) {
-      for (const command of [step.command, step.optional?.command, step.alternative?.command].filter(Boolean)) {
+      for (const command of [step.command, step.optional?.command, ...(step.methods ?? []).map(method => method.command)].filter(Boolean)) {
         const check = spawnSync('bash', ['-n'], { input: command, encoding: 'utf8' });
         assert.equal(check.status, 0, `${step.id}: ${check.stderr}`);
       }
@@ -95,6 +96,7 @@ test('prerequisites follow the host and disable Xcode outside macOS', () => {
     assert.equal(step.installations.find(i => i.id === 'xcode').disabled, host !== 'macos');
     assert.equal(step.installations.find(i => i.id === 'desktop').hidden, host === 'macos');
     const git = step.installations.find(i => i.id === 'git');
+    assert.equal(git.hidden, host === 'macos');
     assert.equal(git.href, host === 'windows' ? 'https://gitforwindows.org/' : 'https://git-scm.com/downloads');
     if (host === 'windows') assert.match(git.detail, /Git Bash/);
   }

@@ -1,0 +1,64 @@
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const engines = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const browser = await engines[process.env.BROWSER || 'chromium'].launch({headless: true});
+const base = process.env.SITE_URL || 'http://127.0.0.1:4323';
+try {
+  const context = await browser.newContext({viewport: {width: 1440, height: 1000}});
+  await context.route('https://api.github.com/users/*', route => route.fulfill({status: 404, body: '{}'}));
+  await context.addInitScript(() => Object.defineProperty(navigator, 'clipboard', {value: {writeText: async text => { window.copiedText = text; }}}));
+  const page = await context.newPage(), errors = [];
+  page.on('pageerror', e => errors.push(String(e)));
+  await page.goto(`${base}/docs/getting-started/`);
+  await page.locator('#submission-guide[data-ready=true]').waitFor();
+  assert.equal(await page.getByRole('tablist').count(), 2);
+  for (const [step, first, second] of [['repository','gh','web'],['release','day','git']]) {
+    const firstTab = page.locator(`#${step}-tab-${first}`), secondTab = page.locator(`#${step}-tab-${second}`);
+    const firstPanel = page.locator(`#${step}-method-${first}`), secondPanel = page.locator(`#${step}-method-${second}`);
+    assert.equal(await firstTab.getAttribute('aria-selected'), 'true');
+    assert.equal(await firstPanel.isVisible(), true);
+    assert.equal(await secondPanel.isVisible(), false);
+    assert.equal(await secondTab.getAttribute('tabindex'), '-1');
+    await firstTab.focus(); await page.keyboard.press('ArrowRight');
+    assert.equal(await secondPanel.isVisible(), true);
+    assert.equal(await firstPanel.isVisible(), false);
+    assert.equal(await secondTab.evaluate(n=>document.activeElement===n), true);
+    await page.keyboard.press('Home'); assert.equal(await firstPanel.isVisible(), true);
+    await page.keyboard.press('End'); assert.equal(await secondPanel.isVisible(), true);
+    await page.keyboard.press('ArrowRight'); assert.equal(await firstPanel.isVisible(), true);
+    await secondTab.click();
+    await secondPanel.locator('.copy-command').click();
+    await page.waitForFunction(id=>document.querySelector(`#${id} .copy-command`).dataset.copied==='true', `${step}-method-${second}`);
+    assert.equal(await page.evaluate(()=>window.copiedText), await secondPanel.locator('code').textContent());
+  }
+  await page.locator('[name=token]').fill('Tabbed-App');
+  await page.locator('[name=title]').fill("Reader's Notes");
+  // Editing data updates both methods without resetting the chosen tab.
+  for (const [step,method] of [['repository','web'],['release','git']]) assert.equal(await page.locator(`#${step}-tab-${method}`).getAttribute('aria-selected'), 'true');
+  assert.match(await page.locator('#repository-method-gh code').textContent(), /Tabbed-App\/Tabbed-App/);
+  const remote = new URL(await page.locator('#repository-method-web a').getAttribute('href'));
+  assert.equal(remote.searchParams.get('owner'), 'Tabbed-App');
+  assert.match(await page.locator('#release-method-git code').textContent(), /v0\.1\.1/);
+  assert.match(await page.locator('#step-submit pre code').textContent(), /--tag 'v0\.1\.1'/);
+  await page.locator('#release-tab-day').click();
+  assert.equal(await page.locator('#release-method-day code').textContent(), 'day metadata --version-bump patch --git-push');
+  await page.locator('#release-method-day .copy-command').click();
+  await page.waitForFunction(()=>window.copiedText==='day metadata --version-bump patch --git-push');
+  await page.screenshot({path: '/private/tmp/appfair-release-tabs.png'});
+  await page.locator('#repository-tab-web').click();
+  await page.screenshot({path: '/private/tmp/appfair-repository-tabs.png'});
+  await page.setViewportSize({width:390,height:844});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth), true);
+  await page.locator('#release-tab-git').click();
+  await page.screenshot({path: '/private/tmp/appfair-tabs-mobile.png'});
+  await page.emulateMedia({media:'print'});
+  for (const panel of await page.locator('.method-panel').all()) assert.equal(await panel.isVisible(),true);
+  const noJS = await browser.newContext({javaScriptEnabled:false}); const staticPage=await noJS.newPage();
+  await staticPage.goto(`${base}/docs/getting-started/`);
+  for (const panel of await staticPage.locator('.method-panel').all()) assert.equal(await panel.isVisible(),true);
+  assert.equal(await staticPage.getByRole('tab').count(),0);
+  await noJS.close();
+  assert.deepEqual(errors,[]);
+  console.log('PASS: accessible tabs, keyboard switching, clipboard, live values, consistent release version, responsive layout, print and no-JS');
+} finally { await browser.close(); }

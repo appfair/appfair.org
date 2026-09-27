@@ -68,9 +68,9 @@ try {
   for (const node of await page.locator('[data-guide-value]').all()) assert.equal(await node.textContent(),text[await node.getAttribute('data-guide-value')]);
   assert.equal(await page.locator('#step-token .step-label').textContent(),'Create the Copper-Test organization on GitHub');
   assert.equal(await page.locator('#step-create pre code').textContent(),commands.find(s=>s.id==='create').command);
-  assert.equal(await page.locator('#step-repository .alternative-command code').textContent(),commands.find(s=>s.id==='repository').alternative.command);
-  assert.equal(await page.locator('#step-repository .optional-command code').textContent(),commands.find(s=>s.id==='repository').optional.command);
-  const newRepo=new URL(await page.getByRole('link',{name:'Create a new repository',exact:true}).getAttribute('href'));
+  assert.equal(await page.locator('#repository-method-web code').textContent(),commands.find(s=>s.id==='repository').methods.find(m=>m.id==='web').command);
+  assert.equal(await page.locator('#repository-method-gh code').textContent(),commands.find(s=>s.id==='repository').methods.find(m=>m.id==='gh').command);
+  const newRepo=new URL(await page.locator('#repository-method-web a').getAttribute('href'));
   assert.equal(newRepo.pathname,'/organizations/Copper-Test/repositories/new');
   assert.equal(newRepo.searchParams.get('name'),'Copper-Test');
   assert.equal(await page.locator('#step-install .optional-command code').textContent(),'code --install-extension daybrite.day-vscode\ncode --install-extension rust-lang.rust-analyzer');
