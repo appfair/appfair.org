@@ -4,7 +4,8 @@ interface Method {
   id: string;
   title: string;
   text: string;
-  command: string;
+  command?: string;
+  instructions?: string[];
   operations?: string[][];
 }
 interface Props { id: string; label: string; methods: Method[]; }
@@ -18,7 +19,8 @@ const { id, label, methods } = Astro.props;
     <h3 class="method-heading">{method.title}</h3>
     <p class="method-description">{method.text}</p>
     {method.operations && <ul class="method-operations">{method.operations.map(([text, href]) => <li><a href={href} target="_blank" rel="noopener noreferrer">{text}</a></li>)}</ul>}
-    <CodeBlock code={method.command} label={`Copy ${method.title} commands`} />
+    {method.command && <CodeBlock code={method.command} label={`Copy ${method.title} commands`} />}
+    {method.instructions && <ol class="method-instructions">{method.instructions.map(text => <li>{text}</li>)}</ol>}
   </div>)}
 </div>
 <script>

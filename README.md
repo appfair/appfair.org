@@ -159,7 +159,7 @@ or request credentials. Invalid tokens do not trigger requests.
 
 ### Alternative instructions
 
-`InstructionTabs.astro` presents a step's `methods` as keyboard-accessible tabs. The first
+`InstructionTabs.astro` presents a step's `methods` as keyboard-accessible tabs. Each method can contain a command, operation links, and ordered instructions; commands are optional for browser-only steps. The first
 method is selected initially; arrow keys, Home and End switch methods. App-detail edits update
 both panels without changing the selected tab. Without JavaScript, or when printed, both
 methods remain visible. Each panel uses the shared `CodeBlock` copy control.

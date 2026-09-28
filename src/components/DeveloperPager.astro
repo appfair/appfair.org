@@ -1,0 +1,29 @@
+---
+import { adjacentDeveloperPages } from '../lib/developer-pages.mjs';
+const { current } = Astro.props;
+const { previous, next } = adjacentDeveloperPages(current);
+---
+{(previous || next) && <nav class="developer-pager" aria-label="Previous and next pages" data-pagefind-ignore>
+  {previous && <a class="previous" href={previous[0]} rel="prev">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12" /></svg>
+    <span>Previous: <strong>{previous[1]}</strong></span>
+  </a>}
+  {next && <a class="next" href={next[0]} rel="next">
+    <span>Next: <strong>{next[1]}</strong></span>
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6M16 12H4" /></svg>
+  </a>}
+</nav>}
+<style>
+  .developer-pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .developer-pager a { display: flex; align-items: center; gap: 14px; min-height: 96px; padding: 22px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--brand-strong); text-decoration: none; line-height: 1.5; transition: border-color .15s, background .15s; }
+  .developer-pager a:hover { border-color: var(--brand); background: var(--hover); }
+  .developer-pager a:focus-visible { outline: 2px solid var(--brand); outline-offset: 4px; }
+  .developer-pager svg { flex: none; }
+  .previous { grid-column: 1; }
+  .next { grid-column: 2; justify-content: flex-end; text-align: right; }
+  @media(max-width: 540px) {
+    .developer-pager { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 40px; }
+    .developer-pager a { grid-column: 1; min-height: 80px; padding: 18px; }
+  }
+  @media(prefers-reduced-motion: reduce) { .developer-pager a { transition: none; } }
+</style>

@@ -2,8 +2,10 @@
 title: Releases and updates
 description: Prepare store metadata and release assets, open an App Fair catalog pull request, and publish subsequent versions without changing store identity.
 ---
+import InstructionTabs from '../../../components/InstructionTabs.astro';
+import { ciMethods, assetMethods, notesMethods, firstSubmissionMethods, updateMethods } from '../../../lib/release-methods.mjs';
 
-The app repository holds your code and release assets. The catalog repository holds the request to publish a particular release. Every new version needs a catalog pull request, including updates to an accepted app. `gh` commands below are optional conveniences; use Git directly for commits, tags and pushes, and GitHub’s website for CI, releases and pull requests. See [without GitHub CLI](#without-github-cli).
+The app repository holds your code and release assets. The catalog repository holds the request to publish a particular release. Every new version needs a catalog pull request, including updates to an accepted app. Choose **GitHub CLI** or **GitHub website** for each GitHub operation below. Both methods use Git for local commits, tags and pushes; the website method needs no `gh` installation.
 
 ## Store listing
 
@@ -22,7 +24,7 @@ default = ["home", "settings"]
 
 Use names that your walkthrough actually captures. Test each shipped locale. App Store submissions need both required Apple device classes; do not remove the template’s device profiles without checking store requirements. The release’s `gallery.json` describes which files appear in each listing, and `screenshots.zip` supplies their bytes.
 
-See Day’s [store metadata reference](https://daybrite.dev/docs/guide-store-submission) and [dayscript guide](https://daybrite.dev/docs/dayscript). [Screenshot failures](/docs/troubleshooting/#screenshots) identify the usual mismatches.
+See Day’s [store metadata reference](https://daybrite.dev/docs/app-store-submissions) and [dayscript guide](https://daybrite.dev/docs/dayscript). [Screenshot failures](/docs/troubleshooting/#screenshots) identify the usual mismatches.
 
 ## Create a release
 
@@ -36,37 +38,35 @@ See Day’s [store metadata reference](https://daybrite.dev/docs/guide-store-sub
 git status --short
 git tag -a v0.2.0 -m 'Field Notes v0.2.0'
 git push origin v0.2.0
-# Optional: use gh, or inspect the Actions tab in your browser.
-gh run list --repo Orbit-Notes/Orbit-Notes --workflow ci.yml --limit 5
 ```
 
-The template’s workflow creates the GitHub release and uploads its assets. It uses `release-mode: pre-release`: the new version is public but does not replace the current Latest release while App Fair is reviewing it. 
+<InstructionTabs id="release-ci" label="Check the CI run" methods={ciMethods} />
+
+The template’s workflow creates the GitHub release and uploads its assets. It uses `release-mode: pre-release`: the new version is public but does not replace the current Latest release while App Fair is reviewing it.
 
 > [!WARNING] Let CI create the release
-> Do not also run `gh release create` for the same tag. If you use a different release workflow, follow that workflow’s publishing procedure.
+> Do not manually create a release through the GitHub website or the `gh` client. The workflow automatically creates a pre-release after it successfully builds the project.
 
-After the tag run finishes, inspect its assets in the repository’s **Releases** page, or use GitHub CLI:
+After the tag run finishes, inspect the release assets:
 
-```sh
-gh release view v0.2.0 --repo Orbit-Notes/Orbit-Notes
-gh release view v0.2.0 --repo Orbit-Notes/Orbit-Notes \
-  --json assets --jq '.assets[].name'
-```
+<InstructionTabs id="release-assets" label="Inspect release assets" methods={assetMethods} />
 
 For both catalog channels, expect the base app’s Android `.aab`, iOS `.ipa`, package metadata, and—when replacing screenshots—`gallery.json` and `screenshots.zip`. CI may publish other targets too. Read the workflow result, not just the presence of a release page.
 
-After CI finishes, edit the release notes on GitHub’s **Releases** page. Alternatively, write the notes in a local file and use GitHub CLI:
+After CI finishes, update the release notes:
 
-```sh
-gh release edit v0.2.0 --repo Orbit-Notes/Orbit-Notes \
-  --notes-file release-notes.md
-```
+<InstructionTabs id="release-notes" label="Edit release notes" methods={notesMethods} />
 
-The `release-notes.md` file must already contain your notes. Do not change the release’s pre-release status just to make the catalog helper find it: pass `--tag v0.2.0` explicitly. [Release troubleshooting](/docs/troubleshooting/#release-assets).
+Keep the release’s pre-release status. Pass `--tag v0.2.0` explicitly to the catalog helper. [Release troubleshooting](/docs/troubleshooting/#release-assets).
 
 ## First submission
 
-Open a first-app discussion, then use the [personalized checklist](/docs/checklist/#step-submit). Its commands create a personal fork of the catalog, run `queue.py add`, and open a PR with the optional `gh` client. The [Git and browser alternative](#without-github-cli) covers the same submission.
+Open a first-app discussion, then prepare the catalog pull request. The examples use `Orbit-Notes` and `v0.1.0`; substitute your app token and release tag. [Getting started](/docs/getting-started/#submit) generates commands for your app.
+
+<InstructionTabs id="first-submission" label="Submit a new app" methods={firstSubmissionMethods} />
+
+> [!NOTE] Windows paths
+> On Windows, replace the virtual environment’s `bin/python` with `Scripts/python.exe`. If your fork belongs to an organization, use its name instead of your personal login in clone URLs and pull request head references.
 
 The file is `apps/<token>.yaml`. Its core fields are:
 
@@ -90,7 +90,7 @@ The [catalog contribution reference](https://github.com/appfair/appfair-apps/blo
 
 Keep the app token and store identities. Release a new version from the app repository, wait for its assets, then update the existing catalog file.
 
-These commands assume the first-submission checklist created `appfair-submission/`, an `origin` remote pointing to your personal fork, an `upstream` remote pointing to App Fair, and `../appfair-submit-venv/` containing Python and PyYAML. Inspect `git remote -v` and adapt if your clone differs. Start with a clean working tree.
+These commands assume the first submission created `appfair-submission/`, an `origin` remote pointing to your personal fork, an `upstream` remote pointing to App Fair, and `../appfair-submit-venv/` containing Python and PyYAML. Inspect `git remote -v` and adapt if your clone differs. Start with a clean working tree.
 
 ```sh
 cd appfair-submission
@@ -103,48 +103,13 @@ git diff -- apps/Orbit-Notes.yaml
 git add apps/Orbit-Notes.yaml
 git commit -m 'Update Field Notes to v0.2.0'
 git push -u origin HEAD
-# Optional: use gh, or open the PR in your browser after pushing.
-GH_USER=$(gh api user --jq .login)
-gh pr create --repo appfair/appfair-apps --base main \
-  --head "$GH_USER:update-Orbit-Notes-v0.2.0" \
-  --title 'Update Field Notes to v0.2.0' \
-  --body 'Release: https://github.com/Orbit-Notes/Orbit-Notes/releases/tag/v0.2.0'
 ```
 
-> [!NOTE] Windows paths
-> On Windows, the virtual environment uses `Scripts/python.exe` instead of `bin/python`. If your fork belongs to an organization, use that organization instead of `$GH_USER` in `--head`.
+<InstructionTabs id="update-submission" label="Open the update pull request" methods={updateMethods} />
+
+On Windows, use `../appfair-submit-venv/Scripts/python.exe`. For an organization-owned fork, use the organization instead of `$GH_USER` in the CLI command.
 
 Usually only `tag` and `commit` change. If the display name changes, update the catalog’s `title` too; the helper preserves the existing title. Describe behavior changes and link the release notes in the PR. [Submission troubleshooting](/docs/troubleshooting/#submission).
-
-## Without GitHub CLI
-
-Use Git for local work and transport; use GitHub’s website for repository and pull-request operations. No `gh` installation or authentication is required. Configure your usual Git HTTPS credential helper or SSH access before pushing.
-
-For a first submission:
-
-1. Open [appfair/appfair-apps](https://github.com/appfair/appfair-apps) and select **Fork** to create a personal fork.
-2. Clone your fork and add the App Fair repository as `upstream`. Replace `YOUR-LOGIN` with your GitHub username:
-
-```sh
-git clone https://github.com/YOUR-LOGIN/appfair-apps.git appfair-submission
-cd appfair-submission
-git remote add upstream https://github.com/appfair/appfair-apps.git
-git fetch upstream main
-git switch -c add-Orbit-Notes-v0.1.0 upstream/main
-python3 -m venv ../appfair-submit-venv
-../appfair-submit-venv/bin/python -m pip install PyYAML
-../appfair-submit-venv/bin/python scripts/queue.py add Orbit-Notes --tag v0.1.0
-../appfair-submit-venv/bin/python scripts/queue.py validate apps/Orbit-Notes.yaml
-cat apps/Orbit-Notes.yaml
-git add apps/Orbit-Notes.yaml
-git diff --cached
-git commit -m 'Add Field Notes v0.1.0'
-git push -u origin HEAD
-```
-
-3. Open your fork on GitHub and select **Compare & pull request**. Set the base repository to `appfair/appfair-apps`, base branch to `main`, and head branch to your submission branch. Link the app release and first-app discussion in the description, then create the PR.
-
-On Windows, replace the virtual environment’s `bin/python` with `Scripts/python.exe`. For later versions, follow [Submit an update](#submit-an-update) through `git push`, skip the `gh` lines, and open the PR in the browser the same way. Inspect builds in the app repository’s **Actions** tab and manage release notes and assets in **Releases**.
 
 ## Approval and deployment
 

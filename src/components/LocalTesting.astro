@@ -1,0 +1,47 @@
+---
+import Admonition from './Admonition.astro';
+import CodeBlock from './CodeBlock.astro';
+const { host, androidCommand } = Astro.props;
+const iosCommand = 'day doctor --toolkit uikit\nday launch -p ios-uikit\n# Close the app before running the walkthrough.\nday launch -p ios-uikit --script dayscript/demo.yaml';
+---
+<div class="local-testing">
+  <section aria-labelledby="local-android-title" data-local-platform="android">
+    <h3 id="local-android-title">Android</h3>
+    <ol>
+      <li>From Android Studio’s welcome screen, open <strong>More Actions → Virtual Device Manager</strong>. With a project open, use <strong>View → Tool Windows → Device Manager</strong>.</li>
+      <li>Select <strong>Create Virtual Device</strong>, choose a phone and system image, and finish the setup. Download the image if prompted.</li>
+      <li>Click the device’s <strong>Launch</strong> button and wait for Android to finish starting.</li>
+    </ol>
+    <p class="reference"><a href="https://developer.android.com/studio/run/managing-avds" target="_blank" rel="noopener noreferrer">Android Studio: create and start an emulator</a></p>
+    <p>From the app directory, build and launch the Android version:</p>
+    <CodeBlock code={androidCommand} label="Copy Android build and test commands" />
+  </section>
+  <section aria-labelledby="local-ios-title" data-local-platform="ios">
+    <h3 id="local-ios-title">iOS</h3>
+    <div data-local-host="macos" hidden={host !== 'macos'}>
+      <ol>
+        <li>In Xcode, choose <strong>Xcode → Open Developer Tool → Device Hub</strong>.</li>
+        <li>Select an iPhone simulator, or use <strong>+</strong> to add one with an installed iOS runtime.</li>
+        <li>Click <strong>Start</strong> and wait for the simulator to finish starting.</li>
+      </ol>
+      <p class="reference">On older Xcode versions, use <strong>Window → Devices and Simulators</strong> to configure the device, then <strong>Xcode → Open Developer Tool → Simulator</strong> to open it. <a href="https://developer.apple.com/documentation/xcode/running-your-app-on-simulated-or-physical-devices" target="_blank" rel="noopener noreferrer">Apple’s simulator guide</a></p>
+      <CodeBlock code={iosCommand} label="Copy iOS build and test commands" />
+    </div>
+    <div data-local-host="other" hidden={host === 'macos'}>
+      <Admonition kind="info" title="Start with Android locally">
+        <p>Local iOS development requires a macOS host with Xcode. On Windows or Linux, build and test Android first. Keep <code>ios-uikit</code> in <code>Day.toml</code> so GitHub CI can build the iOS version, run its walkthrough and capture screenshots for initial validation. <a href="/docs/getting-started/#push-and-check-ci">Check the CI results</a>.</p>
+      </Admonition>
+    </div>
+  </section>
+  <section aria-labelledby="local-desktop-title" data-local-platform="desktop">
+    <h3 id="local-desktop-title">Desktop testing (optional)</h3>
+    <p>If you kept this computer’s default desktop target, use it for quick iterations between mobile tests:</p>
+    <CodeBlock code="day launch" label="Copy desktop launch command" />
+  </section>
+</div>
+<style>
+  [hidden] { display: none !important; }
+  section { margin-top: 28px; }
+  h3 { font-size: 1.1rem; margin: 0 0 12px; }
+  .reference { color: var(--muted); font-size: .85rem; }
+</style>

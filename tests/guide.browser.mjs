@@ -59,6 +59,14 @@ try {
 
   await page.locator('[name=token]').fill('Copper-Test');
   await page.locator('[name=title]').fill("Reader's $(echo example) Notes");
+  for (const host of ['Windows', 'Linux', 'macOS']) {
+    await page.getByRole('radio',{name:host,exact:true}).check();
+    assert.equal(await page.locator('#step-local [data-local-host=macos]').isVisible(),host==='macOS');
+    assert.equal(await page.locator('#step-local [data-local-host=other]').isVisible(),host!=='macOS');
+    assert.match(await page.locator('#step-local [data-local-platform=android] code').textContent(), /^day launch -p android-mdc$/m);
+    if (host === 'macOS') assert.match(await page.locator('#step-local [data-local-host=macos] code').textContent(), /^day launch -p ios-uikit$/m);
+    else assert.match(await page.locator('#step-local [data-local-host=other]').textContent(), /GitHub CI/);
+  }
   await page.getByRole('radio',{name:'Windows',exact:true}).check();
   assert.equal(await page.locator('#ios-ci-note').isVisible(),true);
   assert.equal(await page.locator('#step-local .optional-command code').textContent(), 'code .');
@@ -103,6 +111,7 @@ try {
   if (process.env.BROWSER!=='webkit') assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),await page.locator('#step-create pre code').textContent());
   await page.screenshot({path:'/private/tmp/appfair-guide-single-step.png'});
   // Scrolling moves the document; content containers cannot trap wheel input.
+  await settle(page);
   const beforeWheel=await page.evaluate(()=>scrollY);
   await page.mouse.move(350,500);
   await page.mouse.wheel(0,200);
@@ -125,7 +134,7 @@ try {
   }
   await page.goto(`${base}/docs/getting-started/#submission-form`);
   await page.getByRole('radio',{name:'Linux',exact:true}).check();
-  assert.match(await page.locator('#step-local .step-content > .code-block pre').textContent(),/^day launch$/m);
+  assert.match(await page.locator('#step-local [data-local-platform=desktop] pre').textContent(),/^day launch$/m);
   assert.match(await page.locator('#step-local .optional-instructions').textContent(), /linux-gtk/);
   // The server renders the same order with JavaScript disabled.
   const noJS=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});

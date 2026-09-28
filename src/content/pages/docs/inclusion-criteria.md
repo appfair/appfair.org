@@ -17,5 +17,3 @@ App Fair publishes free, open-source apps for the public good, without built-in 
 > The [App Fair template](https://github.com/appfair/day-appfair) includes AGPL-3.0-only with the App Fair Distribution Exception. Keep both license files and their notices when using those terms. Discuss different licensing with App Fair before submission; the template’s lint checks expect its license structure.
 
 Read the [marketplace policies](/marketplace/) and the [catalog contribution requirements](https://github.com/appfair/appfair-apps/blob/main/CONTRIBUTING.md). App Fair and the destination stores review submissions independently.
-
-Continue with [Getting started](/docs/getting-started/) or generate [your checklist](/docs/checklist/).

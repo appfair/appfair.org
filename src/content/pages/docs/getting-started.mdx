@@ -42,9 +42,11 @@ The App Fair template supplies starter screens, store metadata, a dayscript walk
 
 <SubmissionStep id="local" anchor="test-locally" integrated>
 
-`day launch` builds and runs the app using your platform’s default toolkit. The dayscript walkthrough checks behavior and produces named screenshots; keep `dayscript/demo.yaml` in step with UI changes.
+Day projects include mobile and desktop targets by default. App Fair currently distributes only the iOS and Android versions through the Apple App Store and Google Play Store.
 
-Mobile behavior still needs testing on an iOS simulator, Android emulator or connected device. CI also runs the walkthrough on its configured targets.
+Remove unwanted targets from `[app] targets` in `Day.toml` if you do not plan to support them. Keep `ios-uikit` and `android-mdc` for App Fair distribution. Keeping at least one desktop target is useful for fast testing and iteration.
+
+`day launch` builds and runs the selected target. The dayscript walkthrough checks behavior and captures screenshots; keep `dayscript/demo.yaml` in step with UI changes.
 
 </SubmissionStep>
 

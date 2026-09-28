@@ -69,6 +69,9 @@ export function setupSubmissionChecklist() {
       step.links.forEach(([label, href], i) => { links[i].textContent = label; links[i].href = href; });
       links[links.length - 1].href = step.help;
     }
+    for (const panel of list.querySelectorAll<HTMLElement>('[data-local-host]')) {
+      panel.hidden = (panel.dataset.localHost === 'macos') !== (state.values.host === 'macos');
+    }
     publishChecklist({ values: { ...state.values }, valid: true });
   }
   function showErrors(errors: Record<string, string>) {

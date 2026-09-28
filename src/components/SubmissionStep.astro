@@ -1,6 +1,7 @@
 ---
 import Admonition from './Admonition.astro';
 import CodeBlock from './CodeBlock.astro';
+import LocalTesting from './LocalTesting.astro';
 import InstructionTabs from './InstructionTabs.astro';
 import { defaults, steps, stepIds } from '../lib/submission.mjs';
 const { id, anchor = `step-title-${id}`, integrated = false } = Astro.props;
@@ -24,7 +25,7 @@ const index = stepIds.indexOf(id);
         </li>)}
       </ul>
     </>}
-    {step.command && <CodeBlock class="command-block" code={step.command} label={`Copy commands for ${step.title}`} />}
+    {id === 'local' ? <LocalTesting host={defaults.host} androidCommand={step.command} /> : step.command && <CodeBlock class="command-block" code={step.command} label={`Copy commands for ${step.title}`} />}
     {step.methods && <InstructionTabs id={id} label={`${step.title}: choose a method`} methods={step.methods} />}
     {step.optional && <div class="command-optional">
       <h3>{step.optional.title}</h3>{step.optional.text && <p>{step.optional.text}</p>}

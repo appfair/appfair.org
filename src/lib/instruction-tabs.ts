@@ -28,6 +28,15 @@ export function setupInstructionTabs() {
     list.setAttribute('role', 'tablist');
     list.hidden = false;
     root.dataset.tabsReady = 'true';
+    function selectHash() {
+      const index = panels.findIndex(panel => `#${panel.id}` === location.hash);
+      if (index < 0) return false;
+      select(index);
+      panels[index].scrollIntoView({ block: 'start' });
+      return true;
+    }
     select(0);
+    selectHash();
+    window.addEventListener('hashchange', selectHash);
   }
 }
