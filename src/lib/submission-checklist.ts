@@ -53,7 +53,10 @@ export function setupSubmissionChecklist() {
       for (const method of step.methods ?? []) {
         const panel = detail.querySelector<HTMLElement>(`[data-method="${method.id}"]`)!;
         panel.querySelector('.method-description')!.textContent = method.text;
-        panel.querySelector('code')!.textContent = method.command;
+        if (method.command) panel.querySelector('code')!.textContent = method.command;
+        method.instructions?.forEach((text, i) => {
+          panel.querySelectorAll('.method-instructions li')[i].textContent = text;
+        });
         method.operations?.forEach(([text, href], i) => {
           const link = panel.querySelectorAll<HTMLAnchorElement>('.method-operations a')[i];
           link.textContent = text; link.href = href;

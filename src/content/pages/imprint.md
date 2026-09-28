@@ -2,9 +2,9 @@
 title: Imprint
 ---
 
-## App Fair (France)
+## The App Fair (France)
 
-App Fair is a registered nonprofit association (_association loi 1901_) in France.
+The App Fair is a registered nonprofit association (_association loi 1901_) in France.
 
 - **Association:** L’association APP FAIR
 - **N° RNA:** W632014768
@@ -26,4 +26,4 @@ The App Fair Project is a registered 501(c)(3) nonprofit corporation in the Comm
 - **Email:** [contact@appfair.org](mailto:contact@appfair.org)
 - **Mastodon:** [@appfair@fosstodon.org](https://fosstodon.org/@appfair)
 - **GitHub:** [github.com/appfair](https://github.com/orgs/appfair)
-- **Forums:** [App Fair Discussions](https://github.com/orgs/appfair/discussions)
+- **Forums:** [The App Fair discussions](https://github.com/orgs/appfair/discussions)

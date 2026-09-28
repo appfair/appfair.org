@@ -48,7 +48,7 @@ We take data security seriously and implement industry-standard practices to pro
 
 ## 4. Third-Party Apps
 
-Please note that apps available on the App Fair may have their own data collection policies. We encourage you to review the privacy policies of each app before using them.
+Apps distributed through the App Fair must meet the [app rules](/app-rules/): no analytics, tracking or telemetry. An app’s privacy policy must explain data needed for its documented features; it cannot authorize analytics or tracking prohibited by those rules.
 
 ## 5. Contact Us
 

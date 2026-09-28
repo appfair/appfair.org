@@ -6,7 +6,7 @@
     "description": "The App Fair Project is a nonprofit dedicated to creating mobile apps for the public good: free of cost, free of ads and tracking, and built from free and open-source software."
   },
   "nav": {
-    "home": "App Fair home",
+    "home": "The App Fair home",
     "apps": "Apps",
     "developers": "Developers",
     "blog": "Blog",
@@ -153,7 +153,8 @@
       "heading": "Help build a catalog of digital public goods",
       "body": "The App Fair is funded solely by donations and grants. Your support pays for the development, review, and infrastructure that keep the catalog free for everyone.",
       "donate": "Donate",
-      "browse": "Browse the catalog"
+      "browse": "Browse the catalog",
+      "create": "Create an app"
     },
     "visual": {
       "free": "Free",

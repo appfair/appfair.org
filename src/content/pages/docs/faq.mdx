@@ -1,0 +1,47 @@
+---
+title: Developer FAQ
+description: Answers about app frameworks, developer accounts, app tokens, local testing, GitHub tools, releases and updates.
+---
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+<SectionHeading id="frameworks" title={"Do I need to use Day to create my app, or can I use Flutter, React Native, Skip, etc.?"} />
+
+App Fair apps must be conventional Day projects created from the [day-appfair template](/docs/getting-started/#create-the-app). Day supports creating apps not just for iOS and Android, but also HarmonyOS, Windows, Linux, macOS, and the Web. This provides the necessary foundation for the App Fair to expand to include other storefronts and distribution channels over time.
+
+<SectionHeading id="accounts" title={"Do I need an Apple or Google developer account to distribute to the App Store or Play Store through the App Fair?"} />
+
+You do not need your own Apple or Google developer account to distribute an open-source app through the App Fair. You only need a GitHub account to maintain the source and submit catalog pull requests. Approval by the App Fair and subsequent App/Play Store review are still required for all new app submissions and updates. The [App Fair Publisher installation](/docs/inclusion-criteria/#project-and-publication-setup) is required. See [approval and deployment](/docs/releases/#approval-and-deployment).
+
+<SectionHeading id="distribution" title={"Am I required to distribute my application exclusively through the App Fair?"} />
+
+You own the apps you create and can distribute them through any channels you choose. The App Fair does not require exclusivity.
+
+The App Fair Publisher installation is required while distributing through the App Fair. To withdraw, notify the App Fair through your catalog pull request or a [catalog issue](https://github.com/appfair/appfair-apps/issues), and revoke the Publisher’s access. Revoking access does not automatically remove existing store listings; request removal explicitly if that is what you intend.
+
+<SectionHeading id="token" title={"Does the app token have to match the app name?"} />
+
+The token is an arbitrary, unique project identifier; it does not have to match the display name. An app called **Field Notes** can use **Orbit-Notes** as its token. The GitHub organization and repository must both use that token: `Orbit-Notes/Orbit-Notes`. The organization name must be available on GitHub. See [choosing a token](/docs/getting-started/#choose-a-token).
+
+<SectionHeading id="development-os" title={"What OS do I need to use to develop apps?"} />
+
+You can develop the Android version of your app on Windows, Linux, or macOS; Android Studio and the Android emulator run on all three. Local iOS builds and testing require a macOS development machine with Xcode. If you do not have a Mac, GitHub continuous integration (CI) can build and test both the iOS and Android versions and generate screenshots. Keep both targets enabled in your project and CI workflow. See [local testing](/docs/getting-started/#test-locally) and [CI results](/docs/getting-started/#push-and-check-ci).
+
+<SectionHeading id="tools" title={"Are VSCode and the GitHub CLI required?"} />
+
+Both are optional. The `day` CLI builds, launches and tests the app without an IDE. Use Git for commits and pushes, and GitHub’s website for repository creation and pull requests. The guide’s **GitHub website** tabs provide instructions that do not require `gh`. See [creating the repository](/docs/getting-started/#create-the-repository).
+
+<SectionHeading id="website" title={"Do I need to enable the website for my app repository?"} />
+
+The repository’s GitHub Pages site must remain enabled and published at its expected location: `https://app-token.github.io/App-Token/`, for example [https://games-fair.github.io/Games-Fair/](https://games-fair.github.io/Games-Fair/). Preserve the repository name’s capitalization in the URL path.
+
+You do not have to publicize this link, and you may create a separate landing page for your app. The generated GitHub Pages site must still remain published because the App Fair uses it during validation and review. You may configure a custom domain for that site if you choose. See [publishing the website](/docs/getting-started/#configure-pages).
+
+<SectionHeading id="releases" title={"Should I create the GitHub release myself?"} />
+
+Use `day metadata --version-bump patch --git-push` after committing your app changes. It bumps the version and build number, commits, tags and pushes. Let CI create the pre-release and upload its assets. Do not also create a release through the website or `gh release create`. Check the tag’s workflow run and wait for the required assets before submitting. See [creating a release](/docs/releases/#create-a-release).
+
+<SectionHeading id="updates" title={"Does publishing a new GitHub release update the store apps?"} />
+
+A GitHub release alone does not request an App Fair update. Submit a catalog pull request for each version, referencing the new release tag and commit. Use `day metadata --version-bump patch --git-push` to prepare the next release. Keep the existing app token and store IDs. The App Fair reviews the update before signing and submitting it to the stores.
+
+Leave the GitHub release marked **pre-release** while it is awaiting submission or review by the App Fair. After the catalog pull request is approved and publication succeeds, the App Fair Publisher automatically removes the pre-release status and marks the release **Latest**. Do not promote it manually. See [submitting an update](/docs/releases/#submit-an-update).

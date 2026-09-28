@@ -27,7 +27,7 @@ const updated = page.data.updated ?? page.data.date;
   {isGettingStarted ? <div class="container developer-layout"><DeveloperNav current={docsPath} /><SubmissionGuide title={page.data.title}><Content /><DeveloperPager slot="footer" current={docsPath} /></SubmissionGuide></div> : <div class:list={['container', { 'developer-layout': isDocs }]}>
     {isDocs && <DeveloperNav current={docsPath} />}
     <div class:list={['prose', { 'page-body': !isDocs, wide: page.data.width === 'wide', 'developer-article': isDocs }]}>
-      {isDocs && <div class="docs-kicker" data-pagefind-ignore>App Fair / Developers</div>}
+      {isDocs && <div class="docs-kicker" data-pagefind-ignore>The App Fair / Developers</div>}
       {!hasOwnH1 && <h1>{page.data.title}</h1>}
       <Content />
       {updated && <p class="updated">{t('page.updated', { date: formatDate(updated, locale) })}</p>}

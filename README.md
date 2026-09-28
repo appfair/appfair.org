@@ -3,6 +3,10 @@
 The source for the [App Fair Project](https://appfair.org) website: a static site built with
 [Astro](https://astro.build) and deployed to GitHub Pages by `.github/workflows/`.
 
+## Editorial style
+
+Follow [STYLE.md](STYLE.md) for project naming and site prose.
+
 ## Local development
 
 Requires Node 22.12 or newer.
@@ -72,19 +76,21 @@ The App Fair Project © 2026 by <a href="https://appfair.org">the App Fair</a> i
 ## Developer documentation
 
 `src/content/pages/docs/` supplies `/docs/`, linked as **Developers** in the header. MDX pages
-embed `SubmissionFlow.astro` (linked SVG) and `SubmissionChecklist.astro`. The checklist's command
+embed `SubmissionFlow.astro` (linked SVG) and `SubmissionStep.astro`. The checklist's command
 generation, input validation and versioned local-storage parsing live in `src/lib/submission.mjs`.
 Run `npm test` for their regression tests. No commands are executed by the checklist.
 
 `SubmissionGuide.astro` renders a normal single-column document. Each `SubmissionStep.astro`
 contains one numbered heading, explanatory prose, and its actions and reference links. The same
-step component serves the standalone checklist. The overview and section anchors use native page
+step component renders the personalized commands. The overview and section anchors use native page
 scrolling; there are no nested scrolling panes or synchronization handlers.
 
 `SubmissionForm.astro` initializes `submission-checklist.ts`, which updates commands, validates
 input and saves app details. `SubmissionValue.astro` updates prose identities through
 `submission-state.ts` and `submission-values.mjs`. Commands live in `submission.mjs`; keep guide
-step IDs matched to `stepIds`. `/docs/checklist/` remains available as a commands-only view.
+step IDs matched to `stepIds`. The obsolete `/docs/checklist/` route has been removed.
+
+The policy pages are `/app-rules/` for users and `/docs/inclusion-criteria/` for developers. Keep their requirements aligned; the developer page holds submission details.
 
 Docs use the normal content collection, localized fallback routes, sitemap and Pagefind build.
 Use `npm run build` followed by `npm run preview` to test search; Astro dev does not build its index.
@@ -94,8 +100,10 @@ updating command examples. Generated checklist commands assume a personal catalo
 With Playwright available, run the end-to-end checks against the preview server:
 
 ```sh
-SITE_URL=http://127.0.0.1:4323 node tests/checklist.browser.mjs
 SITE_URL=http://127.0.0.1:4323 node tests/guide.browser.mjs
+SITE_URL=http://127.0.0.1:4323 node tests/instruction-tabs.browser.mjs
+SITE_URL=http://127.0.0.1:4323 node tests/releases.browser.mjs
+SITE_URL=http://127.0.0.1:4323 node tests/policies.browser.mjs
 # Set PLAYWRIGHT_MODULE to a package path if Playwright is installed outside this checkout.
 ```
 
@@ -163,3 +171,18 @@ or request credentials. Invalid tokens do not trigger requests.
 method is selected initially; arrow keys, Home and End switch methods. App-detail edits update
 both panels without changing the selected tab. Without JavaScript, or when printed, both
 methods remain visible. Each panel uses the shared `CodeBlock` copy control.
+
+### Linked section headings
+
+Use `SectionHeading.astro` in MDX for an explicit, short section anchor:
+
+```mdx
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+<SectionHeading id="distribution" title="Does the App Fair require exclusivity?" />
+```
+
+The heading defaults to H2 (`level={3}` or `level={4}` selects a lower level). Its link icon
+appears on hover or keyboard focus, stays visible on touch devices, and works without JavaScript.
+Keep the ID stable when changing the question. FAQ entries use this component in
+`src/content/pages/docs/faq.mdx`.

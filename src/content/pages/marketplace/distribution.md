@@ -32,7 +32,7 @@ Your app must not infringe on the intellectual property rights of others. This i
 
 ### 2.1 Free and Open Source
 
-Apps submitted to the App Fair Project must be free and open source, with their source code publicly available under an OSI-approved open source license.
+Apps must meet the [developer inclusion criteria](/docs/inclusion-criteria/). The primary license must be AGPL-3.0-only with the App Fair Distribution Exception. All included libraries, including transitive dependencies, must meet the DFSG and have terms compatible with the app license. Closed-source components are prohibited.
 
 ### 2.2 Monetization
 
@@ -40,13 +40,13 @@ The App Fair Project is a non-commercial endeavor. Apps are developed and mainta
 
 ### 2.3 Advertisements
 
-The App Fair Project is a non-commercial endeavor. Apps may not embedded advertisements for products of services of any kind, and may not track or surveil users without their explicit consent.
+Apps must not contain advertisements, advertising SDKs, analytics, tracking or telemetry. Consent does not create an exception to these prohibitions. See the [app rules](/app-rules/).
 
 ## 3. App Submission and Review
 
 ### 3.1 Submission Process
 
-To submit your app to the App Fair Project, please provide the following information:
+Follow [Getting started](/docs/getting-started/) and the [inclusion criteria](/docs/inclusion-criteria/), including the required App Fair Publisher installation and published project website. Provide the following information:
 
 - App name
 - App description

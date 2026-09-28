@@ -1,0 +1,22 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  level?: 2 | 3 | 4;
+}
+const { id, title, level = 2 } = Astro.props;
+const Heading = `h${level}`;
+---
+<Heading id={id} class="section-heading">
+  {title}<a class="heading-anchor" href={`#${id}`} aria-label={`Link to: ${title}`} title={`Link to #${id}`} data-pagefind-ignore>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 .5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7" /></svg>
+  </a>
+</Heading>
+<style>
+  .section-heading .heading-anchor { display: inline-flex; align-items: center; justify-content: center; width: 1.25em; height: 1.25em; margin-left: .3em; border-radius: 4px; color: var(--brand-strong); text-decoration: none; vertical-align: middle; opacity: 0; }
+  .section-heading:hover .heading-anchor, .section-heading:focus-within .heading-anchor { opacity: 1; }
+  .heading-anchor:hover { background: var(--hover); }
+  .heading-anchor:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  @media(hover: none) { .section-heading .heading-anchor { opacity: 1; } }
+  @media print { .section-heading .heading-anchor { display: none; } }
+</style>

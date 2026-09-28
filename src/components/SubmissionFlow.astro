@@ -4,7 +4,7 @@ const { local = false, horizontal = false } = Astro.props;
 const prefix = local ? '' : '/docs/getting-started/';
 const steps = [
   { id: 'choose-a-token', title: 'Choose a token', detail: 'A unique project address', icon: '01', x: 18, y: 48 },
-  { id: 'create-the-app', title: 'Create & test', detail: 'Day + App Fair template', icon: '02', x: 294, y: 48 },
+  { id: 'create-the-app', title: 'Create & test', detail: 'Day + the App Fair template', icon: '02', x: 294, y: 48 },
   { id: 'create-the-repository', title: 'Host the source', detail: 'Organization / repository', icon: '03', x: 570, y: 48 },
   { id: 'configure-pages', title: 'Publish the website', detail: 'Pages + CI walkthroughs', icon: '04', x: 18, y: 208 },
   { id: 'release', title: 'Tag a release', detail: 'Packages + screenshots', icon: '05', x: 294, y: 208 },
@@ -25,15 +25,15 @@ const steps = [
       {i < steps.length - 1 && <path d={`M${266 + i * 276} 102h20m-5-4 5 4-5 4`} fill="none" stroke="#818cf8" stroke-width="2" />}
     </>)}
     <path d="M1520 158v22m-4-4 4 4 4-4" fill="none" stroke="#818cf8" stroke-width="2" />
-    <a href={`${prefix}#approval`} aria-label="App Fair approval and store deployment">
+    <a href={`${prefix}#approval`} aria-label="Approval by the App Fair and store deployment">
       <rect x="18" y="184" width="1626" height="56" rx="14" class="store-card" />
-      <text x="38" y="219" class="store-text">APP FAIR</text>
+      <text x="38" y="219" class="store-text">THE APP FAIR</text>
       <text x="174" y="219" class="step-detail">Review → sign → submit → App Store &amp; Google Play</text>
     </a>
   </svg>}
   <svg class="flow-wide" viewBox="0 0 840 420" role="group" aria-labelledby="flow-title flow-description" xmlns="http://www.w3.org/2000/svg">
     <title id="flow-title">From a project to the app stores</title>
-    <desc id="flow-description">Choose a token, create and test the app, host the source, publish the website, tag a release, and submit a pull request. App Fair reviews, signs and submits to Apple and Google. Each step links to its instructions.</desc>
+    <desc id="flow-description">Choose a token, create and test the app, host the source, publish the website, tag a release, and submit a pull request. The App Fair reviews, signs and submits to Apple and Google. Each step links to its instructions.</desc>
     <defs>
       <linearGradient id="flow-line"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
       <marker id="flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#818cf8"/></marker>
@@ -51,9 +51,9 @@ const steps = [
       <text x={step.x + 17} y={step.y + 58} class="step-title">{step.title}</text>
       <text x={step.x + 17} y={step.y + 82} class="step-detail">{step.detail}</text>
     </a>)}
-    <a href={`${prefix}#approval`} aria-label="App Fair approval and store deployment">
+    <a href={`${prefix}#approval`} aria-label="Approval by the App Fair and store deployment">
       <rect x="18" y="354" width="798" height="52" rx="14" class="store-card"/>
-      <text x="38" y="386" class="store-text">APP FAIR</text>
+      <text x="38" y="386" class="store-text">THE APP FAIR</text>
       <text x="174" y="386" class="step-detail">Review → sign → submit → App Store &amp; Google Play</text>
     </a>
   </svg>
@@ -69,9 +69,9 @@ const steps = [
       </a>
       <path d={`M200 ${150 + i * 126} v14 m-4 -4 l4 4 l4 -4`} fill="none" stroke="#818cf8" stroke-width="2" />
     </>)}
-    <a href={`${prefix}#approval`} aria-label="App Fair approval and store deployment">
+    <a href={`${prefix}#approval`} aria-label="Approval by the App Fair and store deployment">
       <rect x="18" y="804" width="364" height="80" rx="14" class="store-card"/>
-      <text x="36" y="834" class="store-text">APP FAIR REVIEW &amp; PUBLICATION</text>
+      <text x="36" y="834" class="store-text">THE APP FAIR: REVIEW &amp; PUBLICATION</text>
       <text x="36" y="861" class="step-detail">App Store &amp; Google Play</text>
     </a>
   </svg>

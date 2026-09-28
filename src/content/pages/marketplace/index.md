@@ -1,12 +1,15 @@
 ---
-name: App Fair Project Policies
+name: The App Fair Project Policies
 title: 'The App Fair Project Policies'
 #layout: default
 ---
 
-# App Fair Project Policies
+# The App Fair Project Policies
 
 The following links contain information on the policies and procedures of the App Fair Project's marketplace.
+
+#### [App rules](/app-rules/)
+#### [Developer inclusion criteria](/docs/inclusion-criteria/)
 
 #### [Terms of Distribution for Developers](distribution)
 #### [Data Collection Policy](datacollection)

@@ -124,8 +124,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <h2>{t('home.cta.heading')}</h2>
         <p>{t('home.cta.body')}</p>
         <div class="actions">
-          <a class="btn btn-primary" href={localizePath('/donate/', locale)}><Icon name="heart" /> {t('home.cta.donate')}</a>
           <a class="btn btn-ghost" href={site.catalog} rel="noopener">{t('home.cta.browse')} <Icon name="external" /></a>
+          <a class="btn btn-primary" href={localizePath('/donate/', locale)}><Icon name="heart" /> {t('home.cta.donate')}</a>
+          <a class="btn btn-ghost" href={localizePath('/docs/', locale)}>{t('home.cta.create')} <Icon name="arrow-right" /></a>
         </div>
       </div>
     </div>

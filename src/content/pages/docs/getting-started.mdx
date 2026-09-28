@@ -1,9 +1,11 @@
 ---
 title: Create an App Fair app
-description: Create a Day app, test it locally and in CI, and submit a release for App Fair distribution.
+description: Create a Day app, test it locally and in CI, and submit a release for distribution through the App Fair.
 ---
 import SubmissionValue from '../../../components/SubmissionValue.astro';
 import SubmissionStep from '../../../components/SubmissionStep.astro';
+
+Read the [inclusion criteria](/docs/inclusion-criteria/) before starting. For a new app, [open a discussion](https://github.com/orgs/appfair/discussions) before submitting it.
 
 <SubmissionStep id="prerequisites" anchor="install-prerequisites" integrated>
 
@@ -25,7 +27,7 @@ For VSCode users, the Day extension adds build and launch controls; rust-analyze
 
 The app token is an **arbitrary, unique identifier**. It need not match the app name. This workflow uses the token for both the GitHub organization and its repository: <SubmissionValue field="repo" />. The refresh button suggests a name; it does not reserve it.
 
-The App Fair Publisher app needs access to the organization to attach signed packages to releases. Store credentials remain with App Fair.
+Installing the App Fair Publisher is required. Grant it access to the app repository when you create it, and keep access enabled. It attaches signed packages and promotes approved pre-releases. Store credentials remain with the App Fair.
 
 > [!IMPORTANT] Names can change
 > The display name can change independently. Renaming a published app’s token requires coordinated changes to the organization, repository and catalog entry, while preserving its store IDs.
@@ -42,9 +44,9 @@ The App Fair template supplies starter screens, store metadata, a dayscript walk
 
 <SubmissionStep id="local" anchor="test-locally" integrated>
 
-Day projects include mobile and desktop targets by default. App Fair currently distributes only the iOS and Android versions through the Apple App Store and Google Play Store.
+Day projects include mobile and desktop targets by default. The App Fair currently distributes only the iOS and Android versions through the Apple App Store and Google Play Store.
 
-Remove unwanted targets from `[app] targets` in `Day.toml` if you do not plan to support them. Keep `ios-uikit` and `android-mdc` for App Fair distribution. Keeping at least one desktop target is useful for fast testing and iteration.
+Remove unwanted desktop targets from both `[app] targets` in `Day.toml` and `targets` in `.github/workflows/ci.yml`. Keep `ios-uikit` and `android-mdc` for both mobile stores, and keep `web-dom`: the template uses it to publish the required project website. Keeping at least one desktop target is useful for fast testing and iteration.
 
 `day launch` builds and runs the selected target. The dayscript walkthrough checks behavior and captures screenshots; keep `dayscript/demo.yaml` in step with UI changes.
 
@@ -52,7 +54,7 @@ Remove unwanted targets from `[app] targets` in `Day.toml` if you do not plan to
 
 <SubmissionStep id="repository" anchor="create-the-repository" integrated>
 
-App Fair expects a public repository named <SubmissionValue field="repo" />. Source, license files and `Cargo.lock` belong in the initial commit; credentials and build output do not.
+The App Fair expects a public repository named <SubmissionValue field="repo" />. Source, license files and `Cargo.lock` belong in the initial commit; credentials and build output do not.
 
 <p id="using-git-and-the-browser">Git manages the local history. The remote can be created in GitHub’s website or with the optional GitHub CLI.</p>
 
@@ -64,7 +66,7 @@ App Fair expects a public repository named <SubmissionValue field="repo" />. Sou
 
 The template publishes the website through GitHub Actions. The Pages environment must permit deployments from both the main branch and release tags, because a release also updates download links.
 
-The default GitHub Pages address is sufficient. A custom domain is optional and requires additional setup. It can be added later if you decide to acquire a domain for the project.
+Keep the generated site published for validation and review, even if you use a separate landing page. The default GitHub Pages address is sufficient. A custom domain is optional and requires additional setup. It can be added later if you decide to acquire a domain for the project.
 
 </SubmissionStep>
 
@@ -78,7 +80,7 @@ A passing run confirms the automated checks. Review its screenshots for layout o
 
 <SubmissionStep id="release" anchor="release" integrated>
 
-A version tag pins the source App Fair will review. Tagging starts CI and creates a **public pre-release** containing packages, `gallery.json` and `screenshots.zip`. A draft release is not accessible to the catalog; a separate manual release is unnecessary.
+A version tag pins the source the App Fair will review. Tagging starts CI and creates a **public pre-release** containing packages, `gallery.json` and `screenshots.zip`. A draft release is not accessible to the catalog; a separate manual release is unnecessary.
 
 The template starts at version 0.1.0, build 1. The patch bump below produces version 0.1.1, build 2; the release link and submission commands use that version. If your project has a different starting version, use the tag reported by Day instead. Once submitted, correct a faulty release with a new tag instead of moving the reviewed tag.
 
@@ -86,15 +88,15 @@ The template starts at version 0.1.0, build 1. The patch bump below produces ver
 
 <SubmissionStep id="submit" anchor="submit" integrated>
 
-The catalog entry, <SubmissionValue field="catalogFile" />, records the release tag, full commit hash and requested stores. The helper generates it from release metadata in a separate fork of the App Fair catalog.
+The catalog entry, <SubmissionValue field="catalogFile" />, records the release tag, full commit hash and requested stores. The helper generates it from release metadata in a separate fork of the App Fair catalog. Link your first-app discussion in the pull request.
 
-App Fair rebuilds that pinned commit for review. Metadata corrections stay on the catalog pull request; source changes require a new app release and an updated submission.
+The App Fair rebuilds that pinned commit for review. Metadata corrections stay on the catalog pull request; source changes require a new app release and an updated submission.
 
 </SubmissionStep>
 
 <SubmissionStep id="approval" anchor="approval" integrated>
 
-After a maintainer approves publication, App Fair signs and submits the packages through its store accounts. Apple and Google then process and review the app. A merged catalog pull request does not mean the app is live; the store listings confirm availability.
+After a maintainer approves publication, the App Fair signs and submits the packages through its store accounts. Apple and Google then process and review the app. A merged catalog pull request does not mean the app is live; the store listings confirm availability.
 
 Updates keep the same organization, repository and store IDs. Each version goes through a new release and catalog pull request.
 

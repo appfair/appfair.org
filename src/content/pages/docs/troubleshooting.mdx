@@ -3,6 +3,8 @@ title: Submission troubleshooting
 description: Diagnose Day installation, GitHub Pages, CI, screenshots, release assets, catalog checks and app-store publication failures.
 ---
 
+import InstructionTabs from '../../../components/InstructionTabs.astro';
+
 > [!TIP] Find the first failure
 > Start with the first failed job, not the final “workflow failed” summary. Record the repository, commit, tag and run URL. App build failures belong in the app repository; catalog metadata failures belong in its submission PR. Store-side failures need an App Fair maintainer.
 
@@ -18,9 +20,9 @@ description: Diagnose Day installation, GitHub Pages, CI, screenshots, release a
 
 **GitHub will not accept the organization name.** The token must be unique across GitHub account names, not just App Fair apps. Try another arbitrary token. Use 2–39 characters starting with a letter; avoid consecutive or trailing hyphens. Keep your preferred app display name.
 
-**The catalog reports a duplicate token, title or store ID.** Check existing entries. Choosing a different token does not permit publishing into another app’s store record. Resolve title or identity conflicts with App Fair before submitting.
+**The catalog reports a duplicate token, title or store ID.** Check existing entries. Choosing a different token does not permit publishing into another app’s store record. Resolve title or identity conflicts with the App Fair before submitting.
 
-**You want to rename a published token.** Coordinate the repository/organization rename and catalog migration with App Fair. Preserve store IDs and update the catalog’s publication state and links. GitHub redirects alone do not update catalog state. A renamed token is not a new app release identity. See [token selection](/docs/getting-started/#choose-a-token).
+**You want to rename a published token.** Coordinate the repository/organization rename and catalog migration with the App Fair. Preserve store IDs and update the catalog’s publication state and links. GitHub redirects alone do not update catalog state. A renamed token is not a new app release identity. See [token selection](/docs/getting-started/#choose-a-token).
 
 ## Scaffold
 
@@ -42,7 +44,12 @@ description: Diagnose Day installation, GitHub Pages, CI, screenshots, release a
 
 ## Repository
 
-**GitHub authentication fails.** If you use the optional GitHub CLI, run `gh auth status`, then `gh auth login` and `gh auth setup-git`. If you use Git directly, check your HTTPS credential helper or SSH setup instead. Use an account with access to the organization and follow any SSO authorization prompts. Do not commit tokens.
+**GitHub authentication fails.** Use an account with access to the organization and follow any SSO authorization prompts. Do not commit tokens.
+
+<InstructionTabs id="authentication" label="Configure GitHub authentication" methods={[
+  { id: 'gh', title: 'GitHub CLI', text: 'Check authentication, then sign in and configure Git credentials.', command: 'gh auth status\ngh auth login\ngh auth setup-git' },
+  { id: 'web', title: 'Git and GitHub website', text: 'Configure Git authentication without the gh client.', operations: [['GitHub authentication instructions', 'https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github']], instructions: ['Sign in to GitHub with an account that can access the organization.', 'Configure a Git HTTPS credential helper or an SSH key using the linked instructions.', 'Authorize organization SSO access if required, then retry the Git operation.'] },
+]} />
 
 **`gh repo create` reports “not found” or “forbidden”.** Create the organization first and check your membership and repository-creation permissions. The required path is `<token>/<token>`, not `<your-user>/<token>`.
 
@@ -64,7 +71,7 @@ description: Diagnose Day installation, GitHub Pages, CI, screenshots, release a
 
 **No workflow starts.** Confirm `.github/workflows/ci.yml` was committed, Actions is enabled in repository settings, and the push matches its branch or tag triggers. Fork PR workflows may need an authorized maintainer to approve their first run.
 
-**App Fair lint fails.** Read its file-and-line annotations. Common failures include missing license texts, missing SPDX notices and a malformed App Fair flavor. Preserve `LICENSE.txt`, `LICENSE-EXCEPTIONS.txt` and the template’s source notices, or discuss alternate licensing before submission.
+**App Fair lint fails.** Read its file-and-line annotations. Common failures include missing license texts, missing SPDX notices and a malformed App Fair flavor. Preserve `LICENSE.txt`, `LICENSE-EXCEPTIONS.txt` and the template’s source notices, as required by the [inclusion criteria](/docs/inclusion-criteria/#license-and-dependencies).
 
 **Only one platform fails.** Reproduce that target. Confirm the native SDK, generated project and workflow target list agree. A passing web build is not evidence that iOS packaging works.
 
@@ -72,9 +79,9 @@ description: Diagnose Day installation, GitHub Pages, CI, screenshots, release a
 
 ## Release assets
 
-**The release does not exist yet.** A tag and a GitHub release are different objects. Pushing a `v<major>.<minor>.<patch>` tag starts the template’s CI; its release job creates the release after building. Inspect that tag’s run.
+**The release does not exist yet.** A tag and a GitHub release are different objects. `day metadata --version-bump patch --git-push` pushes a version tag and starts the template’s CI; its release job creates the release after building. Inspect that tag’s run.
 
-**`queue.py add` or `update` cannot find the new version.** The template publishes a pre-release. Pass `--tag v0.1.0` explicitly rather than relying on GitHub’s Latest release. A draft is not public; wait until the workflow publishes it.
+**`queue.py add` or `update` cannot find the new version.** The template publishes a pre-release. Pass the tag reported by Day, for example `--tag v0.1.1`, explicitly rather than relying on GitHub’s Latest release. A draft is not public; wait until the workflow publishes it.
 
 **The release lacks an AAB, IPA or screenshots.** Check that both mobile targets, walkthroughs and `release-assets: true` are enabled. Inspect the release job and device captures. Do not submit before the requested channels’ assets exist.
 
@@ -102,23 +109,23 @@ description: Diagnose Day installation, GitHub Pages, CI, screenshots, release a
 
 **Identity or permissions disagree.** Fix `Day.toml`, `Day-appfair.toml` or the app’s permission declarations, then release a new version. Preserve existing store IDs. See [the submission reference](https://github.com/appfair/appfair-apps/blob/main/CONTRIBUTING.md).
 
-**Package comparison or scanning fails.** Read the report and reproduce the difference. Toolchain or flavor changes may explain it; App Fair decides whether a documented exception is acceptable. Do not suppress scanning or alter comparison policy in your submission PR.
+**Package comparison or scanning fails.** Read the report and reproduce the difference. Toolchain or flavor changes may explain it; the App Fair decides whether a documented exception is acceptable. Do not suppress scanning or alter comparison policy in your submission PR.
 
 ## Build number
 
 **The store already has this build.** Increase the effective `[app] build` for the next binary; check flavor overrides as well as `Day.toml`. Once a binary has been uploaded, a failed later step does not make its number reusable.
 
-**The upload succeeded but review submission failed.** Ask App Fair to finish submission of the existing binary rather than uploading it again. Include the run URL and store. A new binary requires a new build number and release. [Publication recovery](/docs/releases/#retry-a-failed-publication).
+**The upload succeeded but review submission failed.** Ask the App Fair to finish submission of the existing binary rather than uploading it again. Include the run URL and store. A new binary requires a new build number and release. [Publication recovery](/docs/releases/#retry-a-failed-publication).
 
 ## Approval
 
-**All checks pass but the PR is still open.** App Fair review or `store` environment approval may still be pending. Read the PR and workflow status; there is no fixed approval time.
+**All checks pass but the PR is still open.** Review by the App Fair or approval for the `store` environment may still be pending. Read the PR and workflow status; there is no fixed approval time.
 
-**The PR merged but the app is not live.** App Fair publication and store review are separate. Apple or Google may still be processing, reviewing or awaiting release. Ask in the existing PR rather than opening another submission for the same build.
+**The PR merged but the app is not live.** Publication by the App Fair and store review are separate. Apple or Google may still be processing, reviewing or awaiting release. Ask in the existing PR rather than opening another submission for the same build.
 
-**One store succeeded and the other failed.** Report the failed channel and run URL in a [publication problem](https://github.com/appfair/appfair-apps/issues/new?template=publication-problem.yml). App Fair can recover that channel without requesting a duplicate upload to the successful store.
+**One store succeeded and the other failed.** Report the failed channel and run URL in a [publication problem](https://github.com/appfair/appfair-apps/issues/new?template=publication-problem.yml). The App Fair can recover that channel without requesting a duplicate upload to the successful store.
 
-**Signed packages are missing from the GitHub release.** Check whether the [App Fair publisher](https://github.com/apps/app-fair-publisher) is installed with access to this repository. If attachment failed or was not enabled, ask the maintainer for the signed workflow artifacts.
+**Signed packages are missing from the GitHub release.** The [App Fair Publisher](https://github.com/apps/app-fair-publisher) installation and repository access are required. Restore missing access before continuing, and report attachment failures in the submission PR. Existing workflow artifacts help recovery; they do not replace the installation requirement.
 
 ## Saved app details
 

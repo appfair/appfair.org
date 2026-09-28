@@ -33,7 +33,7 @@ test('local launch starts with Android and submission paths follow the host', ()
     assert.match(command, /^day launch -p android-mdc$/m);
     assert.match(command, /^day launch -p android-mdc --script dayscript\/demo.yaml$/m);
     assert.doesNotMatch(command, /day build/);
-    assert.match(list.find(s => s.id === 'submit').command, host === 'windows' ? /Scripts\/python.exe/ : /bin\/python/);
+    assert.match(list.find(s => s.id === 'submit').methods.find(m => m.id === 'gh').command, host === 'windows' ? /Scripts\/python.exe/ : /bin\/python/);
   }
   assert.ok(validate({ ...defaults, host: 'unknown' }).host);
 });
@@ -52,8 +52,8 @@ test('commands and settings URLs consistently use the supplied token', () => {
   assert.ok(list.find(s => s.id === 'create').command.split('\n')[0].endsWith(' --no-input'));
   assert.doesNotMatch(list.find(s => s.id === 'create').command, /--toolkit|mkdir/);
   assert.equal(list.find(s => s.id === 'pages').operations[0][1], 'https://github.com/New-Token/New-Token/settings/pages');
-  assert.match(list.find(s => s.id === 'submit').command, /--tag 'v0.1.1'/);
-  assert.match(list.find(s => s.id === 'submit').command, /--head "\$GH_USER:add-New-Token-v0.1.1"/);
+  assert.match(list.find(s => s.id === 'submit').methods.find(m => m.id === 'gh').command, /--tag 'v0.1.1'/);
+  assert.match(list.find(s => s.id === 'submit').methods.find(m => m.id === 'gh').command, /--head "\$GH_USER:add-New-Token-v0.1.1"/);
   assert.ok(list.every(s => s.help.startsWith('/docs/troubleshooting/#')));
   assert.ok(!JSON.stringify(list).includes('Orbit-Notes'));
 });

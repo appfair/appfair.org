@@ -13,7 +13,7 @@ try {
   await page.goto(`${base}/docs/getting-started/`);
   await page.locator('#submission-guide[data-ready=true]').waitFor();
   assert.equal(await page.getByRole('tablist').count(), 2);
-  for (const [step, first, second] of [['repository','gh','web'],['release','day','git']]) {
+  for (const [step, first, second] of [['repository','gh','web'],['submit','gh','web']]) {
     const firstTab = page.locator(`#${step}-tab-${first}`), secondTab = page.locator(`#${step}-tab-${second}`);
     const firstPanel = page.locator(`#${step}-method-${first}`), secondPanel = page.locator(`#${step}-method-${second}`);
     assert.equal(await firstTab.getAttribute('aria-selected'), 'true');
@@ -35,22 +35,25 @@ try {
   await page.locator('[name=token]').fill('Tabbed-App');
   await page.locator('[name=title]').fill("Reader's Notes");
   // Editing data updates both methods without resetting the chosen tab.
-  for (const [step,method] of [['repository','web'],['release','git']]) assert.equal(await page.locator(`#${step}-tab-${method}`).getAttribute('aria-selected'), 'true');
+  for (const [step,method] of [['repository','web'],['submit','web']]) assert.equal(await page.locator(`#${step}-tab-${method}`).getAttribute('aria-selected'), 'true');
   assert.match(await page.locator('#repository-method-gh code').textContent(), /Tabbed-App\/Tabbed-App/);
   const remote = new URL(await page.locator('#repository-method-web a').getAttribute('href'));
   assert.equal(remote.searchParams.get('owner'), 'Tabbed-App');
-  assert.match(await page.locator('#release-method-git code').textContent(), /v0\.1\.1/);
-  assert.match(await page.locator('#step-submit pre code').textContent(), /--tag 'v0\.1\.1'/);
-  await page.locator('#release-tab-day').click();
-  assert.equal(await page.locator('#release-method-day code').textContent(), 'day metadata --version-bump patch --git-push');
-  await page.locator('#release-method-day .copy-command').click();
+  assert.match(await page.locator('#submit-method-web code').textContent(), /v0\.1\.1/);
+  assert.match(await page.locator('#submit-method-gh code').textContent(), /--tag 'v0\.1\.1'/);
+  assert.equal(await page.locator('#step-release pre code').textContent(), 'day metadata --version-bump patch --git-push');
+  assert.match(await page.locator('#submit-method-web .method-instructions').textContent(), /add-Tabbed-App-v0.1.1/);
+  assert.doesNotMatch(await page.locator('#submit-method-web code').textContent(), /\bgh /);
+  await page.getByRole('radio', {name: 'Windows', exact: true}).check();
+  for (const method of ['gh', 'web']) assert.match(await page.locator(`#submit-method-${method} code`).textContent(), /Scripts\/python.exe/);
+  await page.locator('#step-release .copy-command').click();
   await page.waitForFunction(()=>window.copiedText==='day metadata --version-bump patch --git-push');
   await page.screenshot({path: '/private/tmp/appfair-release-tabs.png'});
   await page.locator('#repository-tab-web').click();
   await page.screenshot({path: '/private/tmp/appfair-repository-tabs.png'});
   await page.setViewportSize({width:390,height:844});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth), true);
-  await page.locator('#release-tab-git').click();
+  await page.locator('#submit-tab-web').click();
   await page.screenshot({path: '/private/tmp/appfair-tabs-mobile.png'});
   await page.emulateMedia({media:'print'});
   for (const panel of await page.locator('.method-panel').all()) assert.equal(await panel.isVisible(),true);
