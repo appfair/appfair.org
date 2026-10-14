@@ -21,8 +21,7 @@ Keep ordinary adjectival uses, such as **an App Fair app**, **App Fair apps**, a
 **review by the App Fair** or **distribution through the App Fair** when that makes
 the actor clearer.
 
-Preserve exact product and license names, including **App Fair Publisher** and
-**App Fair Distribution Exception**. The short logo wordmark **App Fair** may stand
+Preserve exact product and license names, including **App Fair Publisher**. The short logo wordmark **App Fair** may stand
 alone. Do not alter registered legal names, verbatim quotations, transcripts, external
 publication titles, code identifiers, commands or URLs to apply this rule.
 

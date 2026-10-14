@@ -1,4 +1,7 @@
 {
+  "submissionFlow": {
+    "createDetail": "标准 Day 应用"
+  },
   "site": {
     "name": "App Fair 项目",
     "tagline": "适用于 iPhone 和 Android 的自由开源应用商店",
@@ -148,7 +151,7 @@
         {
           "icon": "code",
           "title": "公开构建",
-          "body": "开发者在自己的仓库中以 GNU 通用公共许可证创建应用，所有依赖均为自由开源软件。"
+          "body": "开发者在自己的仓库中创建应用，并以符合 DFSG 的许可证公开应用及所有依赖项（包括传递依赖项）的源代码。"
         },
         {
           "icon": "package-check",

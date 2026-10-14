@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { guideValues } from '../src/lib/submission-values.mjs';
 import { defaults, validate, shell, restore, steps, stepIds, suggestName, namePrefixes, nameSuffixes, detectHost } from '../src/lib/submission.mjs';
 
 test('tokens obey catalog and GitHub naming constraints', () => {
@@ -50,7 +51,8 @@ test('commands and settings URLs consistently use the supplied token', () => {
   assert.match(list.find(s => s.id === 'create').command, /day new app 'New-Token'/);
   assert.match(list.find(s => s.id === 'create').command, /--title 'A Different Name'/);
   assert.ok(list.find(s => s.id === 'create').command.split('\n')[0].endsWith(' --no-input'));
-  assert.doesNotMatch(list.find(s => s.id === 'create').command, /--toolkit|mkdir/);
+  assert.doesNotMatch(list.find(s => s.id === 'create').command, /--toolkit|--template|mkdir/);
+  assert.equal(guideValues({ ...defaults, token: 'New-Token' }).appId, 'org.appfair.app.NewToken');
   assert.equal(list.find(s => s.id === 'pages').operations[0][1], 'https://github.com/New-Token/New-Token/settings/pages');
   assert.match(list.find(s => s.id === 'submit').methods.find(m => m.id === 'gh').command, /--tag 'v0.1.1'/);
   assert.match(list.find(s => s.id === 'submit').methods.find(m => m.id === 'gh').command, /--head "\$GH_USER:add-New-Token-v0.1.1"/);

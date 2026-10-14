@@ -1,10 +1,12 @@
 ---
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
 interface Props { local?: boolean; horizontal?: boolean; }
 const { local = false, horizontal = false } = Astro.props;
 const prefix = local ? '' : '/docs/getting-started/';
 const steps = [
   { id: 'choose-a-token', title: 'Choose a token', detail: 'A unique project address', icon: '01', x: 18, y: 48 },
-  { id: 'create-the-app', title: 'Create & test', detail: 'Day + the App Fair template', icon: '02', x: 294, y: 48 },
+  { id: 'create-the-app', title: 'Create & test', detail: t('submissionFlow.createDetail'), icon: '02', x: 294, y: 48 },
   { id: 'create-the-repository', title: 'Host the source', detail: 'Organization / repository', icon: '03', x: 570, y: 48 },
   { id: 'configure-pages', title: 'Publish the website', detail: 'Pages + CI walkthroughs', icon: '04', x: 18, y: 208 },
   { id: 'release', title: 'Tag a release', detail: 'Packages + screenshots', icon: '05', x: 294, y: 208 },

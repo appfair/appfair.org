@@ -4,6 +4,7 @@ description: Create a Day app, test it locally and in CI, and submit a release f
 ---
 import SubmissionValue from '../../../components/SubmissionValue.astro';
 import SubmissionStep from '../../../components/SubmissionStep.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
 
 Read the [inclusion criteria](/docs/inclusion-criteria/) before starting. For a new app, [open a discussion](https://github.com/orgs/appfair/discussions) before submitting it.
 
@@ -36,17 +37,77 @@ Installing the App Fair Publisher is required. Grant it access to the app reposi
 
 <SubmissionStep id="create" anchor="create-the-app" integrated>
 
-The App Fair template supplies starter screens, store metadata, a dayscript walkthrough, a website and GitHub Actions workflows. The default platform selection is included.
+Use the standard `day new app` command below. It creates starter screens, store metadata, a dayscript walkthrough, a website and a GitHub Actions workflow. Run it outside an existing Git repository so Day creates the app’s own workflow. `--no-input` accepts the default platform selection and enables GitHub setup.
 
-`Day-appfair.toml` holds the generated store identities; these must remain stable after publication. The template’s license texts and source notices stay with the project.
+This creates an ordinary Day app. If you already have one, keep its source and proceed to [publication configuration](#configure-publication), checking the repository naming requirements above.
 
 </SubmissionStep>
+
+<SectionHeading id="configure-publication" title={"Configure App Fair publication"} />
+
+Add the following configuration to your Day project before its first App Fair submission. It lets you keep the app’s own identity in `Day.toml` while the catalog builds with its publication identity.
+
+### Build identity
+
+Create `Day-appfair.toml` beside `Day.toml`. Replace `YourToken` below with your app token, removing hyphens and preserving capitalization. For the token selected above, the full ID is <SubmissionValue field="appId" />.
+
+```toml
+[app]
+id = "org.appfair.app.YourToken"
+```
+
+This is a Day [build flavor](https://daybrite.dev/docs/flavors). The catalog uses `day --flavor appfair` when building your app. Keep the ID stable after publication. If this file already exists, review its settings instead of replacing it.
+
+### License and notices
+
+Choose a license that meets the [license and dependency requirements](/docs/inclusion-criteria/#license-and-dependencies). Add its complete text in `LICENSE`, `COPYING` or another supported license file. Add a `// SPDX-License-Identifier:` comment naming the actual license expression within the first five lines of each Rust source file, including `build.rs`. Retain applicable third-party notices and exceptions. The standard scaffold does not supply these app license files or notices.
+
+### GitHub Actions
+
+Keep the generated `.github/workflows/ci.yml`. Add this job alongside its existing `jobs.app` job:
+
+```yaml
+  appfair-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: appfair/appfair-apps/.github/actions/appfair-lint@main
+```
+
+Merge these settings into the existing `jobs.app.with` mapping. Keep the generated `day-version` setting if present, so CI uses the framework version selected by Day. Preserve the job’s generated permissions and other inputs.
+
+```yaml
+      targets: all
+      scripts: auto
+      locales: all
+      themes: light dark
+      release-assets: true
+      release-mode: pre-release
+      deploy-web: true
+      android-devices: |
+        device=pixel, os=36, orientation=portrait, slug=phone
+        device=Nexus 7 2013, os=36, orientation=landscape, density=240, slug=tablet
+        device=medium_phone, os=24, optional=true
+```
+
+The Android profiles supply phone and tablet captures at store-compatible sizes. Keep the shared workflow’s default iPhone and iPad profiles. Complete the [store listing and screenshot selections](/docs/releases/#store-listing) using capture names from your own walkthrough.
+
+Add the following event inside the existing `on` mapping, alongside `push`, `pull_request` and `workflow_dispatch`, so the website refreshes when an approved pre-release becomes Latest:
+
+```yaml
+  release:
+    types: [released]
+```
+
+The app’s CI publishes its ordinary release packages. The App Fair builds and signs the publication flavor separately. Complete the Publisher installation and Pages setup in this guide before submitting.
 
 <SubmissionStep id="local" anchor="test-locally" integrated>
 
 Day projects include mobile and desktop targets by default. The App Fair currently distributes only the iOS and Android versions through the Apple App Store and Google Play Store.
 
-Remove unwanted desktop targets from both `[app] targets` in `Day.toml` and `targets` in `.github/workflows/ci.yml`. Keep `ios-uikit` and `android-mdc` for both mobile stores, and keep `web-dom`: the template uses it to publish the required project website. Keeping at least one desktop target is useful for fast testing and iteration.
+Remove unwanted desktop targets from `[app] targets` in `Day.toml`; CI follows that list with `targets: all`. If you configure an explicit CI target list, update it too. Keep `ios-uikit` and `android-mdc` for both mobile stores, and keep `web-dom`: Day uses it to publish the required project website. Keeping at least one desktop target is useful for fast testing and iteration.
 
 `day launch` builds and runs the selected target. The dayscript walkthrough checks behavior and captures screenshots; keep `dayscript/demo.yaml` in step with UI changes.
 
@@ -64,7 +125,7 @@ The App Fair expects a public repository named <SubmissionValue field="repo" />.
 
 <SubmissionStep id="pages" anchor="configure-pages" integrated>
 
-The template publishes the website through GitHub Actions. The Pages environment must permit deployments from both the main branch and release tags, because a release also updates download links.
+The shared Day workflow publishes the website through GitHub Actions. The Pages environment must permit deployments from both the main branch and release tags, because a release also updates download links.
 
 Keep the generated site published for validation and review, even if you use a separate landing page. The default GitHub Pages address is sufficient. A custom domain is optional and requires additional setup. It can be added later if you decide to acquire a domain for the project.
 
@@ -80,9 +141,9 @@ A passing run confirms the automated checks. Review its screenshots for layout o
 
 <SubmissionStep id="release" anchor="release" integrated>
 
-A version tag pins the source the App Fair will review. Tagging starts CI and creates a **public pre-release** containing packages, `gallery.json` and `screenshots.zip`. A draft release is not accessible to the catalog; a separate manual release is unnecessary.
+A version tag pins the source the App Fair will review. Tagging starts CI and creates a **public pre-release** containing packages, `gallery.json` and `screenshots.tar.xz`. A draft release is not accessible to the catalog; a separate manual release is unnecessary.
 
-The template starts at version 0.1.0, build 1. The patch bump below produces version 0.1.1, build 2; the release link and submission commands use that version. If your project has a different starting version, use the tag reported by Day instead. Once submitted, correct a faulty release with a new tag instead of moving the reviewed tag.
+The standard Day app starts at version 0.1.0, build 1. The patch bump below produces version 0.1.1, build 2; the release link and submission commands use that version. If your project has a different starting version, use the tag reported by Day instead. Once submitted, correct a faulty release with a new tag instead of moving the reviewed tag.
 
 </SubmissionStep>
 

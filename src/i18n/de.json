@@ -1,4 +1,7 @@
 {
+  "submissionFlow": {
+    "createDetail": "Standard-Day-App"
+  },
   "site": {
     "name": "Das App Fair Projekt",
     "tagline": "Der kostenlose und quelloffene App-Store für iPhone und Android",
@@ -148,7 +151,7 @@
         {
           "icon": "code",
           "title": "Im Offenen bauen",
-          "body": "Ein Entwickler erstellt die App im eigenen Repository, unter der GNU General Public License, mit ausschließlich freien und quelloffenen Abhängigkeiten."
+          "body": "Ein Entwickler erstellt die App im eigenen Repository. Der Quellcode der App und aller Abhängigkeiten, einschließlich transitiver Abhängigkeiten, ist unter DFSG-konformen Lizenzen verfügbar."
         },
         {
           "icon": "package-check",

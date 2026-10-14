@@ -263,7 +263,7 @@
         "license": {
           "type": "string",
           "description": "SPDX license identifier for the source code.",
-          "examples": ["MIT", "Apache-2.0", "GPL-2.0-only", "GPL-3.0-only", "MPL-2.0", "AGPL-3.0-only"]
+          "examples": ["MIT", "Apache-2.0", "GPL-2.0-only", "GPL-3.0-only", "MPL-2.0"]
         }
       },
       "additionalProperties": true

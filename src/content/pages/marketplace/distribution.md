@@ -32,7 +32,7 @@ Your app must not infringe on the intellectual property rights of others. This i
 
 ### 2.1 Free and Open Source
 
-Apps must meet the [developer inclusion criteria](/docs/inclusion-criteria/). The primary license must be AGPL-3.0-only with the App Fair Distribution Exception. All included libraries, including transitive dependencies, must meet the DFSG and have terms compatible with the app license. Closed-source components are prohibited.
+Apps must meet the [developer inclusion criteria](/docs/inclusion-criteria/). The app and all dependent software, including transitive dependencies, must have publicly available source under licenses that meet the [Debian Free Software Guidelines (DFSG)](https://www.debian.org/social_contract.html#guidelines), with terms compatible with distribution under the app’s chosen license. Binary dependencies, such as Maven JARs, are permitted only when their released binaries can provably be reproduced by building the available source. Submit the source revisions, build instructions and verification evidence for review. Closed-source components are prohibited.
 
 ### 2.2 Monetization
 

@@ -11,18 +11,18 @@ The app repository holds your code and release assets. The catalog repository ho
 
 Edit `store/storefront.toml` and the localized text it contains or references. Replace the template’s title, description, support and privacy links, icon and release notes. The actual app behavior must agree with its listing and permission declarations.
 
-The walkthrough in `dayscript/demo.yaml` defines named screenshots. Select the captures for each store in `store/storefront.toml`; the names must match the walkthrough. For example:
+The walkthrough in `dayscript/demo.yaml` defines named screenshots. Select the captures for each store in `store/storefront.toml`; the names must match the walkthrough. For the standard starter’s `welcome` and `list` captures:
 
 ```toml
 [storefront.ios-uikit.apple-app-store.screenshots]
-iphone = ["home", "settings"]
-ipad = ["home", "settings"]
+iphone = ["welcome", "list"]
+ipad = ["welcome", "list"]
 
 [storefront.android-mdc.google-play-store.screenshots]
-default = ["home", "settings"]
+default = ["welcome", "list"]
 ```
 
-Use names that your walkthrough actually captures. Test each shipped locale. App Store submissions need both required Apple device classes; do not remove the template’s device profiles without checking store requirements. The release’s `gallery.json` describes which files appear in each listing, and `screenshots.zip` supplies their bytes.
+Use names that your walkthrough actually captures. Test each shipped locale. App Store submissions need both required Apple device classes; keep the shared workflow’s iPhone and iPad coverage and use the [publication capture profiles](/docs/getting-started/#configure-publication) or verified replacements. The release’s `gallery.json` describes which files appear in each listing, and `screenshots.tar.xz` supplies their bytes.
 
 See Day’s [store metadata reference](https://daybrite.dev/docs/app-store-submissions) and [dayscript guide](https://daybrite.dev/docs/dayscript). [Screenshot failures](/docs/troubleshooting/#screenshots) identify the usual mismatches.
 
@@ -41,7 +41,7 @@ Use the tag reported by Day in the commands below. These update examples use `v0
 
 <InstructionTabs id="release-ci" label="Check the CI run" methods={ciMethods} />
 
-The template’s workflow creates the GitHub release and uploads its assets. It uses `release-mode: pre-release`: the new version is public but does not replace the current Latest release while the App Fair is reviewing it.
+The shared Day workflow creates the GitHub release and uploads its assets. Set `release-mode: pre-release` as described in [publication configuration](/docs/getting-started/#configure-publication): the new version is public but does not replace the current Latest release while the App Fair is reviewing it.
 
 > [!WARNING] Let CI create the release
 > Do not manually create a release through the GitHub website or the `gh` client. The workflow automatically creates a pre-release after it successfully builds the project.
@@ -50,7 +50,7 @@ After the tag run finishes, inspect the release assets:
 
 <InstructionTabs id="release-assets" label="Inspect release assets" methods={assetMethods} />
 
-For both catalog channels, expect the base app’s Android `.aab`, iOS `.ipa`, package metadata, and—when replacing screenshots—`gallery.json` and `screenshots.zip`. CI may publish other targets too. Read the workflow result, not just the presence of a release page.
+For both catalog channels, expect the base app’s Android `.aab`, iOS `.ipa`, package metadata, and—when replacing screenshots—`gallery.json` and `screenshots.tar.xz`. CI may publish other targets too. Read the workflow result, not just the presence of a release page.
 
 After CI finishes, update the release notes:
 

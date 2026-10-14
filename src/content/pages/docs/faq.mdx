@@ -6,7 +6,19 @@ import SectionHeading from '../../../components/SectionHeading.astro';
 
 <SectionHeading id="frameworks" title={"Do I need to use Day to create my app, or can I use Flutter, React Native, Skip, etc.?"} />
 
-App Fair apps must be conventional Day projects created from the [day-appfair template](/docs/getting-started/#create-the-app). Day supports creating apps not just for iOS and Android, but also HarmonyOS, Windows, Linux, macOS, and the Web. This provides the necessary foundation for the App Fair to expand to include other storefronts and distribution channels over time.
+App Fair apps must be conventional Day projects. Start with the [standard Day app instructions](/docs/getting-started/#create-the-app), then add the [App Fair publication configuration](/docs/getting-started/#configure-publication). Existing Day apps can add the same configuration without recreating their source; the current [repository naming requirements](/docs/getting-started/#choose-a-token) still apply. Day supports creating apps not just for iOS and Android, but also HarmonyOS, Windows, Linux, macOS, and the Web. This provides the necessary foundation for the App Fair to expand to include other storefronts and distribution channels over time.
+
+<SectionHeading id="licenses" title={"Do I need to use any specific software license for my app?"} />
+
+No. The app’s source must be publicly available under a license that meets the [Debian Free Software Guidelines (DFSG)](https://www.debian.org/social_contract.html#guidelines). All dependent software, including every transitive dependency, must meet the same requirement, with licenses compatible with distribution together. The DFSG are guidelines for assessing licenses, not a license you can apply to your code.
+
+Choose a DFSG-compliant license whose terms permit distribution with the code you use. Retain applicable license texts, exceptions and notices, including those required by third-party code. See [license and dependencies](/docs/inclusion-criteria/#license-and-dependencies).
+
+<SectionHeading id="binary-dependencies" title={"Can I use binary dependencies such as Maven JARs?"} />
+
+Yes, but only if the corresponding source is publicly available under a DFSG-compliant license and the released binary can provably be reproduced by building that source. This applies to direct and transitive binary dependencies. Supply the exact source revision, build instructions and environment, and verification evidence for the binary used. Publishing a source JAR or downloading from Maven Central does not, by itself, establish reproducibility.
+
+Passing automated lint or rebuilding the app with the same prebuilt dependencies does not prove that those dependencies match their source.
 
 <SectionHeading id="accounts" title={"Do I need an Apple or Google developer account to distribute to the App Store or Play Store through the App Fair?"} />
 

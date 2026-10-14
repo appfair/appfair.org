@@ -1,4 +1,7 @@
 {
+  "submissionFlow": {
+    "createDetail": "標準のDayアプリ"
+  },
   "site": {
     "name": "App Fairプロジェクト",
     "tagline": "iPhoneとAndroid向けの無料でオープンソースのアプリストア",
@@ -148,7 +151,7 @@
         {
           "icon": "code",
           "title": "公開の場で開発",
-          "body": "開発者は自分のリポジトリで、GNU General Public Licenseの下、すべての依存関係を自由でオープンソースなものにしてアプリを作ります。"
+          "body": "開発者は自分のリポジトリでアプリを作成し、アプリと推移的依存関係を含むすべての依存ソフトウェアのソースコードを、DFSGに準拠したライセンスで公開します。"
         },
         {
           "icon": "package-check",

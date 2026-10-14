@@ -12,7 +12,7 @@ import InstructionTabs from '../../../components/InstructionTabs.astro';
 
 **`day` or `cargo` is not found.** Install Rust with [rustup](https://rustup.rs/), then restart the terminal so Cargo’s bin directory is on `PATH`. Run `cargo install day-cli`, then `day doctor`.
 
-**A flag or template feature is missing.** Check which binary runs with `command -v day`. Run `cargo install day-cli` to install the current release, then retry. If the feature is still unavailable, report the failing command and error to the template maintainer.
+**A flag or template feature is missing.** Check which binary runs with `command -v day`. Run `cargo install day-cli` to install the current release, then retry. If the feature is still unavailable, report the failing command and error to the Day maintainers.
 
 **A compiler or SDK is missing.** Run `day doctor` and follow the relevant [platform requirements](https://daybrite.dev/docs/system-requirements). iOS needs macOS and Xcode; web and desktop builds do not validate mobile SDK setup.
 
@@ -28,7 +28,7 @@ import InstructionTabs from '../../../components/InstructionTabs.astro';
 
 **The destination already exists.** `day new app` creates a new directory. Choose an unused directory or continue working in the existing project; do not scaffold over it.
 
-**Scaffolding reports an unknown `placeholders` variable in `.github/README.md`.** Your CLI is treating the template repository’s own CI files as app templates. Install the current Day CLI using the command in [Getting started](/docs/getting-started/#install-day), then retry in an unused directory.
+**The project has no GitHub workflow.** Create the app in a directory outside an existing Git repository and keep GitHub setup enabled. Day omits the app-level workflow when scaffolding inside another repository. For an existing project, configure the [shared Day workflow](https://github.com/daybrite/actions) at the repository root, then add the [publication settings](/docs/getting-started/#configure-publication).
 
 **The generated name or config is malformed.** Use `--title` for the display name, not the token. Avoid double quotes, backslashes and line breaks in the initial title because the template inserts it into TOML. Set localized display text in the generated resources afterward.
 
@@ -71,7 +71,7 @@ import InstructionTabs from '../../../components/InstructionTabs.astro';
 
 **No workflow starts.** Confirm `.github/workflows/ci.yml` was committed, Actions is enabled in repository settings, and the push matches its branch or tag triggers. Fork PR workflows may need an authorized maintainer to approve their first run.
 
-**App Fair lint fails.** Read its file-and-line annotations. Common failures include missing license texts, missing SPDX notices and a malformed App Fair flavor. Preserve `LICENSE.txt`, `LICENSE-EXCEPTIONS.txt` and the template’s source notices, as required by the [inclusion criteria](/docs/inclusion-criteria/#license-and-dependencies).
+**App Fair lint fails.** Read its file-and-line annotations. Common failures include missing license texts, missing SPDX notices and a malformed App Fair flavor. Include the applicable license texts and SPDX source notices for your chosen DFSG-compliant license. Retain any applicable license exceptions and third-party notices. Passing lint does not replace the dependency, license and binary reproducibility review required by the [inclusion criteria](/docs/inclusion-criteria/#license-and-dependencies).
 
 **Only one platform fails.** Reproduce that target. Confirm the native SDK, generated project and workflow target list agree. A passing web build is not evidence that iOS packaging works.
 
@@ -81,7 +81,7 @@ import InstructionTabs from '../../../components/InstructionTabs.astro';
 
 **The release does not exist yet.** A tag and a GitHub release are different objects. `day metadata --version-bump patch --git-push` pushes a version tag and starts the template’s CI; its release job creates the release after building. Inspect that tag’s run.
 
-**`queue.py add` or `update` cannot find the new version.** The template publishes a pre-release. Pass the tag reported by Day, for example `--tag v0.1.1`, explicitly rather than relying on GitHub’s Latest release. A draft is not public; wait until the workflow publishes it.
+**`queue.py add` or `update` cannot find the new version.** The [publication configuration](/docs/getting-started/#configure-publication) sets `release-mode: pre-release`. Pass the tag reported by Day, for example `--tag v0.1.1`, explicitly rather than relying on GitHub’s Latest release. A draft is not public; wait until the workflow publishes it.
 
 **The release lacks an AAB, IPA or screenshots.** Check that both mobile targets, walkthroughs and `release-assets: true` are enabled. Inspect the release job and device captures. Do not submit before the requested channels’ assets exist.
 
@@ -91,7 +91,7 @@ import InstructionTabs from '../../../components/InstructionTabs.astro';
 
 **A named screenshot is missing.** Match `store/storefront.toml` screenshot names to the `screenshot:` steps in the walkthrough. Check `gallery.json` for the relevant store, locale, theme and device class.
 
-**A store rejects dimensions or device coverage.** Keep the template’s capture profiles until you have verified replacements. Apple requires supported sizes for each required device class; Google enforces dimensions and aspect ratios. Use the failing annotation’s accepted sizes rather than resizing an unrelated screenshot. Each required locale needs coverage.
+**A store rejects dimensions or device coverage.** Use the [publication capture profiles](/docs/getting-started/#configure-publication) or verified replacements. Apple requires supported sizes for each required device class; Google enforces dimensions and aspect ratios. Use the failing annotation’s accepted sizes rather than resizing an unrelated screenshot. Each required locale needs coverage.
 
 **The gallery and ZIP disagree.** Both files must come from the same release run. Rebuild a corrected release instead of mixing files from different tags or manually replacing reviewed captures.
 

@@ -24,23 +24,26 @@ These requirements apply to every app and update submitted through the App Fair.
 
 ## License and dependencies
 
-The app’s primary license must be **AGPL-3.0-only with the App Fair Distribution Exception**, as supplied by the [day-appfair template](https://github.com/appfair/day-appfair). Preserve `LICENSE.txt`, `LICENSE-EXCEPTIONS.txt` and the required source notices. Do not replace the primary license with another license.
+The app’s source code must be publicly available under a license that meets the **[Debian Free Software Guidelines (DFSG)](https://www.debian.org/social_contract.html#guidelines)**. No particular license is required. The DFSG are criteria for free-software licenses, not a license themselves.
 
-Every included library, including all transitive dependencies, must use a license that meets the [Debian Free Software Guidelines (DFSG)](https://www.debian.org/doc/debian-policy/ch-archive.html#the-debian-free-software-guidelines). Its terms must also permit inclusion and distribution with the app under the required app license. Meeting the DFSG alone does not establish compatibility between licenses.
+**All dependent software, including every transitive dependency, must also have publicly available source under a DFSG-compliant license.** This includes libraries, SDKs, plugins, native components and code copied into the project. Their terms must permit inclusion and distribution with the app under its chosen license; meeting the DFSG alone does not establish compatibility between licenses.
 
-- Do not bundle closed-source libraries, SDKs, plugins or other components. Publicly visible code without an appropriate free-software license is insufficient.
-- Review the full dependency tree, including native libraries and code copied into the project. Retain dependency license texts and notices as required.
+- Binary dependencies, such as Maven JAR dependencies, are permitted only when their corresponding source is publicly available under a DFSG-compliant license and the released binary can provably be reproduced by building that source. Provide the exact source revision, build instructions and environment, and verification evidence linking the rebuilt output to the binary used. A source archive or a listing in a trusted package repository alone is insufficient.
+- Review the complete dependency tree for each release. Closed-source components and publicly visible code without a DFSG-compliant license are not permitted.
+- Include the applicable license texts and preserve required copyright, attribution and source notices. Retain any applicable license exceptions. These requirements do not change the license of existing code.
 - Have the necessary rights to distribute included images, fonts, sounds and other assets; retain their licenses and attribution.
 
-The component restriction concerns code included in the app. It does not require the host operating system or its native system frameworks to be open source.
+These component requirements apply throughout the app’s dependency tree. They do not require the host operating system or its native system frameworks to be open source.
+
+Automated lint checks license files and source notices; it does not establish DFSG compliance, license compatibility, complete dependency coverage or binary reproducibility. Reviewers must verify those requirements using the source and evidence supplied for the release.
 
 ## Project and publication setup
 
-- Use a conventional Day project created from the day-appfair template, in a public GitHub organization and repository named for the app token.
+- Use a conventional Day project in a public GitHub organization and repository named for the app token. Start with the standard Day app template or adapt an existing Day project, then add the [App Fair publication configuration](/docs/getting-started/#configure-publication).
 - Keep the source, dependency lockfile, license notices and release history available for inspection and review.
 - **Install the [App Fair Publisher](https://github.com/apps/app-fair-publisher/installations/select_target) in the organization and grant it access to the app repository. Keep that access enabled for distribution through the App Fair.** Installation is required for first submissions and updates; it lets the Publisher attach signed packages and promote approved pre-releases.
-- Keep the template-generated GitHub Pages site published at its expected address. A custom domain is permitted; a separate landing page does not replace the required generated site.
-- Keep the submitted mobile targets and `web-dom` in both `Day.toml` and `.github/workflows/ci.yml`. The template uses the web target to publish the required site. Preserve store IDs across updates.
+- Keep the Day-generated GitHub Pages site published at its expected address. A custom domain is permitted; a separate landing page does not replace the required generated site.
+- Keep the submitted mobile targets and `web-dom` in `Day.toml`; use `targets: all` in `.github/workflows/ci.yml`, or explicitly include those targets. Day uses the web target to publish the required site. Preserve store IDs across updates.
 
 ## Before submitting
 

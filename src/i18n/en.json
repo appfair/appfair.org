@@ -1,4 +1,7 @@
 {
+  "submissionFlow": {
+    "createDetail": "Standard Day app"
+  },
   "site": {
     "name": "The App Fair Project",
     "short": "App Fair",
@@ -129,7 +132,7 @@
         {
           "icon": "code",
           "title": "Build in the open",
-          "body": "A developer creates the app in their own repository, under the GNU General Public License, with every dependency free and open source."
+          "body": "A developer creates the app in their own repository, with source for the app and all dependencies, including transitive dependencies, available under DFSG-compliant licenses."
         },
         {
           "icon": "package-check",

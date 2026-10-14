@@ -1,4 +1,7 @@
 {
+  "submissionFlow": {
+    "createDetail": "표준 Day 앱"
+  },
   "site": {
     "name": "앱 페어 프로젝트",
     "tagline": "iPhone 및 Android용 무료 오픈소스 앱 스토어",
@@ -148,7 +151,7 @@
         {
           "icon": "code",
           "title": "공개적으로 개발",
-          "body": "개발자가 자신의 저장소에서 GNU 일반 공중 사용 허가서(GNU General Public License)로, 모든 의존성을 자유 오픈 소스로 하여 앱을 만듭니다."
+          "body": "개발자는 자신의 저장소에서 앱을 만들고, 앱과 전이적 의존성을 포함한 모든 의존 소프트웨어의 소스 코드를 DFSG에 부합하는 라이선스로 공개합니다."
         },
         {
           "icon": "package-check",

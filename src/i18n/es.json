@@ -1,4 +1,7 @@
 {
+  "submissionFlow": {
+    "createDetail": "Aplicación Day estándar"
+  },
   "site": {
     "name": "El Proyecto App Fair",
     "tagline": "La tienda de aplicaciones gratuita y de código abierto para iPhone y Android",
@@ -148,7 +151,7 @@
         {
           "icon": "code",
           "title": "Construir a la vista de todos",
-          "body": "Un desarrollador crea la aplicación en su propio repositorio, bajo la Licencia Pública General de GNU, con todas las dependencias libres y de código abierto."
+          "body": "Un desarrollador crea la aplicación en su propio repositorio, con el código fuente de la aplicación y de todas sus dependencias, incluidas las transitivas, disponible bajo licencias conformes con las DFSG."
         },
         {
           "icon": "package-check",

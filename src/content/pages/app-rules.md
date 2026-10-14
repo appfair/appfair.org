@@ -19,7 +19,7 @@ Apps contain no analytics, tracking or telemetry SDKs, and do not collect usage 
 
 ## Source you can inspect
 
-The app’s source code and release history are public. You can inspect how it works, review changes and report problems. Apps use the AGPL-3.0-only license with the App Fair Distribution Exception; included libraries must also be free software. Closed-source components cannot be bundled into an app.
+The app’s source code and release history are public. You can inspect how it works, review changes and report problems. The app and all dependent software, including transitive dependencies, must have publicly available source under licenses that meet the [Debian Free Software Guidelines (DFSG)](https://www.debian.org/social_contract.html#guidelines). Binary dependencies, including Maven JARs, are permitted only if their released binaries can provably be reproduced from that available source. Closed-source components cannot be bundled into an app.
 
 ## Review before publication
 

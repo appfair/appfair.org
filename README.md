@@ -94,7 +94,7 @@ The policy pages are `/app-rules/` for users and `/docs/inclusion-criteria/` for
 
 Docs use the normal content collection, localized fallback routes, sitemap and Pagefind build.
 Use `npm run build` followed by `npm run preview` to test search; Astro dev does not build its index.
-When changing the submission process, check the App Fair template and catalog workflow before
+When changing the submission process, check the standard Day scaffold, shared Day CI workflow and catalog workflow before
 updating command examples. Generated checklist commands assume a personal catalog fork.
 
 With Playwright available, run the end-to-end checks against the preview server:
