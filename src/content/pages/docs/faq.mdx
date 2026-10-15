@@ -1,12 +1,18 @@
 ---
 title: Developer FAQ
-description: Answers about app frameworks, developer accounts, app tokens, local testing, GitHub tools, releases and updates.
+description: Answers about app frameworks, supported distribution platforms, developer accounts, app tokens, local testing, GitHub tools, releases and updates.
 ---
 import SectionHeading from '../../../components/SectionHeading.astro';
 
 <SectionHeading id="frameworks" title={"Do I need to use Day to create my app, or can I use Flutter, React Native, Skip, etc.?"} />
 
 App Fair apps must be conventional Day projects. Start with the [standard Day app instructions](/docs/getting-started/#create-the-app), then add the [App Fair publication configuration](/docs/getting-started/#configure-publication). Existing Day apps can add the same configuration without recreating their source; the current [repository naming requirements](/docs/getting-started/#choose-a-token) still apply. Day supports creating apps not just for iOS and Android, but also HarmonyOS, Windows, Linux, macOS, and the Web. This provides the necessary foundation for the App Fair to expand to include other storefronts and distribution channels over time.
+
+<SectionHeading id="platforms" title={"Can I distribute my app for platforms other than Android and iOS, such as Windows, Linux or HarmonyOS?"} />
+
+At this time, the App Fair only supports distributing applications through the Apple App Store for iOS apps and the Google Play Store for Android apps. We intend to expand distribution options to cover more platforms, storefronts and distribution channels.
+
+You can publish desktop versions of your app yourself using Day’s standard GitHub workflows. The [GitHub release workflow](https://daybrite.dev/docs/github-actions/#create-a-release) builds and publishes downloadable packages for your configured desktop targets. The [GitHub Pages publishing workflow](https://daybrite.dev/docs/github-actions/#deploy-to-github-pages) publishes your app’s website with download links. See also Day’s [app websites guide](https://daybrite.dev/docs/websites/) for setup and customization.
 
 <SectionHeading id="licenses" title={"Do I need to use any specific software license for my app?"} />
 
