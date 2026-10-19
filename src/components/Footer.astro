@@ -19,6 +19,7 @@ const project = [
     <div class="foot-brand">
       <a class="brand" href={localizePath('/', locale)} aria-label={t('nav.home')}><Logo size={24} /><span>{t('site.name')}</span></a>
       <p class="foot-tag">{t('site.tagline')}</p>
+      <p class="foot-mission">{t('footer.mission')}</p>
       <a class="btn btn-ghost btn-sm" href={site.catalog} rel="noopener">{t('footer.catalog')} ↗</a>
     </div>
     <nav class="foot-cols" aria-label="Footer">
@@ -52,6 +53,7 @@ const project = [
   .brand { display: inline-flex; align-items: center; gap: 9px; color: var(--text); font-weight: 750; font-size: 1.05rem; }
   .brand :global(img) { border-radius: 6px; }
   .foot-tag { color: var(--faint); max-width: 34ch; margin: 12px 0 16px; font-size: 0.92rem; }
+  .foot-mission { color: var(--brand-strong); max-width: 38ch; margin: 0 0 20px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.7; text-wrap: balance; }
   .foot-cols { display: flex; gap: 64px; }
   .foot-cols h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 0 0 12px; font-family: var(--font); font-weight: 700; }
   .foot-cols > div > a { display: block; color: var(--muted); font-size: 0.94rem; margin-bottom: 8px; }

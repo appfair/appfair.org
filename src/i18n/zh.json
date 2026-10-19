@@ -1,6 +1,6 @@
 {
   "donation": {
-    "eyebrow": "由每个人的支持汇聚而成",
+    "eyebrow": "由人推动，而非算法",
     "titleFirst": "好应用。",
     "titleSecond": "为每一个人。",
     "intro": "让实用的应用免费、开放，真正为使用它的人服务。您的支持，让这样的世界成为可能。",
@@ -65,7 +65,8 @@
     "catalog": "浏览目录",
     "project": "项目",
     "community": "社区",
-    "schema": "App Index 架构"
+    "schema": "App Index 架构",
+    "mission": "生而开放，人人免费。"
   },
   "home": {
     "title": "App Fair 项目",
@@ -207,7 +208,8 @@
       "body": "App Fair 完全依靠捐赠和资助运营。您的支持将用于开发、审查和基础设施，让目录对所有人保持免费。",
       "donate": "捐赠",
       "browse": "浏览目录",
-      "create": "创建应用"
+      "create": "创建应用",
+      "eyebrow": "以公益为动力，而非利润"
     }
   },
   "blog": {

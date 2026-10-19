@@ -1,6 +1,6 @@
 {
   "donation": {
-    "eyebrow": "POWERED BY PEOPLE",
+    "eyebrow": "POWERED BY HUMANS, NOT ALGORITHMS",
     "titleFirst": "Good apps.",
     "titleSecond": "For everyone.",
     "intro": "Help create a world where useful apps are free, open, and built to serve the people who use them. Your support makes that work possible.",
@@ -67,7 +67,8 @@
     "privacy": "Privacy",
     "imprint": "Imprint",
     "schema": "App Index schema",
-    "catalog": "Browse the catalog"
+    "catalog": "Browse the catalog",
+    "mission": "OPEN BY DESIGN. FREE FOR EVERYONE."
   },
   "home": {
     "eyebrow": "A nonprofit app store",
@@ -188,7 +189,8 @@
       "body": "The App Fair is funded solely by donations and grants. Your support pays for the development, review, and infrastructure that keep the catalog free for everyone.",
       "donate": "Donate",
       "browse": "Browse the catalog",
-      "create": "Create an app"
+      "create": "Create an app",
+      "eyebrow": "DRIVEN BY CHARITY, NOT PROFIT"
     },
     "visual": {
       "free": "Free",

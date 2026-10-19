@@ -121,6 +121,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="section cta">
     <div class="container">
       <div class="cta-box">
+        <p class="eyebrow">{t('home.cta.eyebrow')}</p>
         <h2>{t('home.cta.heading')}</h2>
         <p>{t('home.cta.body')}</p>
         <div class="actions">

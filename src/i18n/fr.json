@@ -1,6 +1,6 @@
 {
   "donation": {
-    "eyebrow": "PORTÉ PAR VOTRE SOUTIEN",
+    "eyebrow": "PORTÉ PAR DES HUMAINS, PAS DES ALGORITHMES",
     "titleFirst": "De bonnes applis.",
     "titleSecond": "Pour tout le monde.",
     "intro": "Aidez à créer un monde où les applications utiles sont libres, gratuites et au service des personnes qui les utilisent. Votre soutien rend ce travail possible.",
@@ -65,7 +65,8 @@
     "catalog": "Parcourir le catalogue",
     "project": "Projet",
     "community": "Communauté",
-    "schema": "Schéma App Index"
+    "schema": "Schéma App Index",
+    "mission": "OUVERT PAR NATURE. GRATUIT POUR TOUS."
   },
   "home": {
     "title": "Le Projet App Fair",
@@ -207,7 +208,8 @@
       "body": "L'App Fair est financée uniquement par des dons et des subventions. Votre soutien paie le développement, l'examen et l'infrastructure qui gardent le catalogue gratuit pour tous.",
       "donate": "Faire un don",
       "browse": "Parcourir le catalogue",
-      "create": "Créer une app"
+      "create": "Créer une app",
+      "eyebrow": "GUIDÉ PAR LA SOLIDARITÉ, PAS LE PROFIT"
     }
   },
   "blog": {
