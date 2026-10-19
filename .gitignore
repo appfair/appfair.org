@@ -32,3 +32,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+
+# Optional local Copyedit configuration (the normal build stays independent of it)
+/astro.copyedit.config.mjs

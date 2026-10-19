@@ -303,7 +303,7 @@ a.store-badge:hover img { transform: translateY(-1px); }
 .prose sup a { text-decoration: none; }
 .prose iframe { max-width: 100%; border-radius: var(--radius); }
 
-/* Content-specific classes that the markdown pages carry (talk transcripts, the donate page). */
+/* Content-specific classes that the markdown pages carry (talk transcripts). */
 .prose .video { margin: 24px 0; }
 .prose .video video { width: 100%; }
 .prose .content { margin: 24px 0; }
@@ -318,20 +318,6 @@ a.store-badge:hover img { transform: translateY(-1px); }
   letter-spacing: 0.04em;
 }
 .prose .timestamp a { text-decoration: none; }
-.prose .donate-button, .donate-button {
-  display: inline-flex; justify-content: center; align-items: center;
-  padding: 12px 20px;
-  border-radius: var(--btn-radius);
-  background: var(--accent); color: var(--accent-ink) !important;
-  font-weight: 650; text-decoration: none !important;
-  transition: transform 0.12s ease, box-shadow 0.2s ease;
-  box-shadow: 0 12px 30px -12px color-mix(in srgb, var(--accent) 60%, transparent);
-}
-.prose .donate-button:hover { transform: translateY(-1px); }
-.prose .donate-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin: 20px 0; padding: 0 !important; }
-.prose .donate-grid-item { display: flex; }
-.prose .donate-grid-item .donate-button { width: 100%; }
-
 /* ---- misc ---- */
 .hr { height: 1px; background: var(--border-soft); border: 0; margin: 0; }
 

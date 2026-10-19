@@ -15,7 +15,7 @@ export default defineConfig({
     // esbuild leaves vendor-prefixed and @supports-guarded CSS alone; lightningcss rewrites it.
     build: { cssMinify: 'esbuild' },
   },
-  // Only the homepage and the site chrome are translated today. `fallback` + `rewrite` renders every
+  // The homepage, donation page and site chrome are translated. `fallback` + `rewrite` renders every
   // other page's English content under the locale prefix (/de/blog/…) with localized chrome, which
   // is the behaviour the Starlight site had. Adding a translated page later needs no routing change.
   i18n: {
