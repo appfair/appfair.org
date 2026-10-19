@@ -1,5 +1,5 @@
 /* Visual styles. Each block defines the same semantic tokens; BaseLayout sets <html data-style> (the site
-   default is Midnight; the attribute-less :root fallback below is Fairground and never applies in practice). Dark values first (the default), then the light palette.
+   default and the attribute-less :root fallback below are Fairground). Dark values first (the default), then the light palette.
 
    Shared, style-independent tokens live on :root; per-style blocks override what differs. */
 
@@ -25,7 +25,7 @@
   --hover-strong: rgba(15, 25, 48, 0.09);
 }
 
-/* ===== Fairground: the brand blue over navy / white ===== */
+/* ===== Fairground (site default): the brand blue over navy / white ===== */
 :root, :root[data-style='fairground'] {
   --bg: #0b1220;
   --bg-2: #0e1628;
@@ -123,7 +123,7 @@
 :root[data-style='editorial'] .prose { font-family: var(--font-display); font-size: 1.12rem; }
 :root[data-style='editorial'] .prose h2 { border-top: 0; padding-top: 0; }
 
-/* ===== Midnight (site default): near-black, indigo→sky gradient accents, glass ===== */
+/* ===== Midnight: near-black, indigo→sky gradient accents, glass ===== */
 :root[data-style='midnight'] {
   --h-weight: 800;
   --h-tracking: -0.035em;

@@ -28,13 +28,13 @@ export const site = {
 };
 
 /** The site's design. BaseLayout puts style/layout on <html>; HeroVisual renders the chosen graphic. */
-export const design = { style: 'midnight', layout: 'split', visual: 'catalog' };
+export const design = { style: 'fairground', layout: 'split', visual: 'catalog' };
 
 /** Option sets for the development-only design picker (DesignPicker.astro). */
 export const designOptions = {
   styles: [
-    { id: 'midnight', label: 'Midnight (default)', blurb: 'Dark-first, indigo→sky gradient accents, glassy surfaces.' },
-    { id: 'fairground', label: 'Fairground', blurb: 'Brand blue, clean system sans.' },
+    { id: 'midnight', label: 'Midnight', blurb: 'Dark-first, indigo→sky gradient accents, glassy surfaces.' },
+    { id: 'fairground', label: 'Fairground (default)', blurb: 'Brand blue, clean system sans.' },
     { id: 'editorial', label: 'Editorial', blurb: 'Serif display type on warm paper. Advocacy-journal feel.' },
     { id: 'civic', label: 'Civic', blurb: 'Teal accent, high contrast, squared corners. Institutional.' },
   ],
