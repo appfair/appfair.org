@@ -1,14 +1,14 @@
 ---
 name: Terms of Distribution for Developers
-title: 'The App Fair Project: Terms of Distribution for Developers'
+title: 'The App Fair Project: Developer Agreement / Terms of Distribution'
 #layout: marketplace
 date: 2024-03-20
-updated: 2024-03-28
+updated: 2026-10-27
 ---
 
 # Terms of Distribution for Developers
 
-Welcome to the App Fair, the free and open source app marketplace! We're excited to have you on board as a developer. In order to maintain a high-quality and trustworthy platform, we've established some guidelines for distributing apps on our marketplace. Please read the following terms carefully and make sure your apps comply with them.
+These terms govern submissions to and distribution through the App Fair marketplace, operated by APP FAIR, France. Participation is open to developers who meet the published [inclusion criteria](/docs/inclusion-criteria/), applied without discrimination. Distribution is non-exclusive.
 
 ## 1. Content Guidelines
 
@@ -18,15 +18,15 @@ Your app must comply with all applicable laws and regulations in the jurisdictio
 
 ### 1.2 App Content
 
-The App Fair Project reserves the right to determine what constitutes inappropriate content and to remove any app that violates this policy.
+Apps, updates and listings must comply with the [Trust & Safety Policy](/marketplace/security/), including its prohibitions on malware, harmful apps, fraud, illegal or exploitative content and deceptive or disruptive behavior. The App Fair may reject, restrict or remove submissions that violate its policies.
 
 ### 1.3 User Privacy
 
-Apps must respect user privacy and only collect, use, and share data with user consent. Developers must provide a clear and accessible privacy policy that explains their data practices.
+Apps must respect user privacy, request only necessary permissions and comply with applicable privacy and child-protection laws. Every listing must link to a clear, accessible privacy policy, including where no personal data is collected. Follow the [privacy information requirements](/privacy/#developers) and keep disclosures current. The [Privacy Policy](/privacy/) also covers information developers provide to the App Fair.
 
 ### 1.4 Intellectual Property
 
-Your app must not infringe on the intellectual property rights of others. This includes using copyrighted material, trademarks, or trade secrets without proper authorization.
+Your app must not infringe on the intellectual property rights of others. You must have authority to submit it and the rights needed to distribute its code, content and assets. Submissions are subject to [intellectual property review](/marketplace/ip/).
 
 ## 2. Business Model Guidelines
 
@@ -51,19 +51,19 @@ Follow [Getting started](/docs/getting-started/) and the [inclusion criteria](/d
 - App name
 - App description
 - Link to the app's source code repository
-- Link to the app's privacy policy (if applicable)
+- Link to the app's privacy policy
 - Contact information for the developer
 
 ### 3.2 Review Process
 
-The App Fair team will review your submission to ensure it complies with these terms. We reserve the right to reject or remove any app that does not meet our guidelines.
+The App Fair reviews submissions against these terms and may request supporting information or corrections. Review and enforcement follow the [Trust & Safety Policy](/marketplace/security/); acceptance is not a guarantee of security or continuing availability.
 
 ### 3.3 Updates and Maintenance
 
-Developers are responsible for keeping their apps up-to-date and maintaining their functionality. The App Fair Project may remove apps that are no longer maintained or have become incompatible with the platform.
+Developers are responsible for maintaining their apps and listings, addressing major security vulnerabilities and cooperating with policy reviews and lawful removal requests. The App Fair may withhold or remove affected releases. Developers may request reconsideration through [support](/marketplace/#customer-support).
 
 ## 4. Acceptance of Terms
 
-By submitting your app to the App Fair Project, you agree to abide by these terms and conditions. If you do not agree with these terms, please do not submit your app.
+By submitting an app or update for distribution, you accept these terms and give APP FAIR written, non-exclusive authorization to review, build, sign, host and distribute the submitted app, updates and listing materials under their applicable licenses, including through distribution and security-review providers. You confirm that you are authorized to give this permission and will supply evidence of rights on request. This authorization does not transfer ownership or alter open-source licenses. The submission and its acceptance record the agreement between you and APP FAIR.
 
-We look forward to working with you to create a thriving, open source app marketplace! If you have any questions or concerns, please feel free to contact us at [support@appfair.org](mailto:support@appfair.org).
+Questions or requests to end future distribution may be sent to [support@appfair.net](mailto:support@appfair.net). Existing recipients retain their license rights. Revised terms will be published here; future submissions are subject to the terms then in effect, without limiting applicable legal rights.

@@ -27,6 +27,6 @@ The App Fair reviews each submitted release and builds it from the identified so
 
 ## Report a problem
 
-Use the app’s support link to report bugs. If an app appears to violate these rules, [contact the App Fair](mailto:support@appfair.org) with the app name, version and a description of the problem.
+Use the app’s support link to report bugs, or contact [customer support](/marketplace/#customer-support). If an app appears to violate these rules, email [safety@appfair.net](mailto:safety@appfair.net) with the app name, version and a description of the problem. The [Trust & Safety Policy](/marketplace/security/) covers prohibited content, reporting and enforcement; the [Privacy Policy](/privacy/) explains information handling and privacy requests.
 
 These rules may change as the project develops. See the [developer inclusion criteria](/docs/inclusion-criteria/) for the current requirements.

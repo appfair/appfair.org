@@ -1,39 +1,35 @@
 ---
-name: Security
-title: 'The App Fair Project: Security'
-# title: The App Fair Project
-#layout: marketplace
+title: 'The App Fair Project: Trust & Safety Policy'
+description: Content rules, security review, reporting and enforcement for users and developers.
 date: 2024-03-20
-updated: 2024-03-28
+updated: 2026-10-27
 ---
 
-# App Security and Malicious Activity Detection
+This policy applies to apps, listings, updates and developer activity distributed through the App Fair, alongside the [app rules](/app-rules/) and [developer agreement](/marketplace/distribution/).
 
-At the App Fair Project, we are committed to maintaining a secure and trustworthy alternative app marketplace. To ensure the integrity of our platform, we engage in ongoing monitoring and detection of fraudulent, malicious, or illegal activity in apps and developers. Our approach combines automated scanning, manual human review, and the inherent security provided by our guarantee that all distributed apps are free and open source.
+## Prohibited content and behavior
 
-## 1. Automated Scanning
+The App Fair does not permit:
 
-We use automated scanning tools to analyze app code and detect potential security vulnerabilities, malware, or other malicious components. These tools help us identify and address issues before they can impact users.
+- Malware, potentially harmful apps, unauthorized access or interference with devices, networks, other apps or security controls.
+- Fraud, scams, impersonation, deceptive listings, hidden functionality or misleading or disruptive installation practices.
+- Illegal content or activity, intellectual property infringement, child sexual abuse or exploitation material, non-consensual intimate imagery, terrorist content, or threats and incitement to violence.
+- Privacy violations, undisclosed data collection, or advertising, analytics, tracking and telemetry prohibited by the app rules.
 
-## 2. Manual Human Review
+Apps must respect user consent and platform controls for installation, permissions and updates. Developers must provide accurate listings, relevant legal and safety disclosures and working contact details.
 
-In addition to automated scanning, our team conducts manual reviews of apps submitted to the App Fair. These reviews assess the app's functionality, content, and compliance with our Terms of Distribution. This process helps us maintain a high-quality marketplace and identify any potential issues that automated tools may miss.
+## Children and parental controls
 
-## 3. Open Source Transparency
+Developers must identify age-restricted content and any child-directed features, describe relevant safeguards and available parental controls, and comply with applicable age-assurance, privacy and child-protection laws. Apps must respect device and platform parental controls and must not bypass restrictions on installation, access or permissions. Users can manage available family restrictions in their device settings; availability varies by platform. Where additional parental controls or age safeguards are legally required, the affected content or feature may be offered only once those safeguards are in place.
 
-One of the key benefits of our free and open source app marketplace is the natural security provided by public code review and scrutiny. By requiring all apps to be open source, we encourage community involvement in identifying and addressing potential security issues or malicious behavior. This transparency helps us maintain a secure and trustworthy platform.
+## Review and enforcement
 
-## 4. Reporting Suspicious Activity
+The App Fair reviews submissions before distribution and monitors its catalog and reports for fraudulent, malicious, illegal or otherwise prohibited activity. Review may include source and license checks, automated checks and manual assessment, depending on the submission and risk. Public source and platform review do not guarantee safety or replace the App Fair’s responsibility for its catalog.
 
-We rely on our community to help us identify and address fraudulent, malicious, or illegal activity. If you encounter an app or developer that you believe is engaging in such activity, please report it to us at [security@appfair.org](mailto:security@appfair.org).
+We assess reported issues and take proportionate action, which may include requesting information or corrections, restricting distribution, removing an app or suspending a developer’s participation. Major security vulnerabilities must be addressed; affected releases may be withheld or removed while a remedy is pending. Urgent protective action may precede notice. Developers may request reconsideration with relevant information. Applicable legal requirements govern notices and responses.
 
-## 5. Consequences for Policy Violations
+## Reports and support
 
-Developers and apps found to be in violation of our policies will face consequences, ranging from warnings to app removal or account suspension. In severe cases, we may also report the activity to law enforcement authorities.
+Send security, fraud or content concerns to [safety@appfair.net](mailto:safety@appfair.net), identifying the app, version, issue and relevant evidence. Do not send unlawful material; provide its location instead. Vulnerabilities may be reported privately to [security@appfair.net](mailto:security@appfair.net).
 
-## 6. Continuous Improvement
-
-We are constantly working to improve our fraud and malicious activity detection processes. This includes staying up-to-date with the latest security threats, refining our automated scanning tools, and providing ongoing training for our review team.
-
-By combining automated scanning, manual human review, and the natural security provided by open source transparency, we strive to create a safe and secure app marketplace for all users. If you have any questions or concerns about our fraud and malicious activity detection efforts, please feel free to contact us at [security@appfair.org](mailto:security@appfair.org).
-
+[Legal and government removal requests](/marketplace/takedown/) and [intellectual property disputes](/marketplace/ipdispute/) have dedicated channels. General questions and payment concerns can be sent to [customer support](/marketplace/#customer-support). We review requests in light of their urgency and applicable obligations. This policy may be updated as the service develops.

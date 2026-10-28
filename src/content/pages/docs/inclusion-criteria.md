@@ -8,7 +8,7 @@ Apps distributed through the App Fair must meet a high standard of quality and t
 > [!WARNING] These policies are evolving
 > The App Fair’s submission rules are still being developed. Expect requirements to change over time. Check this page before each submission, including updates to an accepted app.
 
-These requirements apply to every app and update submitted through the App Fair. The [app rules](/app-rules/) summarize the same expectations for users. Passing automated checks does not establish eligibility or replace review.
+These requirements apply to every app and update submitted through the App Fair. The [app rules](/app-rules/) summarize the same expectations for users. Submissions are subject to the [Developer Agreement](/marketplace/distribution/) and [Trust & Safety Policy](/marketplace/security/). Passing automated checks does not establish eligibility or replace review.
 
 ## Price and monetization
 
@@ -21,6 +21,7 @@ These requirements apply to every app and update submitted through the App Fair.
 - Do not collect or transmit usage data for analytics, tracking or telemetry through custom code either.
 - Request only permissions needed for documented app features. Describe network services, data use and retention in the privacy information.
 - Provide accurate store descriptions and working privacy and support links. The app’s behavior must match them.
+- Provide a privacy policy even if the app collects no personal data; follow the [app privacy information requirements](/privacy/#developers).
 
 ## License and dependencies
 
