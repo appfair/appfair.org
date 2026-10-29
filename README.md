@@ -84,6 +84,14 @@ and the unused blocks in `themes.css` and `layouts.css`.
 default-locale pages carry `data-pagefind-body`, and the index is forced to one language, so a
 visitor on any locale searches the whole (English) site.
 
+## Website analytics
+
+Production pages load GoatCounter from the shared `BaseLayout.astro`, using
+`https://appfair.goatcounter.com/count`. The dashboard is at
+[appfair.goatcounter.com](https://appfair.goatcounter.com/); no API key is needed in the site.
+The script is omitted in development, and GoatCounter ignores localhost previews by default.
+The website privacy policy describes the analytics.
+
 ## License
 
 The App Fair Project © 2026 by <a href="https://appfair.org">the App Fair</a> is licensed under

@@ -113,5 +113,8 @@ const pageRoutes = [...await getPageRoutes()];
     </main>
     <Footer />
     <CodeCopy />
+    {import.meta.env.PROD && (
+      <script is:inline data-goatcounter="https://appfair.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    )}
   </body>
 </html>
