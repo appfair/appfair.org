@@ -48,7 +48,8 @@
     "language": "Langue",
     "theme": "Thème",
     "skip": "Aller au contenu",
-    "home": "Accueil App Fair"
+    "home": "Accueil App Fair",
+    "developers": "Développeurs"
   },
   "theme": {
     "light": "Clair",
@@ -65,8 +66,21 @@
     "catalog": "Parcourir le catalogue",
     "project": "Projet",
     "community": "Communauté",
-    "schema": "Schéma App Index",
-    "mission": "OUVERT PAR NATURE. GRATUIT POUR TOUS."
+    "schema": "Schéma de l’index des applications",
+    "mission": "OUVERT PAR NATURE. GRATUIT POUR TOUS.",
+    "appRules": "Règles des applications",
+    "social": {
+      "forums": "Forums",
+      "github": "GitHub",
+      "mastodon": "Mastodon",
+      "bluesky": "Bluesky",
+      "discord": "Discord",
+      "reddit": "Reddit",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "email": "contact@appfair.org",
+      "rss": "RSS"
+    }
   },
   "home": {
     "title": "Le Projet App Fair",
@@ -227,6 +241,46 @@
     "readMore": "Lire la suite"
   },
   "search": {
-    "placeholder": "Rechercher sur le site"
+    "placeholder": "Rechercher sur le site",
+    "unavailable": "La recherche est temporairement indisponible. Veuillez réessayer plus tard."
+  },
+  "page": {
+    "translationNotice": {
+      "title": "Traduction à venir",
+      "body": "Cette page n’est pas encore traduite en français. Son contenu est affiché en anglais."
+    },
+    "updated": "Dernière mise à jour : {date}"
+  },
+  "a11y": {
+    "primaryNav": "Navigation principale",
+    "footerNav": "Navigation de pied de page",
+    "pagination": "Pages précédente et suivante",
+    "headingLink": "Lien vers : {title}",
+    "externalLink": "s’ouvre dans un nouvel onglet"
+  },
+  "docs": {
+    "navigation": "Documentation pour les développeurs",
+    "guide": "Guide de développement",
+    "reference": "Référence de soumission",
+    "overview": "Vue d’ensemble",
+    "gettingStarted": "Premiers pas",
+    "releases": "Versions et mises à jour",
+    "inclusion": "Critères d’inclusion",
+    "troubleshooting": "Dépannage",
+    "faq": "Questions fréquentes",
+    "breadcrumb": "App Fair / Développeurs"
+  },
+  "copy": {
+    "title": "Copier dans le presse-papiers",
+    "label": "Copier le code dans le presse-papiers",
+    "copied": "Copié",
+    "unavailable": "Copie indisponible",
+    "manual": "Copie indisponible. Le texte est sélectionné ; utilisez la commande Copier de votre navigateur.",
+    "commandsFor": "Copier les commandes pour {title}"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "Aucun contenu n’est disponible à cette adresse. La page a peut-être été déplacée ou le lien n’est plus à jour.",
+    "home": "Aller à l’accueil"
   }
 }

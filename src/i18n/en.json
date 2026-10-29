@@ -68,7 +68,20 @@
     "imprint": "Imprint",
     "schema": "App Index schema",
     "catalog": "Browse the catalog",
-    "mission": "OPEN BY DESIGN. FREE FOR EVERYONE."
+    "mission": "OPEN BY DESIGN. FREE FOR EVERYONE.",
+    "appRules": "App rules",
+    "social": {
+      "forums": "Forums",
+      "github": "GitHub",
+      "mastodon": "Mastodon",
+      "bluesky": "Bluesky",
+      "discord": "Discord",
+      "reddit": "Reddit",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "email": "contact@appfair.org",
+      "rss": "RSS"
+    }
   },
   "home": {
     "eyebrow": "A nonprofit app store",
@@ -231,7 +244,11 @@
     "readMore": "Read more"
   },
   "page": {
-    "updated": "Last updated {date}"
+    "updated": "Last updated {date}",
+    "translationNotice": {
+      "title": "Not yet translated",
+      "body": "This page has not yet been translated into your selected language. Its content is shown in English."
+    }
   },
   "notFound": {
     "title": "Page not found",
@@ -240,9 +257,33 @@
   },
   "search": {
     "placeholder": "Search the site",
-    "unavailable": "Search is indexed at build time. Run a production build and preview it to try it locally."
+    "unavailable": "Search is temporarily unavailable. Please try again later."
   },
   "a11y": {
-    "externalLink": "opens in a new tab"
+    "externalLink": "opens in a new tab",
+    "primaryNav": "Primary navigation",
+    "footerNav": "Footer navigation",
+    "pagination": "Previous and next pages",
+    "headingLink": "Link to: {title}"
+  },
+  "docs": {
+    "navigation": "Developer documentation",
+    "guide": "Developer guide",
+    "reference": "Submission reference",
+    "overview": "Overview",
+    "gettingStarted": "Getting started",
+    "releases": "Releases & updates",
+    "inclusion": "Inclusion criteria",
+    "troubleshooting": "Troubleshooting",
+    "faq": "FAQ",
+    "breadcrumb": "The App Fair / Developers"
+  },
+  "copy": {
+    "title": "Copy to clipboard",
+    "label": "Copy code to clipboard",
+    "copied": "Copied",
+    "unavailable": "Copy unavailable",
+    "manual": "Copy unavailable. Text selected; use your browser’s Copy command.",
+    "commandsFor": "Copy commands for {title}"
   }
 }

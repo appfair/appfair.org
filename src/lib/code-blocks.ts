@@ -2,6 +2,7 @@
 export function setupCodeBlocks() {
   const template = document.querySelector<HTMLTemplateElement>('#code-copy-template');
   if (!template) return;
+  const messages = JSON.parse(template.dataset.copyMessages!);
   for (const code of document.querySelectorAll<HTMLElement>('#main pre > code')) {
     const pre = code.parentElement!;
     if (pre.closest('[data-no-copy]')) continue;
@@ -21,7 +22,7 @@ export function setupCodeBlocks() {
     block.dataset.copyReady = 'true';
     const button = block.querySelector<HTMLButtonElement>('.copy-command')!;
     const status = block.querySelector<HTMLElement>('.copy-feedback')!;
-    const label = () => block.dataset.copyLabel || 'Copy code to clipboard';
+    const label = () => block.dataset.copyLabel || messages.label;
     button.setAttribute('aria-label', label());
     let resetTimer: ReturnType<typeof setTimeout>;
     button.addEventListener('click', async () => {
@@ -34,22 +35,22 @@ export function setupCodeBlocks() {
         await navigator.clipboard.writeText(code.textContent ?? '');
         copied = true;
         button.dataset.copied = 'true';
-        button.title = 'Copied';
-        button.setAttribute('aria-label', 'Copied');
-        status.textContent = 'Copied';
+        button.title = messages.copied;
+        button.setAttribute('aria-label', messages.copied);
+        status.textContent = messages.copied;
       } catch {
         const range = document.createRange();
         range.selectNodeContents(code);
         const selection = getSelection();
         selection?.removeAllRanges();
         selection?.addRange(range);
-        button.title = 'Copy unavailable';
-        status.textContent = 'Copy unavailable. Text selected; use your browser’s Copy command.';
+        button.title = messages.unavailable;
+        status.textContent = messages.manual;
       } finally {
         button.disabled = false;
         resetTimer = setTimeout(() => {
           delete button.dataset.copied;
-          button.title = 'Copy to clipboard';
+          button.title = messages.title;
           button.setAttribute('aria-label', label());
           status.textContent = '';
         }, copied ? 2000 : 6000);

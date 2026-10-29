@@ -48,7 +48,8 @@
     "language": "Idioma",
     "theme": "Tema",
     "skip": "Pular para o conteúdo",
-    "home": "Início do App Fair"
+    "home": "Início do App Fair",
+    "developers": "Desenvolvedores"
   },
   "theme": {
     "light": "Claro",
@@ -65,8 +66,21 @@
     "catalog": "Explorar o catálogo",
     "project": "Projeto",
     "community": "Comunidade",
-    "schema": "Esquema App Index",
-    "mission": "ABERTO POR PRINCÍPIO. GRATUITO PARA TODOS."
+    "schema": "Esquema do índice de aplicativos",
+    "mission": "ABERTO POR PRINCÍPIO. GRATUITO PARA TODOS.",
+    "appRules": "Regras dos aplicativos",
+    "social": {
+      "forums": "Fóruns",
+      "github": "GitHub",
+      "mastodon": "Mastodon",
+      "bluesky": "Bluesky",
+      "discord": "Discord",
+      "reddit": "Reddit",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "email": "contact@appfair.org",
+      "rss": "RSS"
+    }
   },
   "home": {
     "title": "O Projeto App Fair",
@@ -227,6 +241,46 @@
     "readMore": "Ler mais"
   },
   "search": {
-    "placeholder": "Buscar no site"
+    "placeholder": "Buscar no site",
+    "unavailable": "A busca está temporariamente indisponível. Tente novamente mais tarde."
+  },
+  "page": {
+    "translationNotice": {
+      "title": "Tradução pendente",
+      "body": "Esta página ainda não foi traduzida para o português. O conteúdo é exibido em inglês."
+    },
+    "updated": "Última atualização: {date}"
+  },
+  "a11y": {
+    "primaryNav": "Navegação principal",
+    "footerNav": "Navegação do rodapé",
+    "pagination": "Páginas anterior e seguinte",
+    "headingLink": "Link para: {title}",
+    "externalLink": "abre em uma nova aba"
+  },
+  "docs": {
+    "navigation": "Documentação para desenvolvedores",
+    "guide": "Guia de desenvolvimento",
+    "reference": "Referência de envio",
+    "overview": "Visão geral",
+    "gettingStarted": "Primeiros passos",
+    "releases": "Versões e atualizações",
+    "inclusion": "Critérios de inclusão",
+    "troubleshooting": "Solução de problemas",
+    "faq": "Perguntas frequentes",
+    "breadcrumb": "App Fair / Desenvolvedores"
+  },
+  "copy": {
+    "title": "Copiar para a área de transferência",
+    "label": "Copiar código para a área de transferência",
+    "copied": "Copiado",
+    "unavailable": "Não foi possível copiar",
+    "manual": "Não foi possível copiar. O texto está selecionado; use o comando Copiar do navegador.",
+    "commandsFor": "Copiar comandos de {title}"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "body": "Não há conteúdo neste endereço. A página pode ter sido movida ou o link pode estar desatualizado.",
+    "home": "Ir para a página inicial"
   }
 }

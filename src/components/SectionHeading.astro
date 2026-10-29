@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
 interface Props {
   id: string;
   title: string;
@@ -8,7 +10,7 @@ const { id, title, level = 2 } = Astro.props;
 const Heading = `h${level}`;
 ---
 <Heading id={id} class="section-heading">
-  {title}<a class="heading-anchor" href={`#${id}`} aria-label={`Link to: ${title}`} title={`Link to #${id}`} data-pagefind-ignore>
+  {title}<a class="heading-anchor" href={`#${id}`} aria-label={t('a11y.headingLink', { title })} title={t('a11y.headingLink', { title })} data-pagefind-ignore>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 .5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7" /></svg>
   </a>
 </Heading>

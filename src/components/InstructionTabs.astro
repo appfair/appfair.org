@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
 import CodeBlock from './CodeBlock.astro';
 interface Method {
   id: string;
@@ -19,7 +21,7 @@ const { id, label, methods } = Astro.props;
     <h3 class="method-heading">{method.title}</h3>
     <p class="method-description">{method.text}</p>
     {method.operations && <ul class="method-operations">{method.operations.map(([text, href]) => <li><a href={href} target="_blank" rel="noopener noreferrer">{text}</a></li>)}</ul>}
-    {method.command && <CodeBlock code={method.command} label={`Copy ${method.title} commands`} />}
+    {method.command && <CodeBlock code={method.command} label={t('copy.commandsFor', { title: method.title })} />}
     {method.instructions && <ol class="method-instructions">{method.instructions.map(text => <li>{text}</li>)}</ol>}
   </div>)}
 </div>

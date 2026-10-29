@@ -1,15 +1,17 @@
 ---
 import { adjacentDeveloperPages } from '../lib/developer-pages.mjs';
+import { useTranslations, localizePath } from '../i18n';
 const { current } = Astro.props;
+const { t, locale } = useTranslations(Astro.currentLocale);
 const { previous, next } = adjacentDeveloperPages(current);
 ---
-{(previous || next) && <nav class="developer-pager" aria-label="Previous and next pages" data-pagefind-ignore>
-  {previous && <a class="previous" href={previous[0]} rel="prev">
+{(previous || next) && <nav class="developer-pager" aria-label={t('a11y.pagination')} data-pagefind-ignore>
+  {previous && <a class="previous" href={localizePath(previous[0], locale)} rel="prev">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12" /></svg>
-    <span>Previous: <strong>{previous[1]}</strong></span>
+    <span>{t('blog.prev')}: <strong>{t(previous[1])}</strong></span>
   </a>}
-  {next && <a class="next" href={next[0]} rel="next">
-    <span>Next: <strong>{next[1]}</strong></span>
+  {next && <a class="next" href={localizePath(next[0], locale)} rel="next">
+    <span>{t('blog.next')}: <strong>{t(next[1])}</strong></span>
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6M16 12H4" /></svg>
   </a>}
 </nav>}

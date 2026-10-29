@@ -2,11 +2,14 @@
 import Admonition from './Admonition.astro';
 import SubmissionFlow from './SubmissionFlow.astro';
 import SubmissionForm from './SubmissionForm.astro';
+import { useTranslations, localizePath } from '../i18n';
+const { t, locale } = useTranslations(Astro.currentLocale);
 const { title } = Astro.props;
 ---
 <div class="submission-guide" id="submission-guide">
+  <slot name="notice" />
   <header class="guide-intro">
-    <a class="docs-kicker" href="/docs/">The App Fair / Developers</a>
+    <a class="docs-kicker" href={localizePath('/docs/', locale)}>{t('docs.breadcrumb')}</a>
     <h1>{title}</h1>
     <section class="guide-overview" aria-labelledby="process-overview">
       <h2 id="process-overview">Process overview</h2>

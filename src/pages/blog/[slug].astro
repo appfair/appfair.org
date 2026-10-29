@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
 import { excerpt, readingTime } from '../../lib/posts';
 import { useTranslations, localizePath, formatDate, resolveLocale } from '../../i18n';
 
@@ -24,6 +25,7 @@ const description = post.data.description ?? excerpt(post.body ?? '');
   <article class="container">
     <header class="page-head">
       <a class="back" href={localizePath('/blog/', locale)}><Icon name="arrow-left" /> {t('blog.back')}</a>
+      <TranslationNotice />
       <h1>{post.data.title}</h1>
       <div class="article-meta">
         <span><Icon name="user" /> {post.data.author}</span>
@@ -39,7 +41,7 @@ const description = post.data.description ?? excerpt(post.body ?? '');
       <p class="tags" data-pagefind-ignore>{post.data.tags.map((tag) => <span class="pill">{tag}</span>)}</p>
     )}
     {(older || newer) && (
-      <nav class="prevnext" aria-label="Pagination" data-pagefind-ignore>
+      <nav class="prevnext" aria-label={t('a11y.pagination')} data-pagefind-ignore>
         {older ? <a href={localizePath(`/blog/${older.id}/`, locale)} class="pn"><span>← {t('blog.prev')}</span><b>{older.data.title}</b></a> : <span />}
         {newer ? <a href={localizePath(`/blog/${newer.id}/`, locale)} class="pn next"><span>{t('blog.next')} →</span><b>{newer.data.title}</b></a> : <span />}
       </nav>

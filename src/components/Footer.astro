@@ -7,7 +7,7 @@ const { t } = useTranslations(locale);
 const project = [
   { href: localizePath('/blog/', locale), label: t('footer.blog') },
   { href: localizePath('/donate/', locale), label: t('footer.donate') },
-  { href: '/app-rules/', label: 'App rules' },
+  { href: localizePath('/app-rules/', locale), label: t('footer.appRules') },
   { href: localizePath('/marketplace/', locale), label: t('footer.policies') },
   { href: localizePath('/schemas/appindex/', locale), label: t('footer.schema') },
   { href: localizePath('/privacy/', locale), label: t('footer.privacy') },
@@ -22,7 +22,7 @@ const project = [
       <p class="foot-mission">{t('footer.mission')}</p>
       <a class="btn btn-ghost btn-sm" href={site.catalog} rel="noopener">{t('footer.catalog')} ↗</a>
     </div>
-    <nav class="foot-cols" aria-label="Footer">
+    <nav class="foot-cols" aria-label={t('a11y.footerNav')}>
       <div>
         <h4>{t('footer.project')}</h4>
         {project.map((l) => <a href={l.href}>{l.label}</a>)}
@@ -34,7 +34,7 @@ const project = [
             <li>
               <a href={s.href} rel={s.me ? 'me' : undefined} style={`--social-color: ${s.color}`} data-social={s.id}>
                 <span class="social-icon" style={`--social-icon: url('/assets/icons/social/${s.id}.svg')`} aria-hidden="true"></span>
-                <span>{s.label}</span>
+                <span>{t(`footer.social.${s.id}`)}</span>
               </a>
             </li>
           ))}

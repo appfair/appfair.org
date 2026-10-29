@@ -1,6 +1,7 @@
 import { defaults, steps, restore, STORAGE_KEY, validate, suggestName, detectHost } from './submission.mjs';
 import { publishChecklist } from './submission-state';
 import { setupTokenAvailability } from './token-availability';
+import { localizeBrowserPageLink } from './browser-localized-links';
 type State = { schema: number; values: { token: string; title: string; host: string } };
 export function setupSubmissionChecklist() {
   const form = document.querySelector<HTMLFormElement>('#submission-form')!;
@@ -9,6 +10,8 @@ export function setupSubmissionChecklist() {
   const storageNote = document.querySelector<HTMLElement>('#storage-note')!;
   const checkToken = setupTokenAvailability(form.elements.namedItem('token') as HTMLInputElement, document.getElementById('token-availability')!);
   const host = detectHost(navigator.userAgent);
+  const copyTemplate = document.querySelector<HTMLTemplateElement>('#code-copy-template');
+  const copyMessages = copyTemplate?.dataset.copyMessages && JSON.parse(copyTemplate.dataset.copyMessages);
   let saved = null;
   try { saved = restore(localStorage.getItem(STORAGE_KEY)); } catch {}
   let state: State = { schema: 3, values: saved?.values ?? { ...suggestName(), host } };
@@ -24,7 +27,7 @@ export function setupSubmissionChecklist() {
     for (const step of steps(state.values)) {
       const detail = document.getElementById(`step-${step.id}`) as HTMLElement;
       detail.querySelector('.step-label')!.textContent = step.title;
-      detail.querySelector('[data-code-block]')?.setAttribute('data-copy-label', `Copy commands for ${step.title}`);
+      if (copyMessages) detail.querySelector('[data-code-block]')?.setAttribute('data-copy-label', copyMessages.commandsFor.replace('{title}', step.title));
       detail.querySelector('.step-location')!.textContent = step.location;
       detail.querySelector('.step-description')!.textContent = step.text;
       if (step.installations) {
@@ -36,7 +39,7 @@ export function setupSubmissionChecklist() {
           row.classList.toggle('unavailable', item.disabled);
           link.textContent = item.title;
           if (item.disabled) { link.removeAttribute('href'); link.setAttribute('aria-disabled', 'true'); link.tabIndex = -1; }
-          else { link.href = item.href; link.removeAttribute('aria-disabled'); link.removeAttribute('tabindex'); }
+          else { link.href = localizeBrowserPageLink(item.href); link.removeAttribute('aria-disabled'); link.removeAttribute('tabindex'); }
           row.querySelector('small')!.replaceChildren(...item.detail.split('`').map((part, i) => {
             if (i % 2 === 0) return document.createTextNode(part);
             const code = document.createElement('code'); code.textContent = part; return code;
@@ -59,18 +62,18 @@ export function setupSubmissionChecklist() {
         });
         method.operations?.forEach(([text, href], i) => {
           const link = panel.querySelectorAll<HTMLAnchorElement>('.method-operations a')[i];
-          link.textContent = text; link.href = href;
+          link.textContent = text; link.href = localizeBrowserPageLink(href);
         });
       }
       step.operations?.forEach(([label, href, text], i) => {
         const row = detail.querySelectorAll('.step-content > .step-operations li')[i];
         const link = row.querySelector<HTMLAnchorElement>('a')!;
-        link.textContent = label; link.href = href;
+        link.textContent = label; link.href = localizeBrowserPageLink(href);
         if (text) row.querySelector('small')!.textContent = text;
       });
       const links = detail.querySelectorAll<HTMLAnchorElement>('.step-links a');
-      step.links.forEach(([label, href], i) => { links[i].textContent = label; links[i].href = href; });
-      links[links.length - 1].href = step.help;
+      step.links.forEach(([label, href], i) => { links[i].textContent = label; links[i].href = localizeBrowserPageLink(href); });
+      links[links.length - 1].href = localizeBrowserPageLink(step.help);
     }
     for (const panel of list.querySelectorAll<HTMLElement>('[data-local-host]')) {
       panel.hidden = (panel.dataset.localHost === 'macos') !== (state.values.host === 'macos');

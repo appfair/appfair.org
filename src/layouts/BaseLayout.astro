@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import CodeCopy from '../components/CodeCopy.astro';
 import DesignPicker from '../components/DesignPicker.astro';
 import { site, design } from '../lib/site';
+import { getPageRoutes } from '../lib/page-routes';
 import { useTranslations, langOf, resolveLocale, stripLocale, localizePath, LOCALES, DEFAULT_LOCALE } from '../i18n';
 
 interface Props {
@@ -26,6 +27,7 @@ const base = stripLocale(Astro.url.pathname);
 // The chosen design lives in src/lib/site.ts. The picker (and the localStorage / ?style= override it
 // relies on) only exists in development builds; a deployed page always renders exactly the default.
 const showPicker = import.meta.env.DEV;
+const pageRoutes = [...await getPageRoutes()];
 ---
 <!doctype html>
 <html lang={langOf(locale)} data-style={design.style} data-layout={design.layout} data-visual={design.visual}>
@@ -102,7 +104,7 @@ const showPicker = import.meta.env.DEV;
     {site.social.filter((s) => s.me).map((s) => <link rel="me" href={s.href} />)}
     <link rel="me" href={`mailto:${site.email}`} />
   </head>
-  <body>
+  <body data-page-locale={locale} data-site-url={site.url} data-page-routes={JSON.stringify(pageRoutes)}>
     <a class="skip-link" href="#main">{t('nav.skip')}</a>
     <Nav active={active} />
     {showPicker && <DesignPicker />}

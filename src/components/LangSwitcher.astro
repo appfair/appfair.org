@@ -6,7 +6,7 @@ import { LOCALES, useTranslations, resolveLocale, stripLocale, localizePath } fr
 const current = resolveLocale(Astro.currentLocale);
 const { t } = useTranslations(current);
 const base = stripLocale(Astro.url.pathname);
-const currentLabel = LOCALES.find((l) => l.code === current)?.label ?? 'English';
+const currentLabel = LOCALES.find((l) => l.code === current)!.label;
 ---
 <div class="lang" data-lang>
   <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label={`${t('nav.language')}: ${currentLabel}`} title={t('nav.language')}>

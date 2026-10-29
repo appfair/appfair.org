@@ -48,7 +48,8 @@
     "language": "言語",
     "theme": "テーマ",
     "skip": "本文へ移動",
-    "home": "App Fair ホーム"
+    "home": "App Fair ホーム",
+    "developers": "開発者向け"
   },
   "theme": {
     "light": "ライト",
@@ -65,8 +66,21 @@
     "catalog": "カタログを見る",
     "project": "プロジェクト",
     "community": "コミュニティ",
-    "schema": "App Index スキーマ",
-    "mission": "最初からオープン。誰もが無料で。"
+    "schema": "アプリ索引のスキーマ",
+    "mission": "最初からオープン。誰もが無料で。",
+    "appRules": "アプリのルール",
+    "social": {
+      "forums": "フォーラム",
+      "github": "GitHub",
+      "mastodon": "マストドン",
+      "bluesky": "Bluesky",
+      "discord": "Discord",
+      "reddit": "Reddit",
+      "linkedin": "LinkedIn",
+      "twitter": "ツイッター",
+      "email": "contact@appfair.org",
+      "rss": "RSS"
+    }
   },
   "home": {
     "title": "App Fairプロジェクト",
@@ -227,6 +241,46 @@
     "readMore": "続きを読む"
   },
   "search": {
-    "placeholder": "サイト内を検索"
+    "placeholder": "サイト内を検索",
+    "unavailable": "検索は一時的に利用できません。しばらくしてからもう一度お試しください。"
+  },
+  "page": {
+    "translationNotice": {
+      "title": "未翻訳のページ",
+      "body": "このページはまだ日本語に翻訳されていないため、英語の内容を表示しています。"
+    },
+    "updated": "最終更新日：{date}"
+  },
+  "a11y": {
+    "primaryNav": "メインナビゲーション",
+    "footerNav": "フッターナビゲーション",
+    "pagination": "前後のページ",
+    "headingLink": "リンク先：{title}",
+    "externalLink": "新しいタブで開きます"
+  },
+  "docs": {
+    "navigation": "開発者向けドキュメント",
+    "guide": "開発者ガイド",
+    "reference": "提出手順のリファレンス",
+    "overview": "概要",
+    "gettingStarted": "はじめに",
+    "releases": "リリースと更新",
+    "inclusion": "掲載基準",
+    "troubleshooting": "トラブルシューティング",
+    "faq": "よくある質問",
+    "breadcrumb": "App Fair / 開発者向け"
+  },
+  "copy": {
+    "title": "クリップボードにコピー",
+    "label": "コードをクリップボードにコピー",
+    "copied": "コピーしました",
+    "unavailable": "コピーできません",
+    "manual": "コピーできません。テキストを選択しました。ブラウザのコピー機能をご利用ください。",
+    "commandsFor": "「{title}」のコマンドをコピー"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "body": "このアドレスにはコンテンツがありません。ページが移動されたか、リンクが古くなっている可能性があります。",
+    "home": "ホームページへ"
   }
 }

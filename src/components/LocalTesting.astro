@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../i18n';
+const { t } = useTranslations(Astro.currentLocale);
 import Admonition from './Admonition.astro';
 import CodeBlock from './CodeBlock.astro';
 const { host, androidCommand } = Astro.props;
@@ -14,7 +16,7 @@ const iosCommand = 'day doctor --toolkit uikit\nday launch -p ios-uikit\n# Close
     </ol>
     <p class="reference"><a href="https://developer.android.com/studio/run/managing-avds" target="_blank" rel="noopener noreferrer">Android Studio: create and start an emulator</a></p>
     <p>From the app directory, build and launch the Android version:</p>
-    <CodeBlock code={androidCommand} label="Copy Android build and test commands" />
+    <CodeBlock code={androidCommand} label={t('copy.commandsFor', { title: 'Android' })} />
   </section>
   <section aria-labelledby="local-ios-title" data-local-platform="ios">
     <h3 id="local-ios-title">iOS</h3>
@@ -25,7 +27,7 @@ const iosCommand = 'day doctor --toolkit uikit\nday launch -p ios-uikit\n# Close
         <li>Click <strong>Start</strong> and wait for the simulator to finish starting.</li>
       </ol>
       <p class="reference">On older Xcode versions, use <strong>Window → Devices and Simulators</strong> to configure the device, then <strong>Xcode → Open Developer Tool → Simulator</strong> to open it. <a href="https://developer.apple.com/documentation/xcode/running-your-app-on-simulated-or-physical-devices" target="_blank" rel="noopener noreferrer">Apple’s simulator guide</a></p>
-      <CodeBlock code={iosCommand} label="Copy iOS build and test commands" />
+      <CodeBlock code={iosCommand} label={t('copy.commandsFor', { title: 'iOS' })} />
     </div>
     <div data-local-host="other" hidden={host === 'macos'}>
       <Admonition kind="info" title="Start with Android locally">
@@ -36,7 +38,7 @@ const iosCommand = 'day doctor --toolkit uikit\nday launch -p ios-uikit\n# Close
   <section aria-labelledby="local-desktop-title" data-local-platform="desktop">
     <h3 id="local-desktop-title">Desktop testing (optional)</h3>
     <p>If you kept this computer’s default desktop target, use it for quick iterations between mobile tests:</p>
-    <CodeBlock code="day launch" label="Copy desktop launch command" />
+    <CodeBlock code="day launch" label={t('copy.commandsFor', { title: 'day launch' })} />
   </section>
 </div>
 <style>

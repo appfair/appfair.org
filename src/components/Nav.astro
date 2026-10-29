@@ -24,7 +24,7 @@ const links = [
       <Logo size={30} />
       <span class="brand-name">{t('site.short')}</span>
     </a>
-    <nav class="nav-links" aria-label="Primary">
+    <nav class="nav-links" aria-label={t('a11y.primaryNav')}>
       {links.map((l) => (
         <a href={l.href} class:list={['nav-link', { on: active === l.key }]} rel={l.external ? 'noopener' : undefined}>
           {l.label}{l.external && <Icon name="external" class="icon ext" />}

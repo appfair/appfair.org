@@ -1,11 +1,11 @@
 // Shared reading order for the sidebar and page-to-page navigation.
 export const developerPages = [
-  ['/docs/', 'Overview'],
-  ['/docs/getting-started/', 'Getting started'],
-  ['/docs/releases/', 'Releases & updates'],
-  ['/docs/inclusion-criteria/', 'Inclusion criteria'],
-  ['/docs/troubleshooting/', 'Troubleshooting'],
-  ['/docs/faq/', 'FAQ'],
+  ['/docs/', 'docs.overview'],
+  ['/docs/getting-started/', 'docs.gettingStarted'],
+  ['/docs/releases/', 'docs.releases'],
+  ['/docs/inclusion-criteria/', 'docs.inclusion'],
+  ['/docs/troubleshooting/', 'docs.troubleshooting'],
+  ['/docs/faq/', 'docs.faq'],
 ];
 
 export function adjacentDeveloperPages(current) {

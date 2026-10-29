@@ -1,0 +1,23 @@
+---
+import Admonition from './Admonition.astro';
+import { DEFAULT_LOCALE, langOf, resolveLocale, useTranslations } from '../i18n';
+
+// Use only for English content, not pages rendered from the translation tables.
+const locale = resolveLocale(Astro.currentLocale);
+const { t } = useTranslations(locale);
+---
+{locale !== DEFAULT_LOCALE && (
+  <div class="translation-notice" lang={langOf(locale)} data-pagefind-ignore>
+    <Admonition kind="info" heading={t('page.translationNotice.title')}>
+      <p>{t('page.translationNotice.body')}</p>
+    </Admonition>
+  </div>
+)}
+
+<style>
+  .translation-notice { margin-bottom: 24px; }
+  .translation-notice :global(.admonition) { margin: 0; padding: 12px 16px; }
+  .translation-notice :global(.admonition-heading) { font-size: .86rem; gap: 8px; margin-bottom: 4px; }
+  .translation-notice :global(.admonition-icon) { width: 16px; height: 16px; padding: 3px; border-radius: 5px; }
+  .translation-notice :global(.admonition-body) { font-size: .86rem; }
+</style>

@@ -47,6 +47,22 @@ and the policy pages today — render their English content under the locale pre
 chrome (Astro's i18n `fallback` with `fallbackType: 'rewrite'`). A translated page would be a
 localized copy of the markdown file; wiring that up is the next step when translations arrive.
 
+English content pages, developer guides and blog listings/posts use `TranslationNotice.astro`
+to show a compact notice in the selected language on non-English routes. Its copy lives in
+`page.translationNotice` in every locale table. Translated pages such as the homepage and donation
+page omit it. When adding translated content, omit the notice for that content as well.
+
+Shared navigation, footer, accessibility labels, developer navigation and copy controls use the
+locale tables too. Service labels live under `footer.social`; retain brand spellings unless a
+conventional local name exists. Article text and documentation examples remain in their source language.
+
+`src/middleware.ts` localizes rendered links to known site pages, including Markdown and MDX links,
+before the HTML is served or built. Assets, downloads, RSS, external URLs, fragment-only links and
+language-switcher links remain unchanged. Add `data-keep-language` to an anchor to explicitly keep
+an unprefixed link. Search results and interactive guide links use the same URL rules in the browser.
+Run `npm test` for URL and translation coverage, and `tests/localization.browser.mjs` against a
+production preview to check navigation, search and layouts with and without JavaScript.
+
 ## Design picker (development only)
 
 The site's design is **Midnight** (style) + **Split** (layout) + **Catalog** (hero graphic), set as `design`

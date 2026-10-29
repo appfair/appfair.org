@@ -48,7 +48,8 @@
     "language": "Sprache",
     "theme": "Design",
     "skip": "Zum Inhalt springen",
-    "home": "App Fair Startseite"
+    "home": "App Fair Startseite",
+    "developers": "Entwickler"
   },
   "theme": {
     "light": "Hell",
@@ -65,8 +66,21 @@
     "catalog": "Katalog durchsuchen",
     "project": "Projekt",
     "community": "Community",
-    "schema": "App-Index-Schema",
-    "mission": "VON GRUND AUF OFFEN. FÜR ALLE KOSTENLOS."
+    "schema": "Schema des App-Verzeichnisses",
+    "mission": "VON GRUND AUF OFFEN. FÜR ALLE KOSTENLOS.",
+    "appRules": "App-Regeln",
+    "social": {
+      "forums": "Foren",
+      "github": "GitHub",
+      "mastodon": "Mastodon",
+      "bluesky": "Bluesky",
+      "discord": "Discord",
+      "reddit": "Reddit",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "email": "contact@appfair.org",
+      "rss": "RSS"
+    }
   },
   "home": {
     "title": "Das App Fair Projekt",
@@ -227,6 +241,46 @@
     "readMore": "Weiterlesen"
   },
   "search": {
-    "placeholder": "Website durchsuchen"
+    "placeholder": "Website durchsuchen",
+    "unavailable": "Die Suche ist vorübergehend nicht verfügbar. Bitte versuche es später erneut."
+  },
+  "page": {
+    "translationNotice": {
+      "title": "Noch nicht übersetzt",
+      "body": "Diese Seite wurde noch nicht ins Deutsche übersetzt. Ihr Inhalt wird auf Englisch angezeigt."
+    },
+    "updated": "Zuletzt aktualisiert: {date}"
+  },
+  "a11y": {
+    "primaryNav": "Hauptnavigation",
+    "footerNav": "Fußzeilennavigation",
+    "pagination": "Vorherige und nächste Seiten",
+    "headingLink": "Link zu: {title}",
+    "externalLink": "öffnet sich in einem neuen Tab"
+  },
+  "docs": {
+    "navigation": "Entwicklerdokumentation",
+    "guide": "Entwicklerhandbuch",
+    "reference": "Einreichungsreferenz",
+    "overview": "Übersicht",
+    "gettingStarted": "Erste Schritte",
+    "releases": "Versionen und Updates",
+    "inclusion": "Aufnahmekriterien",
+    "troubleshooting": "Fehlerbehebung",
+    "faq": "Häufige Fragen",
+    "breadcrumb": "App Fair / Entwickler"
+  },
+  "copy": {
+    "title": "In die Zwischenablage kopieren",
+    "label": "Code in die Zwischenablage kopieren",
+    "copied": "Kopiert",
+    "unavailable": "Kopieren nicht verfügbar",
+    "manual": "Kopieren nicht verfügbar. Der Text ist ausgewählt; verwende den Kopierbefehl deines Browsers.",
+    "commandsFor": "Befehle für {title} kopieren"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "body": "Unter dieser Adresse gibt es keinen Inhalt. Die Seite wurde möglicherweise verschoben oder der Link ist veraltet.",
+    "home": "Zur Startseite"
   }
 }

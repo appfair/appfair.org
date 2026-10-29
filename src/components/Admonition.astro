@@ -3,12 +3,14 @@ import { admonitions, admonitionHeading } from '../lib/admonitions.mjs';
 interface Props {
   kind?: keyof typeof admonitions;
   title?: string;
+  /** Complete heading for localized callouts, without the default English kind label. */
+  heading?: string;
   id?: string;
   hidden?: boolean;
   class?: string;
 }
-const { kind = 'note', title, id, hidden, class: className } = Astro.props;
-const heading = admonitionHeading(kind, title);
+const { kind = 'note', title, heading: explicitHeading, id, hidden, class: className } = Astro.props;
+const heading = explicitHeading ?? admonitionHeading(kind, title);
 ---
 <aside id={id} class:list={['admonition', `admonition-${kind}`, className]} role="note" aria-label={heading} hidden={hidden}>
   <p class="admonition-heading">

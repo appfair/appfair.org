@@ -48,7 +48,8 @@
     "language": "语言",
     "theme": "主题",
     "skip": "跳到正文",
-    "home": "App Fair 首页"
+    "home": "App Fair 首页",
+    "developers": "开发者"
   },
   "theme": {
     "light": "浅色",
@@ -65,8 +66,21 @@
     "catalog": "浏览目录",
     "project": "项目",
     "community": "社区",
-    "schema": "App Index 架构",
-    "mission": "生而开放，人人免费。"
+    "schema": "应用索引架构",
+    "mission": "生而开放，人人免费。",
+    "appRules": "应用规则",
+    "social": {
+      "forums": "论坛",
+      "github": "GitHub",
+      "mastodon": "Mastodon",
+      "bluesky": "Bluesky",
+      "discord": "Discord",
+      "reddit": "Reddit",
+      "linkedin": "领英",
+      "twitter": "推特",
+      "email": "contact@appfair.org",
+      "rss": "RSS"
+    }
   },
   "home": {
     "title": "App Fair 项目",
@@ -227,6 +241,46 @@
     "readMore": "阅读全文"
   },
   "search": {
-    "placeholder": "搜索本站"
+    "placeholder": "搜索本站",
+    "unavailable": "搜索暂时不可用，请稍后重试。"
+  },
+  "page": {
+    "translationNotice": {
+      "title": "页面尚未翻译",
+      "body": "此页面尚未翻译为简体中文，因此显示英文内容。"
+    },
+    "updated": "最后更新：{date}"
+  },
+  "a11y": {
+    "primaryNav": "主导航",
+    "footerNav": "页脚导航",
+    "pagination": "上一页和下一页",
+    "headingLink": "链接至：{title}",
+    "externalLink": "在新标签页中打开"
+  },
+  "docs": {
+    "navigation": "开发者文档",
+    "guide": "开发者指南",
+    "reference": "提交参考",
+    "overview": "概述",
+    "gettingStarted": "入门指南",
+    "releases": "发布与更新",
+    "inclusion": "收录标准",
+    "troubleshooting": "故障排查",
+    "faq": "常见问题",
+    "breadcrumb": "App Fair / 开发者"
+  },
+  "copy": {
+    "title": "复制到剪贴板",
+    "label": "将代码复制到剪贴板",
+    "copied": "已复制",
+    "unavailable": "无法复制",
+    "manual": "无法复制。文本已选中，请使用浏览器的复制功能。",
+    "commandsFor": "复制“{title}”的命令"
+  },
+  "notFound": {
+    "title": "找不到页面",
+    "body": "此地址没有内容。页面可能已移动，或链接已失效。",
+    "home": "返回首页"
   }
 }

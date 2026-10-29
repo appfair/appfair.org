@@ -13,19 +13,22 @@ const placeholder = t('search.placeholder');
 </button>
 
 <dialog class="search-modal" data-search-dialog aria-label={t('nav.search')} data-pagefind-ignore>
-  <div class="search-panel"><div id="pagefind-search" data-search-mount></div></div>
+  <div class="search-panel"><div id="pagefind-search" data-search-mount data-unavailable={unavailable} data-placeholder={placeholder}></div></div>
 </dialog>
 
-<script is:inline define:vars={{ unavailable, placeholder }}>
+<script>
+  import { localizeBrowserPageLink } from '../lib/browser-localized-links';
+  declare const PagefindUI: new (options: Record<string, unknown>) => unknown;
   (() => {
-    const dialog = document.querySelector('[data-search-dialog]');
-    const mount = document.querySelector('[data-search-mount]');
+    const dialog = document.querySelector<HTMLDialogElement>('[data-search-dialog]');
+    const mount = document.querySelector<HTMLElement>('[data-search-mount]');
     if (!dialog || !mount) return;
+    const { unavailable, placeholder } = mount.dataset;
     let loaded = false;
     function load() {
       if (loaded) return Promise.resolve();
       loaded = true;
-      return new Promise((resolve) => {
+      return new Promise<void>((resolve) => {
         const css = document.createElement('link');
         css.rel = 'stylesheet'; css.href = '/pagefind/pagefind-ui.css';
         document.head.appendChild(css);
@@ -33,11 +36,17 @@ const placeholder = t('search.placeholder');
         js.src = '/pagefind/pagefind-ui.js';
         js.onload = () => {
           // eslint-disable-next-line no-undef
-          new PagefindUI({ element: mount, showSubResults: true, showImages: false, resetStyles: false, translations: { placeholder } });
+          new PagefindUI({ element: mount, showSubResults: true, showImages: false, resetStyles: false, translations: { placeholder },
+            processResult: (result: { url: string; sub_results?: { url: string }[] }) => {
+              result.url = localizeBrowserPageLink(result.url);
+              for (const sub of result.sub_results ?? []) sub.url = localizeBrowserPageLink(sub.url);
+              return result;
+            },
+          });
           resolve();
         };
         js.onerror = () => {
-          const p = document.createElement('p'); p.className = 'search-unavailable'; p.textContent = unavailable;
+          const p = document.createElement('p'); p.className = 'search-unavailable'; p.textContent = unavailable!;
           mount.replaceChildren(p); resolve();
         };
         document.body.appendChild(js);

@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SubmissionGuide from '../components/SubmissionGuide.astro';
 import DeveloperNav from '../components/DeveloperNav.astro';
 import DeveloperPager from '../components/DeveloperPager.astro';
+import TranslationNotice from '../components/TranslationNotice.astro';
 import '../styles/developers.css';
 import { useTranslations, formatDate, resolveLocale } from '../i18n';
 
@@ -25,10 +26,11 @@ const isGettingStarted = page.id === 'docs/getting-started';
 const updated = page.data.updated ?? page.data.date;
 ---
 <BaseLayout active={isDocs ? 'developers' : isDonation ? 'donate' : undefined} title={isDonation ? t('nav.donate') : page.data.title} description={isDonation ? t('donation.intro') : page.data.description} ogImage={`/og/${page.id.replace(/(^|\/)index$/, '') || 'index'}.png`}>
-  {isDonation ? <Content /> : isGettingStarted ? <div class="container developer-layout"><DeveloperNav current={docsPath} /><SubmissionGuide title={page.data.title}><Content /><DeveloperPager slot="footer" current={docsPath} /></SubmissionGuide></div> : <div class:list={['container', { 'developer-layout': isDocs }]}>
+  {isDonation ? <Content /> : isGettingStarted ? <div class="container developer-layout"><DeveloperNav current={docsPath} /><SubmissionGuide title={page.data.title}><TranslationNotice slot="notice" /><Content /><DeveloperPager slot="footer" current={docsPath} /></SubmissionGuide></div> : <div class:list={['container', { 'developer-layout': isDocs }]}>
     {isDocs && <DeveloperNav current={docsPath} />}
     <div class:list={['prose', { 'page-body': !isDocs, wide: page.data.width === 'wide', 'developer-article': isDocs }]}>
-      {isDocs && <div class="docs-kicker" data-pagefind-ignore>The App Fair / Developers</div>}
+      <TranslationNotice />
+      {isDocs && <div class="docs-kicker" data-pagefind-ignore>{t('docs.breadcrumb')}</div>}
       {!hasOwnH1 && <h1>{page.data.title}</h1>}
       <Content />
       {updated && <p class="updated">{t('page.updated', { date: formatDate(updated, locale) })}</p>}
